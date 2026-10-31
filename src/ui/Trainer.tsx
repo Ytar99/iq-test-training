@@ -1,12 +1,20 @@
-import { Button, Group, Paper, Radio, SimpleGrid, Stack, Text } from '@mantine/core'
+import { Alert, Box, Button, Group, Paper, Radio, SimpleGrid, Stack, Text } from '@mantine/core'
 import { useState } from 'react'
 import { SCALES } from '../domain/catalog.ts'
-import type { AttemptAction, AttemptState } from '../domain/attempt.ts'
+import type { AttemptAction, AttemptState, ItemSlot } from '../domain/attempt.ts'
 import { formatClock } from '../domain/format.ts'
 import { StimulusView } from './content.tsx'
 import { LETTERS, optionsInColumn } from './options.ts'
-import { NavButton, Shell, SideButtons } from './Shell.tsx'
+import { NavButton, Shell, SideButtons, type StripTone } from './Shell.tsx'
 import classes from './Shell.module.css'
+
+function stripTone(slot: ItemSlot, current: boolean): StripTone {
+  if (current) return 'current'
+  if (slot.selection != null || slot.outcome.kind === 'answer') return 'answered'
+  if (slot.remainingSec === 0) return 'missed'
+  if (!slot.opened) return 'empty'
+  return 'timed'
+}
 
 type TrainerProps = {
   state: AttemptState
@@ -29,8 +37,7 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
   const hintOpen = Boolean(slot && hintFor === slot.item.id && state.hints)
   const column = slot ? optionsInColumn(slot.item.options) : true
   const strip = block.slots.map((item, index) => ({
-    opened: item.opened,
-    current: itemIndex === index,
+    tone: stripTone(item, itemIndex === index),
   }))
 
   const menu = (
@@ -40,8 +47,9 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
   )
   const hintButton = state.hints && slot ? (
     <NavButton
+      icon="hint"
       color="orange"
-      variant={hintOpen ? 'filled' : 'light'}
+      filled={hintOpen}
       pressed={hintOpen}
       onClick={() => setHintFor(hintOpen ? null : slot.item.id)}
     >
@@ -52,20 +60,26 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
   const instructionDisabled = !onTask
 
   const left = (
-    <SideButtons>
-      <NavButton onClick={onMenu}>Меню</NavButton>
-      <NavButton disabled={backDisabled} onClick={() => dispatch({ type: 'back' })}>
-        Назад
+    <SideButtons place="left">
+      <NavButton icon="menu" onClick={onMenu}>
+        Меню
       </NavButton>
-      <NavButton disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
-        Инструкция
-      </NavButton>
-      {hintButton}
+      <Box className={classes.railMiddle}>
+        <NavButton icon="back" disabled={backDisabled} onClick={() => dispatch({ type: 'back' })}>
+          Назад
+        </NavButton>
+      </Box>
+      <Stack gap={6} align="center">
+        <NavButton icon="info" disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
+          Инструкция
+        </NavButton>
+        {hintButton}
+      </Stack>
     </SideButtons>
   )
   const right = (
-    <SideButtons>
-      <NavButton color="teal" variant="filled" onClick={() => dispatch({ type: 'next' })}>
+    <SideButtons place="right">
+      <NavButton icon="next" color="orange" filled onClick={() => dispatch({ type: 'next' })}>
         Далее
       </NavButton>
     </SideButtons>
@@ -102,18 +116,25 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
       blockSeconds={block.remainingSec}
       itemSeconds={returned || onTask ? slot?.remainingSec ?? null : null}
       strip={strip}
+      onHome={onMenu}
+      onBlock={onTask ? () => dispatch({ type: 'instruction' }) : undefined}
       menu={menu}
       left={left}
       right={right}
       bottom={bottom}
     >
       {onTask && slot ? (
-        <Stack gap="md" className={classes.content}>
+        <Stack gap="md">
           <StimulusView stimulus={slot.item.stimulus} />
           {hintOpen ? (
             <Paper withBorder p="sm" radius="md" bg="orange.0">
               <Text size="sm">{slot.item.hint}</Text>
             </Paper>
+          ) : null}
+          {slot.remainingSec === 0 ? (
+            <Alert color="orange" radius="md">
+              Время ответа истекло
+            </Alert>
           ) : null}
           <Radio.Group
             value={slot.selection}
@@ -122,12 +143,14 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
           >
             <div className={column ? classes.options : `${classes.options} ${classes.optionsInline}`}>
               {slot.item.options.map((option, index) => (
-                <Radio.Card key={option.id} value={option.id} withBorder p="sm" radius="md">
+                <Radio.Card key={option.id} value={option.id} withBorder p="sm" radius="md" disabled={slot.remainingSec === 0}>
                   <Group className={classes.optionLine} align="flex-start" wrap="nowrap" gap="sm">
-                    <Radio.Indicator />
-                    <Text fw={700} c="teal">
-                      {LETTERS[index]}
-                    </Text>
+                    <Group gap={6} wrap="nowrap" align="center">
+                      <Radio.Indicator disabled={slot.remainingSec === 0} />
+                      <Text fw={700} c="teal">
+                        {LETTERS[index]}
+                      </Text>
+                    </Group>
                     <Stack className={classes.optionScene} gap={4}>
                       {option.text ? <Text style={{ whiteSpace: 'pre-wrap' }}>{option.text}</Text> : null}
                       {option.scene ? <StimulusView stimulus={{ scene: option.scene }} /> : null}
@@ -139,7 +162,7 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
           </Radio.Group>
         </Stack>
       ) : (
-        <Stack gap="md" maw={760}>
+        <Stack gap="md">
           <Text fw={700} size="xl">
             {info.name}
           </Text>

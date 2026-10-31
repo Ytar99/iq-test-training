@@ -1,15 +1,13 @@
 .page {
   min-height: 100dvh;
-  background: var(--mantine-color-gray-1);
+  background: white;
 }
 
 .sheet {
-  width: min(68rem, calc(100% - 1.5rem));
-  margin: 0.75rem auto;
+  width: 100%;
+  margin: 0 auto;
   background: white;
-  min-height: calc(100dvh - 1.5rem);
-  border-radius: var(--mantine-radius-md);
-  box-shadow: var(--mantine-shadow-sm);
+  min-height: 100dvh;
   padding: var(--mantine-spacing-md);
   display: flex;
   flex-direction: column;
@@ -17,23 +15,105 @@
 }
 
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: white;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   gap: var(--mantine-spacing-xs);
 }
 
-.headerStart {
-  flex: 0 0 auto;
+.chevron {
+  display: none;
+  align-items: stretch;
+  min-height: 3.25rem;
+  background: var(--mantine-color-gray-1);
+  width: 100%;
 }
 
-.centerTitle {
-  flex: 1;
+.seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+  padding: 0.55rem 1.35rem 0.55rem 1.7rem;
+  background: var(--mantine-color-gray-0);
+  color: inherit;
+  font: inherit;
   text-align: center;
+  clip-path: polygon(0 0, calc(100% - 0.9rem) 0, 100% 50%, calc(100% - 0.9rem) 100%, 0 100%, 0.9rem 50%);
+  margin-right: -0.45rem;
 }
 
-.headerEnd {
+.segStart {
+  clip-path: polygon(0 0, calc(100% - 0.9rem) 0, 100% 50%, calc(100% - 0.9rem) 100%, 0 100%);
+  padding-left: 1.1rem;
+  padding-right: 1.7rem;
   flex: 0 0 auto;
+}
+
+.segEnd {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0.9rem 50%);
+  margin-right: 0;
+  padding-right: 1rem;
+}
+
+.segGrow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.segCurrent,
+button.seg.segCurrent {
+  background: var(--mantine-color-teal-0);
+}
+
+button.seg {
+  cursor: pointer;
+  background: var(--mantine-color-gray-0);
+  padding: 0.55rem 1.35rem 0.55rem 1.7rem;
+}
+
+button.seg.segStart {
+  padding-left: 1.1rem;
+  padding-right: 1.7rem;
+}
+
+button.seg:hover {
+  background: var(--mantine-color-teal-0);
+}
+
+button.seg:focus-visible,
+.home:focus-visible,
+.blockLink:focus-visible {
+  outline: 2px solid var(--mantine-color-teal-6);
+  outline-offset: 2px;
+}
+
+.compactAttempt {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.home,
+.blockLink {
+  font: inherit;
+  color: var(--mantine-color-teal-8);
+  cursor: pointer;
+}
+
+.home {
+  font-weight: 700;
+}
+
+.blockLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .clock {
@@ -42,13 +122,25 @@
   min-width: 3.4rem;
 }
 
+.strip {
+  width: min(52rem, 100%);
+  margin-inline: auto;
+}
+
+.stripEmpty {
+  background: white;
+  box-shadow: inset 0 0 0 1px var(--mantine-color-gray-4);
+}
+
 .taskBody {
-  display: block;
   flex: 1;
+  min-width: 0;
 }
 
 .content {
   min-width: 0;
+  width: min(52rem, 100%);
+  margin-inline: auto;
 }
 
 .bottom {
@@ -79,12 +171,94 @@
   max-width: 100%;
 }
 
+.railLeft,
+.railRight,
+.railMiddle {
+  display: none;
+}
+
+.navButton {
+  && {
+    height: auto;
+    padding: 0.1rem;
+    background: transparent;
+    border: 0;
+  }
+
+  &&:hover {
+    background: transparent;
+  }
+}
+
+.navInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.navLabel {
+  line-height: 1.15;
+  text-align: center;
+  max-width: 5.6rem;
+}
+
+.hexSvg {
+  width: 3.4rem;
+  height: 3.75rem;
+  display: block;
+}
+
 @media (min-width: $mantine-breakpoint-md) {
-  .taskBody {
-    display: grid;
-    grid-template-columns: 9.5rem minmax(0, 1fr) 9.5rem;
-    gap: var(--mantine-spacing-md);
-    align-items: start;
+  .sheetAttempt {
+    padding-inline: 7.5rem;
+  }
+
+  .sheetAttempt .header {
+    margin-inline: -7.5rem;
+  }
+
+  .chevron {
+    display: flex;
+  }
+
+  .compactAttempt {
+    display: none;
+  }
+
+  .railLeft {
+    position: fixed;
+    z-index: 4;
+    top: 4.75rem;
+    bottom: 1rem;
+    left: 0.75rem;
+    width: 5.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .railMiddle {
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 0.75rem;
+    width: 5.75rem;
+    display: flex;
+    justify-content: center;
+    transform: translateY(-50%);
+  }
+
+  .railRight {
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    right: 0.75rem;
+    width: 5.75rem;
+    display: flex;
+    justify-content: center;
+    transform: translateY(-50%);
   }
 
   .optionsInline {
@@ -95,20 +269,26 @@
   .optionsInline > * {
     flex: 1;
     min-width: 0;
+    display: flex;
+  }
+
+  .optionsInline .optionLine {
+    --group-align: center;
+    --group-justify: center;
+    --group-gap: 0.4rem;
+    flex: 1;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+  }
+
+  .optionsInline .optionScene {
+    align-items: center;
+    width: 100%;
   }
 }
 
 @media (max-width: 61.99em) {
-  .header {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center;
-  }
-
-  .phoneMeta {
-    grid-column: 1 / -1;
-  }
-
   .phoneBar :global(.mantine-Button-root) {
     padding-inline: 2px;
   }

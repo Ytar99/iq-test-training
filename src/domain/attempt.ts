@@ -234,7 +234,15 @@ export function reduceAttempt(state: AttemptState, action: AttemptAction): Attem
     return afterBlock(replaceBlock(withCommit, place.scaleIndex, closed), place.scaleIndex)
   }
 
-  return leaveForward(ticked, place.scaleIndex, place.itemIndex, true)
+  const committed = commit(ticked.blocks[place.scaleIndex]!.slots[place.itemIndex]!)
+  const withCommit = replaceSlot(ticked, place.scaleIndex, place.itemIndex, committed)
+  if (withCommit.phase.kind === 'instruction' && withCommit.phase.mode === 'return') {
+    return {
+      ...withCommit,
+      phase: { kind: 'task', scaleIndex: place.scaleIndex, itemIndex: place.itemIndex },
+    }
+  }
+  return withCommit
 }
 
 export function grade(slot: ItemSlot): 'correct' | 'wrong' | 'skip' {
