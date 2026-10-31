@@ -59,6 +59,7 @@ export type Scene =
   | { kind: 'chart'; variant: 'bar' | 'line'; labels: string[]; values: number[] }
   | { kind: 'table'; headers: string[]; rows: string[][] }
   | { kind: 'stack'; heights: number[][]; view: 'iso' | 'top' }
+  | { kind: 'compass'; arrow: number; label: string; labelAt: number }
 
 export type Stimulus = {
   text?: string

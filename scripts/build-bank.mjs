@@ -1599,17 +1599,287 @@ spelling('hard', 'акомпанемент', ['аккомпанемент', 'с�
 spelling('hard', 'интелигенция', ['интеллигенция', 'профессура', 'аудитория', 'общественность'], 'пропущена буква л')
 spelling('hard', 'аллюминий', ['алюминий', 'титан', 'магний', 'никель'], 'лишняя буква л')
 
+function formatGrid(rows) {
+  const width = Math.max(...rows.flat().map((value) => (value == null ? 1 : String(value).length)))
+  return rows
+    .map((row) => row.map((value) => (value == null ? '?' : String(value)).padStart(width)).join('  '))
+    .join('\n')
+}
+
+function gridItem(difficulty, rows, answer, hint, lead, traps) {
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-grid',
+    difficulty,
+    text: `Какое число пропущено?\n${formatGrid(rows)}`,
+    answer,
+    hint,
+    lead,
+    traps,
+  })
+}
+
+function easyGrid(start, step, shift) {
+  const rows = [0, 1, 2].map((row) => {
+    const origin = start + row * shift
+    return [0, 1, 2].map((column) => origin + column * step)
+  })
+  const answer = rows[2][2]
+  const left = rows[2][1]
+  const above = rows[1][2]
+  rows[2][2] = null
+  gridItem('easy', rows, answer, 'Сравните соседние числа в одной строке и повторите ту же разность.', 'В каждой строке одна и та же разность.', [
+    { name: 'шаг на единицу больше', compute: () => left + step + 1 },
+    { name: 'шаг на единицу меньше', compute: () => left + step - 1 },
+    { name: 'соседнее число из другой клетки', compute: () => above },
+  ])
+}
+
+function mediumGrid(origin, rowStep, colStep) {
+  const cell = (row, column) => origin + row * rowStep + column * colStep
+  const rows = [0, 1, 2].map((row) => [0, 1, 2].map((column) => cell(row, column)))
+  const answer = rows[2][2]
+  const left = rows[2][1]
+  const above = rows[1][2]
+  rows[2][2] = null
+  gridItem(
+    'medium',
+    rows,
+    answer,
+    'В строке одна разность, в столбце другая. Для пустой клетки нужны обе.',
+    'По строке одна разность, по столбцу другая.',
+    [
+      { name: 'только шаг строки', compute: () => left + rowStep },
+      { name: 'только шаг столбца', compute: () => above + colStep },
+      { name: 'шаг на единицу больше', compute: () => left + colStep + 1 },
+    ],
+  )
+}
+
+function hardGrid(start, firstStep, growth, vertical) {
+  const rows = []
+  const steps = []
+  let origin = start
+  for (let row = 0; row < 3; row += 1) {
+    const step = firstStep + row * growth
+    steps.push(step)
+    rows.push([origin, origin + step, origin + step * 2])
+    origin += step * 2 + vertical
+  }
+  const answer = rows[2][2]
+  const left = rows[2][1]
+  rows[2][2] = null
+  gridItem(
+    'hard',
+    rows,
+    answer,
+    'Разность внутри строки меняется от строки к строке. Прежний шаг уже не годится.',
+    'Шаг строки растет, и следующая строка начинается после отдельного перехода.',
+    [
+      { name: 'старый шаг', compute: () => left + steps[1] },
+      { name: 'только одно из двух правил', compute: () => left + steps[0] },
+      { name: 'шаг на единицу больше', compute: () => left + steps[2] + 1 },
+    ],
+  )
+}
+
+easyGrid(14, 6, 9)
+easyGrid(17, 8, 11)
+mediumGrid(8, 5, 9)
+mediumGrid(11, 7, 4)
+mediumGrid(6, 9, 5)
+hardGrid(9, 4, 3, 5)
+hardGrid(13, 5, 2, 6)
+hardGrid(8, 6, 4, 3)
+
+function scrambleWord(word, turn) {
+  const chars = [...word.toLowerCase()]
+  const shift = turn % chars.length || 1
+  let result = chars.slice(shift).concat(chars.slice(0, shift)).join('')
+  if (result === word.toLowerCase()) {
+    const swapped = [...chars]
+    const last = swapped.length - 1
+    ;[swapped[0], swapped[last]] = [swapped[last], swapped[0]]
+    result = swapped.join('')
+  }
+  const sorted = (value) => [...value].sort().join('')
+  if (result === word.toLowerCase() || sorted(result) !== sorted(word.toLowerCase())) {
+    throw new Error(`${word} не удалось перемешать`)
+  }
+  return result.toUpperCase()
+}
+
+const anagramHint = 'Сначала соберите из букв обычные слова, затем найдите чужую группу.'
+
+function anagramItem(difficulty, groupName, oddWord, memberWords) {
+  const odd = scrambleWord(oddWord, 1)
+  const members = memberWords.map((word, index) => [scrambleWord(word, index + 2), word])
+  const solvedWords = [oddWord, ...memberWords]
+  for (const word of solvedWords) {
+    if (word.length >= 3 && anagramHint.toLowerCase().includes(word.toLowerCase())) {
+      throw new Error(`подсказка анаграммы содержит ${word}`)
+    }
+  }
+  commitChoice({
+    scale: 'vocabulary',
+    type: 'voc-anagram',
+    difficulty,
+    text: 'Соберите из букв слова и укажите то, которое не входит в одну группу с остальными.',
+    answer: odd,
+    hint: anagramHint,
+    lead: `Четыре слова относятся к группе "${groupName}", лишнее - ${oddWord}.`,
+    traps: members.map(([scrambled, word]) => [`слово группы ${word}`, scrambled]),
+  })
+}
+
+anagramItem('easy', 'животные', 'стул', ['кошка', 'собака', 'лошадь', 'корова'])
+anagramItem('easy', 'фрукты', 'молоток', ['яблоко', 'груша', 'слива', 'вишня'])
+anagramItem('easy', 'цвета', 'заяц', ['красный', 'синий', 'зеленый', 'белый'])
+anagramItem('easy', 'посуда', 'поезд', ['тарелка', 'чашка', 'ложка', 'вилка'])
+anagramItem('medium', 'начало текста', 'эпилог', ['пролог', 'преамбула', 'вступление', 'зачин'])
+anagramItem('medium', 'чем пишут', 'ластик', ['карандаш', 'фломастер', 'маркер', 'перо'])
+anagramItem('medium', 'струнные инструменты', 'барабан', ['скрипка', 'альт', 'виолончель', 'контрабас'])
+anagramItem('medium', 'головной убор', 'перчатка', ['шляпа', 'кепка', 'берет', 'капюшон'])
+anagramItem('hard', 'подтверждает право', 'афиша', ['патент', 'диплом', 'лицензия', 'аттестат'])
+anagramItem('hard', 'несущая часть здания', 'карниз', ['фундамент', 'колонна', 'перекрытие', 'балка'])
+anagramItem('hard', 'художественный сюжет', 'очерк', ['роман', 'повесть', 'новелла', 'рассказ'])
+anagramItem('hard', 'измеряет величину', 'микроскоп', ['термометр', 'барометр', 'амперметр', 'манометр'])
+
+const RUMB = [
+  [0, 'С'],
+  [45, 'С-В'],
+  [90, 'В'],
+  [135, 'Ю-В'],
+  [180, 'Ю'],
+  [225, 'Ю-З'],
+  [270, 'З'],
+  [315, 'С-З'],
+]
+const LETTER_BEARING = { С: 0, В: 90, Ю: 180, З: 270 }
+
+function rumbName(deg) {
+  const normal = ((deg % 360) + 360) % 360
+  const found = RUMB.find(([angle]) => angle === normal)
+  if (!found) throw new Error(`нет румба ${deg}`)
+  return found[1]
+}
+
+function compassItem(difficulty, arrow, label, labelAt) {
+  const letterBearing = LETTER_BEARING[label]
+  if (letterBearing == null) throw new Error(`буква ${label}`)
+  const answerDeg = (arrow - labelAt + letterBearing + 360) % 360
+  const answer = rumbName(answerDeg)
+  const letterSide = rumbName(letterBearing)
+  if (difficulty === 'hard') {
+    if (labelAt === 0) throw new Error('трудный компас: буква сверху')
+    if (answer === letterSide) throw new Error('трудный компас: ответ равен букве')
+  }
+  const candidates = [
+    ['противоположная сторона', rumbName(answerDeg + 180)],
+    ['поворот по часовой', rumbName(answerDeg + 90)],
+    ['поворот против часовой', rumbName(answerDeg + 270)],
+    ['сторона самой буквы', letterSide],
+  ]
+  const picked = []
+  for (const candidate of candidates) {
+    if (candidate[1] === answer || picked.some((item) => item[1] === candidate[1])) continue
+    picked.push(candidate)
+    if (picked.length === 3) break
+  }
+  if (picked.length < 3) throw new Error(`не хватило румбов для ${answer}`)
+  commitChoice({
+    scale: 'spatial',
+    type: 'spa-compass',
+    difficulty,
+    text: 'На какую сторону света указывает стрелка?',
+    scene: { kind: 'compass', arrow, label, labelAt },
+    answer,
+    hint: 'Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.',
+    lead: `Буква ${label} стоит на ободе, стрелка смотрит на ${answer}.`,
+    traps: picked,
+  })
+}
+
+compassItem('easy', 90, 'С', 0)
+compassItem('easy', 0, 'В', 90)
+compassItem('medium', 45, 'С', 0)
+compassItem('medium', 45, 'Ю', 180)
+compassItem('medium', 135, 'З', 270)
+compassItem('hard', 0, 'С', 90)
+compassItem('hard', 0, 'В', 180)
+compassItem('hard', 90, 'Ю', 270)
+
+function repeatCycle(cycle, length) {
+  if (length % cycle.length !== 0) throw new Error(`длина ${length} не кратна циклу ${cycle}`)
+  return cycle.repeat(length / cycle.length)
+}
+
+function purePeriod(text) {
+  for (let size = 1; size <= text.length / 2; size += 1) {
+    if (text.length % size === 0 && text === text.slice(0, size).repeat(text.length / size)) return size
+  }
+  return null
+}
+
+function breakCycle(text, mode, at) {
+  const chars = [...text]
+  if (mode === 'swap') {
+    if (chars[at] === chars[at + 1]) throw new Error('одинаковые соседи')
+    ;[chars[at], chars[at + 1]] = [chars[at + 1], chars[at]]
+  } else {
+    chars[at] = chars[at] === '9' ? '1' : String(Number(chars[at]) + 1)
+  }
+  return chars.join('')
+}
+
+function cycleItem(difficulty, length, cycle, mode, at, cleanCycles) {
+  const minimum = { easy: 18, medium: 30, hard: 48 }[difficulty]
+  if (length < minimum) throw new Error(`цикл короче порога ${difficulty}`)
+  const broken = breakCycle(repeatCycle(cycle, length), mode, at)
+  if (purePeriod(broken) != null) throw new Error(`сбой остался циклом: ${broken}`)
+  const cleans = cleanCycles.map((clean) => {
+    const text = repeatCycle(clean, length)
+    if (purePeriod(text) == null) throw new Error(`не целый цикл ${clean}`)
+    if (text === broken) throw new Error('целая строка совпала со сбоем')
+    return text
+  })
+  if (new Set(cleans).size !== cleans.length) throw new Error('одинаковые целые строки')
+  const breakName = mode === 'swap' ? 'переставлены соседние цифры' : 'заменена одна цифра'
+  commitChoice({
+    scale: 'attention',
+    type: 'att-cycle',
+    difficulty,
+    text: 'В какой строке сбит повторяющийся цикл цифр?',
+    answer: broken,
+    hint: 'Проверьте, повторяется ли в строке один и тот же короткий кусок без сбоя.',
+    lead: `Сбит цикл ${cycle}: ${breakName}.`,
+    traps: cleans.map((text, index) => [`целый цикл ${cleanCycles[index]}`, text]),
+  })
+}
+
+cycleItem('easy', 18, '246', 'swap', 4, ['135', '789', '123', '864'])
+cycleItem('easy', 18, '357', 'replace', 6, ['246', '789', '123', '864'])
+cycleItem('medium', 30, '38159', 'swap', 7, ['13579', '86420', '19283', '47025'])
+cycleItem('medium', 30, '24680', 'replace', 11, ['13579', '38159', '19283', '47025'])
+cycleItem('medium', 30, '90731', 'swap', 14, ['13579', '86420', '61839', '47025'])
+cycleItem('hard', 48, '2704', 'swap', 9, ['1358', '6891', '2469', '9753'])
+cycleItem('hard', 48, '1358', 'replace', 16, ['2704', '6891', '2469', '9753'])
+cycleItem('hard', 48, '6891', 'swap', 21, ['2704', '1358', '8026', '4137'])
+
 const minimums = {
   'calc-story': 16,
-  'calc-series': 16,
+  'calc-series': 8,
+  'calc-grid': 8,
   'calc-chart': 16,
-  'voc-meaning': 12,
-  'voc-odd-word': 12,
+  'voc-meaning': 8,
+  'voc-odd-word': 8,
   'voc-spelling': 12,
-  'voc-paronym': 12,
+  'voc-paronym': 8,
+  'voc-anagram': 12,
   fact: 48,
-  'spa-assembly': 12,
-  'spa-net': 12,
+  'spa-assembly': 8,
+  'spa-net': 8,
+  'spa-compass': 8,
   'spa-transform': 8,
   'spa-top': 8,
   'spa-cubes': 8,
@@ -1624,10 +1894,11 @@ const minimums = {
   'ver-order': 8,
   'ver-set': 8,
   'att-count': 12,
-  'att-symbol': 12,
+  'att-symbol': 8,
   'att-match': 8,
   'att-typo': 8,
-  'att-diff': 8,
+  'att-diff': 4,
+  'att-cycle': 8,
 }
 const topics = ['geography', 'history', 'science', 'culture', 'economy', 'nature', 'sport']
 const issues = []

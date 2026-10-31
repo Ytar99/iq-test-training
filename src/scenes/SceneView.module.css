@@ -180,3 +180,15 @@
   color: var(--mantine-color-gray-7);
   font-weight: 600;
 }
+
+.compass {
+  width: 9rem;
+  height: 9rem;
+  max-width: 100%;
+}
+
+.compassLetter {
+  font-size: 13px;
+  font-weight: 700;
+  fill: var(--mantine-color-gray-8);
+}

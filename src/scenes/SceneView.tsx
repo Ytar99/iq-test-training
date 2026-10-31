@@ -267,6 +267,33 @@ function TableView({ headers, rows }: { headers: string[]; rows: string[][] }) {
   )
 }
 
+function compassPoint(deg: number, radius: number) {
+  const rad = (deg * Math.PI) / 180
+  return { x: 50 + radius * Math.sin(rad), y: 50 - radius * Math.cos(rad) }
+}
+
+function CompassView({ arrow, label, labelAt }: { arrow: number; label: string; labelAt: number }) {
+  const rad = (arrow * Math.PI) / 180
+  const forward = { x: Math.sin(rad), y: -Math.cos(rad) }
+  const side = { x: Math.cos(rad), y: Math.sin(rad) }
+  const tip = { x: 50 + forward.x * 27, y: 50 + forward.y * 27 }
+  const neck = { x: 50 + forward.x * 16, y: 50 + forward.y * 16 }
+  const left = { x: neck.x + side.x * 4.2, y: neck.y + side.y * 4.2 }
+  const right = { x: neck.x - side.x * 4.2, y: neck.y - side.y * 4.2 }
+  const letter = compassPoint(labelAt, 42)
+  return (
+    <svg viewBox="0 0 100 100" className={classes.compass} role="img" aria-label={`Компас, буква ${label}`}>
+      <circle cx="50" cy="50" r="30" fill="white" stroke={ink} strokeWidth="1.75" />
+      <line x1="50" y1="50" x2={neck.x} y2={neck.y} stroke={orange} strokeWidth="3" strokeLinecap="round" />
+      <polygon points={`${tip.x},${tip.y} ${left.x},${left.y} ${right.x},${right.y}`} fill={orange} />
+      <circle cx="50" cy="50" r="2.2" fill={orange} />
+      <text x={letter.x} y={letter.y} textAnchor="middle" dominantBaseline="central" className={classes.compassLetter}>
+        {label}
+      </text>
+    </svg>
+  )
+}
+
 function renderScene(scene: Scene) {
   if (scene.kind === 'card') return <CardFrame content={{ elements: scene.elements }} />
   if (scene.kind === 'matrix') {
@@ -345,6 +372,7 @@ function renderScene(scene: Scene) {
   if (scene.kind === 'cube') return <CubeView front={scene.front} top={scene.top} right={scene.right} />
   if (scene.kind === 'chart') return <ChartView labels={scene.labels} values={scene.values} variant={scene.variant} />
   if (scene.kind === 'table') return <TableView headers={scene.headers} rows={scene.rows} />
+  if (scene.kind === 'compass') return <CompassView arrow={scene.arrow} label={scene.label} labelAt={scene.labelAt} />
   if (scene.view === 'top') {
     const columns = scene.heights[0]?.length ?? 1
     return (

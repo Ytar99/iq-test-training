@@ -6846,5 +6846,301 @@
     "shuffle": true,
     "hint": "Сложите высоты всех столбиков, в том числе тех, что закрыты спереди.",
     "explanation": "Число кубиков равно сумме всех высот. Верный результат: 27. Забыт самый высокий столбик дает 21. Сложен только ближний ряд дает 10. Посчитаны столбики, а не кубики дает 9."
+  },
+  {
+    "id": "spa-compass-01",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 90,
+        "label": "С",
+        "labelAt": 0
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-01-1",
+        "text": "В"
+      },
+      {
+        "id": "spa-compass-01-2",
+        "text": "З"
+      },
+      {
+        "id": "spa-compass-01-3",
+        "text": "Ю"
+      },
+      {
+        "id": "spa-compass-01-4",
+        "text": "С"
+      }
+    ],
+    "correctOptionId": "spa-compass-01-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква С стоит на ободе, стрелка смотрит на В. Противоположная сторона: З. Поворот по часовой: Ю. Поворот против часовой: С."
+  },
+  {
+    "id": "spa-compass-02",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 0,
+        "label": "В",
+        "labelAt": 90
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-02-1",
+        "text": "С"
+      },
+      {
+        "id": "spa-compass-02-2",
+        "text": "Ю"
+      },
+      {
+        "id": "spa-compass-02-3",
+        "text": "В"
+      },
+      {
+        "id": "spa-compass-02-4",
+        "text": "З"
+      }
+    ],
+    "correctOptionId": "spa-compass-02-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква В стоит на ободе, стрелка смотрит на С. Противоположная сторона: Ю. Поворот по часовой: В. Поворот против часовой: З."
+  },
+  {
+    "id": "spa-compass-03",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 45,
+        "label": "С",
+        "labelAt": 0
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-03-1",
+        "text": "С-В"
+      },
+      {
+        "id": "spa-compass-03-2",
+        "text": "Ю-З"
+      },
+      {
+        "id": "spa-compass-03-3",
+        "text": "Ю-В"
+      },
+      {
+        "id": "spa-compass-03-4",
+        "text": "С-З"
+      }
+    ],
+    "correctOptionId": "spa-compass-03-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква С стоит на ободе, стрелка смотрит на С-В. Противоположная сторона: Ю-З. Поворот по часовой: Ю-В. Поворот против часовой: С-З."
+  },
+  {
+    "id": "spa-compass-04",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 45,
+        "label": "Ю",
+        "labelAt": 180
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-04-1",
+        "text": "С-В"
+      },
+      {
+        "id": "spa-compass-04-2",
+        "text": "Ю-З"
+      },
+      {
+        "id": "spa-compass-04-3",
+        "text": "Ю-В"
+      },
+      {
+        "id": "spa-compass-04-4",
+        "text": "С-З"
+      }
+    ],
+    "correctOptionId": "spa-compass-04-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква Ю стоит на ободе, стрелка смотрит на С-В. Противоположная сторона: Ю-З. Поворот по часовой: Ю-В. Поворот против часовой: С-З."
+  },
+  {
+    "id": "spa-compass-05",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 135,
+        "label": "З",
+        "labelAt": 270
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-05-1",
+        "text": "Ю-В"
+      },
+      {
+        "id": "spa-compass-05-2",
+        "text": "С-З"
+      },
+      {
+        "id": "spa-compass-05-3",
+        "text": "Ю-З"
+      },
+      {
+        "id": "spa-compass-05-4",
+        "text": "С-В"
+      }
+    ],
+    "correctOptionId": "spa-compass-05-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква З стоит на ободе, стрелка смотрит на Ю-В. Противоположная сторона: С-З. Поворот по часовой: Ю-З. Поворот против часовой: С-В."
+  },
+  {
+    "id": "spa-compass-06",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 0,
+        "label": "С",
+        "labelAt": 90
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-06-1",
+        "text": "З"
+      },
+      {
+        "id": "spa-compass-06-2",
+        "text": "В"
+      },
+      {
+        "id": "spa-compass-06-3",
+        "text": "С"
+      },
+      {
+        "id": "spa-compass-06-4",
+        "text": "Ю"
+      }
+    ],
+    "correctOptionId": "spa-compass-06-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква С стоит на ободе, стрелка смотрит на З. Противоположная сторона: В. Поворот по часовой: С. Поворот против часовой: Ю."
+  },
+  {
+    "id": "spa-compass-07",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 0,
+        "label": "В",
+        "labelAt": 180
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-07-1",
+        "text": "З"
+      },
+      {
+        "id": "spa-compass-07-2",
+        "text": "В"
+      },
+      {
+        "id": "spa-compass-07-3",
+        "text": "С"
+      },
+      {
+        "id": "spa-compass-07-4",
+        "text": "Ю"
+      }
+    ],
+    "correctOptionId": "spa-compass-07-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква В стоит на ободе, стрелка смотрит на З. Противоположная сторона: В. Поворот по часовой: С. Поворот против часовой: Ю."
+  },
+  {
+    "id": "spa-compass-08",
+    "scale": "spatial",
+    "type": "spa-compass",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На какую сторону света указывает стрелка?",
+      "scene": {
+        "kind": "compass",
+        "arrow": 90,
+        "label": "Ю",
+        "labelAt": 270
+      }
+    },
+    "options": [
+      {
+        "id": "spa-compass-08-1",
+        "text": "С"
+      },
+      {
+        "id": "spa-compass-08-2",
+        "text": "Ю"
+      },
+      {
+        "id": "spa-compass-08-3",
+        "text": "В"
+      },
+      {
+        "id": "spa-compass-08-4",
+        "text": "З"
+      }
+    ],
+    "correctOptionId": "spa-compass-08-1",
+    "shuffle": true,
+    "hint": "Буква на ободе задает сторону в этом месте. От буквы поверните взгляд к стрелке.",
+    "explanation": "Буква Ю стоит на ободе, стрелка смотрит на С. Противоположная сторона: Ю. Поворот по часовой: В. Поворот против часовой: З."
   }
 ]
