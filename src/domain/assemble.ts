@@ -16,14 +16,9 @@ export type AssembleFailure = {
   error: string
 }
 
-type Level = {
-  difficulty: boolean
-  maxPer: number | null
-}
-
-const LEVELS: Level[] = [
-  { difficulty: true, maxPer: 2 },
-  { difficulty: false, maxPer: 2 },
+const TOPIC_LEVELS = [
+  { difficulty: true, maxPer: 2 as number | null },
+  { difficulty: false, maxPer: 2 as number | null },
   { difficulty: false, maxPer: null },
 ]
 
@@ -96,27 +91,47 @@ function present(item: Item, rng: () => number): Item {
   return { ...item, options: shuffle(item.options, rng) }
 }
 
-function tryPairs(
-  demoA: Item[],
-  demoB: Item[],
-  analogs: Item[],
-  level: Level,
-  rng: () => number,
-): Item[] | null {
+function tryExact(pools: Item[][], quotas: number[], difficulty: boolean, rng: () => number): Item[] | null {
+  if (pools.some((pool, index) => pool.length < quotas[index]!)) return null
   for (let attempt = 0; attempt < 2500; attempt += 1) {
-    const first = sampleK(demoA, 3, rng)
-    const second = sampleK(demoB, 3, rng)
-    if (!first || !second) return null
-    const tail = sampleLimited(groupBy(analogs, (item) => item.type), 6, level.maxPer, rng)
-    if (!tail) continue
-    const set = [...first, ...second, ...tail]
-    if (level.difficulty && !balanced(set)) continue
+    const parts = pools.map((pool, index) => sampleK(pool, quotas[index]!, rng))
+    if (parts.some((part) => !part)) return null
+    const set = parts.flatMap((part) => part ?? [])
+    if (difficulty && !balanced(set)) continue
     return shuffle(set, rng)
   }
   return null
 }
 
-function tryTopics(items: Item[], level: Level, rng: () => number): Item[] | null {
+function tryRelaxed(pools: Item[][], quotas: number[], rng: () => number): Item[] | null {
+  const caps = quotas.map((quota, index) => Math.min(pools[index]!.length, quota * 2))
+  if (caps.some((cap) => cap < 1)) return null
+  if (caps.reduce((sum, cap) => sum + cap, 0) < 12) return null
+  const formCount = quotas.length
+  for (let attempt = 0; attempt < 2500; attempt += 1) {
+    const counts = caps.map(() => 1)
+    let left = 12 - formCount
+    let guard = 0
+    while (left > 0 && guard < 2000) {
+      guard += 1
+      const index = Math.floor(rng() * formCount)
+      if (counts[index]! < caps[index]!) {
+        counts[index] = counts[index]! + 1
+        left -= 1
+      }
+    }
+    if (left > 0) continue
+    const parts = pools.map((pool, index) => sampleK(pool, counts[index]!, rng))
+    if (parts.some((part) => !part)) continue
+    return shuffle(
+      parts.flatMap((part) => part ?? []),
+      rng,
+    )
+  }
+  return null
+}
+
+function tryTopics(items: Item[], level: { difficulty: boolean; maxPer: number | null }, rng: () => number): Item[] | null {
   const groups = groupBy(items, (item) => item.topic ?? '')
   for (let attempt = 0; attempt < 2500; attempt += 1) {
     const set = sampleLimited(groups, 12, level.maxPer, rng)
@@ -130,25 +145,24 @@ function tryTopics(items: Item[], level: Level, rng: () => number): Item[] | nul
 function assembleScale(items: Item[], scaleId: ScaleId, rng: () => number): Item[] | string {
   const info = SCALES[scaleId]
   if (scaleId === 'erudition') {
-    for (const level of LEVELS) {
+    for (const level of TOPIC_LEVELS) {
       const found = tryTopics(items, level, rng)
       if (found) return found.map((item) => present(item, rng))
     }
     return `Ошибка банка: не удалось собрать блок "${info.name}".`
   }
 
-  const demoA = items.filter((item) => item.type === info.demo[0])
-  const demoB = items.filter((item) => item.type === info.demo[1])
-  if (demoA.length < 3 || demoB.length < 3) {
-    return `Ошибка банка: для шкалы "${info.name}" не набираются по 3 задания двух типов demo.`
+  const pools = info.forms.map((form) => items.filter((item) => item.type === form.type))
+  const quotas = info.forms.map((form) => form.quota)
+  const short = info.forms.find((form, index) => pools[index]!.length < form.quota)
+  if (short) {
+    return `Ошибка банка: для шкалы "${info.name}" не хватает заданий формы ${short.type}.`
   }
 
-  const analogs = items.filter((item) => item.source === 'analog')
-  for (const level of LEVELS) {
-    const found = tryPairs(demoA, demoB, analogs, level, rng)
-    if (found) return found.map((item) => present(item, rng))
-  }
-  return `Ошибка банка: для шкалы "${info.name}" не набираются по 3 задания двух типов demo.`
+  const exact = tryExact(pools, quotas, true, rng) ?? tryExact(pools, quotas, false, rng)
+  const found = exact ?? tryRelaxed(pools, quotas, rng)
+  if (found) return found.map((item) => present(item, rng))
+  return `Ошибка банка: не удалось собрать блок "${info.name}".`
 }
 
 export function assembleAttempt(

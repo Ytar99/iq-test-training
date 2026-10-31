@@ -123,12 +123,12 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
             <div className={column ? classes.options : `${classes.options} ${classes.optionsInline}`}>
               {slot.item.options.map((option, index) => (
                 <Radio.Card key={option.id} value={option.id} withBorder p="sm" radius="md">
-                  <Group align="flex-start" wrap="nowrap" gap="sm">
+                  <Group className={classes.optionLine} align="flex-start" wrap="nowrap" gap="sm">
                     <Radio.Indicator />
                     <Text fw={700} c="teal">
                       {LETTERS[index]}
                     </Text>
-                    <Stack gap={4}>
+                    <Stack className={classes.optionScene} gap={4}>
                       {option.text ? <Text style={{ whiteSpace: 'pre-wrap' }}>{option.text}</Text> : null}
                       {option.scene ? <StimulusView stimulus={{ scene: option.scene }} /> : null}
                     </Stack>

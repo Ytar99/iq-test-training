@@ -9,7 +9,17 @@ if (bankIssues.length > 0) {
   process.exit(1)
 }
 
-function counts(items: { difficulty: string; type: string; source: string; topic?: string }[]) {
+for (const scaleId of SCALE_ORDER) {
+  const info = SCALES[scaleId]
+  const items = bankItems.filter((item) => item.scale === scaleId)
+  if (items.length < 48) throw new Error(`${scaleId} pool ${items.length}`)
+  for (const form of info.forms) {
+    const count = items.filter((item) => item.type === form.type).length
+    if (count < form.quota * 4) throw new Error(`${scaleId} ${form.type} pool ${count}`)
+  }
+}
+
+function counts(items: { difficulty: string; type: string; topic?: string }[]) {
   const difficulty = { easy: 0, medium: 0, hard: 0 }
   const types = new Map<string, number>()
   const topics = new Map<string, number>()
@@ -32,13 +42,18 @@ for (let attempt = 0; attempt < 40; attempt += 1) {
     const ids = new Set(block.items.map((item) => item.id))
     if (ids.size !== 12) throw new Error('duplicate item')
     if (block.scaleId === 'erudition') {
-      for (const count of summary.topics.values()) {
-        if (count > 2 && summary.difficulty.easy === 4) throw new Error('topic overflow with strict difficulty')
+      if (summary.difficulty.easy === 4 && summary.difficulty.medium === 4 && summary.difficulty.hard === 4) {
+        for (const count of summary.topics.values()) {
+          if (count > 2) throw new Error('topic overflow with strict difficulty')
+        }
       }
     } else {
-      const first = summary.types.get(info.demo[0]) ?? 0
-      const second = summary.types.get(info.demo[1]) ?? 0
-      if (first < 3 || second < 3) throw new Error(`${block.scaleId} demo ${first} ${second}`)
+      const strict = summary.difficulty.easy === 4 && summary.difficulty.medium === 4 && summary.difficulty.hard === 4
+      for (const form of info.forms) {
+        const count = summary.types.get(form.type) ?? 0
+        if (strict && count !== form.quota) throw new Error(`${block.scaleId} ${form.type} ${count}`)
+        if (!strict && (count < 1 || count > form.quota * 2)) throw new Error(`${block.scaleId} relaxed ${form.type} ${count}`)
+      }
     }
     for (const item of block.items) {
       if (item.options.length !== info.optionCount) throw new Error('options')

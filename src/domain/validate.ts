@@ -1,4 +1,4 @@
-import { SCALES, typeSource } from './catalog.ts'
+import { SCALES, formOf } from './catalog.ts'
 import { SCALE_ORDER, TOPICS, type Item, type ScaleId } from './types.ts'
 
 const DIFFICULTIES = ['easy', 'medium', 'hard'] as const
@@ -15,8 +15,7 @@ function sceneKind(scene: unknown): string | null {
 function stimulusEmpty(stimulus: unknown): boolean {
   if (!isRecord(stimulus)) return true
   const text = typeof stimulus.text === 'string' ? stimulus.text.trim() : ''
-  const rows = Array.isArray(stimulus.rows) && stimulus.rows.length > 0
-  return text.length === 0 && !rows && stimulus.scene == null
+  return text.length === 0 && stimulus.scene == null
 }
 
 export function validateBank(files: { scale: ScaleId; items: unknown }[]): string[] {
@@ -52,11 +51,9 @@ export function validateBank(files: { scale: ScaleId; items: unknown }[]): strin
         issues.push(`${id}: шкала не совпадает с файлом.`)
       }
 
-      const sourceOfType = typeof raw.type === 'string' ? typeSource(file.scale, raw.type) : null
-      if (!sourceOfType) {
+      const knownType = typeof raw.type === 'string' ? formOf(file.scale, raw.type) : null
+      if (!knownType) {
         issues.push(`${id}: неизвестный тип.`)
-      } else if (raw.source !== sourceOfType) {
-        issues.push(`${id}: источник не совпадает с типом.`)
       }
 
       if (file.scale === 'erudition') {
@@ -130,7 +127,7 @@ export function validateBank(files: { scale: ScaleId; items: unknown }[]): strin
 
       if (
         raw.scale === file.scale &&
-        sourceOfType &&
+        knownType &&
         typeof raw.id === 'string' &&
         isRecord(raw.stimulus) &&
         Array.isArray(raw.options)
@@ -145,37 +142,31 @@ export function validateBank(files: { scale: ScaleId; items: unknown }[]): strin
     const items = accepted.get(scale) ?? []
     const name = info.name
 
-    if (items.length < 24) {
-      issues.push(`${name}: всего ${items.length} заданий, нужно не меньше 24.`)
+    if (items.length < 48) {
+      issues.push(`${name}: всего ${items.length} заданий, нужно не меньше 48.`)
     }
 
     for (const difficulty of DIFFICULTIES) {
       const count = items.filter((item) => item.difficulty === difficulty).length
-      if (count < 4) {
-        issues.push(`${name}: заданий сложности ${difficulty} меньше 4.`)
+      if (count < 12) {
+        issues.push(`${name}: заданий сложности ${difficulty} меньше 12.`)
       }
     }
 
     if (scale === 'erudition') {
       for (const topic of TOPICS) {
         const count = items.filter((item) => item.topic === topic).length
-        if (count < 3) {
-          issues.push(`${name}: заданий темы ${topic} меньше 3.`)
+        if (count < 8) {
+          issues.push(`${name}: заданий темы ${topic} меньше 8.`)
         }
       }
-      continue
     }
 
-    for (const type of info.demo) {
-      const count = items.filter((item) => item.type === type).length
-      if (count < 6) {
-        issues.push(`${name}: заданий типа ${type} меньше 6.`)
-      }
-    }
-    for (const type of info.analog) {
-      const count = items.filter((item) => item.type === type).length
-      if (count < 3) {
-        issues.push(`${name}: заданий типа ${type} меньше 3.`)
+    for (const form of info.forms) {
+      const count = items.filter((item) => item.type === form.type).length
+      const minimum = form.quota * 4
+      if (count < minimum) {
+        issues.push(`${name}: заданий типа ${form.type} меньше ${minimum}.`)
       }
     }
   }

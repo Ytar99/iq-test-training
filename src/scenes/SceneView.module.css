@@ -1,3 +1,9 @@
+.scene {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
 .frame {
   position: relative;
   width: 4.5rem;
@@ -6,6 +12,7 @@
   border-radius: var(--mantine-radius-sm);
   background: white;
   flex: 0 0 auto;
+  overflow: hidden;
 }
 
 .mark {
@@ -26,13 +33,15 @@
 .cells {
   display: grid;
   gap: 2px;
+  min-width: 0;
 }
 
 .cell {
-  width: 1.15rem;
-  height: 1.15rem;
+  aspect-ratio: 1;
+  width: 100%;
   border: 1px solid var(--mantine-color-gray-4);
   background: var(--mantine-color-gray-1);
+  box-sizing: border-box;
 }
 
 .filled {
@@ -45,62 +54,83 @@
   gap: var(--mantine-spacing-xs);
   align-items: end;
   flex-wrap: wrap;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.glyph {
+  width: 1.45rem;
+  height: 1.45rem;
+}
+
+.face,
+.faceHole {
+  width: 2.6rem;
+  height: 2.6rem;
+  display: grid;
+  place-items: center;
+  box-sizing: border-box;
 }
 
 .face {
-  width: 2.6rem;
-  height: 2.6rem;
   border: 1px solid var(--mantine-color-gray-6);
-  display: grid;
-  place-items: center;
   background: white;
 }
 
 .net {
   display: grid;
-  gap: 3px;
+  gap: 0;
   width: max-content;
+  max-width: 100%;
 }
 
 .heights {
   display: grid;
   gap: 3px;
-  width: max-content;
+  min-width: 0;
 }
 
 .height {
-  width: 1.8rem;
-  height: 1.8rem;
+  aspect-ratio: 1;
+  width: 100%;
   display: grid;
   place-items: center;
   border: 1px solid var(--mantine-color-gray-5);
   font-variant-numeric: tabular-nums;
   font-weight: 700;
+  box-sizing: border-box;
 }
 
 .chart {
   width: min(100%, 22rem);
   height: auto;
+  display: block;
 }
 
-.scene {
+.iso {
+  width: min(100%, 18rem);
+  height: auto;
+  display: block;
+}
+
+.cube {
+  width: min(100%, 7.25rem);
+  height: auto;
+  display: block;
+}
+
+.tableWrap {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tableWrap :global(.mantine-Table-table) {
+  width: max-content;
   max-width: 100%;
 }
 
-.numberGrid {
-  display: grid;
-  gap: 4px;
-  width: max-content;
-  font-variant-numeric: tabular-nums;
-  font-family: var(--mantine-font-family-monospace);
-}
-
 .numberCell {
-  min-width: 2.2rem;
-  height: 2rem;
-  display: grid;
-  place-items: center;
-  border: 1px solid var(--mantine-color-gray-4);
+  text-align: right;
 }
 
 .layout {
@@ -108,4 +138,45 @@
   flex-wrap: wrap;
   gap: var(--mantine-spacing-sm);
   align-items: center;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.matrix {
+  display: grid;
+  gap: 6px;
+  width: max-content;
+  max-width: 100%;
+}
+
+.rowScroll {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: var(--mantine-spacing-sm);
+  align-items: center;
+  overflow-x: auto;
+  max-width: 100%;
+  min-width: 0;
+}
+
+.analogy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--mantine-spacing-xs);
+  max-width: 100%;
+  min-width: 0;
+}
+
+.pair {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--mantine-spacing-sm);
+  max-width: 100%;
+}
+
+.like {
+  color: var(--mantine-color-gray-7);
+  font-weight: 600;
 }

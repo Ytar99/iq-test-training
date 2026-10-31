@@ -1,4 +1,4 @@
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -13,6 +13,15 @@ const bank = {
   attention: [],
 }
 const counts = {}
+const optionCount = {
+  calculation: 4,
+  vocabulary: 5,
+  erudition: 5,
+  spatial: 4,
+  nonverbal: 4,
+  verbal: 4,
+  attention: 5,
+}
 
 function numbersIn(text) {
   return [...text.matchAll(/\d+/g)].map((match) => match[0])
@@ -29,20 +38,6 @@ function leakReason(hint, explanation, correctText) {
   return null
 }
 
-function nearNumbers(answer, seeds) {
-  const values = []
-  const push = (value) => {
-    if (value !== answer && value > 0 && !values.includes(value)) values.push(value)
-  }
-  for (const seed of seeds) push(seed)
-  let extra = 1
-  while (values.length < 3) {
-    push(answer + extra)
-    extra += 1
-  }
-  return values.slice(0, 3)
-}
-
 function add(spec) {
   const number = (counts[spec.type] = (counts[spec.type] ?? 0) + 1)
   const id = `${spec.type}-${String(number).padStart(2, '0')}`
@@ -51,23 +46,22 @@ function add(spec) {
     if (typeof option === 'string') return { id: optionId, text: option }
     return { id: optionId, ...option }
   })
+  if (options.length !== optionCount[spec.scale]) throw new Error(`${id}: вариантов ${options.length}`)
   const correct = options[spec.correct]
   if (!correct) throw new Error(`${id}: нет верного варианта`)
   const correctText = typeof spec.options[spec.correct] === 'string' ? spec.options[spec.correct] : ''
   const leak = leakReason(spec.hint, spec.explanation, correctText)
   if (leak) throw new Error(`${id}: подсказка содержит ${leak}`)
-  const texts = options.map((option) => option.text).filter(Boolean)
-  if (new Set(texts).size !== texts.length) throw new Error(`${id}: повторяется текст варианта`)
+  const keys = options.map((option) => JSON.stringify({ text: option.text ?? '', scene: option.scene ?? null }))
+  if (new Set(keys).size !== keys.length) throw new Error(`${id}: повторяется вариант`)
   bank[spec.scale].push({
     id,
     scale: spec.scale,
     type: spec.type,
-    source: spec.source,
     difficulty: spec.difficulty,
     ...(spec.topic ? { topic: spec.topic } : {}),
     stimulus: {
       ...(spec.text ? { text: spec.text } : {}),
-      ...(spec.rows ? { rows: spec.rows } : {}),
       ...(spec.scene ? { scene: spec.scene } : {}),
     },
     options,
@@ -75,6 +69,66 @@ function add(spec) {
     shuffle: true,
     hint: spec.hint,
     explanation: spec.explanation,
+  })
+}
+
+function clause(name) {
+  return `${name.charAt(0).toUpperCase()}${name.slice(1)}`
+}
+
+function solved(answer, traps) {
+  const values = traps.map((trap) => {
+    const value = trap.compute()
+    if (value === answer || String(value) === String(answer)) throw new Error(`ловушка "${trap.name}" совпала с ответом ${answer}`)
+    return value
+  })
+  if (new Set(values.map(String)).size !== values.length) {
+    throw new Error(`ловушки совпали: ${traps.map((trap) => trap.name).join(', ')} -> ${values.join(', ')}`)
+  }
+  return values
+}
+
+function commitNumeric(spec) {
+  if (/\d/.test(spec.hint)) throw new Error(`${spec.type}: цифра в подсказке`)
+  const wrongs = solved(spec.answer, spec.traps)
+  if (wrongs.some((value) => !Number.isInteger(value))) throw new Error(`${spec.type}: ловушка не целая`)
+  const explanation = `${spec.lead} Верный результат: ${spec.answer}. ${spec.traps.map((trap) => `${clause(trap.name)} дает ${trap.compute()}`).join('. ')}.`
+  add({
+    scale: spec.scale,
+    type: spec.type,
+    difficulty: spec.difficulty,
+    topic: spec.topic,
+    text: spec.text,
+    scene: spec.scene,
+    options: [String(spec.answer), ...wrongs.map(String)],
+    correct: 0,
+    hint: spec.hint,
+    explanation,
+  })
+}
+
+function commitChoice(spec) {
+  if (/\d/.test(spec.hint)) throw new Error(`${spec.type}: цифра в подсказке`)
+  const traps = spec.traps.map(([name, text]) => ({ name, compute: () => text }))
+  const wrongs = solved(spec.answer, traps)
+  for (const [name] of spec.traps) {
+    if (!spec.lead.includes(name) && !name) throw new Error(`${spec.type}: пустое имя ловушки`)
+  }
+  const explanation = `${spec.lead} ${spec.traps.map(([name, text]) => `${clause(name)}: ${text}`).join('. ')}.`
+  for (const [name] of spec.traps) {
+    if (!explanation.toLowerCase().includes(name.toLowerCase())) throw new Error(`${spec.type}: разбор не называет ${name}`)
+  }
+  add({
+    scale: spec.scale,
+    type: spec.type,
+    difficulty: spec.difficulty,
+    topic: spec.topic,
+    text: spec.text,
+    scene: spec.scene,
+    options: [spec.answer, ...wrongs],
+    correct: 0,
+    hint: spec.hint,
+    explanation,
   })
 }
 
@@ -199,62 +253,29 @@ function assertTile(label, cols, rows, pieces, expected) {
   if (actual !== expected) throw new Error(`${label}: ожидалась сборка ${expected}, получено ${actual}`)
 }
 
-const specA = [
-  [0, 0],
-  [0, 1],
-  [1, 1],
-  [2, 1],
-]
-const specB = [
-  [1, 0],
-  [2, 0],
-  [3, 0],
-  [3, 1],
-]
-assertTile('spec correct', 4, 2, [specA, specB], true)
 assertTile(
-  'spec T',
+  'spec correct',
   4,
   2,
   [
     [
       [0, 0],
-      [1, 0],
-      [2, 0],
-      [1, 1],
-    ],
-    [
-      [0, 0],
-      [1, 0],
-      [2, 0],
-      [3, 0],
-    ],
-  ],
-  false,
-)
-assertTile(
-  'spec square',
-  4,
-  2,
-  [
-    [
-      [0, 0],
-      [1, 0],
       [0, 1],
       [1, 1],
+      [2, 1],
     ],
     [
-      [0, 0],
       [1, 0],
       [2, 0],
       [3, 0],
+      [3, 1],
     ],
   ],
-  false,
+  true,
 )
 
 function findPieces(cols, rows, sizes) {
-  for (let attempt = 0; attempt < 800; attempt += 1) {
+  for (let attempt = 0; attempt < 400; attempt += 1) {
     const pieces = sizes.map((size) => grow(size))
     if (pieces.some((piece) => !piece)) continue
     if (canTile(cols, rows, pieces, fullCells(cols, rows))) return pieces
@@ -263,1052 +284,1371 @@ function findPieces(cols, rows, sizes) {
 }
 
 function findWrongPieces(cols, rows, sizes, banned) {
-  for (let attempt = 0; attempt < 800; attempt += 1) {
+  for (let attempt = 0; attempt < 400; attempt += 1) {
     const pieces = sizes.map((size) => grow(size))
     if (pieces.some((piece) => !piece)) continue
-    const key = pieces.map((piece) => keyOf(piece)).sort().join('|')
+    const key = pieces
+      .map((piece) => keyOf(piece))
+      .sort()
+      .join('|')
     if (banned.has(key)) continue
     if (!canTile(cols, rows, pieces, fullCells(cols, rows))) return pieces
   }
   throw new Error(`не найден неверный набор ${cols}x${rows}`)
 }
 
-function addAssembly(difficulty, cols, rows, correct, wrongs) {
+function pieceCount(pieces) {
+  return pieces.reduce((sum, piece) => sum + piece.length, 0)
+}
+
+function addAssembly(difficulty, cols, rows, sizes) {
   const filled = fullCells(cols, rows)
-  if (!canTile(cols, rows, correct, filled)) throw new Error('верный набор не собирается')
-  for (const wrong of wrongs) {
+  const area = cols * rows
+  const correct = findPieces(cols, rows, sizes)
+  if (pieceCount(correct) !== area || !canTile(cols, rows, correct, filled)) throw new Error('верный набор не собирается')
+  const banned = new Set([
+    correct
+      .map((piece) => keyOf(piece))
+      .sort()
+      .join('|'),
+  ])
+  const wrongs = []
+  while (wrongs.length < 3) {
+    const wrong = findWrongPieces(cols, rows, sizes, banned)
+    if (pieceCount(wrong) !== area) throw new Error('разная площадь')
     if (canTile(cols, rows, wrong, filled)) throw new Error('неверный набор собирается')
+    banned.add(
+      wrong
+        .map((piece) => keyOf(piece))
+        .sort()
+        .join('|'),
+    )
+    wrongs.push(wrong)
   }
   add({
     scale: 'spatial',
     type: 'spa-assembly',
-    source: 'demo',
     difficulty,
-    text: 'Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.',
+    text: 'Какой набор закрывает силуэт? Поворот на 90 градусов разрешен.',
     scene: { kind: 'cells', cols, rows, filled },
     options: [correct, ...wrongs].map((pieces) => ({ scene: { kind: 'cells', pieces } })),
     correct: 0,
-    hint: 'Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.',
-    explanation: 'Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом.',
+    hint: 'Сравните форму частей с силуэтом. Поворот разрешен, отражение нет.',
+    explanation: 'Только один набор закрывает силуэт без наложений и дыр. Площадь у всех наборов одинаковая, но остальные не складываются.',
   })
 }
 
-addAssembly(
-  'medium',
-  4,
-  2,
-  [specA, specB],
-  [
-    [
-      [
-        [0, 0],
-        [1, 0],
-        [2, 0],
-        [1, 1],
-      ],
-      [
-        [0, 0],
-        [1, 0],
-        [2, 0],
-        [3, 0],
-      ],
-    ],
-    [
-      [
-        [0, 0],
-        [1, 0],
-        [0, 1],
-        [1, 1],
-      ],
-      [
-        [0, 0],
-        [1, 0],
-        [2, 0],
-        [3, 0],
-      ],
-    ],
-    [
-      [
-        [0, 0],
-        [1, 0],
-        [2, 0],
-        [3, 0],
-        [3, 1],
-      ],
-      [
-        [0, 1],
-        [1, 1],
-        [2, 1],
-        [2, 0],
-      ],
-    ],
-  ],
-)
-
-const assemblyPlans = [
-  ['easy', 2, 2, [2, 2]],
-  ['medium', 3, 2, [3, 3]],
-  ['hard', 4, 2, [4, 4]],
-  ['medium', 3, 3, [3, 3, 3]],
+for (const [difficulty, cols, rows, sizes] of [
+  ['easy', 3, 2, [3, 3]],
+  ['easy', 4, 2, [4, 4]],
+  ['easy', 5, 2, [5, 5]],
+  ['easy', 3, 3, [4, 5]],
+  ['medium', 4, 2, [3, 5]],
+  ['medium', 5, 2, [4, 6]],
+  ['medium', 4, 3, [6, 6]],
+  ['medium', 6, 2, [4, 4, 4]],
   ['hard', 4, 3, [4, 4, 4]],
-]
-const usedAssemblies = new Set([keyOf(specA) + '|' + keyOf(specB)])
-for (const [difficulty, cols, rows, sizes] of assemblyPlans) {
-  let correct = null
-  for (let attempt = 0; attempt < 40 && !correct; attempt += 1) {
-    const pieces = findPieces(cols, rows, sizes)
-    const key = pieces.map((piece) => keyOf(piece)).sort().join('|')
-    if (usedAssemblies.has(key)) continue
-    usedAssemblies.add(key)
-    correct = pieces
-  }
-  if (!correct) throw new Error(`повтор силуэта ${cols}x${rows}`)
-  const banned = new Set([correct.map((piece) => keyOf(piece)).sort().join('|')])
-  const area = cols * rows
-  const plans = [
-    sizes.map((size, index) => (index === 0 ? size + 1 : size)),
-    sizes.map((size, index) => (index === 0 ? size + 2 : size)),
-    sizes.reduce((sum, size) => sum + size, 0) === area && area > 4 ? sizes : sizes.map((size, index) => (index === 0 ? size + 3 : size)),
-  ]
-  const wrongs = plans.map((plan) => {
-    const pieces = findWrongPieces(cols, rows, plan, banned)
-    banned.add(pieces.map((piece) => keyOf(piece)).sort().join('|'))
-    return pieces
-  })
-  addAssembly(difficulty, cols, rows, correct, wrongs)
+  ['hard', 5, 3, [5, 5, 5]],
+  ['hard', 6, 2, [3, 3, 3, 3]],
+  ['hard', 3, 4, [4, 4, 4]],
+]) {
+  addAssembly(difficulty, cols, rows, sizes)
 }
 
-function addGrid(difficulty, origin, colStep, rowStep, emptyAt) {
-  const rows = []
-  for (let y = 0; y < 3; y += 1) {
-    const line = []
-    for (let x = 0; x < 3; x += 1) {
-      const value = origin + x * colStep + y * rowStep
-      line.push(emptyAt[0] === x && emptyAt[1] === y ? null : String(value))
-    }
-    rows.push(line)
-  }
-  const answer = origin + emptyAt[0] * colStep + emptyAt[1] * rowStep
-  const distractors = nearNumbers(answer, [answer + colStep, answer - colStep, answer + rowStep, answer - 1, answer + 1])
-  add({
-    scale: 'calculation',
-    type: 'calc-grid',
-    source: 'demo',
-    difficulty,
-    text: 'Какое число стоит в пустой клетке?',
-    rows,
-    options: [answer, ...distractors].map(String),
-    correct: 0,
-    hint: 'Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.',
-    explanation: `В строке шаг ${colStep}, в столбце шаг ${rowStep}, оба дают ${answer}.`,
-  })
-}
-
-addGrid('medium', 2, 3, 4, [2, 2])
-addGrid('easy', 1, 1, 1, [2, 2])
-addGrid('easy', 10, 10, 1, [2, 2])
-addGrid('medium', 4, 2, 5, [1, 2])
-addGrid('hard', 7, 3, 8, [0, 2])
-addGrid('hard', 6, 4, 9, [2, 1])
-
-const stories = [
-  ['medium', 'За 3 часа мастер делает 18 рам. Сколько рам он сделает за 8 часов при той же скорости?', [48, 42, 54, 36], 0, 'Сначала найдите, сколько рам выходит за один час, затем пересчитайте на нужное время.', '18 / 3 = 6 рам в час, 6 * 8 = 48.'],
-  ['easy', 'В пачке 6 тетрадей. Сколько тетрадей в 4 таких пачках?', [24, 10, 20, 28], 0, 'Перемножьте число пачек и число тетрадей в одной.', '4 * 6 = 24.'],
-  ['easy', 'Один билет стоит 15 рублей. Сколько стоят 3 билета?', [45, 18, 30, 60], 0, 'Умножьте цену одного билета на их число.', '15 * 3 = 45.'],
-  ['medium', 'Куртка стоила 2000 рублей. Магазин снизил цену на 10%. Сколько она стоит теперь?', [1800, 1900, 1500, 1990], 0, 'Сначала найдите сумму скидки, затем вычтите ее из начальной цены.', '10% от 2000 равно 200, 2000 - 200 = 1800.'],
-  ['hard', 'Бригада за 4 дня делает 20 деталей. Сколько дней нужно на 35 деталей при той же скорости?', [7, 6, 8, 9], 0, 'Сначала найдите дневную выработку, затем разделите весь заказ на эту выработку.', '20 / 4 = 5 деталей в день, 35 / 5 = 7 дней.'],
-  ['medium', 'В бочке было 40 литров воды. За день израсходовали четверть. Сколько литров осталось?', [30, 10, 20, 36], 0, 'Найдите израсходованную часть и вычтите ее из исходного объема.', 'Четверть от 40 равна 10, 40 - 10 = 30.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of stories) {
-  add({ scale: 'calculation', type: 'calc-story', source: 'demo', difficulty, text, options: options.map(String), correct, hint, explanation })
-}
-
-function addSeries(difficulty, values, ruleText) {
-  const shown = values.slice(0, -1)
-  const answer = values[values.length - 1]
-  const distractors = nearNumbers(answer, [answer + 10, answer - 10, answer + values[1] - values[0]])
-  add({
-    scale: 'calculation',
-    type: 'calc-series',
-    source: 'analog',
-    difficulty,
-    text: `${shown.join(', ')}, ?`,
-    options: [answer, distractors[0], distractors[1], distractors[2]].map(String),
-    correct: 0,
-    hint: 'Посмотрите, как каждое число получается из предыдущего.',
-    explanation: ruleText,
-  })
-}
-addSeries('easy', [5, 10, 20, 40, 80], 'Каждое число вдвое больше предыдущего, поэтому дальше 80.')
-addSeries('medium', [2, 5, 11, 23, 47], 'Каждый шаг удваивает предыдущее число и прибавляет единицу: дальше 47.')
-addSeries('hard', [4, 5, 7, 11, 19, 35], 'Прибавки удваиваются: 1, 2, 4, 8, 16. Дальше 35.')
-
-const shares = [
-  ['easy', 'В ящике 40 деталей, 8 из них бракованные. Какая это доля?', ['1/5', '1/4', '1/8', '1/2'], 0, 'Разделите часть на целое и сократите дробь.', '8 / 40 = 1/5.'],
-  ['easy', 'Из 20 учеников 5 опоздали. Какая это доля?', ['1/4', '1/5', '1/2', '1/10'], 0, 'Разделите число опоздавших на число всех учеников и сократите.', '5 / 20 = 1/4.'],
-  ['medium', 'Сколько процентов составляют 12 от 48?', ['25', '20', '30', '12'], 0, 'Разделите часть на целое и переведите дробь в проценты.', '12 / 48 = 1/4, это 25%.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of shares) {
-  add({ scale: 'calculation', type: 'calc-share', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const motions = [
-  ['medium', 'Автомобиль ехал 2 часа со скоростью 50 км/ч и еще 1 час со скоростью 80 км/ч. Сколько километров он проехал?', ['180', '130', '150', '210'], 0, 'Посчитайте путь на каждом участке отдельно и сложите.', '2 * 50 = 100, плюс 80, всего 180.'],
-  ['easy', 'Пешеход шел 3 часа со скоростью 4 км/ч. Какой путь он прошел?', ['12', '7', '16', '9'], 0, 'Умножьте скорость на время.', '3 * 4 = 12.'],
-  ['hard', 'Лодка плыла 2 часа со скоростью 11 км/ч и еще 3 часа со скоростью 9 км/ч. Какой путь она прошла?', ['49', '40', '45', '52'], 0, 'Найдите путь каждого участка и сложите пути.', '2 * 11 = 22, 3 * 9 = 27, вместе 49.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of motions) {
-  add({ scale: 'calculation', type: 'calc-motion', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const estimates = [
-  ['easy', 'Чему примерно равно 198 * 5?', ['около 1000', 'около 500', 'около 2000', 'около 100'], 0, 'Замените множитель на близкое круглое число и оцените порядок, не считая в столбик.', '200 * 5 = 1000, 198 чуть меньше 200, результат около 1000.'],
-  ['easy', 'Чему примерно равно 51 * 19?', ['около 1000', 'около 100', 'около 500', 'около 5000'], 0, 'Замените оба множителя близкими круглыми числами.', '50 * 20 = 1000, исходные числа близки к ним.'],
-  ['medium', 'Чему примерно равно 310 * 21?', ['около 6000', 'около 3000', 'около 9000', 'около 600'], 0, 'Округлите числа так, чтобы произведение читалось без столбика.', '300 * 20 = 6000, оба множителя чуть больше этих круглых значений, порядок тот же.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of estimates) {
-  add({ scale: 'calculation', type: 'calc-estimate', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-function addCalcChart(difficulty, labels, values, text, answer, explanation) {
-  const numeric = nearNumbers(answer, [answer + 6, answer - 6, answer + values[0]])
-  add({
-    scale: 'calculation',
-    type: 'calc-chart',
-    source: 'analog',
-    difficulty,
-    text,
-    scene: { kind: 'chart', variant: 'bar', labels, values },
-    options: [answer, ...numeric.slice(0, 3)].map(String),
-    correct: 0,
-    hint: 'Вычтите высоту одного названного столбца из высоты другого.',
-    explanation,
-  })
-}
-addCalcChart('medium', ['янв', 'фев', 'мар', 'апр'], [12, 30, 18, 24], 'На сколько февраль больше марта?', 12, '30 - 18 = 12.')
-addCalcChart('easy', ['пн', 'вт', 'ср', 'чт'], [5, 9, 8, 4], 'Чему равна высота столбца понедельника?', 5, 'Столбец понедельника имеет высоту 5.')
-addCalcChart('hard', ['А', 'Б', 'В', 'Г'], [16, 27, 21, 40], 'На сколько Г больше В?', 19, '40 - 21 = 19.')
-
-function scramble(word) {
-  const chars = [...word]
-  let seed = [...word].reduce((sum, char) => sum + char.charCodeAt(0), 17)
-  const next = () => {
-    seed = (seed * 16807) % 2147483647
-    return (seed - 1) / 2147483646
-  }
-  for (let index = chars.length - 1; index > 0; index -= 1) {
-    const swap = Math.floor(next() * (index + 1))
-    const current = chars[index]
-    chars[index] = chars[swap]
-    chars[swap] = current
-  }
-  let result = chars.join('').toUpperCase()
-  if (result.toLowerCase() === word.toLowerCase()) result = [...word].reverse().join('').toUpperCase()
-  const sorted = (text) => [...text.toLowerCase().replaceAll('ё', 'е')].sort().join('')
-  if (sorted(result) !== sorted(word)) throw new Error(`плохая анаграмма ${word}`)
-  return result
-}
-
-const anagrams = [
-  ['hard', ['кошка', 'тигр', 'волк', 'лиса'], 'стол', 'животные', 'ШАКОК', 'РГИТ', 'КЛОВ', 'САИЛ', 'ТОЛС'],
-  ['hard', ['яблоко', 'груша', 'слива', 'вишня'], 'морковь', 'фрукты', null],
-  ['medium', ['скрипка', 'альт', 'виолончель', 'контрабас'], 'флейта', 'смычковые', null],
-  ['hard', ['красный', 'синий', 'зеленый', 'белый'], 'стул', 'цвета', null],
-  ['medium', ['дуб', 'клен', 'липа', 'береза'], 'роза', 'деревья', null],
-  ['hard', ['Москва', 'Казань', 'Омск', 'Тула'], 'Волга', 'города', null],
-]
-for (const [difficulty, group, odd, title, ...fixed] of anagrams) {
-  const forms = fixed.length === 5 ? fixed : [...group.map((word) => scramble(word)), scramble(odd)]
-  const words = [...group, odd]
-  add({
-    scale: 'vocabulary',
-    type: 'voc-anagram',
-    source: 'demo',
-    difficulty,
-    text: 'Соберите слова. Какое из них лишнее?',
-    options: forms,
-    correct: 4,
-    hint: 'Соберите из букв обычные слова и найдите то, которое не из общей группы.',
-    explanation: `${words
-      .map((word, index) => `${forms[index]} - ${word}`)
-      .join(', ')}. Общая группа - ${title}, лишнее слово - ${odd}.`,
-  })
-}
-
-const spellings = [
-  ['medium', ['пространство', 'будующий', 'лестница', 'агентство', 'привилегия'], 1, 'будущий'],
-  ['medium', ['претензия', 'алюминий', 'приоритет', 'катастрофа', 'инциндент'], 4, 'инцидент'],
-  ['hard', ['абонент', 'стипендия', 'жюри', 'дилетант', 'бюлетень'], 4, 'бюллетень'],
-  ['easy', ['академия', 'интеллигенция', 'винегрет', 'перила', 'акадэмия'], 4, 'академия'],
-  ['hard', ['кристалл', 'колоссальный', 'искусный', 'антагонизм', 'полисадник'], 4, 'палисадник'],
-  ['medium', ['рассчитывать', 'конъюнктура', 'привилегия', 'подскользнуться', 'беспрецедентный'], 3, 'поскользнуться'],
-]
-for (const [difficulty, options, correct, right] of spellings) {
-  add({
-    scale: 'vocabulary',
-    type: 'voc-spelling',
-    source: 'demo',
-    difficulty,
-    text: 'Укажите неверное написание.',
-    options,
-    correct,
-    hint: 'Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.',
-    explanation: `Верная форма - ${right}.`,
-  })
-}
-
-const synonyms = [
-  ['easy', 'Синоним слова "быстрый".', ['скорый', 'медленный', 'тихий', 'поздний', 'редкий'], 0, 'Нужно слово с тем же смыслом, а не противоположное.', 'Скорый значит быстрый. Медленный - антоним.'],
-  ['easy', 'Антоним слова "широкий".', ['узкий', 'просторный', 'высокий', 'ровный', 'частый'], 0, 'Нужно слово с противоположным смыслом.', 'Узкий противоположен широкому.'],
-  ['medium', 'Синоним слова "храбрый".', ['смелый', 'робкий', 'громкий', 'быстрый', 'добрый'], 0, 'Ищите близкое по смыслу слово, а не противоположное.', 'Смелый и храбрый обозначают одно и то же качество.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of synonyms) {
-  add({ scale: 'vocabulary', type: 'voc-synonym', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const meanings = [
-  ['medium', 'Что означает слово "лаконичный"?', ['краткий', 'яркий', 'древний', 'случайный', 'шумный'], 0, 'Подставьте толкование вместо слова и оставьте то, которое не меняет смысл.', 'Лаконичный - краткий, без лишних слов.'],
-  ['easy', 'Что означает слово "альбом"?', ['книга для рисунков или снимков', 'кухонная посуда', 'вид транспорта', 'единица времени', 'садовый инструмент'], 0, 'Вспомните, куда обычно складывают рисунки и фотографии.', 'Альбом - книга или тетрадь для рисунков и снимков.'],
-  ['hard', 'Что означает слово "дефицит"?', ['нехватка', 'избыток', 'равенство', 'обмен', 'заказ'], 0, 'Слово говорит о том, чего не хватает, а не о том, чего слишком много.', 'Дефицит - это нехватка.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of meanings) {
-  add({ scale: 'vocabulary', type: 'voc-meaning', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const oddWords = [
-  ['easy', ['яблоко', 'груша', 'слива', 'морковь', 'вишня'], 3, 'Остальные - фрукты, морковь - овощ.'],
-  ['easy', ['гитара', 'скрипка', 'барабан', 'молоток', 'флейта'], 3, 'Остальные - музыкальные инструменты, молоток - инструмент столяра.'],
-  ['medium', ['утро', 'вечер', 'ночь', 'вторник', 'полдень'], 3, 'Остальные - части суток, вторник - день недели.'],
-]
-for (const [difficulty, options, correct, explanation] of oddWords) {
-  add({
-    scale: 'vocabulary',
-    type: 'voc-odd-word',
-    source: 'analog',
-    difficulty,
-    text: 'Какое слово из другой группы?',
-    options,
-    correct,
-    hint: 'Четыре слова из одной группы, одно из другой. Буквы переставлять не нужно.',
-    explanation,
-  })
-}
-
-const letters = [
-  ['easy', 'Вставьте букву: в...кзал.', ['о', 'а', 'е', 'и', 'ы'], 0, 'вокзал'],
-  ['easy', 'Вставьте букву: к...рман.', ['а', 'о', 'е', 'и', 'у'], 0, 'карман'],
-  ['medium', 'Вставьте букву: св...сток.', ['и', 'е', 'о', 'а', 'у'], 0, 'свисток'],
-]
-for (const [difficulty, text, options, correct, word] of letters) {
-  add({
-    scale: 'vocabulary',
-    type: 'voc-letter',
-    source: 'analog',
-    difficulty,
-    text,
-    options,
-    correct,
-    hint: 'Прочитайте слово целиком и вспомните привычное написание.',
-    explanation: `Верное слово - ${word}.`,
-  })
-}
-
-const paronyms = [
-  ['medium', 'Ведущий ... слово гостю.', ['предоставил', 'представил', 'представился', 'предоставился', 'представлял'], 0, 'Здесь устойчивое сочетание со словом "слово". Похожие глаголы значат другое.', 'Устойчивое сочетание - предоставить слово.'],
-  ['easy', 'На улице холодно, ... шапку.', ['надень', 'одень', 'оденься', 'наденься', 'одевай'], 0, 'Речь о предмете одежды, который человек надевает на себя.', 'Шапку надевают, а одевают другого человека.'],
-  ['hard', 'Библиотечный ... дает право брать книги домой.', ['абонемент', 'абонент', 'абонента', 'абонирование', 'абонемента'], 0, 'Нужно название документа на право пользования, а не человек, который им пользуется.', 'Абонемент дает право брать книги, абонент - это человек.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of paronyms) {
-  add({ scale: 'vocabulary', type: 'voc-paronym', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const facts = [
-  ['geography', 'easy', 'Столица Австралии.', ['Канберра', 'Сидней', 'Мельбурн', 'Перт', 'Аделаида'], 0, 'Столица и самый большой город здесь не совпадают.', 'Столица Австралии - Канберра, не Сидней.'],
-  ['geography', 'medium', 'Столица Канады.', ['Оттава', 'Торонто', 'Монреаль', 'Ванкувер', 'Квебек'], 0, 'Столица и крупнейший город здесь разные.', 'Столица Канады - Оттава.'],
-  ['geography', 'medium', 'Самое глубокое озеро мира.', ['Байкал', 'Верхнее', 'Виктория', 'Танганьика', 'Ладожское'], 0, 'Сравнивайте глубину, а не площадь водной поверхности.', 'Самое глубокое озеро - Байкал.'],
-  ['geography', 'hard', 'Какой пролив отделяет Азию от Северной Америки?', ['Берингов', 'Гибралтарский', 'Магелланов', 'Ла-Манш', 'Босфор'], 0, 'Он лежит между Чукоткой и Аляской.', 'Азию и Северную Америку разделяет Берингов пролив.'],
-  ['history', 'easy', 'В каком году началась Великая Отечественная война?', ['в 1941 году', 'в 1939 году', 'в 1945 году', 'в 1914 году', 'в 1940 году'], 0, 'Вопрос про Великую Отечественную, а не про начало войны в Европе и не про год ее окончания.', '1939 год - начало Второй мировой войны в Европе, вопрос про Великую Отечественную.'],
-  ['history', 'medium', 'В каком году человек впервые полетел в космос?', ['в 1961 году', 'в 1957 году', 'в 1969 году', 'в 1971 году', 'в 1945 году'], 0, 'Это полет Юрия Гагарина, не запуск первого спутника и не высадка на Луну.', 'Первый полет человека в космос состоялся в 1961 году.'],
-  ['history', 'hard', 'В каком году была Куликовская битва?', ['в 1380 году', 'в 1240 году', 'в 1480 году', 'в 1382 году', 'в 1812 году'], 0, 'Сражение Дмитрия Донского с Мамаем, не Ледовое побоище и не стояние на Угре.', 'Куликовская битва была в 1380 году.'],
-  ['history', 'hard', 'В каком году в России отменили крепостное право?', ['в 1861 году', 'в 1801 году', 'в 1905 году', 'в 1762 году', 'в 1812 году'], 0, 'Это реформа Александра II.', 'Крепостное право отменили в 1861 году.'],
-  ['science', 'easy', 'Химическая формула воды.', ['H2O', 'CO2', 'NaCl', 'O2', 'H2SO4'], 0, 'В формуле есть водород и кислород.', 'Формула воды - H2O.'],
-  ['science', 'easy', 'Ближайшая к Солнцу планета.', ['Меркурий', 'Венера', 'Земля', 'Марс', 'Юпитер'], 0, 'Это не самая яркая планета на небе и не наша собственная.', 'Ближе всех к Солнцу стоит Меркурий.'],
-  ['science', 'medium', 'Сколько планет в Солнечной системе?', ['8', '9', '7', '10', '12'], 0, 'Плутон больше не считают планетой этой системы.', 'Планет восемь, Плутон относят к карликовым.'],
-  ['science', 'hard', 'Единица силы в СИ.', ['ньютон', 'джоуль', 'паскаль', 'ватт', 'генри'], 0, 'Ее называют по фамилии автора законов механики.', 'Единица силы - ньютон.'],
-  ['culture', 'easy', 'Кто написал роман "Война и мир"?', ['Толстой', 'Достоевский', 'Тургенев', 'Гоголь', 'Чехов'], 0, 'Автор также написал "Анну Каренину".', 'Роман написал Лев Толстой.'],
-  ['culture', 'easy', 'Кто написал "Евгения Онегина"?', ['Пушкин', 'Лермонтов', 'Грибоедов', 'Жуковский', 'Крылов'], 0, 'Это роман в стихах.', 'Евгения Онегина написал Александр Пушкин.'],
-  ['culture', 'medium', 'Кто написал картину "Черный квадрат"?', ['Малевич', 'Кандинский', 'Шагал', 'Репин', 'Айвазовский'], 0, 'Художник русского авангарда, не передвижник.', 'Черный квадрат написал Казимир Малевич.'],
-  ['economy', 'easy', 'Валюта Японии.', ['иена', 'юань', 'вон', 'рупия', 'бат'], 0, 'Ее не путают с валютой Китая.', 'Валюта Японии - иена.'],
-  ['economy', 'medium', 'Валюта Великобритании.', ['фунт стерлингов', 'евро', 'крона', 'франк', 'доллар'], 0, 'Страна не перешла на общую европейскую валюту.', 'Валюта Великобритании - фунт стерлингов.'],
-  ['economy', 'hard', 'Валюта Китая.', ['юань', 'иена', 'вон', 'рупия', 'доллар'], 0, 'Это валюта КНР, не соседней островной страны.', 'Валюта Китая - юань.'],
-  ['nature', 'easy', 'Самое крупное современное млекопитающее.', ['синий кит', 'африканский слон', 'кашалот', 'белый медведь', 'жираф'], 0, 'Оно живет в океане, это не сухопутное животное.', 'Самое крупное млекопитающее - синий кит.'],
-  ['nature', 'medium', 'Где в природе живут императорские пингвины?', ['в Антарктиде', 'в Арктике', 'в Гренландии', 'на Аляске', 'в Исландии'], 0, 'Их родина у южного полюса, а не у северного.', 'Императорские пингвины живут в Антарктиде.'],
-  ['nature', 'hard', 'Высочайшая вершина Земли.', ['Джомолунгма', 'Аконкагуа', 'Денали', 'Эльбрус', 'Килиманджаро'], 0, 'Она стоит в Гималаях.', 'Высочайшая вершина Земли - Джомолунгма.'],
-  ['sport', 'easy', 'Сколько игроков одной команды одновременно на поле в футболе?', ['11', '10', '9', '12', '7'], 0, 'Считайте полевых игроков вместе с вратарем.', 'На поле одиннадцать игроков.'],
-  ['sport', 'medium', 'Сколько очков приносит штрафной бросок в баскетболе?', ['1', '2', '3', '4', '5'], 0, 'Это самый дешевый успешный бросок, не бросок из игры и не из-за дуги.', 'Штрафной бросок приносит одно очко.'],
-  ['sport', 'medium', 'Через сколько лет повторяются летние Олимпийские игры?', ['4', '2', '3', '5', '6'], 0, 'Между соседними летними Играми один и тот же многолетний промежуток.', 'Летние Игры проводят раз в четыре года.'],
-]
-for (const [topic, difficulty, text, options, correct, hint, explanation] of facts) {
-  add({ scale: 'erudition', type: 'fact', source: 'demo', topic, difficulty, text, options, correct, hint, explanation })
-}
-
-const compass = ['север', 'восток', 'юг', 'запад']
-const dirIndex = { up: 0, right: 1, down: 2, left: 3 }
-const placeIndex = { top: 0, right: 1, bottom: 2, left: 3 }
-const placeLabel = { север: 'С', восток: 'В', юг: 'Ю', запад: 'З' }
-const schemes = [
-  ['easy', 'top', 'север', 'down'],
-  ['easy', 'top', 'север', 'left'],
-  ['medium', 'top', 'север', 'right'],
-  ['medium', 'right', 'восток', 'down'],
-  ['hard', 'bottom', 'юг', 'up'],
-  ['medium', 'left', 'запад', 'right'],
-]
-for (const [difficulty, place, label, arrow] of schemes) {
-  const answer = compass[(compass.indexOf(label) + dirIndex[arrow] - placeIndex[place] + 8) % 4]
-  add({
-    scale: 'spatial',
-    type: 'spa-scheme',
-    source: 'demo',
-    difficulty,
-    text: 'Куда показывает стрелка?',
-    scene: {
-      kind: 'scheme',
-      parts: [{ type: 'circle' }, { type: 'label', text: placeLabel[label], place }, { type: 'arrow', dir: arrow }],
-    },
-    options: compass,
-    correct: compass.indexOf(answer),
-    hint: 'Подпись задает одну сторону света, остальные идут от нее по кругу.',
-    explanation: `Подпись отмечает сторону "${label}", стрелка относительно нее показывает ${answer}.`,
-  })
-}
-
-const faces = ['blank', 'circle', 'triangle', 'square', 'line']
-const faceName = { blank: 'пустую грань', circle: 'круг', triangle: 'треугольник', square: 'квадрат', line: 'линию' }
-function addNet(difficulty, top, front, right) {
-  const layout = [
+function crossNet(top, left, front, right, back, bottom) {
+  return [
     [null, top, null, null],
-    ['blank', front, right, 'blank'],
-    [null, 'blank', null, null],
+    [left, front, right, back],
+    [null, bottom, null, null],
   ]
-  const correct = { front, top, right }
-  const wrongs = [
+}
+
+function addNet(difficulty, top, front, right) {
+  const layout = crossNet(top, 'blank', front, right, 'blank', 'blank')
+  const cubes = [
+    { front, top, right },
     { front: top, top: front, right },
     { front, top: right, right: top },
     { front: right, top, right: front },
-  ].filter((cube, index, list) => JSON.stringify(cube) !== JSON.stringify(correct) && list.findIndex((item) => JSON.stringify(item) === JSON.stringify(cube)) === index)
-  while (wrongs.length < 3) {
-    wrongs.push({ front: faces[(wrongs.length + 1) % faces.length], top, right: 'line' })
-  }
+  ]
+  const keys = cubes.map((cube) => `${cube.front}|${cube.top}|${cube.right}`)
+  if (new Set(keys).size !== 4) throw new Error(`кубики совпали ${keys.join(' ')}`)
   add({
     scale: 'spatial',
     type: 'spa-net',
-    source: 'analog',
     difficulty,
-    text: `На каком кубике спереди ${faceName[front]}, а сверху ${faceName[top]}?`,
+    text: 'На каком кубике передняя и верхняя грани совпадают с разверткой?',
     scene: { kind: 'net', layout },
-    options: [correct, ...wrongs.slice(0, 3)].map((cube) => ({ scene: { kind: 'cube', ...cube } })),
+    options: cubes.map((cube) => ({ scene: { kind: 'cube', ...cube } })),
     correct: 0,
-    hint: 'На крестовой развертке верхняя клетка становится верхом кубика, центральная - передом, клетка справа от нее - правой гранью.',
-    explanation: `Передняя грань развертки - ${faceName[front]}, верхняя - ${faceName[top]}. Верный кубик показывает их так же.`,
+    hint: 'На кресте верхняя клетка становится верхом кубика, центральная - передом.',
+    explanation: 'Передняя грань развертки и верхняя сохраняются. Остальные кубики меняют эти знаки местами.',
   })
 }
-addNet('hard', 'triangle', 'circle', 'blank')
-addNet('medium', 'square', 'line', 'blank')
-addNet('hard', 'circle', 'triangle', 'square')
+
+const marks = ['blank', 'circle', 'triangle', 'square', 'line']
+const triples = []
+for (const top of marks) {
+  for (const front of marks) {
+    for (const right of marks) {
+      if (new Set([top, front, right]).size === 3) triples.push([top, front, right])
+    }
+  }
+}
+const easyNets = triples.filter((triple) => triple.includes('blank')).slice(0, 4)
+const restNets = triples.filter((triple) => !triple.includes('blank'))
+for (const triple of easyNets) addNet('easy', ...triple)
+for (const triple of restNets.slice(0, 4)) addNet('medium', ...triple)
+for (const triple of restNets.slice(4, 8)) addNet('hard', ...triple)
+
+function boundsOf(cells) {
+  return {
+    cols: Math.max(...cells.map((cell) => cell[0])) + 1,
+    rows: Math.max(...cells.map((cell) => cell[1])) + 1,
+  }
+}
 
 function addTransform(difficulty, mode, sourceCells) {
   const turns = rotationsOf(sourceCells)
   const mirror = mirrored(sourceCells)
   if (mode === 'rotate' && isRotation(mirror, sourceCells)) throw new Error('зеркало совпало с поворотом')
   const correct = mode === 'rotate' ? turns.find((turn) => !sameShape(turn, sourceCells)) : mirror
-  if (!correct) throw new Error('нет отличного поворота')
+  if (!correct) throw new Error('нет верного преобразования')
+  const seen = new Set([keyOf(correct), keyOf(sourceCells), keyOf(mirror)])
   const wrongs = []
-  const seen = new Set([keyOf(correct), keyOf(sourceCells)])
-  if (mode === 'rotate') {
-    wrongs.push(mirror)
-    seen.add(keyOf(mirror))
-  }
+  if (mode === 'rotate') wrongs.push(mirror)
   for (const turn of turns) {
     if (wrongs.length >= 3) break
-    if (seen.has(keyOf(turn))) continue
+    if (seen.has(keyOf(turn)) || sameShape(turn, correct)) continue
     wrongs.push(turn)
     seen.add(keyOf(turn))
   }
-  while (wrongs.length < 3) {
+  let guard = 0
+  while (wrongs.length < 3 && guard < 200) {
+    guard += 1
     const extra = grow(sourceCells.length)
     if (!extra || seen.has(keyOf(extra)) || isRotation(extra, sourceCells) || sameShape(extra, mirror)) continue
     wrongs.push(extra)
     seen.add(keyOf(extra))
   }
-  const bounds = (cells) => ({
-    cols: Math.max(...cells.map((cell) => cell[0])) + 1,
-    rows: Math.max(...cells.map((cell) => cell[1])) + 1,
-  })
-  const sourceBounds = bounds(sourceCells)
+  if (wrongs.length < 3) throw new Error('мало неверных преобразований')
+  const box = boundsOf(sourceCells)
   add({
     scale: 'spatial',
     type: 'spa-transform',
-    source: 'analog',
     difficulty,
     text: mode === 'rotate' ? 'Какая фигура получена поворотом образца?' : 'Какая фигура является зеркальным отражением образца?',
-    scene: { kind: 'cells', cols: sourceBounds.cols, rows: sourceBounds.rows, filled: sourceCells, mode },
+    scene: { kind: 'cells', cols: box.cols, rows: box.rows, filled: sourceCells, mode },
     options: [correct, ...wrongs.slice(0, 3)].map((cells) => {
-      const box = bounds(cells)
-      return { scene: { kind: 'cells', cols: box.cols, rows: box.rows, filled: cells } }
+      const pieceBox = boundsOf(cells)
+      return { scene: { kind: 'cells', cols: pieceBox.cols, rows: pieceBox.rows, filled: cells } }
     }),
     correct: 0,
-    hint: mode === 'rotate' ? 'Мысленно поверните образец. Фигура, у которой выступ оказался с другой стороны, получается отражением, а не поворотом.' : 'Отразите образец как в зеркале. Обычный поворот оставляет выступ с той же стороны относительно длинной части.',
-    explanation: mode === 'rotate' ? 'Верная фигура совпадает с образцом после поворота. Зеркальный вариант поворотом не получить.' : 'Верная фигура - отражение образца. Остальные получаются поворотом или имеют другую форму.',
+    hint: mode === 'rotate' ? 'Мысленно поверните образец. Выступ с другой стороны длинной части дает отражение.' : 'Отразите образец. Обычный поворот оставляет выступ с той же стороны.',
+    explanation:
+      mode === 'rotate'
+        ? 'Верная фигура совпадает с образцом после поворота. Зеркало поворотом не получить.'
+        : 'Верная фигура - отражение образца. Поворот оставляет другую сторону выступа.',
   })
 }
-addTransform('medium', 'rotate', [
-  [0, 0],
-  [0, 1],
-  [0, 2],
-  [1, 2],
-])
-addTransform('hard', 'rotate', [
-  [0, 1],
-  [1, 0],
-  [1, 1],
-  [2, 0],
-])
-addTransform('medium', 'mirror', [
-  [0, 0],
-  [0, 1],
-  [0, 2],
-  [1, 2],
-])
+
+const chiral = [
+  [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [1, 2],
+  ],
+  [
+    [0, 0],
+    [1, 0],
+    [1, 1],
+    [2, 1],
+  ],
+  [
+    [0, 0],
+    [0, 1],
+    [0, 2],
+    [0, 3],
+    [1, 3],
+  ],
+  [
+    [0, 1],
+    [1, 0],
+    [1, 1],
+    [1, 2],
+    [2, 2],
+  ],
+  [
+    [0, 0],
+    [1, 0],
+    [2, 0],
+    [2, 1],
+    [3, 1],
+  ],
+  [
+    [0, 0],
+    [1, 0],
+    [1, 1],
+    [1, 2],
+    [2, 2],
+  ],
+  [
+    [0, 1],
+    [1, 1],
+    [2, 1],
+    [2, 0],
+    [3, 0],
+  ],
+  [
+    [0, 0],
+    [0, 1],
+    [1, 1],
+    [2, 1],
+    [2, 2],
+  ],
+]
+const transformPlan = [
+  ['easy', 'rotate'],
+  ['easy', 'rotate'],
+  ['easy', 'mirror'],
+  ['medium', 'rotate'],
+  ['medium', 'mirror'],
+  ['medium', 'rotate'],
+  ['hard', 'mirror'],
+  ['hard', 'mirror'],
+]
+transformPlan.forEach(([difficulty, mode], index) => addTransform(difficulty, mode, chiral[index]))
+
+function swapped(heights, ax, ay, bx, by) {
+  const copy = heights.map((row) => [...row])
+  const hold = copy[ay][ax]
+  copy[ay][ax] = copy[by][bx]
+  copy[by][bx] = hold
+  return copy
+}
+
+function gridKey(heights) {
+  return heights.map((row) => row.join(',')).join(';')
+}
 
 function addTop(difficulty, heights) {
-  const flat = heights.flat()
-  const wrongs = []
-  for (let index = 0; index < flat.length && wrongs.length < 3; index += 1) {
-    for (let other = index + 1; other < flat.length && wrongs.length < 3; other += 1) {
-      if (flat[index] === flat[other]) continue
-      const copy = flat.slice()
-      const current = copy[index]
-      copy[index] = copy[other]
-      copy[other] = current
-      const grid = []
-      for (let row = 0; row < heights.length; row += 1) {
-        grid.push(copy.slice(row * heights[0].length, (row + 1) * heights[0].length))
-      }
-      wrongs.push(grid)
-    }
-  }
+  const rows = heights.length
+  const cols = heights[0].length
+  const wrongs = [
+    swapped(heights, 0, 0, cols - 1, 0),
+    swapped(heights, 0, 0, 0, rows - 1),
+    swapped(heights, cols - 1, 0, 0, rows - 1),
+  ]
+  const keys = [heights, ...wrongs].map(gridKey)
+  if (new Set(keys).size !== 4) throw new Error(`вид сверху совпал ${gridKey(heights)}`)
   add({
     scale: 'spatial',
     type: 'spa-top',
-    source: 'analog',
     difficulty,
-    text: 'Какой вид сверху верен?',
+    text: 'Какой вид сверху повторяет высоты столбиков?',
     scene: { kind: 'stack', heights, view: 'iso' },
     options: [heights, ...wrongs].map((grid) => ({ scene: { kind: 'stack', heights: grid, view: 'top' } })),
     correct: 0,
     hint: 'Число в клетке вида сверху - высота столбика в этой же клетке.',
-    explanation: 'Вид сверху повторяет сетку высот без перестановки чисел.',
+    explanation: 'Верная сетка повторяет высоты. Остальные меняют два числа местами.',
   })
 }
-addTop('medium', [
-  [1, 3],
-  [2, 1],
-])
-addTop('easy', [
-  [2, 2],
-  [1, 4],
-])
-addTop('hard', [
-  [1, 2, 1],
-  [3, 1, 2],
-])
+
+for (const [difficulty, heights] of [
+  ['easy', [[1, 4], [2, 5]]],
+  ['easy', [[2, 6], [5, 1]]],
+  ['easy', [[3, 1], [6, 2]]],
+  ['medium', [[2, 5, 1], [4, 1, 6]]],
+  ['medium', [[1, 4, 6], [5, 2, 3]]],
+  ['hard', [[1, 4, 2], [5, 2, 6], [3, 6, 1]]],
+  ['hard', [[4, 1, 5], [2, 6, 3], [6, 3, 2]]],
+  ['hard', [[2, 5, 4], [6, 1, 3], [1, 4, 6]]],
+]) {
+  addTop(difficulty, heights)
+}
 
 function addCubes(difficulty, heights) {
-  const answer = heights.flat().reduce((sum, value) => sum + value, 0)
-  const options = [answer, answer - 1, answer + 1, answer + 2].map(String)
-  add({
+  const flat = heights.flat()
+  const answer = flat.reduce((sum, value) => sum + value, 0)
+  const max = Math.max(...flat)
+  const near = heights[heights.length - 1].reduce((sum, value) => sum + value, 0)
+  const stacks = flat.filter((value) => value > 0).length
+  commitNumeric({
     scale: 'spatial',
     type: 'spa-cubes',
-    source: 'analog',
     difficulty,
-    text: 'Сколько кубиков в постройке, включая невидимые?',
+    text: 'Сколько кубиков в постройке, если считать и закрытые спереди?',
     scene: { kind: 'stack', heights, view: 'iso' },
-    options,
-    correct: 0,
+    answer,
     hint: 'Сложите высоты всех столбиков, в том числе тех, что закрыты спереди.',
-    explanation: `Сумма высот равна ${answer}.`,
+    lead: 'Число кубиков равно сумме всех высот.',
+    traps: [
+      { name: 'забыт самый высокий столбик', compute: () => answer - max },
+      { name: 'сложен только ближний ряд', compute: () => near },
+      { name: 'посчитаны столбики, а не кубики', compute: () => stacks },
+    ],
   })
 }
-addCubes('easy', [
-  [2, 1],
-  [1, 1],
-])
-addCubes('medium', [
-  [3, 1],
-  [2, 2],
-])
-addCubes('easy', [
-  [1, 1],
-  [1, 2],
-])
 
-function addSpaChart(difficulty, values, text, answer, explanation) {
-  add({
-    scale: 'spatial',
-    type: 'spa-chart',
-    source: 'analog',
-    difficulty,
-    text,
-    scene: { kind: 'chart', variant: 'bar', labels: ['1', '2', '3', '4'], values },
-    options: ['первый', 'второй', 'третий', 'четвертый'],
-    correct: answer,
-    hint: 'Сравните высоты столбцов, разницу считать не нужно.',
-    explanation,
-  })
+for (const [difficulty, heights] of [
+  ['easy', [[5, 2], [3, 2]]],
+  ['easy', [[4, 1], [2, 6]]],
+  ['medium', [[3, 1, 4], [2, 5, 2]]],
+  ['medium', [[2, 4, 1], [5, 2, 3]]],
+  ['medium', [[4, 2, 3], [1, 6, 2]]],
+  ['hard', [[2, 4, 1], [3, 1, 5], [2, 3, 6]]],
+  ['hard', [[5, 1, 2], [1, 4, 2], [3, 2, 6]]],
+  ['hard', [[1, 3, 4], [6, 2, 1], [2, 5, 3]]],
+]) {
+  addCubes(difficulty, heights)
 }
-addSpaChart('easy', [4, 9, 6, 2], 'Какой столбец самый высокий?', 1, 'Второй столбец выше остальных.')
-addSpaChart('easy', [8, 3, 5, 7], 'Какой столбец самый низкий?', 1, 'Второй столбец ниже остальных.')
-addSpaChart('medium', [2, 6, 6, 9], 'Какой столбец самый высокий?', 3, 'Четвертый столбец выше двух одинаковых средних и первого.')
 
-const places = {
-  c: [0.5, 0.5],
-  tl: [0.32, 0.3],
-  tr: [0.68, 0.3],
-  bl: [0.32, 0.7],
-  br: [0.68, 0.7],
-  t: [0.5, 0.28],
-  b: [0.5, 0.74],
-  l: [0.26, 0.5],
-  r: [0.74, 0.5],
+function el(shape, x, y, size, dir) {
+  const element = { shape, x, y, size }
+  if (dir) element.dir = dir
+  return element
 }
-function element(shape, place, size = 0.34, dir) {
-  const point = places[place]
-  return { shape, x: point[0], y: point[1], size, ...(dir ? { dir } : {}) }
-}
-function card(...elements) {
+
+function card(elements) {
   return { elements }
 }
-function dots(count) {
-  const order = ['c', 'tl', 'br', 'tr', 'bl', 't', 'b', 'l', 'r']
-  return card(...Array.from({ length: count }, (_, index) => element('dot', order[index], 0.14)))
-}
-function cardOption(content) {
-  return { scene: { kind: 'card', elements: content.elements } }
+
+function one(shape, x, y, size, dir) {
+  return card([el(shape, x, y, size, dir)])
 }
 
-const matrices = [
-  ['medium', [[1, 2, 3], [2, 3, 4], [3, 4, null]], 5, [3, 4, 5, 6], 'Шаг вправо и шаг вниз добавляют одну точку.'],
-  ['easy', [[1, 2, 3], [1, 2, 3], [1, 2, null]], 3, [2, 3, 4, 1], 'В каждой строке повторяется один и тот же ряд.'],
-  ['medium', [[2, 3, 4], [3, 4, 5], [4, 5, null]], 6, [5, 6, 7, 4], 'Вправо и вниз число точек растет на одну.'],
-  ['hard', [[1, 1, 2], [1, 2, 3], [2, 3, null]], 5, [4, 5, 6, 3], 'Третье число строки равно сумме двух предыдущих.'],
-  ['easy', [[4, 3, 2], [4, 3, 2], [4, 3, null]], 2, [1, 2, 3, 4], 'Строки одинаковые, в строке число убывает.'],
-  ['hard', [[1, 3, 5], [2, 4, 6], [3, 5, null]], 7, [7, 6, 8, 9], 'В строке числа идут через одно, следующая строка начинается на единицу выше.'],
-]
-for (const [difficulty, grid, answer, choices, reason] of matrices) {
+function dotCard(count, size) {
+  const spots = [
+    [0.5, 0.5],
+    [0.3, 0.3],
+    [0.7, 0.32],
+    [0.32, 0.7],
+    [0.7, 0.7],
+  ]
+  return card(spots.slice(0, count).map(([x, y]) => el('dot', x, y, size)))
+}
+
+function cardKey(value) {
+  return JSON.stringify(value)
+}
+
+function addMatrix(difficulty, cells, answer, wrongs, hint, explanation) {
+  const filled = cells.flat().filter(Boolean)
+  if (difficulty === 'easy' && new Set(filled.map(cardKey)).size < 2) throw new Error('легкая матрица из одинаковых клеток')
+  const options = [answer, ...wrongs]
+  if (new Set(options.map(cardKey)).size !== options.length) throw new Error('матрица: повтор карточки')
   add({
     scale: 'nonverbal',
     type: 'non-matrix',
-    source: 'demo',
     difficulty,
     text: 'Какая карточка стоит в пустой клетке?',
-    scene: { kind: 'matrix', cells: grid.map((row) => row.map((value) => (value == null ? null : dots(value)))) },
-    options: choices.map((value) => cardOption(dots(value))),
-    correct: choices.indexOf(answer),
-    hint: 'Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.',
-    explanation: `${reason} В пустой клетке ${answer}.`,
-  })
-}
-
-const odds = [
-  ['easy', [card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'down'))], 3, 'Лишняя карточка - та, где треугольник направлен вниз.'],
-  ['easy', [card(element('circle', 'c', 0.4)), card(element('circle', 'c', 0.4)), card(element('circle', 'c', 0.4)), card(element('square', 'c', 0.4))], 3, 'Три карточки с кругом, лишняя - с квадратом.'],
-  ['medium', [card(element('diamond', 'c')), card(element('diamond', 'c')), card(element('diamond', 'c')), card(element('dot', 'c', 0.16))], 3, 'Три карточки с ромбом, лишняя - с точкой.'],
-  ['medium', [card(element('line', 'c', 0.5)), card(element('line', 'c', 0.5)), card(element('line', 'c', 0.5)), card(element('square', 'c', 0.36))], 3, 'Три карточки с линией, лишняя - с квадратом.'],
-  ['hard', [card(element('triangle', 't', 0.36, 'up')), card(element('circle', 't', 0.32)), card(element('square', 't', 0.32)), card(element('diamond', 'b', 0.32))], 3, 'У трех карточек фигура в верхней половине, у лишней - в нижней.'],
-  ['easy', [card(element('dot', 'c', 0.16)), card(element('dot', 'tl', 0.16), element('dot', 'br', 0.16)), card(element('dot', 'c', 0.16)), card(element('dot', 'c', 0.16))], 1, 'Три карточки с одной точкой, лишняя - с двумя.'],
-]
-for (const [difficulty, cards, correct, explanation] of odds) {
-  add({
-    scale: 'nonverbal',
-    type: 'non-odd',
-    source: 'demo',
-    difficulty,
-    text: 'Какая фигура устроена иначе?',
-    scene: { kind: 'group', cards },
-    options: cards.map((item) => cardOption(item)),
-    correct,
-    hint: 'Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.',
-    explanation,
-  })
-}
-
-const sequences = [
-  ['easy', [card(element('circle', 'c')), card(element('square', 'c')), card(element('circle', 'c')), card(element('square', 'c'))], [card(element('circle', 'c')), card(element('square', 'c')), card(element('triangle', 'c', 0.42, 'up')), card(element('diamond', 'c'))], 0, 'Фигуры чередуются, следующая - круг.'],
-  ['easy', [dots(1), dots(2), dots(3), dots(4)], [dots(5), dots(4), dots(6), dots(3)], 0, 'Число точек растет на одну, дальше пять.'],
-  ['medium', [card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'down')), card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'down'))], [card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'down')), card(element('square', 'c')), card(element('circle', 'c'))], 0, 'Направление треугольника чередуется, следующий смотрит вверх.'],
-  ['hard', [card(element('square', 'c')), card(element('circle', 'c')), card(element('triangle', 'c', 0.42, 'up')), card(element('square', 'c')), card(element('circle', 'c'))], [card(element('triangle', 'c', 0.42, 'up')), card(element('square', 'c')), card(element('diamond', 'c')), card(element('circle', 'c'))], 0, 'Повторяется тройка фигур, следующая замыкает вторую тройку.'],
-]
-for (const [difficulty, steps, choices, correct, explanation] of sequences) {
-  add({
-    scale: 'nonverbal',
-    type: 'non-sequence',
-    source: 'analog',
-    difficulty,
-    text: 'Какая фигура продолжает ряд?',
-    scene: { kind: 'sequence', steps },
-    options: choices.map((item) => cardOption(item)),
-    correct,
-    hint: 'Найдите повтор или шаг изменения и продолжите его на одну фигуру.',
-    explanation,
-  })
-}
-
-const analogies = [
-  ['medium', dots(1), dots(2), card(element('square', 'c', 0.34)), [card(element('square', 'c', 0.28), element('square', 'tr', 0.28)), card(element('square', 'c')), card(element('triangle', 'c', 0.4, 'up'), element('triangle', 'br', 0.4, 'up')), card(element('square', 'tl', 0.24), element('square', 'c', 0.24), element('square', 'br', 0.24))], 0, 'Число фигур удваивается, форма второй пары сохраняется.'],
-  ['easy', card(element('circle', 'c', 0.22)), card(element('circle', 'c', 0.48)), card(element('triangle', 'c', 0.24, 'up')), [card(element('triangle', 'c', 0.5, 'up')), card(element('triangle', 'c', 0.24, 'up')), card(element('square', 'c', 0.5)), card(element('circle', 'c', 0.48))], 0, 'Фигура той же формы становится крупнее.'],
-  ['medium', card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'c', 0.46, 'down')), card(element('square', 't', 0.3)), [card(element('square', 'b', 0.3)), card(element('square', 't', 0.3)), card(element('circle', 'b', 0.3)), card(element('triangle', 'b', 0.4, 'down'))], 0, 'Фигура переходит из верхней половины в нижнюю, форма сохраняется.'],
-  ['hard', card(element('circle', 'l', 0.24)), card(element('circle', 'r', 0.24)), card(element('square', 'l', 0.26)), [card(element('square', 'r', 0.26)), card(element('square', 'l', 0.26)), card(element('circle', 'r', 0.24)), card(element('diamond', 'r', 0.26))], 0, 'Фигура смещается к противоположному краю рамки и не меняет форму.'],
-]
-for (const [difficulty, left, right, given, choices, correct, explanation] of analogies) {
-  add({
-    scale: 'nonverbal',
-    type: 'non-analogy',
-    source: 'analog',
-    difficulty,
-    text: 'Первая фигура относится ко второй, как третья к какой?',
-    scene: { kind: 'analogy', pair: [left, right], given },
-    options: choices.map((item) => cardOption(item)),
-    correct,
-    hint: 'Заметьте, что изменилось от первой фигуры ко второй, и повторите это с третьей.',
-    explanation,
-  })
-}
-
-const groups = [
-  ['medium', [card(element('triangle', 't', 0.36, 'up')), card(element('circle', 't', 0.3)), card(element('square', 't', 0.3))], [card(element('diamond', 't', 0.3)), card(element('diamond', 'b', 0.3)), card(), card(element('dot', 't', 0.12), element('dot', 'b', 0.12))], 0, 'У карточек группы элемент в верхней половине, верный вариант устроен так же.'],
-  ['easy', [card(element('circle', 'c', 0.42)), card(element('circle', 'tl', 0.28)), card(element('circle', 'br', 0.24))], [card(element('circle', 'c', 0.3)), card(element('square', 'c')), card(element('triangle', 'c', 0.42, 'up')), card()], 0, 'Общий признак - круг. Верный вариант тоже содержит только круг.'],
-  ['medium', [dots(1), dots(1), dots(1)], [dots(1), dots(2), card(element('square', 'c')), card()], 0, 'В группе ровно одна точка. Верный вариант сохраняет это число.'],
-  ['hard', [card(element('triangle', 'c', 0.46, 'up')), card(element('triangle', 'tl', 0.36, 'up')), card(element('triangle', 'br', 0.36, 'up'))], [card(element('triangle', 'c', 0.4, 'up')), card(element('triangle', 'c', 0.4, 'down')), card(element('circle', 'c')), card(element('triangle', 't', 0.3, 'up'), element('triangle', 'b', 0.3, 'up'))], 0, 'В группе один треугольник смотрит вверх. Верный вариант повторяет и число, и направление.'],
-]
-for (const [difficulty, cards, choices, correct, explanation] of groups) {
-  add({
-    scale: 'nonverbal',
-    type: 'non-group',
-    source: 'analog',
-    difficulty,
-    text: 'Какая фигура подходит к группе?',
-    scene: { kind: 'group', cards },
-    options: choices.map((item) => cardOption(item)),
-    correct,
-    hint: 'Общий признак может быть положением, формой или числом элементов, а не случайной деталью одной карточки.',
-    explanation,
-  })
-}
-
-const sets = [
-  ['easy', 'Какой предмет относится к множеству "скрипка, виолончель, альт"?', ['контрабас', 'флейта', 'барабан', 'труба'], 0, 'Все слова множества называют инструменты одного способа игры.', 'Это смычковые струнные, остальные - другие группы инструментов.'],
-  ['easy', 'Какой предмет относится к множеству "дуб, береза, клен"?', ['липа', 'роза', 'пшеница', 'мох'], 0, 'Все слова множества называют растения одного вида.', 'Это деревья, липа тоже дерево.'],
-  ['medium', 'Какой предмет относится к множеству "килограмм, грамм, тонна"?', ['центнер', 'метр', 'литр', 'секунда'], 0, 'Слова множества называют единицы одной величины.', 'Это единицы массы, центнер тоже единица массы.'],
-  ['medium', 'Какой предмет относится к множеству "январь, март, май"?', ['июль', 'вторник', 'утро', 'весна'], 0, 'Слова множества называют отрезки одного календаря.', 'Это месяцы, июль тоже месяц.'],
-  ['hard', 'Какой предмет относится к множеству "медь, железо, алюминий"?', ['цинк', 'вода', 'уголь', 'стекло'], 0, 'Слова множества называют вещества одного класса.', 'Это металлы, цинк тоже металл.'],
-  ['easy', 'Какой предмет относится к множеству "Москва, Казань, Омск"?', ['Тула', 'Волга', 'Урал', 'Байкал'], 0, 'Слова множества называют населенные пункты, а не реки и горы.', 'Тула - город, как и остальные слова множества.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of sets) {
-  add({ scale: 'verbal', type: 'ver-set', source: 'demo', difficulty, text, options, correct, hint, explanation })
-}
-
-const inferences = [
-  ['medium', 'Все архивисты музея знают латынь. Все переводчики музея - архивисты.', 'Какой вывод следует из текста?', ['Все переводчики музея знают латынь.', 'Все, кто знает латынь, - архивисты.', 'Все сотрудники музея знают латынь.', 'Некоторые переводчики музея не знают латынь.'], 0, 'Проверьте, входит ли группа из второй фразы в группу из первой. Обратное включение из текста не следует.', 'Переводчики входят в архивистов, архивисты знают латынь, значит переводчики знают латынь.'],
-  ['easy', 'Все березы - деревья. Это растение - береза.', 'Какой вывод следует из текста?', ['Это растение - дерево.', 'Все деревья - березы.', 'Это растение - дуб.', 'Некоторые березы не деревья.'], 0, 'Частный предмет наследует свойство всей своей группы.', 'Раз это береза, а все березы - деревья, это растение - дерево.'],
-  ['medium', 'Ни один пингвин в этом зоопарке не живет в теплом павильоне. Кеша - пингвин этого зоопарка.', 'Какой вывод следует из текста?', ['Кеша не живет в теплом павильоне.', 'Все обитатели зоопарка не живут в теплом павильоне.', 'Кеша живет в теплом павильоне.', 'Все, кто не живет в теплом павильоне, - пингвины.'], 0, 'Свойство всей группы переходит к названному члену этой группы.', 'Кеша входит в группу пингвинов зоопарка, поэтому теплый павильон ему не подходит.'],
-  ['hard', 'Все рейсы этой авиакомпании утренние. Рейс 17 принадлежит этой авиакомпании.', 'Какой вывод следует из текста?', ['Рейс 17 утренний.', 'Все утренние рейсы принадлежат этой авиакомпании.', 'Рейс 17 вечерний.', 'У этой авиакомпании нет утренних рейсов.'], 0, 'Номер рейса не меняет правило, если рейс входит в названную компанию.', 'Рейс 17 входит в компанию, у которой все рейсы утренние.'],
-  ['medium', 'Все экспонаты витрины - монеты. Этот предмет стоит в витрине.', 'Какой вывод следует из текста?', ['Этот предмет - монета.', 'Все монеты стоят в витрине.', 'Этот предмет - марка.', 'В витрине есть экспонат, который не монета.'], 0, 'Место предмета включает его в группу, о которой сказано "все".', 'Предмет из витрины входит в экспонаты, а все они монеты.'],
-  ['hard', 'Каждый чертеж в папке подписан. Этот лист - чертеж из папки.', 'Какой вывод следует из текста?', ['Этот лист подписан.', 'Каждый подписанный лист лежит в папке.', 'Этот лист без подписи.', 'В папке есть неподписанный чертеж.'], 0, 'Слово "каждый" относит признак ко всем членам группы, включая названный лист.', 'Лист входит в чертежи папки, а каждый из них подписан.'],
-]
-for (const [difficulty, passage, question, options, correct, hint, explanation] of inferences) {
-  add({ scale: 'verbal', type: 'ver-inference', source: 'demo', difficulty, text: `${passage} ${question}`, options, correct, hint, explanation })
-}
-
-const verbalAnalogies = [
-  ['easy', 'Холод относится к жаре, как день к ...', ['ночи', 'солнцу', 'утру', 'лету'], 0, 'Отношение в первой паре - противоположность. Во второй паре ищите то же отношение.', 'Во второй паре тоже противоположность.'],
-  ['easy', 'Кисть относится к художнику, как молоток к ...', ['столяру', 'гвоздю', 'картине', 'краске'], 0, 'Первое слово - инструмент, второе - тот, кто им работает.', 'Молоток - инструмент столяра, как кисть - инструмент художника.'],
-  ['medium', 'Глава относится к книге, как акт к ...', ['пьесе', 'театру', 'актеру', 'странице'], 0, 'Первое слово - часть целого, названного вторым.', 'Акт - часть пьесы, как глава - часть книги.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of verbalAnalogies) {
-  add({ scale: 'verbal', type: 'ver-analogy', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const generals = [
-  ['easy', 'Найдите общее для слов "дуб" и "береза".', ['деревья', 'цветы', 'кустарники', 'травы'], 0, 'Оба слова называют растения одного вида. Выберите имя этой группы.', 'Дуб и береза - деревья.'],
-  ['easy', 'Найдите общее для слов "скрипка" и "виолончель".', ['струнные инструменты', 'ударные инструменты', 'клавишные инструменты', 'духовые инструменты'], 0, 'Оба слова называют инструменты одного способа звука.', 'Скрипка и виолончель - струнные инструменты.'],
-  ['medium', 'Найдите общее для слов "Москва" и "Казань".', ['города', 'реки', 'страны', 'моря'], 0, 'Оба слова называют населенные пункты одного типа.', 'Москва и Казань - города.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of generals) {
-  add({ scale: 'verbal', type: 'ver-general', source: 'analog', difficulty, text, options, correct, hint, explanation })
-}
-
-const syllogisms = [
-  ['hard', 'Ни один пингвин не умеет летать. Некоторые птицы - пингвины.', ['Некоторые птицы не умеют летать.', 'Ни одна птица не умеет летать.', 'Все птицы - пингвины.', 'Некоторые пингвины умеют летать.'], 0, 'Частный случай наследует свойство всей своей группы. Вывод про всех членов более широкой группы не следует.', 'Пингвины - часть птиц и летать не умеют, значит часть птиц не летает.'],
-  ['medium', 'Все архивисты знают латынь. Некоторые сотрудники - архивисты.', ['Некоторые сотрудники знают латынь.', 'Все сотрудники знают латынь.', 'Все, кто знает латынь, - сотрудники.', 'Ни один сотрудник не знает латынь.'], 0, 'Свойство всей узкой группы переходит хотя бы к тем, кто в нее входит.', 'Часть сотрудников - архивисты, а все архивисты знают латынь.'],
-  ['hard', 'Ни одна река этого списка не впадает в озеро. Некоторые водоемы списка - реки.', ['Некоторые водоемы списка не впадают в озеро.', 'Ни один водоем списка не впадает в озеро.', 'Все водоемы списка - реки.', 'Некоторые реки списка впадают в озеро.'], 0, 'Запрет для всей группы рек сохраняется у тех водоемов, которые являются этими реками.', 'Часть водоемов - реки, а ни одна такая река не впадает в озеро.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of syllogisms) {
-  add({
-    scale: 'verbal',
-    type: 'ver-syllogism',
-    source: 'analog',
-    difficulty,
-    text: `${text} Какой вывод верен?`,
-    options,
-    correct,
+    scene: { kind: 'matrix', cells },
+    options: options.map((item) => ({ scene: { kind: 'card', elements: item.elements } })),
+    correct: 0,
     hint,
     explanation,
   })
 }
 
-const follows = [
-  ['medium', 'В офисе три принтера. Два из них цветные. Цветные принтеры стоят у окна.', ['Хотя бы один принтер стоит у окна.', 'Все принтеры стоят у окна.', 'Третий принтер цветной.', 'У окна нет принтеров.'], 0, 'Отделите то, что сказано про часть предметов, от вывода про все предметы.', 'Два цветных стоят у окна, значит у окна есть хотя бы один.'],
-  ['easy', 'В корзине 5 яблок. 2 из них зеленые.', ['В корзине есть зеленое яблоко.', 'Все яблоки зеленые.', 'В корзине нет зеленых яблок.', 'Зеленых яблок больше, чем остальных.'], 0, 'Число больше нуля уже позволяет утверждать, что такой предмет есть.', 'Два зеленых яблока лежат в корзине, значит зеленое яблоко там есть.'],
-  ['hard', 'На полке 6 книг. Некоторые из них на английском. Все английские книги стоят слева.', ['Слева стоит хотя бы одна книга.', 'Все книги стоят слева.', 'Все книги на английском.', 'Слева нет книг.'], 0, 'Слово "некоторые" гарантирует непустую часть, но не распространяет признак на все книги.', 'Английские книги есть, и все они слева, значит слева есть книга.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of follows) {
-  add({ scale: 'verbal', type: 'ver-follows', source: 'analog', difficulty, text: `${text} Что из этого следует?`, options, correct, hint, explanation })
+function ruleScore(value, rules) {
+  return rules.reduce((sum, rule) => sum + (rule(value) ? 1 : 0), 0)
 }
 
-const orders = [
-  ['medium', 'Анна старше Бориса. Борис старше Веры. Вера старше Глеба. Кто самый старший?', ['Анна', 'Борис', 'Вера', 'Глеб'], 0, 'Выпишите цепочку от старшего к младшему по каждой следующей фразе.', 'Анна старше Бориса, а Борис старше остальных, значит Анна старше всех.'],
-  ['easy', 'Кот больше щенка. Щенок больше хомяка. Кто самый маленький?', ['хомяк', 'кот', 'щенок', 'никто'], 0, 'Каждая следующая фраза называет еще меньшего.', 'Хомяк меньше щенка, а щенок меньше кота.'],
-  ['hard', 'Дом левее башни. Башня левее моста. Мост левее сарая. Что стоит правее всех?', ['сарай', 'дом', 'башня', 'мост'], 0, 'Соберите ряд слева направо и посмотрите на конец ряда.', 'Сарай правее моста, а мост правее остальных названных объектов.'],
-]
-for (const [difficulty, text, options, correct, hint, explanation] of orders) {
-  add({ scale: 'verbal', type: 'ver-order', source: 'analog', difficulty, text, options, correct, hint, explanation })
+function addHardMatrix(cells, answer, onlyOne, others, rules, hint, explanation) {
+  if (ruleScore(answer, rules) !== rules.length) throw new Error('ответ матрицы выполняет не все правила')
+  if (ruleScore(onlyOne, rules) !== 1) throw new Error('ловушка одного правила выполняет не ровно одно')
+  for (const other of others) {
+    if (ruleScore(other, rules) === rules.length) throw new Error('лишний вариант выполняет все правила')
+  }
+  addMatrix('hard', cells, answer, [onlyOne, ...others], hint, explanation)
 }
 
-function addCount(difficulty, rows, kind) {
-  const flat = rows.flat()
-  const answer =
-    kind === 'odd' ? flat.filter((value) => value % 2 === 1).length : flat.filter((value) => value > kind).length
-  const options = [answer, answer - 1, answer + 1, answer + 2, answer - 2].filter((value) => value >= 0)
-  const unique = [...new Set(options)].slice(0, 5)
-  while (unique.length < 5) unique.push(answer + unique.length + 3)
-  const question = kind === 'odd' ? 'Сколько нечетных чисел в строках?' : `Сколько чисел больше ${kind}?`
+function shapeOf(shape, size, x = 0.5, y = 0.5) {
+  return one(shape, x, y, size, shape === 'triangle' ? 'up' : undefined)
+}
+
+const easyShapes = ['circle', 'square', 'triangle']
+addMatrix(
+  'easy',
+  [0, 1, 2].map((row) => (row < 2 ? [dotCard(1, 0.14), dotCard(2, 0.14), dotCard(3, 0.14)] : [dotCard(1, 0.14), dotCard(2, 0.14), null])),
+  dotCard(3, 0.14),
+  [dotCard(2, 0.14), dotCard(1, 0.14), dotCard(4, 0.14)],
+  'Число точек растет слева направо и в каждой строке одинаково.',
+  'В правом столбце три точки. Две точки повторяют средний столбец, одна - левый, четыре перескакивают правило.',
+)
+addMatrix(
+  'easy',
+  [0, 1, 2].map((row) =>
+    row < 2
+      ? [shapeOf('circle', 0.16), shapeOf('circle', 0.3), shapeOf('circle', 0.46)]
+      : [shapeOf('circle', 0.16), shapeOf('circle', 0.3), null],
+  ),
+  shapeOf('circle', 0.46),
+  [shapeOf('circle', 0.3), shapeOf('circle', 0.16), shapeOf('square', 0.46)],
+  'Круг крупнеет слева направо, форма не меняется.',
+  'Справа круг самого большого размера. Средний и мелкий круг останавливают рост, квадрат меняет форму.',
+)
+addMatrix(
+  'easy',
+  [0, 1, 2].map((row) =>
+    row < 2
+      ? easyShapes.map((shape) => shapeOf(shape, 0.28))
+      : [shapeOf('circle', 0.28), shapeOf('square', 0.28), null],
+  ),
+  shapeOf('triangle', 0.28),
+  [shapeOf('square', 0.28), shapeOf('circle', 0.28), shapeOf('diamond', 0.28)],
+  'Форма меняется по столбцам и повторяется в строках.',
+  'Правый столбец держит треугольник. Квадрат и круг взяты из других столбцов, ромб в ряду не встречается.',
+)
+addMatrix(
+  'easy',
+  [0.22, 0.5, 0.78].map((y, row) =>
+    row < 2 ? [shapeOf('square', 0.2, 0.5, y), shapeOf('square', 0.2, 0.5, y), shapeOf('square', 0.2, 0.5, y)] : [shapeOf('square', 0.2, 0.5, y), shapeOf('square', 0.2, 0.5, y), null],
+  ),
+  shapeOf('square', 0.2, 0.5, 0.78),
+  [shapeOf('square', 0.2, 0.5, 0.5), shapeOf('square', 0.2, 0.5, 0.22), shapeOf('circle', 0.2, 0.5, 0.78)],
+  'Квадрат опускается от строки к строке.',
+  'В нижней строке квадрат стоит низко. Варианты из верхних строк или с кругом правило не закрывают.',
+)
+
+function fillMatrix(at) {
+  return [0, 1, 2].map((row) => [0, 1, 2].map((column) => (row === 2 && column === 2 ? null : at(row, column))))
+}
+
+addMatrix(
+  'medium',
+  fillMatrix((row, column) => dotCard(column + 1, [0.12, 0.18, 0.26][row])),
+  dotCard(3, 0.26),
+  [dotCard(3, 0.12), dotCard(1, 0.26), dotCard(2, 0.18)],
+  'Вправо точек больше, вниз они крупнее.',
+  'Нужны три крупные точки. Три мелкие выполняют только счет, одна крупная - только размер.',
+)
+addMatrix(
+  'medium',
+  fillMatrix((row, column) => shapeOf(['circle', 'square', 'triangle'][column], [0.16, 0.28, 0.42][row])),
+  shapeOf('triangle', 0.42),
+  [shapeOf('triangle', 0.16), shapeOf('circle', 0.42), shapeOf('square', 0.28)],
+  'Вправо меняется форма, вниз растет размер.',
+  'Нужен крупный треугольник. Мелкий треугольник держит только форму, крупный круг - только размер.',
+)
+addMatrix(
+  'medium',
+  fillMatrix((row, column) => shapeOf(['circle', 'square', 'diamond'][row], 0.24, [0.25, 0.5, 0.75][column], 0.5)),
+  shapeOf('diamond', 0.24, 0.75, 0.5),
+  [shapeOf('diamond', 0.24, 0.25, 0.5), shapeOf('circle', 0.24, 0.75, 0.5), shapeOf('square', 0.24, 0.5, 0.5)],
+  'Вниз меняется форма, вправо фигура сдвигается.',
+  'Нужен ромб справа. Ромб слева держит только форму, круг справа - только положение.',
+)
+addMatrix(
+  'medium',
+  fillMatrix((row, column) => dotCard(row + 1, [0.12, 0.2, 0.3][column])),
+  dotCard(3, 0.3),
+  [dotCard(3, 0.12), dotCard(1, 0.3), dotCard(2, 0.2)],
+  'Вниз точек больше, вправо они крупнее.',
+  'Нужны три крупные точки. Три мелкие выполняют только счет, одна крупная - только размер.',
+)
+
+const hardNote = 'Один из неверных вариантов выполняет только одно из двух правил.'
+addHardMatrix(
+  fillMatrix((row, column) => dotCard(column + 1, [0.12, 0.2, 0.3][row])),
+  dotCard(3, 0.3),
+  dotCard(3, 0.12),
+  [dotCard(1, 0.3), dotCard(2, 0.2)],
+  [(value) => value.elements.length === 3, (value) => value.elements[0].size === 0.3],
+  'Вправо точек больше, вниз они крупнее.',
+  `Нужны три точки размера нижней строки. ${hardNote}`,
+)
+addHardMatrix(
+  fillMatrix((row, column) => shapeOf(['circle', 'square', 'triangle'][column], [0.16, 0.3, 0.44][row])),
+  shapeOf('triangle', 0.44),
+  shapeOf('triangle', 0.16),
+  [shapeOf('circle', 0.44), shapeOf('square', 0.3)],
+  [(value) => value.elements[0].shape === 'triangle', (value) => value.elements[0].size === 0.44],
+  'Вправо меняется форма, вниз растет размер.',
+  `Нужен крупный треугольник. ${hardNote}`,
+)
+addHardMatrix(
+  fillMatrix((row, column) => shapeOf(['circle', 'square', 'triangle'][row], [0.16, 0.3, 0.44][column])),
+  shapeOf('triangle', 0.44),
+  shapeOf('triangle', 0.16),
+  [shapeOf('circle', 0.44), shapeOf('square', 0.3)],
+  [(value) => value.elements[0].shape === 'triangle', (value) => value.elements[0].size === 0.44],
+  'Вниз меняется форма, вправо растет размер.',
+  `Нужен крупный треугольник нижней строки. ${hardNote}`,
+)
+function shiftedDots(count, y) {
+  return card(Array.from({ length: count }, (_, index) => el('dot', 0.28 + index * 0.22, y, 0.12)))
+}
+
+addHardMatrix(
+  fillMatrix((row, column) => shapeOf(['circle', 'square', 'triangle'][row], 0.26, [0.25, 0.5, 0.75][column], 0.5)),
+  shapeOf('triangle', 0.26, 0.75, 0.5),
+  shapeOf('triangle', 0.26, 0.25, 0.5),
+  [shapeOf('circle', 0.26, 0.75, 0.5), shapeOf('square', 0.26, 0.5, 0.5)],
+  [(value) => value.elements[0].shape === 'triangle', (value) => value.elements[0].x === 0.75],
+  'Вниз меняется форма, вправо фигура сдвигается.',
+  `Нужен треугольник справа. ${hardNote}`,
+)
+addHardMatrix(
+  fillMatrix((row, column) => shiftedDots(column + 1, [0.25, 0.5, 0.75][row])),
+  shiftedDots(3, 0.75),
+  shiftedDots(3, 0.25),
+  [shiftedDots(1, 0.75), shiftedDots(2, 0.5)],
+  [(value) => value.elements.length === 3, (value) => value.elements[0].y === 0.75],
+  'Вправо точек больше, вниз ряд опускается.',
+  `Нужны три точки в нижнем положении. ${hardNote}`,
+)
+addHardMatrix(
+  fillMatrix((row, column) => dotCard(row + 1, [0.14, 0.24, 0.36][column])),
+  dotCard(3, 0.36),
+  dotCard(3, 0.14),
+  [dotCard(1, 0.36), dotCard(2, 0.24)],
+  [(value) => value.elements.length === 3, (value) => value.elements[0].size === 0.36],
+  'Вниз точек больше, вправо они крупнее.',
+  `Нужны три крупные точки. ${hardNote}`,
+)
+addHardMatrix(
+  fillMatrix((row, column) => shapeOf(['diamond', 'circle', 'square'][column], [0.18, 0.32, 0.46][row])),
+  shapeOf('square', 0.46),
+  shapeOf('square', 0.18),
+  [shapeOf('diamond', 0.46), shapeOf('circle', 0.32)],
+  [(value) => value.elements[0].shape === 'square', (value) => value.elements[0].size === 0.46],
+  'Вправо меняется форма, вниз растет размер.',
+  `Нужен крупный квадрат. ${hardNote}`,
+)
+addHardMatrix(
+  fillMatrix((row, column) => shapeOf(['line', 'circle', 'diamond'][row], 0.3, 0.5, [0.25, 0.5, 0.75][column])),
+  shapeOf('diamond', 0.3, 0.5, 0.75),
+  shapeOf('diamond', 0.3, 0.5, 0.25),
+  [shapeOf('line', 0.3, 0.5, 0.75), shapeOf('circle', 0.3, 0.5, 0.5)],
+  [(value) => value.elements[0].shape === 'diamond', (value) => value.elements[0].y === 0.75],
+  'Вниз меняется форма, вправо фигура опускается.',
+  `Нужен ромб внизу. ${hardNote}`,
+)
+
+function addOdd(difficulty, cards, hint, explanation) {
+  if (difficulty !== 'easy' && cards.every((item) => item.elements.length === 1 && item.elements[0].shape === 'triangle')) {
+    throw new Error('лишняя фигура свелась к направлению треугольника')
+  }
   add({
-    scale: 'attention',
-    type: 'att-count',
-    source: 'demo',
+    scale: 'nonverbal',
+    type: 'non-odd',
     difficulty,
-    text: `${question}\n${rows.map((row) => row.join(' ')).join('\n')}`,
-    options: unique.map(String),
-    correct: unique.indexOf(answer),
-    hint: kind === 'odd' ? 'Идите по строкам и отмечайте числа, которые не делятся на два.' : 'Идите по строкам и отмечайте только числа строго больше названного порога.',
-    explanation: kind === 'odd' ? `Нечетных чисел ${answer}.` : `Чисел больше порога ${answer}.`,
-  })
-}
-addCount('medium', [
-  [12, 7, 18, 3, 40],
-  [9, 22, 15, 6, 11],
-  [8, 4, 13, 30, 2],
-], 'odd')
-addCount('easy', [
-  [2, 4, 6],
-  [1, 8, 3],
-  [10, 5, 12],
-], 'odd')
-addCount('hard', [
-  [14, 21, 8, 33],
-  [16, 19, 40, 7],
-  [2, 25, 18, 11],
-  [6, 9, 28, 15],
-], 'odd')
-addCount('easy', [
-  [3, 8, 10],
-  [1, 4, 12],
-  [6, 2, 9],
-], 5)
-addCount('medium', [
-  [11, 20, 4, 18],
-  [15, 7, 30, 2],
-  [16, 19, 5, 22],
-], 10)
-addCount('hard', [
-  [25, 40, 12, 33],
-  [18, 50, 27, 8],
-  [41, 16, 29, 36],
-], 20)
-
-function cycleLine(pattern, times) {
-  return pattern.repeat(times)
-}
-function breakLine(pattern, times) {
-  const chars = [...cycleLine(pattern, times)]
-  const index = pattern.length * 2
-  const current = chars[index]
-  chars[index] = current === '9' ? '8' : String(Number(current) + 1)
-  return chars.join('')
-}
-const cycles = [
-  ['medium', '246', '135', '808', '919', '472'],
-  ['easy', '121', '343', '565', '787', '909'],
-  ['medium', '314', '628', '707', '151', '262'],
-  ['hard', '482', '593', '160', '271', '384'],
-  ['easy', '101', '202', '303', '404', '505'],
-  ['hard', '675', '786', '213', '324', '435'],
-]
-for (const [difficulty, ...patterns] of cycles) {
-  const lines = patterns.map((pattern, index) => (index === 0 ? breakLine(pattern, 5) : cycleLine(pattern, 5)))
-  add({
-    scale: 'attention',
-    type: 'att-cycle',
-    source: 'demo',
-    difficulty,
-    text: 'В какой строке цикл сбит?',
-    options: lines,
-    correct: 0,
-    hint: 'В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.',
-    explanation: 'В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор.',
-  })
-}
-
-const diffs = [
-  ['easy', 'Петров П.П., ул. Речная, д. 14, кв. 8', 'Петров П.П., ул. Речная, д. 14, кв. 3', 'квартира', 'Фамилия, улица и дом совпадают. Расходится номер квартиры.'],
-  ['medium', 'Иванова А.С., ул. Лесная, д. 7, кв. 2', 'Иванова А.С., ул. Луговая, д. 7, кв. 2', 'улица', 'Фамилия, дом и квартира совпадают. Расходится улица.'],
-  ['easy', 'Сидоров И.И., ул. Садовая, д. 3, кв. 11', 'Сидоров И.И., ул. Садовая, д. 3, кв. 11', 'нет расхождений', 'Все четыре поля двух записей совпадают.'],
-]
-for (const [difficulty, left, right, answer, explanation] of diffs) {
-  const options = ['фамилия', 'улица', 'дом', 'квартира', 'нет расхождений']
-  add({
-    scale: 'attention',
-    type: 'att-diff',
-    source: 'analog',
-    difficulty,
-    text: `${left}\n${right}`,
-    options,
-    correct: options.indexOf(answer),
-    hint: 'Сверяйте две записи по одинаковым частям слева направо.',
+    text: 'Какая карточка устроена иначе?',
+    scene: { kind: 'group', cards },
+    options: cards.map((item) => ({ scene: { kind: 'card', elements: item.elements } })),
+    correct: cards.length - 1,
+    hint,
     explanation,
   })
 }
 
-const typos = [
-  ['easy', 'Заказчик обязуется аплатить документ вовремя.', ['заказчик', 'обязуется', 'аплатить', 'документ', 'вовремя'], 2, 'оплатить'],
-  ['medium', 'Секретарь отправляет атчет в архив.', ['секретарь', 'отправляет', 'атчет', 'в', 'архив'], 2, 'отчет'],
-  ['easy', 'Курьер привез пакет вофис сегодня.', ['курьер', 'привез', 'пакет', 'вофис', 'сегодня'], 3, 'в офис'],
-]
-for (const [difficulty, text, options, correct, right] of typos) {
+addOdd('easy', [shapeOf('square', 0.3, 0.4, 0.48), shapeOf('square', 0.28, 0.55, 0.5), shapeOf('square', 0.32, 0.62, 0.45), shapeOf('circle', 0.3, 0.5, 0.5)], 'Три карточки держат одну форму.', 'Лишняя карточка меняет форму: круг вместо квадрата.')
+addOdd('easy', [dotCard(2, 0.14), card([el('dot', 0.3, 0.55, 0.14), el('dot', 0.7, 0.35, 0.14)]), card([el('dot', 0.25, 0.3, 0.14), el('dot', 0.6, 0.62, 0.14)]), dotCard(3, 0.14)], 'Сравните число точек.', 'На трех карточках по две точки, на одной три.')
+addOdd('easy', [shapeOf('circle', 0.22, 0.3, 0.4), shapeOf('circle', 0.24, 0.55, 0.62), shapeOf('circle', 0.2, 0.7, 0.35), shapeOf('diamond', 0.24, 0.5, 0.5)], 'Три карточки держат круг.', 'Лишняя карточка - ромб.')
+addOdd('medium', [shapeOf('circle', 0.22, 0.5, 0.28), shapeOf('square', 0.22, 0.5, 0.24), shapeOf('diamond', 0.22, 0.5, 0.3), shapeOf('triangle', 0.22, 0.5, 0.72)], 'Смотрите на половину рамки, формы разные нарочно.', 'Три элемента в верхней половине, один в нижней.')
+addOdd('medium', [shapeOf('circle', 0.4, 0.5, 0.5), shapeOf('square', 0.42, 0.5, 0.5), shapeOf('line', 0.38, 0.5, 0.5), shapeOf('diamond', 0.16, 0.5, 0.5)], 'Сравните размер, а не форму.', 'Три фигуры крупные, одна мелкая.')
+addOdd('medium', [dotCard(3, 0.12), card([el('dot', 0.2, 0.2, 0.1), el('dot', 0.5, 0.5, 0.1), el('dot', 0.8, 0.7, 0.1)]), card([el('square', 0.3, 0.4, 0.12), el('square', 0.55, 0.6, 0.12), el('square', 0.75, 0.3, 0.12)]), card([el('dot', 0.4, 0.4, 0.12), el('dot', 0.65, 0.6, 0.12)])], 'Считайте элементы, их форма здесь отвлекает.', 'У трех карточек по три элемента, у одной два.')
+addOdd('hard', [shapeOf('circle', 0.28, 0.5, 0.3), shapeOf('square', 0.3, 0.5, 0.28), shapeOf('diamond', 0.26, 0.5, 0.32), shapeOf('triangle', 0.72, 0.5, 0.28)], 'Общий признак - левая половина рамки.', 'Три фигуры слева, одна справа.')
+addOdd('hard', [card([el('circle', 0.35, 0.5, 0.16), el('dot', 0.7, 0.3, 0.1)]), card([el('square', 0.32, 0.5, 0.16), el('dot', 0.72, 0.28, 0.1)]), card([el('diamond', 0.3, 0.5, 0.16), el('dot', 0.68, 0.32, 0.1)]), shapeOf('triangle', 0.32, 0.5, 0.2)], 'Рядом с фигурой есть точка.', 'У трех карточек есть точка, у одной ее нет.')
+
+function addSequence(difficulty, steps, answer, wrongs, hint, explanation) {
+  const shapes = [...steps, answer].map((item) => item.elements.map((element) => element.shape).join(','))
+  if (difficulty !== 'easy' && shapes.join('|').includes('circle,square,circle,square')) {
+    throw new Error('ряд чередует круг и квадрат')
+  }
   add({
-    scale: 'attention',
-    type: 'att-typo',
-    source: 'analog',
+    scale: 'nonverbal',
+    type: 'non-sequence',
+    difficulty,
+    text: 'Какая карточка продолжает ряд?',
+    scene: { kind: 'sequence', steps },
+    options: [answer, ...wrongs].map((item) => ({ scene: { kind: 'card', elements: item.elements } })),
+    correct: 0,
+    hint,
+    explanation,
+  })
+}
+
+addSequence('easy', [dotCard(1, 0.14), dotCard(2, 0.14), dotCard(3, 0.14)], dotCard(4, 0.14), [dotCard(3, 0.14), dotCard(5, 0.14), dotCard(2, 0.14)], 'Каждый шаг добавляет одну точку.', 'После трех точек идут четыре. Три повторяют прошлый шаг, пять перескакивают.')
+addSequence('easy', [shapeOf('circle', 0.18, 0.22, 0.5), shapeOf('circle', 0.18, 0.48, 0.5), shapeOf('circle', 0.18, 0.7, 0.5)], shapeOf('circle', 0.18, 0.86, 0.5), [shapeOf('circle', 0.18, 0.22, 0.5), shapeOf('square', 0.18, 0.86, 0.5), shapeOf('circle', 0.18, 0.5, 0.5)], 'Круг сдвигается вправо.', 'Следующий круг правее предыдущего. Остальные возвращают его или меняют форму.')
+addSequence('easy', [shapeOf('square', 0.16, 0.5, 0.5), shapeOf('square', 0.28, 0.5, 0.5), shapeOf('square', 0.4, 0.5, 0.5)], shapeOf('square', 0.52, 0.5, 0.5), [shapeOf('square', 0.4, 0.5, 0.5), shapeOf('square', 0.16, 0.5, 0.5), shapeOf('circle', 0.52, 0.5, 0.5)], 'Квадрат растет на каждом шаге.', 'Нужен следующий по размеру квадрат. Повтор и уменьшение обрывают рост.')
+addSequence('medium', [shapeOf('circle', 0.24), shapeOf('square', 0.24), shapeOf('triangle', 0.24)], shapeOf('diamond', 0.24), [shapeOf('circle', 0.24), shapeOf('square', 0.24), shapeOf('line', 0.24)], 'Формы идут по одной и не чередуются через шаг.', 'После круга, квадрата и треугольника идет ромб. Повтор начала ряд не продолжает.')
+addSequence('medium', [shapeOf('circle', 0.16, 0.25, 0.5), shapeOf('circle', 0.28, 0.45, 0.5), shapeOf('circle', 0.4, 0.62, 0.5)], shapeOf('circle', 0.52, 0.8, 0.5), [shapeOf('circle', 0.16, 0.8, 0.5), shapeOf('circle', 0.52, 0.25, 0.5), shapeOf('square', 0.52, 0.8, 0.5)], 'Круг одновременно растет и сдвигается вправо.', 'Нужны оба изменения. Рост без сдвига и сдвиг без роста выполняют только одно.')
+addSequence('medium', [dotCard(1, 0.12), dotCard(2, 0.18), dotCard(3, 0.24)], dotCard(4, 0.3), [dotCard(4, 0.12), dotCard(3, 0.3), dotCard(2, 0.24)], 'Точек больше и они крупнее.', 'Следующая карточка - четыре более крупные точки. Число без размера или размер без нового числа обрывают ряд.')
+addSequence('hard', [shapeOf('circle', 0.2, 0.3, 0.3), shapeOf('square', 0.28, 0.5, 0.5), shapeOf('triangle', 0.36, 0.7, 0.7)], shapeOf('diamond', 0.44, 0.86, 0.28), [shapeOf('diamond', 0.2, 0.3, 0.3), shapeOf('circle', 0.44, 0.86, 0.28), shapeOf('triangle', 0.44, 0.86, 0.28)], 'Форма, размер и сдвиг вправо меняются вместе.', 'Нужен более крупный ромб правее. Повтор размера или прежняя форма выполняют не все изменения.')
+addSequence('hard', [shiftedDots(1, 0.25), shiftedDots(2, 0.45), shiftedDots(3, 0.65)], shiftedDots(4, 0.8), [shiftedDots(3, 0.8), shiftedDots(4, 0.25), shiftedDots(2, 0.65)], 'Точек больше, и ряд опускается.', 'Нужны четыре точки ниже предыдущих. Прежнее число или прежняя высота обрывают одно из правил.')
+
+function addAnalogy(difficulty, left, right, given, answer, wrongs, hint, explanation) {
+  add({
+    scale: 'nonverbal',
+    type: 'non-analogy',
+    difficulty,
+    text: 'Первая карточка относится ко второй, как третья к какой?',
+    scene: { kind: 'analogy', pair: [left, right], given },
+    options: [answer, ...wrongs].map((item) => ({ scene: { kind: 'card', elements: item.elements } })),
+    correct: 0,
+    hint,
+    explanation,
+  })
+}
+
+addAnalogy('easy', dotCard(1, 0.14), dotCard(2, 0.14), shapeOf('square', 0.2, 0.35, 0.5), card([el('square', 0.32, 0.5, 0.18), el('square', 0.68, 0.5, 0.18)]), [shapeOf('square', 0.2, 0.5, 0.5), dotCard(2, 0.14), shapeOf('circle', 0.2)], 'Число фигур удваивается, форма сохраняется.', 'Один квадрат относится к двум квадратам. Один квадрат и две точки отношение не переносят.')
+addAnalogy('easy', shapeOf('circle', 0.18), shapeOf('circle', 0.4), shapeOf('square', 0.18), shapeOf('square', 0.4), [shapeOf('square', 0.18), shapeOf('circle', 0.4), shapeOf('diamond', 0.4)], 'Фигура становится крупнее и не меняет форму.', 'Мелкий квадрат относится к крупному квадрату. Крупный круг меняет форму.')
+addAnalogy('easy', shapeOf('triangle', 0.26, 0.5, 0.28), shapeOf('triangle', 0.26, 0.5, 0.72), shapeOf('line', 0.4, 0.5, 0.3), shapeOf('line', 0.4, 0.5, 0.72), [shapeOf('line', 0.4, 0.5, 0.3), shapeOf('triangle', 0.26, 0.5, 0.72), shapeOf('square', 0.2, 0.5, 0.72)], 'Элемент переходит в нижнюю половину.', 'Линия сверху относится к линии снизу. Повтор верхней линии отношение не выполняет.')
+addAnalogy('medium', shapeOf('circle', 0.2, 0.3, 0.5), card([el('circle', 0.7, 0.5, 0.2), el('dot', 0.3, 0.28, 0.1)]), shapeOf('square', 0.2, 0.3, 0.5), card([el('square', 0.7, 0.5, 0.2), el('dot', 0.3, 0.28, 0.1)]), [shapeOf('square', 0.2, 0.7, 0.5), card([el('circle', 0.7, 0.5, 0.2), el('dot', 0.3, 0.28, 0.1)]), shapeOf('square', 0.2, 0.3, 0.5)], 'Фигура сдвигается вправо, и слева появляется точка.', 'Нужны оба изменения. Сдвиг без точки или точка у круга выполняют только одно.')
+addAnalogy('medium', dotCard(2, 0.12), dotCard(2, 0.22), shapeOf('diamond', 0.16), shapeOf('diamond', 0.34), [shapeOf('diamond', 0.16), dotCard(2, 0.22), shapeOf('circle', 0.34)], 'Фигура крупнеет и сохраняет форму.', 'Мелкий ромб относится к крупному ромбу.')
+addAnalogy('medium', shapeOf('square', 0.2, 0.28, 0.5), shapeOf('circle', 0.2, 0.72, 0.5), shapeOf('diamond', 0.2, 0.28, 0.5), shapeOf('triangle', 0.2, 0.72, 0.5), [shapeOf('diamond', 0.2, 0.72, 0.5), shapeOf('square', 0.2, 0.72, 0.5), shapeOf('triangle', 0.2, 0.28, 0.5)], 'Фигура меняется на следующую в ряду форм и уходит вправо.', 'Ромб слева относится к треугольнику справа. Сдвиг без смены формы выполняет только часть.')
+addAnalogy('hard', shiftedDots(1, 0.3), shiftedDots(3, 0.7), shapeOf('square', 0.16, 0.3, 0.3), card([el('square', 0.3, 0.7, 0.16), el('square', 0.55, 0.7, 0.16), el('square', 0.8, 0.7, 0.16)]), [shapeOf('square', 0.16, 0.7, 0.7), shiftedDots(3, 0.7), card([el('circle', 0.3, 0.7, 0.16), el('circle', 0.55, 0.7, 0.16), el('circle', 0.8, 0.7, 0.16)])], 'Число утраивается, и фигура опускается.', 'Один квадрат относится к трем квадратам внизу. Сдвиг без утроения или три круга теряют форму.')
+addAnalogy('hard', shapeOf('circle', 0.16, 0.28, 0.3), card([el('circle', 0.72, 0.7, 0.32), el('dot', 0.28, 0.28, 0.08)]), shapeOf('diamond', 0.16, 0.28, 0.3), card([el('diamond', 0.72, 0.7, 0.32), el('dot', 0.28, 0.28, 0.08)]), [shapeOf('diamond', 0.32, 0.72, 0.7), card([el('circle', 0.72, 0.7, 0.32), el('dot', 0.28, 0.28, 0.08)]), shapeOf('diamond', 0.16, 0.28, 0.3)], 'Фигура растет, уходит вправо и вниз, слева сверху появляется точка.', 'Нужны все три изменения. Крупный ромб без точки выполняет не все.')
+
+function addGroup(difficulty, samples, answer, wrongs, hint, explanation) {
+  add({
+    scale: 'nonverbal',
+    type: 'non-group',
+    difficulty,
+    text: 'Какая карточка подходит к группе?',
+    scene: { kind: 'group', cards: samples },
+    options: [answer, ...wrongs].map((item) => ({ scene: { kind: 'card', elements: item.elements } })),
+    correct: 0,
+    hint,
+    explanation,
+  })
+}
+
+addGroup('easy', [shapeOf('circle', 0.2, 0.5, 0.28), shapeOf('square', 0.2, 0.5, 0.24), shapeOf('diamond', 0.2, 0.5, 0.3)], shapeOf('triangle', 0.2, 0.5, 0.26), [shapeOf('triangle', 0.2, 0.5, 0.74), shapeOf('circle', 0.42), dotCard(2, 0.12)], 'Общий признак - верхняя половина рамки.', 'У карточек группы элемент сверху. Верный вариант тоже сверху, нижний треугольник и пара точек - нет.')
+addGroup('easy', [dotCard(2, 0.12), card([el('dot', 0.25, 0.4, 0.12), el('dot', 0.7, 0.6, 0.12)]), card([el('dot', 0.4, 0.25, 0.12), el('dot', 0.62, 0.7, 0.12)])], dotCard(2, 0.16), [dotCard(1, 0.16), dotCard(3, 0.16), dotCard(4, 0.16)], 'В группе по две точки.', 'Верный вариант тоже из двух точек. Другое число в группу не входит.')
+addGroup('easy', [shapeOf('square', 0.34), shapeOf('circle', 0.36), shapeOf('line', 0.32, 0.5, 0.5)], shapeOf('diamond', 0.38), [shapeOf('diamond', 0.16), shapeOf('circle', 0.16), dotCard(3, 0.1)], 'Фигуры в группе крупные.', 'Верный ромб тоже крупный. Мелкая фигура в группу не входит.')
+addGroup('medium', [shapeOf('circle', 0.28, 0.5, 0.3), shapeOf('square', 0.3, 0.5, 0.28), shapeOf('diamond', 0.26, 0.5, 0.32)], shapeOf('triangle', 0.28, 0.5, 0.3), [shapeOf('triangle', 0.72, 0.5, 0.3), shapeOf('circle', 0.4, 0.5, 0.5), dotCard(2, 0.12)], 'Один элемент стоит слева.', 'Верный треугольник тоже слева. Справа и пара точек держат другой признак.')
+addGroup('medium', [card([el('square', 0.5, 0.5, 0.2), el('dot', 0.75, 0.25, 0.08)]), card([el('circle', 0.5, 0.5, 0.2), el('dot', 0.78, 0.28, 0.08)]), card([el('diamond', 0.5, 0.5, 0.2), el('dot', 0.72, 0.22, 0.08)])], card([el('triangle', 0.5, 0.5, 0.2, 'up'), el('dot', 0.76, 0.26, 0.08)]), [shapeOf('triangle', 0.2), card([el('dot', 0.76, 0.26, 0.08)]), shapeOf('circle', 0.4)], 'Рядом с крупной фигурой есть точка.', 'Верный треугольник тоже с точкой. Фигура без точки в группу не входит.')
+addGroup('medium', [shiftedDots(2, 0.3), shiftedDots(2, 0.28), card([el('dot', 0.4, 0.32, 0.12), el('dot', 0.62, 0.3, 0.12)])], shiftedDots(2, 0.34), [shiftedDots(2, 0.72), shiftedDots(3, 0.3), shiftedDots(1, 0.3)], 'Две точки стоят в верхней половине.', 'Верный вариант тоже. Нижняя пара и другое число точек выпадают.')
+addGroup('hard', [shapeOf('circle', 0.18, 0.3, 0.72), shapeOf('square', 0.2, 0.32, 0.7), shapeOf('diamond', 0.16, 0.28, 0.74)], shapeOf('triangle', 0.18, 0.3, 0.7), [shapeOf('triangle', 0.4, 0.3, 0.3), shapeOf('circle', 0.18, 0.7, 0.72), dotCard(2, 0.1)], 'Мелкая фигура стоит слева и низко.', 'Верный треугольник мелкий, слева и низко. Крупный, верхний или пара точек теряют признак.')
+addGroup('hard', [card([el('line', 0.5, 0.35, 0.4), el('dot', 0.5, 0.7, 0.1)]), card([el('line', 0.5, 0.32, 0.36), el('dot', 0.5, 0.68, 0.1)]), card([el('line', 0.5, 0.38, 0.42), el('dot', 0.5, 0.72, 0.1)])], card([el('line', 0.5, 0.3, 0.34), el('dot', 0.5, 0.66, 0.1)]), [shapeOf('line', 0.4, 0.5, 0.35), dotCard(1, 0.1), card([el('circle', 0.5, 0.35, 0.2), el('dot', 0.5, 0.7, 0.1)])], 'Сверху черта, под ней точка.', 'Верный вариант повторяет оба элемента. Черта без точки или точка без черты в группу не входят.')
+
+function story(difficulty, text, answer, traps) {
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-story',
     difficulty,
     text,
-    options,
-    correct,
-    hint: 'Прочитайте каждое слово отдельно и проверьте буквы.',
-    explanation: `Нужно "${right}".`,
+    answer,
+    traps,
+    hint: 'Доведите названные действия до конца и не включайте данное, которого нет в вопросе.',
+    lead: 'Счет доведен до вопроса.',
   })
 }
 
-function addSymbol(difficulty, source, digit) {
-  const answer = [...source].filter((char) => char === digit).length
-  const unique = [...new Set([answer, answer - 1, answer + 1, answer + 2, answer - 2])].filter((value) => value >= 0).slice(0, 5)
-  while (unique.length < 5) unique.push(answer + unique.length + 2)
-  add({
+for (const [a, b] of [
+  [18, 16],
+  [24, 15],
+  [17, 14],
+  [19, 13],
+]) {
+  if (a < 13 || b < 13) throw new Error('легкое произведение из таблицы умножения')
+  const answer = a * b
+  story('easy', `В партии ${a} ящиков по ${b} кг. Какова масса партии?`, answer, [
+    { name: 'сумма вместо произведения', compute: () => a + b },
+    { name: 'множитель на единицу меньше', compute: () => a * (b - 1) },
+    { name: 'к произведению прибавлен второй множитель', compute: () => answer + b },
+  ])
+}
+for (const [whole, divisor] of [
+  [476, 14],
+  [638, 22],
+]) {
+  const answer = whole / divisor
+  story('easy', `Партию из ${whole} кг разложили поровну в ${divisor} ящиков. Сколько килограммов в одном ящике?`, answer, [
+    { name: 'вычитание вместо деления', compute: () => whole - divisor },
+    { name: 'сумма вместо деления', compute: () => whole + divisor },
+    { name: 'в ответ попал делитель', compute: () => divisor },
+  ])
+}
+for (const [hours, output, ask] of [
+  [6, 84, 15],
+  [8, 96, 13],
+  [7, 91, 12],
+  [9, 108, 14],
+  [5, 85, 12],
+]) {
+  const rate = output / hours
+  const answer = rate * ask
+  story('medium', `За ${hours} часов цех делает ${output} деталей. Сколько деталей он сделает за ${ask} часов при той же скорости?`, answer, [
+    { name: 'сумма выпуска и новых часов', compute: () => output + ask },
+    { name: 'остановка на скорости за час', compute: () => rate },
+    { name: 'произведение часов без выпуска', compute: () => hours * ask },
+  ])
+}
+for (const [h1, v1, h2, v2] of [
+  [4, 65, 3, 48],
+  [5, 36, 4, 27],
+  [3, 48, 6, 25],
+  [2, 85, 5, 32],
+]) {
+  const first = h1 * v1
+  const answer = first + h2 * v2
+  story('hard', `Поезд шел ${h1} ч со скоростью ${v1} км/ч и еще ${h2} ч со скоростью ${v2} км/ч. Какой путь он прошел?`, answer, [
+    { name: 'учтен только первый участок', compute: () => first },
+    { name: 'оба участка посчитаны с первой скоростью', compute: () => (h1 + h2) * v1 },
+    { name: 'вторая скорость прибавлена к первому участку', compute: () => first + v2 },
+  ])
+}
+{
+  const price = 640
+  const percent = 15
+  const extra = 28
+  const discount = (price * percent) / 100
+  const answer = price - discount
+  story('hard', `Пальто стоило ${price} рублей. Скидка ${percent} процентов. Доставка ${extra} рублей в цену пальто не входит. Сколько стоит пальто?`, answer, [
+    { name: 'вычли доставку вместо скидки', compute: () => price - extra },
+    { name: 'вычли проценты как рубли', compute: () => price - percent },
+    { name: 'вычли и скидку, и лишнюю доставку', compute: () => answer - extra },
+  ])
+}
+
+function constantSeries(start, step) {
+  const shown = [0, 1, 2, 3].map((index) => start + index * step)
+  const last = shown[3]
+  const answer = last + step
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-series',
+    difficulty: 'easy',
+    text: `${shown.join(', ')}, ?`,
+    answer,
+    hint: 'Найдите постоянную разность и примените ее к последнему числу.',
+    lead: 'Шаг ряда постоянен.',
+    traps: [
+      { name: 'шаг на единицу меньше', compute: () => last + step - 1 },
+      { name: 'удвоенный последний шаг', compute: () => last + step * 2 },
+      { name: 'возврат на один шаг', compute: () => last - step },
+    ],
+  })
+}
+for (const [start, step] of [
+  [28, 13],
+  [47, 17],
+  [36, 19],
+  [52, 11],
+  [41, 23],
+  [63, 16],
+]) {
+  constantSeries(start, step)
+}
+
+function altSeries(start, short, long) {
+  const shown = [start]
+  for (const step of [short, long, short]) shown.push(shown.at(-1) + step)
+  const last = shown.at(-1)
+  const answer = last + long
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-series',
+    difficulty: 'medium',
+    text: `${shown.join(', ')}, ?`,
+    answer,
+    hint: 'Шаги чередуются. Следующий не равен предыдущему.',
+    lead: 'Короткий и длинный шаги чередуются.',
+    traps: [
+      { name: 'повтор предыдущего шага', compute: () => last + short },
+      { name: 'сумма обоих шагов', compute: () => last + short + long },
+      { name: 'нужный шаг на единицу меньше', compute: () => last + long - 1 },
+    ],
+  })
+}
+for (const pair of [
+  [20, 4, 11],
+  [35, 6, 15],
+  [18, 5, 12],
+  [44, 7, 16],
+  [27, 8, 19],
+]) {
+  altSeries(...pair)
+}
+
+function growingSeries(start, first, grow) {
+  let value = start
+  const shown = [value]
+  const diffs = [first, first + grow, first + 2 * grow]
+  for (const diff of diffs) {
+    value += diff
+    shown.push(value)
+  }
+  const next = first + 3 * grow
+  const answer = value + next
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-series',
+    difficulty: 'hard',
+    text: `${shown.join(', ')}, ?`,
+    answer,
+    hint: 'Разность сама растет на одно и то же число.',
+    lead: 'Каждая следующая разность больше предыдущей.',
+    traps: [
+      { name: 'повтор последнего шага', compute: () => value + diffs[2] },
+      { name: 'постоянный первый шаг', compute: () => value + first },
+      { name: 'шаг вырос на два лишних приращения', compute: () => value + next + grow },
+    ],
+  })
+}
+for (const triple of [
+  [8, 3, 3],
+  [15, 4, 2],
+  [12, 5, 3],
+  [21, 2, 4],
+  [9, 6, 2],
+]) {
+  growingSeries(...triple)
+}
+
+function addDiffChart(difficulty, labels, values, left, right, kind) {
+  const answer = values[left] - values[right]
+  const listed = labels.map((label, index) => `${label} ${values[index]}`).join(', ')
+  const question = `На сколько ${labels[left]} больше, чем ${labels[right]}?`
+  const scene = kind === 'table' ? { kind: 'table', headers: ['период', 'значение'], rows: labels.map((label, index) => [label, String(values[index])]) } : { kind: 'chart', variant: 'bar', labels, values }
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-chart',
+    difficulty,
+    text: kind === 'table' ? question : `Столбики: ${listed}. ${question}`,
+    scene,
+    answer,
+    hint: 'Вычтите один названный столбец из другого.',
+    lead: 'Взята разность двух названных значений.',
+    traps: [
+      { name: 'взят столбец без вычитания', compute: () => values[left] },
+      { name: 'взят второй столбец', compute: () => values[right] },
+      { name: 'сумма вместо разности', compute: () => values[left] + values[right] },
+    ],
+  })
+  if (values.includes(answer)) throw new Error(`ответ совпал со столбцом ${labels}`)
+}
+const diffCharts = [
+  ['easy', ['март', 'апрель', 'май', 'июнь'], [28, 46, 19, 33], 1, 2, 'bar'],
+  ['easy', ['I', 'II', 'III', 'IV'], [22, 51, 17, 39], 1, 0, 'bar'],
+  ['easy', ['север', 'юг', 'запад', 'восток'], [34, 58, 21, 40], 1, 3, 'table'],
+  ['easy', ['цех А', 'цех Б', 'цех В', 'цех Г'], [27, 63, 18, 44], 1, 2, 'bar'],
+  ['easy', ['утром', 'днем', 'вечером', 'ночью'], [16, 49, 31, 12], 1, 2, 'table'],
+  ['easy', ['смена 1', 'смена 2', 'смена 3', 'смена 4'], [25, 54, 37, 14], 1, 3, 'bar'],
+]
+for (const row of diffCharts) addDiffChart(...row)
+
+function addOverSum(difficulty, labels, values, main, first, second) {
+  const part = values[first] + values[second]
+  const answer = values[main] - part
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-chart',
+    difficulty,
+    text: `Столбики: ${labels.map((label, index) => `${label} ${values[index]}`).join(', ')}. На сколько ${labels[main]} больше суммы ${labels[first]} и ${labels[second]}?`,
+    scene: { kind: 'chart', variant: 'bar', labels, values },
+    answer,
+    hint: 'Сначала сложите два меньших столбца, затем сравните с названным.',
+    lead: 'Из большого столбца вычтена сумма двух других.',
+    traps: [
+      { name: 'взят столбец без вычитания', compute: () => values[main] },
+      { name: 'остановка на сумме двух столбцов', compute: () => part },
+      { name: 'сумма трех столбцов', compute: () => values[main] + part },
+    ],
+  })
+}
+for (const row of [
+  ['medium', ['пн', 'вт', 'ср', 'чт'], [48, 13, 15, 9], 0, 1, 2],
+  ['medium', ['янв', 'фев', 'мар', 'апр'], [70, 18, 22, 11], 0, 1, 2],
+  ['medium', ['А', 'Б', 'В', 'Г'], [55, 12, 16, 8], 0, 1, 2],
+  ['medium', ['север', 'юг', 'запад', 'восток'], [64, 17, 19, 10], 0, 1, 3],
+  ['medium', ['утро', 'день', 'вечер', 'ночь'], [59, 14, 21, 7], 0, 1, 2],
+]) {
+  addOverSum(...row)
+}
+
+function addHardChart(labels, values, priceIndex, percent, extraIndex) {
+  const price = values[priceIndex]
+  const extra = values[extraIndex]
+  const discount = (price * percent) / 100
+  const answer = price - discount
+  commitNumeric({
+    scale: 'calculation',
+    type: 'calc-chart',
+    difficulty: 'hard',
+    text: `${clause(labels[priceIndex])} показывает цену. Скидка ${percent} процентов. ${clause(labels[extraIndex])} в цену не входит. Какова цена после скидки?`,
+    scene: { kind: 'table', headers: ['показатель', 'значение'], rows: labels.map((label, index) => [label, String(values[index])]) },
+    answer,
+    hint: 'Возьмите цену, снимите названный процент и не трогайте лишний столбец.',
+    lead: 'Скидка снята с цены, лишний столбец не вошел.',
+    traps: [
+      { name: 'вычли лишний столбец вместо скидки', compute: () => price - extra },
+      { name: 'вычли проценты как рубли', compute: () => price - percent },
+      { name: 'вычли и скидку, и лишний столбец', compute: () => answer - extra },
+    ],
+  })
+}
+for (const row of [
+  [['цена', 'скидка-служебная', 'доставка', 'упаковка'], [480, 15, 36, 12], 0, 15, 2],
+  [['товар', 'процент', 'страховка', 'тара'], [800, 20, 45, 18], 0, 20, 2],
+  [['партия', 'норма', 'брак', 'тара'], [250, 12, 18, 8], 0, 12, 2],
+  [['заказ', 'ставка', 'доставка', 'скидка'], [900, 10, 60, 40], 0, 10, 2],
+  [['счет', 'доля', 'пени', 'залог'], [750, 8, 24, 16], 0, 8, 2],
+]) {
+  addHardChart(...row)
+}
+
+const lengthFloor = {
+  count: { easy: 12, medium: 24, hard: 40 },
+  symbol: { easy: 24, medium: 60, hard: 120 },
+  match: { easy: 10, medium: 16, hard: 24 },
+}
+
+function countTraps(total, last) {
+  return [
+    { name: 'пропущен один знак', compute: () => total - 1 },
+    { name: 'посчитан лишний знак', compute: () => total + 1 },
+    { name: 'пропущена последняя строка', compute: () => total - last },
+    { name: 'последняя строка посчитана дважды', compute: () => total + last },
+  ]
+}
+
+function numberBlock(count, seed, kind) {
+  const random = mulberry32(seed)
+  const numbers = Array.from({ length: count }, () => 12 + Math.floor(random() * 78))
+  const match = (value) => (kind === 'odd' ? value % 2 === 1 : kind === 'even' ? value % 2 === 0 : value > 50)
+  const perLine = count >= 40 ? 10 : count >= 24 ? 8 : 6
+  const lines = []
+  for (let index = 0; index < numbers.length; index += perLine) lines.push(numbers.slice(index, index + perLine))
+  let guard = 0
+  while (lines.at(-1).filter(match).length < 2 && guard < 40) {
+    guard += 1
+    const line = lines.at(-1)
+    const at = line.findIndex((value) => !match(value))
+    if (at < 0) break
+    if (kind === 'odd') line[at] += line[at] % 2 === 0 ? 1 : 0
+    else if (kind === 'even') line[at] += line[at] % 2 === 1 ? 1 : 0
+    else line[at] = 51 + (line[at] % 20)
+  }
+  const hits = lines.flat().filter(match).length
+  const last = lines.at(-1).filter(match).length
+  const title = kind === 'odd' ? 'Сколько нечетных чисел в строках?' : kind === 'even' ? 'Сколько четных чисел в строках?' : 'Сколько чисел больше порога 50?'
+  return { text: `${title}\n${lines.map((line) => line.join(' ')).join('\n')}`, hits, last, signs: lines.flat().length }
+}
+
+const countPlan = [
+  ['easy', 12, 'odd'],
+  ['easy', 12, 'even'],
+  ['easy', 12, 'high'],
+  ['easy', 12, 'odd'],
+  ['medium', 24, 'odd'],
+  ['medium', 24, 'even'],
+  ['medium', 24, 'high'],
+  ['medium', 24, 'odd'],
+  ['hard', 40, 'odd'],
+  ['hard', 40, 'even'],
+  ['hard', 40, 'high'],
+  ['hard', 40, 'odd'],
+]
+countPlan.forEach(([difficulty, count, kind], index) => {
+  const block = numberBlock(count, 4100 + index * 17, kind)
+  if (block.signs < lengthFloor.count[difficulty]) throw new Error(`короткий счет ${difficulty}`)
+  commitNumeric({
+    scale: 'attention',
+    type: 'att-count',
+    difficulty,
+    text: block.text,
+    answer: block.hits,
+    traps: countTraps(block.hits, block.last),
+    hint: 'Идите по строкам и не пропускайте последнюю.',
+    lead: 'Посчитаны все подходящие числа.',
+  })
+})
+
+function digitStream(count, target, seed) {
+  const random = mulberry32(seed)
+  const digits = []
+  for (let index = 0; index < count; index += 1) {
+    if (random() < 0.24) digits.push(target)
+    else {
+      let digit = String((Number(target) + 1 + Math.floor(random() * 8)) % 10)
+      if (digit === target) digit = String((Number(digit) + 1) % 10)
+      digits.push(digit)
+    }
+  }
+  const width = 30
+  const lines = []
+  for (let index = 0; index < digits.length; index += width) lines.push(digits.slice(index, index + width))
+  let guard = 0
+  while (lines.at(-1).filter((digit) => digit === target).length < 2 && guard < 40) {
+    guard += 1
+    const line = lines.at(-1)
+    const at = line.findIndex((digit) => digit !== target)
+    if (at < 0) break
+    line[at] = target
+  }
+  const hits = lines.flat().filter((digit) => digit === target).length
+  const last = lines.at(-1).filter((digit) => digit === target).length
+  const text = lines
+    .map((line) => {
+      const groups = []
+      for (let index = 0; index < line.length; index += 3) groups.push(line.slice(index, index + 3).join(''))
+      return groups.join(' ')
+    })
+    .join('\n')
+  return { text, hits, last, signs: digits.length }
+}
+
+const symbolPlan = [
+  ['easy', 24, '7'],
+  ['easy', 24, '4'],
+  ['easy', 24, '8'],
+  ['easy', 24, '2'],
+  ['medium', 60, '7'],
+  ['medium', 60, '5'],
+  ['medium', 60, '9'],
+  ['medium', 60, '3'],
+  ['hard', 120, '7'],
+  ['hard', 120, '6'],
+  ['hard', 120, '1'],
+  ['hard', 120, '8'],
+]
+symbolPlan.forEach(([difficulty, count, digit], index) => {
+  const stream = digitStream(count, digit, 7200 + index * 13)
+  if (stream.signs < lengthFloor.symbol[difficulty]) throw new Error(`короткая строка знаков ${difficulty}`)
+  commitNumeric({
     scale: 'attention',
     type: 'att-symbol',
-    source: 'analog',
     difficulty,
-    text: `Сколько раз встречается цифра ${digit}: ${source}`,
-    options: unique.map(String),
-    correct: unique.indexOf(answer),
-    hint: 'Считайте только заданную цифру в каждой группе, затем сложите.',
-    explanation: `Цифра встречается ${answer} раз.`,
+    text: `Сколько раз встречается цифра ${digit}?\n${stream.text}`,
+    answer: stream.hits,
+    traps: countTraps(stream.hits, stream.last),
+    hint: 'Считайте только заданную цифру, включая повторы внутри группы и последнюю строку.',
+    lead: 'Посчитаны все вхождения заданной цифры.',
   })
-}
-addSymbol('medium', '717 177 717 771 177', '7')
-addSymbol('easy', '202 220 202', '2')
-addSymbol('hard', '353 335 533 353 535', '3')
+})
 
-function mutate(sample, index) {
-  const chars = [...sample]
-  chars[index] = chars[index] === '9' ? '8' : String(Number(chars[index]) + 1)
-  return chars.join('')
-}
-const matches = [
-  ['easy', '48291'],
-  ['medium', '73064'],
-  ['hard', '15928'],
-]
-for (const [difficulty, sample] of matches) {
-  const options = [sample, mutate(sample, 1), mutate(sample, 2), mutate(sample, 3), mutate(sample, 4)]
-  add({
+function matchItem(difficulty, length, seed) {
+  const random = mulberry32(seed)
+  const digits = Array.from({ length }, () => String(Math.floor(random() * 10)))
+  if (new Set(digits).size < 2) digits[0] = digits[0] === '1' ? '2' : '1'
+  const sample = digits.join('')
+  const swapAt = digits.findIndex((digit, index) => index < digits.length - 1 && digit !== digits[index + 1])
+  const swappedDigits = [...digits]
+  const hold = swappedDigits[swapAt]
+  swappedDigits[swapAt] = swappedDigits[swapAt + 1]
+  swappedDigits[swapAt + 1] = hold
+  const substitute = (index, delta) => {
+    const copy = [...digits]
+    copy[index] = String((Number(copy[index]) + delta) % 10)
+    return copy.join('')
+  }
+  if (sample.length < lengthFloor.match[difficulty]) throw new Error(`короткий образец ${difficulty}`)
+  commitChoice({
     scale: 'attention',
     type: 'att-match',
-    source: 'analog',
     difficulty,
     text: `Какая строка совпадает с образцом ${sample}?`,
-    options,
-    correct: 0,
-    hint: 'Сверьте образец с каждой строкой по знакам. Совпадение должно быть полным.',
-    explanation: 'Одна строка совпадает с образцом целиком, в остальных изменен один знак.',
+    answer: sample,
+    traps: [
+      ['переставлены соседние цифры', swappedDigits.join('')],
+      ['заменена цифра в начале', substitute(0, 3)],
+      ['заменена цифра в середине', substitute(Math.floor(length / 2), 4)],
+      ['заменена цифра в конце', substitute(length - 1, 5)],
+    ],
+    hint: 'Сверьте каждый знак. Перестановка соседних цифр уже делает строку другой.',
+    lead: 'Совпадает строка без единой замены и без перестановки.',
   })
 }
-
-const demoMinimum = {
-  calculation: ['calc-story', 'calc-grid'],
-  vocabulary: ['voc-anagram', 'voc-spelling'],
-  spatial: ['spa-scheme', 'spa-assembly'],
-  nonverbal: ['non-matrix', 'non-odd'],
-  verbal: ['ver-set', 'ver-inference'],
-  attention: ['att-count', 'att-cycle'],
+for (const [difficulty, length, seed] of [
+  ['easy', 10, 11],
+  ['easy', 10, 29],
+  ['easy', 12, 47],
+  ['medium', 16, 53],
+  ['medium', 16, 71],
+  ['medium', 18, 83],
+  ['hard', 24, 97],
+  ['hard', 24, 113],
+]) {
+  matchItem(difficulty, length, seed)
 }
-const analogMinimum = {
-  calculation: ['calc-series', 'calc-share', 'calc-motion', 'calc-estimate', 'calc-chart'],
-  vocabulary: ['voc-synonym', 'voc-meaning', 'voc-odd-word', 'voc-letter', 'voc-paronym'],
-  spatial: ['spa-net', 'spa-transform', 'spa-top', 'spa-chart', 'spa-cubes'],
-  nonverbal: ['non-sequence', 'non-analogy', 'non-group'],
-  verbal: ['ver-analogy', 'ver-general', 'ver-syllogism', 'ver-follows', 'ver-order'],
-  attention: ['att-diff', 'att-typo', 'att-symbol', 'att-match'],
+
+function listed(scale, type, hint, items) {
+  for (const item of items) {
+    commitChoice({
+      scale,
+      type,
+      difficulty: item[0],
+      text: item[1],
+      answer: item[2],
+      traps: item[3],
+      lead: item[4],
+      topic: item[5],
+      hint,
+    })
+  }
+}
+
+const wordHint = 'Отличите точный смысл от близкого по звучанию или по теме.'
+listed('vocabulary', 'voc-meaning', wordHint, [
+  ['easy', 'Что означает слово "лапидарный"?', 'предельно краткий', [['происхождение от надписи на камне', 'высеченный в камне'], ['противоположность краткости', 'многословный'], ['смешение с торжественным слогом', 'торжественный'], ['смешение с древностью', 'древний']], 'Краткость слога, а не материал надписи.'],
+  ['easy', 'Что означает слово "эфемерный"?', 'мимолетный', [['смешение с прозрачностью', 'прозрачный'], ['смешение со временем суток', 'вечерний'], ['смешение с легкостью вещества', 'воздушный'], ['противоположность краткости', 'постоянный']], 'Речь о краткости существования.'],
+  ['easy', 'Что означает слово "инсинуация"?', 'клеветнический намек', [['намек без клеветы', 'осторожное предположение'], ['смешение с договором', 'тайный договор'], ['смешение с заявлением', 'официальное заявление'], ['смешение с отказом', 'резкий отказ']], 'Это намек, который клевещет.'],
+  ['easy', 'Что означает слово "апатия"?', 'болезненное безразличие', [['обычная усталость', 'усталость'], ['спокойствие без безразличия', 'невозмутимость'], ['смешение с печалью', 'печаль'], ['противоположное возбуждение', 'возбуждение']], 'Безразличие здесь болезненное, а не просто тихий нрав.'],
+  ['medium', 'Что означает слово "перипетия"?', 'резкий поворот событий', [['созвучие с окраиной', 'окраина'], ['повтор мотива', 'повторение мотива'], ['тихий эпизод', 'спокойная сцена'], ['список лиц', 'перечень действующих лиц']], 'Это перелом хода, а не место и не список.'],
+  ['medium', 'Что означает слово "паллиатив"?', 'мера, которая облегчает, но не устраняет причину', [['полное устранение причины', 'полное излечение'], ['предотвращение заранее', 'профилактика'], ['смешение с приговором', 'окончательное решение'], ['смешение с болью', 'усиление боли']], 'Мера снимает тяжесть и оставляет причину.'],
+  ['medium', 'Что означает слово "меркантильный"?', 'чрезмерно расчетливый в выгоде', [['торговый по происхождению слова', 'связанный с рынком вообще'], ['противоположность расчета', 'бескорыстный'], ['смешение с мечтой', 'мечтательный'], ['смешение с казной', 'государственный']], 'Речь о личной выгоде, а не о торговле как занятии.'],
+  ['medium', 'Что означает слово "филигранный"?', 'тонко и тщательно отделанный', [['буквальная золотая нить', 'сделанный из золотой проволоки'], ['противоположность отделки', 'грубый'], ['смешение со скоростью', 'быстрый'], ['смешение со случаем', 'случайный']], 'Оценка работы тонкая, даже если золота нет.'],
+  ['hard', 'Что означает слово "обскурантизм"?', 'враждебность просвещению', [['тьма как отсутствие света', 'темнота'], ['скрытность человека', 'скрытность'], ['близкое, но более узкое суеверие', 'суеверие'], ['любовь к старине без вражды к знанию', 'приверженность старине']], 'Вражда направлена на просвещение, а не на свет и не на любую старину.'],
+  ['hard', 'Что означает слово "конгениальный"?', 'близкий по духу и дарованию', [['созвучие с гениальностью', 'гениальный'], ['смешение с врожденностью', 'врожденный'], ['простая приветливость', 'дружелюбный'], ['подражание без близости', 'подражательный']], 'Близость дарований, а не оценка "гениальный".'],
+  ['hard', 'Что означает слово "прерогатива"?', 'исключительное право', [['более широкая льгота', 'любая льгота'], ['противоположность права', 'обязанность'], ['смешение с просьбой', 'просьба'], ['смешение с запретом', 'запрет']], 'Право исключительное, а не любая льгота и не долг.'],
+  ['hard', 'Что означает слово "амбивалентный"?', 'двойственный в одной оценке', [['двуличие перед людьми', 'двуличный'], ['нерешительность без двух оценок', 'нерешительный'], ['отсутствие оценки', 'равнодушный'], ['спор двух людей', 'противоречащий другому']], 'Две оценки держатся вместе, это не маска и не спор с другим.'],
+])
+
+listed('vocabulary', 'voc-odd-word', 'Найдите признак, который есть у четырех слов и нет у одного.', [
+  ['easy', 'Какое слово лишнее?', 'эпилог', [['общее у остальных: начало текста', 'предисловие'], ['общее у остальных: начало текста', 'пролог'], ['общее у остальных: начало текста', 'вступление'], ['общее у остальных: начало текста', 'преамбула']], 'Четыре слова называют начало, эпилог - конец.'],
+  ['easy', 'Какое слово лишнее?', 'кода', [['общее у остальных: вступительный раздел', 'увертюра'], ['общее у остальных: вступительный раздел', 'прелюдия'], ['общее у остальных: вступительный раздел', 'интродукция'], ['общее у остальных: вступительный раздел', 'пролог']], 'Четыре слова называют вступление, кода - заключение.'],
+  ['easy', 'Какое слово лишнее?', 'дар', [['общее у остальных: то, что подлежит возврату', 'заем'], ['общее у остальных: то, что подлежит возврату', 'кредит'], ['общее у остальных: то, что подлежит возврату', 'ссуда'], ['общее у остальных: то, что подлежит возврату', 'долг']], 'Заем, кредит, ссуда и долг возвращают. Дар не возвращают.'],
+  ['easy', 'Какое слово лишнее?', 'бартер', [['общее у остальных: запись в счете', 'дебет'], ['общее у остальных: запись в счете', 'кредит'], ['общее у остальных: запись в счете', 'сальдо'], ['общее у остальных: запись в счете', 'проводка']], 'Четыре слова из счета. Бартер - способ обмена, не проводка.'],
+  ['medium', 'Какое слово лишнее?', 'сюжет', [['общее у остальных: троп', 'метафора'], ['общее у остальных: троп', 'эпитет'], ['общее у остальных: троп', 'сравнение'], ['общее у остальных: троп', 'олицетворение']], 'Четыре слова называют тропы. Сюжет - ход событий, не троп.'],
+  ['medium', 'Какое слово лишнее?', 'архаизм', [['общее у остальных: отношение между словами', 'омоним'], ['общее у остальных: отношение между словами', 'синоним'], ['общее у остальных: отношение между словами', 'антоним'], ['общее у остальных: отношение между словами', 'пароним']], 'Четыре слова связывают современные слова. Архаизм - слой устаревания.'],
+  ['medium', 'Какое слово лишнее?', 'лимфа', [['общее у остальных: кровеносный сосуд', 'аорта'], ['общее у остальных: кровеносный сосуд', 'артерия'], ['общее у остальных: кровеносный сосуд', 'вена'], ['общее у остальных: кровеносный сосуд', 'капилляр']], 'Четыре слова называют сосуды крови. Лимфа течет по другому руслу.'],
+  ['medium', 'Какое слово лишнее?', 'свидетель', [['общее у остальных: сторона или ее представитель', 'истец'], ['общее у остальных: сторона или ее представитель', 'ответчик'], ['общее у остальных: сторона или ее представитель', 'адвокат'], ['общее у остальных: сторона или ее представитель', 'прокурор']], 'Четверо участвуют как сторона или представитель. Свидетель сообщает, но не ведет спор.'],
+  ['hard', 'Какое слово лишнее?', 'роман', [['общее у остальных: твердая стихотворная форма', 'сонет'], ['общее у остальных: твердая стихотворная форма', 'октава'], ['общее у остальных: твердая стихотворная форма', 'терцина'], ['общее у остальных: твердая стихотворная форма', 'рондо']], 'Четыре слова - твердые стихотворные формы. Роман такой формой не является.'],
+  ['hard', 'Какое слово лишнее?', 'рецепт', [['общее у остальных: часть истории болезни', 'диагноз'], ['общее у остальных: часть истории болезни', 'анамнез'], ['общее у остальных: часть истории болезни', 'эпикриз'], ['общее у остальных: часть истории болезни', 'прогноз']], 'Четыре слова описывают состояние больного. Рецепт назначает средство.'],
+  ['hard', 'Какое слово лишнее?', 'суфлер', [['общее у остальных: организация постановки', 'импресарио'], ['общее у остальных: организация постановки', 'антрепренер'], ['общее у остальных: организация постановки', 'продюсер'], ['общее у остальных: организация постановки', 'режиссер']], 'Четверо организуют постановку. Суфлер подсказывает текст.'],
+  ['hard', 'Какое слово лишнее?', 'хорда', [['общее у остальных: отрезок в треугольнике', 'гипотенуза'], ['общее у остальных: отрезок в треугольнике', 'катет'], ['общее у остальных: отрезок в треугольнике', 'медиана'], ['общее у остальных: отрезок в треугольнике', 'биссектриса']], 'Четыре отрезка строятся в треугольнике. Хорда соединяет точки окружности.'],
+])
+
+function spelling(difficulty, wrong, rights, errorName) {
+  listed('vocabulary', 'voc-spelling', 'Ищите устойчивую ошибку написания, а не редкое, но верное слово.', [
+    [difficulty, 'Укажите неверное написание.', wrong, rights.map((word) => [errorName === '' ? 'верное написание' : `не эта ошибка, верно: ${word}`, word]), `Ошибочно одно написание: ${errorName}.`],
+  ])
+}
+spelling('easy', 'инциндент', ['инцидент', 'агентство', 'привилегия', 'претензия'], 'лишняя буква н')
+spelling('easy', 'агенство', ['агентство', 'бюро', 'ведомство', 'учреждение'], 'пропущена буква т')
+spelling('easy', 'бюлетень', ['бюллетень', 'протокол', 'справка', 'ведомость'], 'пропущена буква л')
+spelling('easy', 'будующий', ['будущий', 'следующий', 'прошлый', 'нынешний'], 'лишняя буква ю')
+spelling('medium', 'компроментировать', ['компрометировать', 'дискредитировать', 'изобличать', 'уличать'], 'пропущена буква е')
+spelling('medium', 'прецендент', ['прецедент', 'случай', 'пример', 'основание'], 'пропущена буква д')
+spelling('medium', 'константировать', ['констатировать', 'фиксировать', 'отмечать', 'устанавливать'], 'лишняя буква н')
+spelling('medium', 'подскользнуться', ['поскользнуться', 'оступиться', 'споткнуться', 'пошатнуться'], 'лишняя приставка под')
+
+listed('vocabulary', 'voc-paronym', 'Подставьте форму в предложение и проверьте управление.', [
+  ['easy', 'Ведущий ... слово гостю.', 'предоставил', [['представил человека, а не дал слово', 'представил'], ['назвал свое имя', 'представился'], ['форма без нужного смысла', 'предоставился'], ['длительное действие не к месту', 'представлял']], 'Дать слово - предоставить.'],
+  ['easy', 'Мать ... сына в пальто.', 'одела', [['надеть относится к вещи, не к человеку', 'надела'], ['причастие не входит в предложение', 'одевшая'], ['причастие не входит в предложение', 'надевшая'], ['возвратная форма меняет смысл', 'одевалась']], 'Одевают человека, надевают вещь.'],
+  ['easy', 'Письмо вручили ...', 'адресату', [['адресант письмо отправил', 'адресанту'], ['отправитель - не получатель', 'отправителю'], ['абонент - пользователь связи', 'абоненту'], ['абонемент - документ права', 'абонементу']], 'Вручают тому, кому письмо адресовано.'],
+  ['easy', 'Библиотечный ... продлили на месяц.', 'абонемент', [['абонент - человек', 'абонент'], ['человек женского рода здесь не документ', 'абонентка'], ['занятие вместо документа', 'абонирование'], ['прилагательное не завершает фразу', 'абонентский']], 'Продлевают абонемент, не человека.'],
+  ['medium', 'Грубый ... перебил собеседника.', 'невежа', [['невежда не знает, а не грубит', 'невежда'], ['свойство, не человек', 'невежество'], ['незнание, не грубость', 'неведение'], ['форма не называет человека', 'невежественный']], 'Грубость называет невежа, незнание - невежда.'],
+  ['medium', 'Главным ... роста цен стал спрос.', 'фактором', [['факт - событие, не движущая причина', 'фактом'], ['фактура - характер поверхности', 'фактурой'], ['факультет - подразделение', 'факультетом'], ['фактотум - доверенное лицо', 'фактотумом']], 'Движущая причина роста - фактор.'],
+  ['medium', 'Победитель конкурса получил звание ...', 'дипломанта', [['дипломат служит государству', 'дипломата'], ['дипломник пишет выпускную работу', 'дипломника'], ['документ вместо звания человека', 'диплома'], ['область вместо звания', 'дипломатии']], 'Дипломант получил диплом конкурса.'],
+  ['medium', 'Ужин вышел очень ...', 'сытным', [['сытый - тот, кто уже поел', 'сытым'], ['сырой - не готовый', 'сырым'], ['сыскной - из розыска', 'сыскным'], ['сырьевой - из сырья', 'сырьевым']], 'О еде говорят сытный, о человеке - сытый.'],
+  ['hard', 'Эксперимент оказался ...', 'удачным', [['удачливым бывает человек', 'удачливым'], ['ударный - сильный или срочный', 'ударным'], ['удельный - отнесенный к единице', 'удельным'], ['удаленный - далекий', 'удаленным']], 'Об опыте говорят удачный, об удаче человека - удачливый.'],
+  ['hard', '... нарушитель пропустил срок.', 'Злостный', [['злой - про характер, не про повтор нарушения', 'Злой'], ['зловредный - вредный', 'Зловредный'], ['злопамятный - помнит обиду', 'Злопамятный'], ['злободневный - актуальный', 'Злободневный']], 'Повторное умышленное нарушение называют злостным.'],
+  ['hard', 'Новый способ оказался ...', 'эффективным', [['эффектный - броский, не результативный', 'эффектным'], ['аффектный - от аффекта', 'аффектным'], ['дефектный - с изъяном', 'дефектным'], ['эффекторный - про орган действия', 'эффекторным']], 'Результат способа - эффективность, внешний блеск - эффектность.'],
+  ['hard', 'Гость ... хозяевам и сел.', 'представился', [['представил требует, кого представили', 'представил'], ['предоставил - дал возможность', 'предоставил'], ['форма без нужного лица', 'предоставился'], ['длительное действие не к месту', 'представлял']], 'Назвать себя - представиться.'],
+])
+
+const inferHint = 'Отбросьте обращение посылки, лишнее обобщение и потерю отрицания.'
+listed('verbal', 'ver-inference', inferHint, [
+  ['easy', 'Все скрипки этой мастерской деревянные. Эта скрипка из этой мастерской. Какой вывод следует?', 'Эта скрипка деревянная.', [['обращение посылки', 'Все деревянные предметы - скрипки этой мастерской.'], ['лишнее обобщение', 'Все скрипки на свете деревянные.'], ['отрицание вывода', 'Эта скрипка не деревянная.']], 'Частный случай входит в общее утверждение о мастерской.'],
+  ['easy', 'Если лампа в кабинете включена, в кабинете светло. Лампа включена. Какой вывод следует?', 'В кабинете светло.', [['обращение условной связи', 'Если в кабинете светло, включена именно эта лампа.'], ['лишнее обобщение', 'Во всем здании светло.'], ['отрицание вывода', 'В кабинете темно.']], 'Условие выполнено, значит выполнен и названный результат.'],
+  ['easy', 'Все билеты этой пачки проверены. Этот билет из этой пачки. Какой вывод следует?', 'Этот билет проверен.', [['обращение посылки', 'Все проверенные билеты лежат в этой пачке.'], ['лишнее обобщение', 'Все билеты кассы проверены.'], ['отрицание вывода', 'Этот билет не проверен.']], 'Билет наследует свойство своей пачки.'],
+  ['easy', 'Каждый договор этой полки подписан юристом. Этот договор с этой полки. Какой вывод следует?', 'Этот договор подписан юристом.', [['обращение посылки', 'Каждый договор юриста лежит на этой полке.'], ['лишнее обобщение', 'Все договоры фирмы подписаны юристом.'], ['отрицание вывода', 'Этот договор юрист не подписывал.']], 'Договор берет признак полки, на которой лежит.'],
+  ['easy', 'Все пробы этой серии чистые. Эта проба из этой серии. Какой вывод следует?', 'Эта проба чистая.', [['обращение посылки', 'Все чистые пробы входят в эту серию.'], ['лишнее обобщение', 'Все пробы лаборатории чистые.'], ['отрицание вывода', 'Эта проба загрязнена.']], 'Проба входит в серию, о которой сказано общее.'],
+  ['easy', 'Если засов закрыт, дверь не открывается. Засов закрыт. Какой вывод следует?', 'Дверь не открывается.', [['обращение условной связи', 'Если дверь не открывается, закрыт именно этот засов.'], ['лишнее обобщение', 'Ни одна дверь в доме не открывается.'], ['потеря отрицания', 'Дверь открывается.']], 'Условие про засов выполнено, дверь остается закрытой.'],
+  ['medium', 'Все архивариусы отдела знают латынь. Все переводчики отдела - архивариусы. Какой вывод следует?', 'Все переводчики отдела знают латынь.', [['обращение посылки', 'Все, кто знает латынь, - архивариусы отдела.'], ['лишнее обобщение', 'Все сотрудники отдела знают латынь.'], ['потеря связи', 'Некоторые переводчики отдела латыни не знают.']], 'Переводчики входят в группу архивариусов, а та целиком знает латынь.'],
+  ['medium', 'Все новые станки стоят у окна. Часть станков цеха новые. Какой вывод следует?', 'Хотя бы один станок стоит у окна.', [['лишнее обобщение', 'Все станки цеха стоят у окна.'], ['обращение посылки', 'Все станки у окна новые.'], ['отрицание вывода', 'У окна нет ни одного станка.']], 'Из части, которая целиком у окна, следует хотя бы один станок у окна.'],
+  ['medium', 'Ни один отчет этой папки не сдан. Часть отчетов отдела лежит в этой папке. Какой вывод следует?', 'Хотя бы один отчет отдела не сдан.', [['лишнее обобщение', 'Ни один отчет отдела не сдан.'], ['потеря отрицания', 'Все отчеты этой папки сданы.'], ['обращение посылки', 'Все несданные отчеты лежат в этой папке.']], 'Папка целиком не сдана, и в ней есть отчеты отдела.'],
+  ['medium', 'Все рейсы этого табло утренние. Некоторые рейсы в Казань есть на этом табло. Какой вывод следует?', 'Некоторые рейсы в Казань утренние.', [['лишнее обобщение', 'Все рейсы в Казань утренние.'], ['обращение посылки', 'Все утренние рейсы идут в Казань.'], ['отрицание вывода', 'Ни один рейс в Казань не утренний.']], 'Часть рейсов в Казань попадает в утреннее табло.'],
+  ['medium', 'Все эксперты комиссии имеют допуск. Некоторые авторы заключения - эксперты комиссии. Какой вывод следует?', 'Некоторые авторы заключения имеют допуск.', [['лишнее обобщение', 'Все авторы заключения имеют допуск.'], ['обращение посылки', 'Все, кто имеет допуск, - эксперты комиссии.'], ['отрицание вывода', 'Ни один автор заключения допуска не имеет.']], 'Часть авторов входит в комиссию, а комиссия целиком с допуском.'],
+  ['hard', 'Ни один документ этой папки не подписан. Эта справка из этой папки. Какой вывод следует?', 'Эта справка не подписана.', [['потеря отрицания', 'Эта справка подписана.'], ['лишнее обобщение', 'Ни один документ архива не подписан.'], ['обращение посылки', 'Все неподписанные документы лежат в этой папке.']], 'Справка входит в папку, где подписанных документов нет.'],
+  ['hard', 'Ни одна монета этого набора не медная. Эта монета из этого набора. Какой вывод следует?', 'Эта монета не медная.', [['потеря отрицания', 'Эта монета медная.'], ['лишнее обобщение', 'Ни одна монета в мире не медная.'], ['подмена металла', 'Эта монета золотая.']], 'Отрицание меди переходит на монету набора и не называет другой металл.'],
+  ['hard', 'Если смена не закрыта, ключ остается у мастера. Смена не закрыта. Какой вывод следует?', 'Ключ остается у мастера.', [['потеря отрицания', 'Смена закрыта.'], ['обращение условной связи', 'Если ключ у мастера, смена не закрыта.'], ['лишнее обобщение', 'Все ключи завода у этого мастера.']], 'Отрицательное условие выполнено, значит ключ у мастера.'],
+  ['hard', 'Все, кто не сдал допуск, не входят в цех. Этот стажер допуск не сдал. Какой вывод следует?', 'Этот стажер не входит в цех.', [['потеря отрицания', 'Этот стажер входит в цех.'], ['обращение посылки', 'Все, кто не входит в цех, не сдали допуск.'], ['лишнее обобщение', 'Никто на заводе не входит в цех.']], 'Два отрицания сохраняются: нет допуска, значит нет входа.'],
+  ['hard', 'Ни один чертеж без печати не принимают. Этот чертеж без печати. Какой вывод следует?', 'Этот чертеж не принимают.', [['потеря отрицания', 'Этот чертеж принимают.'], ['обращение посылки', 'Все непринятые чертежи без печати.'], ['лишнее обобщение', 'Ни один чертеж бюро не принимают.']], 'Отсутствие печати попадает под запрет приема.'],
+])
+
+const analogyHint = 'Сохраните одно отношение. Общая тема без этого отношения не подходит.'
+listed('verbal', 'ver-analogy', analogyHint, [
+  ['easy', 'Кисть относится к рисованию, как нож к ...', 'резанию', [['общая тема кухни', 'кухне'], ['соседний предмет', 'вилке'], ['свойство вместо действия', 'остроте']], 'Отношение орудия и действия.'],
+  ['easy', 'Страница относится к книге, как ступень к ...', 'лестнице', [['соседняя часть', 'перилам'], ['целое шире нужного', 'дому'], ['другой материал', 'дереву']], 'Отношение части и целого.'],
+  ['medium', 'Шум относится к тишине, как свет к ...', 'тьме', [['источник света', 'лампе'], ['время, а не противоположность', 'дню'], ['часть света', 'лучу']], 'Отношение противоположности.'],
+  ['medium', 'Дождь относится к луже, как огонь к ...', 'пеплу', [['сопутствующее, но не результат', 'дыму'], ['источник вместо результата', 'костру'], ['свойство огня', 'теплу']], 'Отношение причины и прямого следа.'],
+  ['medium', 'Клавиша относится к роялю, как струна к ...', 'скрипке', [['другая часть скрипки', 'смычку'], ['целое шире инструмента', 'оркестру'], ['запись вместо инструмента', 'ноте']], 'Отношение части и инструмента.'],
+  ['hard', 'Компас относится к направлению, как термометр к ...', 'температуре', [['единица вместо измеряемого', 'градусу'], ['область вместо величины', 'погоде'], ['вещество прибора', 'ртути']], 'Отношение прибора и того, что он показывает.'],
+  ['hard', 'Щедрый относится к скупому, как храбрый к ...', 'трусливому', [['соседнее качество без противоположности', 'сильному'], ['носитель качества', 'воину'], ['близкая, но другая оценка', 'осторожному']], 'Отношение противоположных качеств.'],
+  ['hard', 'Трение относится к теплу, как испарение к ...', 'пару', [['противоположность тепла', 'холоду'], ['другое состояние воды', 'льду'], ['исходное вещество', 'воде']], 'Отношение процесса и того, что он производит.'],
+])
+
+const generalHint = 'Ищите общее уже широкой рубрики. Сама рубрика остается ложным ответом.'
+listed('verbal', 'ver-general', generalHint, [
+  ['easy', 'Найдите общее для слов "молоток" и "пила".', 'инструменты', [['слишком узкая деталь', 'гвозди'], ['место вместо общего', 'мастерская'], ['материал не у обоих', 'металл']], 'Оба слова называют орудия работы.'],
+  ['easy', 'Найдите общее для слов "дуб" и "береза".', 'лиственные деревья', [['широкая рубрика', 'растения'], ['место вместо вида', 'лес'], ['изделие из них', 'дрова']], 'Общее уже, чем просто растения.'],
+  ['medium', 'Найдите более точное общее для слов "сонет" и "октава".', 'стихотворные формы', [['широкая рубрика', 'литература'], ['общий звук, не форма', 'рифма'], ['противоположность стиху', 'проза']], 'Сонет и октава задают строение стиха.'],
+  ['medium', 'Найдите более точное общее для слов "истец" и "ответчик".', 'стороны спора', [['широкая рубрика', 'юристы'], ['третье лицо', 'судьи'], ['не сторона', 'свидетели']], 'Оба ведут спор с противоположных сторон.'],
+  ['medium', 'Найдите более точное общее для слов "вена" и "артерия".', 'кровеносные сосуды', [['широкая рубрика', 'организм'], ['другая жидкость', 'лимфа'], ['орган, а не сосуд', 'сердце']], 'Оба проводят кровь, лимфа - нет.'],
+  ['hard', 'Найдите более точное общее для слов "эпиграф" и "посвящение".', 'тексты перед основным сочинением', [['широкая рубрика', 'литература'], ['основной текст', 'глава'], ['справочный аппарат', 'сноска']], 'Оба стоят перед сочинением и не являются главой.'],
+  ['hard', 'Найдите более точное общее для слов "дебет" и "кредит".', 'стороны бухгалтерского счета', [['широкая рубрика', 'экономика'], ['итог счета', 'сальдо'], ['способ обмена', 'бартер']], 'Дебет и кредит - две стороны записи, не вся экономика.'],
+  ['hard', 'Найдите более точное общее для слов "метафора" и "метонимия".', 'тропы', [['широкая рубрика', 'филология'], ['часть речи', 'существительное'], ['композиция', 'сюжет']], 'Оба переносят значение, сюжет этого не делает.'],
+])
+
+const orderHint = 'Доведите цепочку до конца. Промежуточное имя - остановка раньше вопроса.'
+listed('verbal', 'ver-order', orderHint, [
+  ['easy', 'Нина старше Олега. Олег старше Павла. Кто самый старший?', 'Нина', [['остановка на втором имени', 'Олег'], ['самый младший вместо старшего', 'Павел'], ['ложный отказ решать', 'нельзя решить']], 'Нина старше обоих следующих.'],
+  ['easy', 'Река шире ручья. Канал шире реки. Пруд уже ручья. Что шире всех?', 'канал', [['остановка на реке', 'река'], ['середина цепочки', 'ручей'], ['самый узкий', 'пруд']], 'Канал шире реки, река шире ручья, пруд уже ручья.'],
+  ['medium', 'Том толще брошюры. Журнал толще тома. Листовка тоньше брошюры. Что толще всех?', 'журнал', [['остановка на томе', 'том'], ['следующий после самого толстого', 'брошюра'], ['самый тонкий', 'листовка']], 'Журнал стоит в начале цепочки толщины.'],
+  ['medium', 'Анна пришла раньше Бориса. Борис раньше Веры. Вера раньше Глеба. Кто пришел последним?', 'Глеб', [['первый вместо последнего', 'Анна'], ['остановка в середине', 'Борис'], ['предпоследний', 'Вера']], 'Каждый следующий позже предыдущего, в конце Глеб.'],
+  ['medium', 'Склад А ближе к вокзалу, чем склад Б. Склад Б ближе, чем склад В. Какой склад ближе всех к вокзалу?', 'А', [['остановка на втором', 'Б'], ['дальний конец', 'В'], ['ложный отказ решать', 'нельзя решить']], 'А ближе Б, Б ближе В, значит А ближе обоих.'],
+  ['hard', 'Ира старше Коли. Коля старше Лены. Лена старше Миши. Миша старше Оли. Кто самый младший?', 'Оля', [['первый в цепочке', 'Ира'], ['остановка в середине', 'Лена'], ['предпоследний', 'Миша']], 'Вопрос про конец цепочки, не про первое имя.'],
+  ['hard', 'Дом А левее дома Б. Дом Б левее дома В. Дом В левее дома Г. Дом Г левее дома Д. Какой дом второй слева?', 'Б', [['первый слева', 'А'], ['третий слева', 'В'], ['крайний справа', 'Д']], 'Слева направо дома идут А, Б, В, Г, Д.'],
+  ['hard', 'Пакет 1 легче пакета 2. Пакет 2 легче пакета 3. Пакет 3 легче пакета 4. Пакет 4 легче пакета 5. Какой пакет второй по легкости?', '2', [['самый легкий', '1'], ['третий', '3'], ['самый тяжелый', '5']], 'От легкого к тяжелому: 1, 2, 3, 4, 5. Второй - пакет 2.'],
+])
+
+const setHint = 'Предмет должен войти в названный признак, а не только в широкую область.'
+listed('verbal', 'ver-set', setHint, [
+  ['easy', 'Какой предмет входит в множество "скрипка, альт, виолончель"?', 'контрабас', [['другой способ игры', 'флейта'], ['ударный инструмент', 'барабан'], ['медный духовой', 'труба']], 'Множество смычковых. Остальные из других групп.'],
+  ['easy', 'Какой предмет входит в множество "дуб, береза, клен"?', 'ясень', [['травянистое растение', 'ромашка'], ['не дерево', 'мох'], ['споровое растение', 'папоротник']], 'Множество деревьев. Ясень тоже дерево.'],
+  ['medium', 'Какой предмет входит в множество "истец, ответчик, судья"?', 'секретарь заседания', [['человек вне процесса', 'зритель'], ['наблюдатель без роли', 'журналист в зале'], ['охрана снаружи', 'охранник у входа']], 'Нужен участник заседания, не человек просто в здании.'],
+  ['medium', 'Какой предмет входит в множество "дебет, кредит, сальдо"?', 'проводка', [['способ обмена', 'бартер'], ['налог', 'акциз'], ['складской термин', 'инвентарь']], 'Множество записей счета. Проводка тоже запись, бартер - нет.'],
+  ['medium', 'Какой предмет входит в множество "сонет, октава, терцина"?', 'рондо', [['крупная проза', 'роман'], ['часть страницы', 'абзац'], ['справочный аппарат', 'сноска']], 'Множество твердых стихотворных форм.'],
+  ['hard', 'Какой предмет входит в множество "аорта, артерия, капилляр"?', 'вена', [['другая жидкость', 'лимфа'], ['орган насоса', 'сердце'], ['клетка крови', 'эритроцит']], 'Множество кровеносных сосудов. Лимфа к ним не относится.'],
+  ['hard', 'Какой предмет входит в множество "метафора, эпитет, олицетворение"?', 'метонимия', [['ход событий', 'сюжет'], ['часть речи', 'глагол'], ['размер стиха', 'ямб']], 'Множество тропов. Метонимия тоже троп.'],
+  ['hard', 'Какой предмет входит в множество "увертюра, прелюдия, интродукция"?', 'пролог', [['завершающий раздел', 'кода'], ['основная часть', 'действие'], ['исполнитель', 'дирижер']], 'Множество вступлений. Кода завершает, а не открывает.'],
+])
+
+function typo(difficulty, words, wrongAt, errorName) {
+  const answer = words[wrongAt]
+  commitChoice({
+    scale: 'attention',
+    type: 'att-typo',
+    difficulty,
+    text: `Какое слово написано неверно?\n${words.join(' ')}`,
+    answer,
+    traps: words.filter((_, index) => index !== wrongAt).map((word) => [`слово написано верно: ${word}`, word]),
+    hint: 'Сверьте написание каждого слова. Ошибка одна и она орфографическая.',
+    lead: `Орфографическая ошибка: ${errorName}.`,
+  })
+}
+typo('easy', ['Секретарь', 'будет', 'учавствовать', 'в', 'заседании'], 2, 'буква а вместо у в глаголе участвовать')
+typo('easy', ['Агенство', 'готовит', 'новый', 'важный', 'документ'], 0, 'пропущена буква т в слове агентство')
+typo('easy', ['Бюлетень', 'лежит', 'на', 'столе', 'секретаря'], 0, 'пропущена буква л в слове бюллетень')
+typo('medium', ['Эксперт', 'должен', 'константировать', 'этот', 'прецедент'], 2, 'лишняя буква н в слове констатировать')
+typo('medium', ['Акомпанемент', 'мешал', 'слышать', 'голос', 'солиста'], 0, 'пропущена буква к в слове аккомпанемент')
+typo('hard', ['Беспрецендентный', 'случай', 'требует', 'отдельного', 'решения'], 0, 'пропущена буква д в слове беспрецедентный')
+typo('hard', ['Интелигенция', 'обсуждала', 'новый', 'городской', 'устав'], 0, 'пропущена буква л в слове интеллигенция')
+typo('hard', ['Завод', 'выпускает', 'аллюминий', 'для', 'самолетов'], 2, 'лишняя буква л в слове алюминий')
+
+function diffItem(difficulty, left, right, answer, traps) {
+  commitChoice({
+    scale: 'attention',
+    type: 'att-diff',
+    difficulty,
+    text: `Где расхождение двух записей?\n${left}\n${right}`,
+    answer,
+    traps,
+    hint: 'Сверьте каждое поле с тем же полем второй строки. Если поля совпали все, это отдельный ответ.',
+    lead: 'Поля сверены по одному.',
+  })
+}
+const same = [
+  ['поле совпадает', 'фамилия'],
+  ['поле совпадает', 'дата'],
+  ['поле совпадает', 'номер'],
+  ['поле совпадает', 'сумма'],
+]
+diffItem('easy', 'Иванов, 12.03.1991, 45821, 1860', 'Иванова, 12.03.1991, 45821, 1860', 'фамилия', [
+  ['расхождение не в этом поле', 'дата'],
+  ['расхождение не в этом поле', 'номер'],
+  ['расхождение не в этом поле', 'сумма'],
+  ['расхождение есть', 'нет расхождений'],
+])
+diffItem('easy', 'Петров, 04.11.1984, 90214, 2400', 'Петров, 04.11.1985, 90214, 2400', 'дата', [
+  ['расхождение не в этом поле', 'фамилия'],
+  ['расхождение не в этом поле', 'номер'],
+  ['расхождение не в этом поле', 'сумма'],
+  ['расхождение есть', 'нет расхождений'],
+])
+diffItem('medium', 'Соколова, 19.06.1978, 330918, 5120', 'Соколова, 19.06.1978, 330198, 5120', 'номер', [
+  ['расхождение не в этом поле', 'фамилия'],
+  ['расхождение не в этом поле', 'дата'],
+  ['расхождение не в этом поле', 'сумма'],
+  ['расхождение есть', 'нет расхождений'],
+])
+diffItem('medium', 'Орлов, 28.02.1996, 77120, 6400', 'Орлов, 28.02.1996, 77120, 4600', 'сумма', [
+  ['расхождение не в этом поле', 'фамилия'],
+  ['расхождение не в этом поле', 'дата'],
+  ['расхождение не в этом поле', 'номер'],
+  ['расхождение есть', 'нет расхождений'],
+])
+diffItem('medium', 'Морозова, 15.09.1988, 22045, 3180', 'Морозова, 15.09.1988, 22045, 3180', 'нет расхождений', same)
+diffItem('hard', 'Лебедев, 03.07.1975, 4815092763, 12840', 'Лебедев, 03.07.1975, 4815097263, 12840', 'номер', [
+  ['расхождение не в этом поле', 'фамилия'],
+  ['расхождение не в этом поле', 'дата'],
+  ['расхождение не в этом поле', 'сумма'],
+  ['расхождение есть', 'нет расхождений'],
+])
+diffItem('hard', 'Кузнецова, 21.12.1982, 9055128830, 25710', 'Кузнецова, 21.12.1983, 9055128830, 25710', 'дата', [
+  ['расхождение не в этом поле', 'фамилия'],
+  ['расхождение не в этом поле', 'номер'],
+  ['расхождение не в этом поле', 'сумма'],
+  ['расхождение есть', 'нет расхождений'],
+])
+diffItem('hard', 'Волков, 09.01.1990, 6720045819, 19355', 'Волков, 09.01.1990, 6720045819, 19355', 'нет расхождений', same)
+
+const factHint = 'Отличите устойчивый факт от обычной путаницы с соседним названием.'
+const facts = JSON.parse(readFileSync(join(root, 'scripts', 'facts.json'), 'utf8'))
+listed('erudition', 'fact', factHint, facts)
+spelling('hard', 'учавствовать', ['участвовать', 'присутствовать', 'содействовать', 'сотрудничать'], 'буква а вместо у')
+spelling('hard', 'акомпанемент', ['аккомпанемент', 'сопровождение', 'поддержка', 'подыгрыш'], 'пропущена буква к')
+spelling('hard', 'интелигенция', ['интеллигенция', 'профессура', 'аудитория', 'общественность'], 'пропущена буква л')
+spelling('hard', 'аллюминий', ['алюминий', 'титан', 'магний', 'никель'], 'лишняя буква л')
+
+const minimums = {
+  'calc-story': 16,
+  'calc-series': 16,
+  'calc-chart': 16,
+  'voc-meaning': 12,
+  'voc-odd-word': 12,
+  'voc-spelling': 12,
+  'voc-paronym': 12,
+  fact: 48,
+  'spa-assembly': 12,
+  'spa-net': 12,
+  'spa-transform': 8,
+  'spa-top': 8,
+  'spa-cubes': 8,
+  'non-matrix': 16,
+  'non-odd': 8,
+  'non-sequence': 8,
+  'non-analogy': 8,
+  'non-group': 8,
+  'ver-inference': 16,
+  'ver-analogy': 8,
+  'ver-general': 8,
+  'ver-order': 8,
+  'ver-set': 8,
+  'att-count': 12,
+  'att-symbol': 12,
+  'att-match': 8,
+  'att-typo': 8,
+  'att-diff': 8,
 }
 const topics = ['geography', 'history', 'science', 'culture', 'economy', 'nature', 'sport']
-const names = {
-  calculation: 'Вычисления',
-  vocabulary: 'Лексика',
-  erudition: 'Эрудиция',
-  spatial: 'Пространственное мышление',
-  nonverbal: 'Невербальная логика',
-  verbal: 'Вербальная логика',
-  attention: 'Внимание',
-}
-
 const issues = []
-const ids = new Set()
 for (const [scale, items] of Object.entries(bank)) {
-  if (items.length < 24) issues.push(`${names[scale]}: ${items.length} < 24`)
+  if (items.length < 48) issues.push(`${scale}: ${items.length} < 48`)
   for (const difficulty of ['easy', 'medium', 'hard']) {
     const count = items.filter((item) => item.difficulty === difficulty).length
-    if (count < 4) issues.push(`${names[scale]} ${difficulty}: ${count}`)
+    if (count < 12) issues.push(`${scale} ${difficulty}: ${count}`)
   }
   if (scale === 'erudition') {
     for (const topic of topics) {
       const count = items.filter((item) => item.topic === topic).length
-      if (count < 3) issues.push(`topic ${topic}: ${count}`)
-    }
-  } else {
-    for (const type of demoMinimum[scale]) {
-      const count = items.filter((item) => item.type === type).length
-      if (count < 6) issues.push(`${type}: ${count}`)
-    }
-    for (const type of analogMinimum[scale]) {
-      const count = items.filter((item) => item.type === type).length
-      if (count < 3) issues.push(`${type}: ${count}`)
+      if (count < 8) issues.push(`topic ${topic}: ${count}`)
     }
   }
-  for (const item of items) {
-    if (ids.has(item.id)) issues.push(`dup ${item.id}`)
-    ids.add(item.id)
-    if (!item.hint.trim() || !item.explanation.trim()) issues.push(`empty text ${item.id}`)
-  }
+}
+for (const [type, minimum] of Object.entries(minimums)) {
+  const count = Object.values(bank)
+    .flat()
+    .filter((item) => item.type === type).length
+  if (count < minimum) issues.push(`${type}: ${count} < ${minimum}`)
 }
 if (issues.length > 0) {
   console.error(issues.join('\n'))
@@ -1320,7 +1660,8 @@ mkdirSync(dataDir, { recursive: true })
 for (const [scale, items] of Object.entries(bank)) {
   writeFileSync(join(dataDir, `${scale}.json`), `${JSON.stringify(items, null, 2)}\n`, 'utf8')
 }
-const summary = Object.entries(bank)
-  .map(([scale, items]) => `${scale}:${items.length}`)
-  .join(' ')
-console.log(summary)
+console.log(
+  Object.entries(bank)
+    .map(([scale, items]) => `${scale}:${items.length}`)
+    .join(' '),
+)

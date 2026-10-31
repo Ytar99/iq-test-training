@@ -1,5 +1,10 @@
 import type { ScaleId } from './types.ts'
 
+export type ScaleForm = {
+  type: string
+  quota: number
+}
+
 export type ScaleInfo = {
   id: ScaleId
   name: string
@@ -7,8 +12,7 @@ export type ScaleInfo = {
   itemSec: number
   blockSec: number
   optionCount: number
-  demo: readonly string[]
-  analog: readonly string[]
+  forms: readonly ScaleForm[]
   scenes: readonly string[]
 }
 
@@ -20,8 +24,11 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 70,
     blockSec: 540,
     optionCount: 4,
-    demo: ['calc-story', 'calc-grid'],
-    analog: ['calc-series', 'calc-share', 'calc-motion', 'calc-estimate', 'calc-chart'],
+    forms: [
+      { type: 'calc-story', quota: 4 },
+      { type: 'calc-series', quota: 4 },
+      { type: 'calc-chart', quota: 4 },
+    ],
     scenes: ['chart', 'table'],
   },
   vocabulary: {
@@ -31,8 +38,12 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 60,
     blockSec: 480,
     optionCount: 5,
-    demo: ['voc-anagram', 'voc-spelling'],
-    analog: ['voc-synonym', 'voc-meaning', 'voc-odd-word', 'voc-letter', 'voc-paronym'],
+    forms: [
+      { type: 'voc-meaning', quota: 3 },
+      { type: 'voc-odd-word', quota: 3 },
+      { type: 'voc-spelling', quota: 3 },
+      { type: 'voc-paronym', quota: 3 },
+    ],
     scenes: [],
   },
   erudition: {
@@ -42,8 +53,7 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 50,
     blockSec: 300,
     optionCount: 5,
-    demo: ['fact'],
-    analog: [],
+    forms: [{ type: 'fact', quota: 12 }],
     scenes: [],
   },
   spatial: {
@@ -53,9 +63,14 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 70,
     blockSec: 540,
     optionCount: 4,
-    demo: ['spa-scheme', 'spa-assembly'],
-    analog: ['spa-net', 'spa-transform', 'spa-top', 'spa-chart', 'spa-cubes'],
-    scenes: ['scheme', 'cells', 'net', 'cube', 'chart', 'table', 'stack'],
+    forms: [
+      { type: 'spa-assembly', quota: 3 },
+      { type: 'spa-net', quota: 3 },
+      { type: 'spa-transform', quota: 2 },
+      { type: 'spa-top', quota: 2 },
+      { type: 'spa-cubes', quota: 2 },
+    ],
+    scenes: ['cells', 'net', 'cube', 'stack'],
   },
   nonverbal: {
     id: 'nonverbal',
@@ -64,8 +79,13 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 70,
     blockSec: 540,
     optionCount: 4,
-    demo: ['non-matrix', 'non-odd'],
-    analog: ['non-sequence', 'non-analogy', 'non-group'],
+    forms: [
+      { type: 'non-matrix', quota: 4 },
+      { type: 'non-odd', quota: 2 },
+      { type: 'non-sequence', quota: 2 },
+      { type: 'non-analogy', quota: 2 },
+      { type: 'non-group', quota: 2 },
+    ],
     scenes: ['card', 'matrix', 'sequence', 'analogy', 'group'],
   },
   verbal: {
@@ -75,8 +95,13 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 70,
     blockSec: 540,
     optionCount: 4,
-    demo: ['ver-set', 'ver-inference'],
-    analog: ['ver-analogy', 'ver-general', 'ver-syllogism', 'ver-follows', 'ver-order'],
+    forms: [
+      { type: 'ver-inference', quota: 4 },
+      { type: 'ver-analogy', quota: 2 },
+      { type: 'ver-general', quota: 2 },
+      { type: 'ver-order', quota: 2 },
+      { type: 'ver-set', quota: 2 },
+    ],
     scenes: [],
   },
   attention: {
@@ -86,58 +111,48 @@ export const SCALES: Record<ScaleId, ScaleInfo> = {
     itemSec: 70,
     blockSec: 540,
     optionCount: 5,
-    demo: ['att-count', 'att-cycle'],
-    analog: ['att-diff', 'att-typo', 'att-symbol', 'att-match'],
+    forms: [
+      { type: 'att-count', quota: 3 },
+      { type: 'att-symbol', quota: 3 },
+      { type: 'att-match', quota: 2 },
+      { type: 'att-typo', quota: 2 },
+      { type: 'att-diff', quota: 2 },
+    ],
     scenes: [],
   },
 }
 
 export const TYPE_LABEL: Record<string, string> = {
   'calc-story': 'Текстовая задача',
-  'calc-grid': 'Сетка чисел',
   'calc-series': 'Числовой ряд',
-  'calc-share': 'Доля',
-  'calc-motion': 'Скорость и путь',
-  'calc-estimate': 'Прикидка',
   'calc-chart': 'График и таблица',
-  'voc-anagram': 'Анаграмма',
-  'voc-spelling': 'Написание',
-  'voc-synonym': 'Синоним и антоним',
   'voc-meaning': 'Значение слова',
   'voc-odd-word': 'Лишнее слово',
-  'voc-letter': 'Пропущенная буква',
+  'voc-spelling': 'Написание',
   'voc-paronym': 'Пароним',
   fact: 'Факт',
-  'spa-scheme': 'Схема',
   'spa-assembly': 'Сборка',
   'spa-net': 'Развертка',
   'spa-transform': 'Поворот и отражение',
   'spa-top': 'Вид сверху',
-  'spa-chart': 'Чтение схемы',
   'spa-cubes': 'Число кубиков',
   'non-matrix': 'Матрица',
   'non-odd': 'Лишняя фигура',
   'non-sequence': 'Ряд фигур',
   'non-analogy': 'Аналогия фигур',
   'non-group': 'Общий признак',
-  'ver-set': 'Множество',
   'ver-inference': 'Вывод из текста',
   'ver-analogy': 'Аналогия',
   'ver-general': 'Общее название',
-  'ver-syllogism': 'Кванторы',
-  'ver-follows': 'Следствие',
   'ver-order': 'Порядок',
+  'ver-set': 'Множество',
   'att-count': 'Подсчет',
-  'att-cycle': 'Цикл',
-  'att-diff': 'Расхождение',
-  'att-typo': 'Опечатка',
   'att-symbol': 'Символ',
   'att-match': 'Совпадение',
+  'att-typo': 'Опечатка',
+  'att-diff': 'Расхождение',
 }
 
-export function typeSource(scale: ScaleId, type: string): 'demo' | 'analog' | null {
-  const info = SCALES[scale]
-  if (info.demo.includes(type)) return 'demo'
-  if (info.analog.includes(type)) return 'analog'
-  return null
+export function formOf(scale: ScaleId, type: string) {
+  return SCALES[scale].forms.find((form) => form.type === type) ?? null
 }

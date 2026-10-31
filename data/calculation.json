@@ -1,498 +1,507 @@
 [
   {
-    "id": "calc-grid-01",
-    "scale": "calculation",
-    "type": "calc-grid",
-    "source": "demo",
-    "difficulty": "medium",
-    "stimulus": {
-      "text": "Какое число стоит в пустой клетке?",
-      "rows": [
-        [
-          "2",
-          "5",
-          "8"
-        ],
-        [
-          "6",
-          "9",
-          "12"
-        ],
-        [
-          "10",
-          "13",
-          null
-        ]
-      ]
-    },
-    "options": [
-      {
-        "id": "calc-grid-01-1",
-        "text": "16"
-      },
-      {
-        "id": "calc-grid-01-2",
-        "text": "19"
-      },
-      {
-        "id": "calc-grid-01-3",
-        "text": "13"
-      },
-      {
-        "id": "calc-grid-01-4",
-        "text": "20"
-      }
-    ],
-    "correctOptionId": "calc-grid-01-1",
-    "shuffle": true,
-    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
-    "explanation": "В строке шаг 3, в столбце шаг 4, оба дают 16."
-  },
-  {
-    "id": "calc-grid-02",
-    "scale": "calculation",
-    "type": "calc-grid",
-    "source": "demo",
-    "difficulty": "easy",
-    "stimulus": {
-      "text": "Какое число стоит в пустой клетке?",
-      "rows": [
-        [
-          "1",
-          "2",
-          "3"
-        ],
-        [
-          "2",
-          "3",
-          "4"
-        ],
-        [
-          "3",
-          "4",
-          null
-        ]
-      ]
-    },
-    "options": [
-      {
-        "id": "calc-grid-02-1",
-        "text": "5"
-      },
-      {
-        "id": "calc-grid-02-2",
-        "text": "6"
-      },
-      {
-        "id": "calc-grid-02-3",
-        "text": "4"
-      },
-      {
-        "id": "calc-grid-02-4",
-        "text": "7"
-      }
-    ],
-    "correctOptionId": "calc-grid-02-1",
-    "shuffle": true,
-    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
-    "explanation": "В строке шаг 1, в столбце шаг 1, оба дают 5."
-  },
-  {
-    "id": "calc-grid-03",
-    "scale": "calculation",
-    "type": "calc-grid",
-    "source": "demo",
-    "difficulty": "easy",
-    "stimulus": {
-      "text": "Какое число стоит в пустой клетке?",
-      "rows": [
-        [
-          "10",
-          "20",
-          "30"
-        ],
-        [
-          "11",
-          "21",
-          "31"
-        ],
-        [
-          "12",
-          "22",
-          null
-        ]
-      ]
-    },
-    "options": [
-      {
-        "id": "calc-grid-03-1",
-        "text": "32"
-      },
-      {
-        "id": "calc-grid-03-2",
-        "text": "42"
-      },
-      {
-        "id": "calc-grid-03-3",
-        "text": "22"
-      },
-      {
-        "id": "calc-grid-03-4",
-        "text": "33"
-      }
-    ],
-    "correctOptionId": "calc-grid-03-1",
-    "shuffle": true,
-    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
-    "explanation": "В строке шаг 10, в столбце шаг 1, оба дают 32."
-  },
-  {
-    "id": "calc-grid-04",
-    "scale": "calculation",
-    "type": "calc-grid",
-    "source": "demo",
-    "difficulty": "medium",
-    "stimulus": {
-      "text": "Какое число стоит в пустой клетке?",
-      "rows": [
-        [
-          "4",
-          "6",
-          "8"
-        ],
-        [
-          "9",
-          "11",
-          "13"
-        ],
-        [
-          "14",
-          null,
-          "18"
-        ]
-      ]
-    },
-    "options": [
-      {
-        "id": "calc-grid-04-1",
-        "text": "16"
-      },
-      {
-        "id": "calc-grid-04-2",
-        "text": "18"
-      },
-      {
-        "id": "calc-grid-04-3",
-        "text": "14"
-      },
-      {
-        "id": "calc-grid-04-4",
-        "text": "21"
-      }
-    ],
-    "correctOptionId": "calc-grid-04-1",
-    "shuffle": true,
-    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
-    "explanation": "В строке шаг 2, в столбце шаг 5, оба дают 16."
-  },
-  {
-    "id": "calc-grid-05",
-    "scale": "calculation",
-    "type": "calc-grid",
-    "source": "demo",
-    "difficulty": "hard",
-    "stimulus": {
-      "text": "Какое число стоит в пустой клетке?",
-      "rows": [
-        [
-          "7",
-          "10",
-          "13"
-        ],
-        [
-          "15",
-          "18",
-          "21"
-        ],
-        [
-          null,
-          "26",
-          "29"
-        ]
-      ]
-    },
-    "options": [
-      {
-        "id": "calc-grid-05-1",
-        "text": "23"
-      },
-      {
-        "id": "calc-grid-05-2",
-        "text": "26"
-      },
-      {
-        "id": "calc-grid-05-3",
-        "text": "20"
-      },
-      {
-        "id": "calc-grid-05-4",
-        "text": "31"
-      }
-    ],
-    "correctOptionId": "calc-grid-05-1",
-    "shuffle": true,
-    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
-    "explanation": "В строке шаг 3, в столбце шаг 8, оба дают 23."
-  },
-  {
-    "id": "calc-grid-06",
-    "scale": "calculation",
-    "type": "calc-grid",
-    "source": "demo",
-    "difficulty": "hard",
-    "stimulus": {
-      "text": "Какое число стоит в пустой клетке?",
-      "rows": [
-        [
-          "6",
-          "10",
-          "14"
-        ],
-        [
-          "15",
-          "19",
-          null
-        ],
-        [
-          "24",
-          "28",
-          "32"
-        ]
-      ]
-    },
-    "options": [
-      {
-        "id": "calc-grid-06-1",
-        "text": "23"
-      },
-      {
-        "id": "calc-grid-06-2",
-        "text": "27"
-      },
-      {
-        "id": "calc-grid-06-3",
-        "text": "19"
-      },
-      {
-        "id": "calc-grid-06-4",
-        "text": "32"
-      }
-    ],
-    "correctOptionId": "calc-grid-06-1",
-    "shuffle": true,
-    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
-    "explanation": "В строке шаг 4, в столбце шаг 9, оба дают 23."
-  },
-  {
     "id": "calc-story-01",
     "scale": "calculation",
     "type": "calc-story",
-    "source": "demo",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "За 3 часа мастер делает 18 рам. Сколько рам он сделает за 8 часов при той же скорости?"
+      "text": "В партии 18 ящиков по 16 кг. Какова масса партии?"
     },
     "options": [
       {
         "id": "calc-story-01-1",
-        "text": "48"
+        "text": "288"
       },
       {
         "id": "calc-story-01-2",
-        "text": "42"
+        "text": "34"
       },
       {
         "id": "calc-story-01-3",
-        "text": "54"
+        "text": "270"
       },
       {
         "id": "calc-story-01-4",
-        "text": "36"
+        "text": "304"
       }
     ],
     "correctOptionId": "calc-story-01-1",
     "shuffle": true,
-    "hint": "Сначала найдите, сколько рам выходит за один час, затем пересчитайте на нужное время.",
-    "explanation": "18 / 3 = 6 рам в час, 6 * 8 = 48."
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 288. Сумма вместо произведения дает 34. Множитель на единицу меньше дает 270. К произведению прибавлен второй множитель дает 304."
   },
   {
     "id": "calc-story-02",
     "scale": "calculation",
     "type": "calc-story",
-    "source": "demo",
     "difficulty": "easy",
     "stimulus": {
-      "text": "В пачке 6 тетрадей. Сколько тетрадей в 4 таких пачках?"
+      "text": "В партии 24 ящиков по 15 кг. Какова масса партии?"
     },
     "options": [
       {
         "id": "calc-story-02-1",
-        "text": "24"
+        "text": "360"
       },
       {
         "id": "calc-story-02-2",
-        "text": "10"
+        "text": "39"
       },
       {
         "id": "calc-story-02-3",
-        "text": "20"
+        "text": "336"
       },
       {
         "id": "calc-story-02-4",
-        "text": "28"
+        "text": "375"
       }
     ],
     "correctOptionId": "calc-story-02-1",
     "shuffle": true,
-    "hint": "Перемножьте число пачек и число тетрадей в одной.",
-    "explanation": "4 * 6 = 24."
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 360. Сумма вместо произведения дает 39. Множитель на единицу меньше дает 336. К произведению прибавлен второй множитель дает 375."
   },
   {
     "id": "calc-story-03",
     "scale": "calculation",
     "type": "calc-story",
-    "source": "demo",
     "difficulty": "easy",
     "stimulus": {
-      "text": "Один билет стоит 15 рублей. Сколько стоят 3 билета?"
+      "text": "В партии 17 ящиков по 14 кг. Какова масса партии?"
     },
     "options": [
       {
         "id": "calc-story-03-1",
-        "text": "45"
+        "text": "238"
       },
       {
         "id": "calc-story-03-2",
-        "text": "18"
+        "text": "31"
       },
       {
         "id": "calc-story-03-3",
-        "text": "30"
+        "text": "221"
       },
       {
         "id": "calc-story-03-4",
-        "text": "60"
+        "text": "252"
       }
     ],
     "correctOptionId": "calc-story-03-1",
     "shuffle": true,
-    "hint": "Умножьте цену одного билета на их число.",
-    "explanation": "15 * 3 = 45."
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 238. Сумма вместо произведения дает 31. Множитель на единицу меньше дает 221. К произведению прибавлен второй множитель дает 252."
   },
   {
     "id": "calc-story-04",
     "scale": "calculation",
     "type": "calc-story",
-    "source": "demo",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "Куртка стоила 2000 рублей. Магазин снизил цену на 10%. Сколько она стоит теперь?"
+      "text": "В партии 19 ящиков по 13 кг. Какова масса партии?"
     },
     "options": [
       {
         "id": "calc-story-04-1",
-        "text": "1800"
+        "text": "247"
       },
       {
         "id": "calc-story-04-2",
-        "text": "1900"
+        "text": "32"
       },
       {
         "id": "calc-story-04-3",
-        "text": "1500"
+        "text": "228"
       },
       {
         "id": "calc-story-04-4",
-        "text": "1990"
+        "text": "260"
       }
     ],
     "correctOptionId": "calc-story-04-1",
     "shuffle": true,
-    "hint": "Сначала найдите сумму скидки, затем вычтите ее из начальной цены.",
-    "explanation": "10% от 2000 равно 200, 2000 - 200 = 1800."
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 247. Сумма вместо произведения дает 32. Множитель на единицу меньше дает 228. К произведению прибавлен второй множитель дает 260."
   },
   {
     "id": "calc-story-05",
     "scale": "calculation",
     "type": "calc-story",
-    "source": "demo",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "Бригада за 4 дня делает 20 деталей. Сколько дней нужно на 35 деталей при той же скорости?"
+      "text": "Партию из 476 кг разложили поровну в 14 ящиков. Сколько килограммов в одном ящике?"
     },
     "options": [
       {
         "id": "calc-story-05-1",
-        "text": "7"
+        "text": "34"
       },
       {
         "id": "calc-story-05-2",
-        "text": "6"
+        "text": "462"
       },
       {
         "id": "calc-story-05-3",
-        "text": "8"
+        "text": "490"
       },
       {
         "id": "calc-story-05-4",
-        "text": "9"
+        "text": "14"
       }
     ],
     "correctOptionId": "calc-story-05-1",
     "shuffle": true,
-    "hint": "Сначала найдите дневную выработку, затем разделите весь заказ на эту выработку.",
-    "explanation": "20 / 4 = 5 деталей в день, 35 / 5 = 7 дней."
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 34. Вычитание вместо деления дает 462. Сумма вместо деления дает 490. В ответ попал делитель дает 14."
   },
   {
     "id": "calc-story-06",
     "scale": "calculation",
     "type": "calc-story",
-    "source": "demo",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "В бочке было 40 литров воды. За день израсходовали четверть. Сколько литров осталось?"
+      "text": "Партию из 638 кг разложили поровну в 22 ящиков. Сколько килограммов в одном ящике?"
     },
     "options": [
       {
         "id": "calc-story-06-1",
-        "text": "30"
+        "text": "29"
       },
       {
         "id": "calc-story-06-2",
-        "text": "10"
+        "text": "616"
       },
       {
         "id": "calc-story-06-3",
-        "text": "20"
+        "text": "660"
       },
       {
         "id": "calc-story-06-4",
-        "text": "36"
+        "text": "22"
       }
     ],
     "correctOptionId": "calc-story-06-1",
     "shuffle": true,
-    "hint": "Найдите израсходованную часть и вычтите ее из исходного объема.",
-    "explanation": "Четверть от 40 равна 10, 40 - 10 = 30."
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 29. Вычитание вместо деления дает 616. Сумма вместо деления дает 660. В ответ попал делитель дает 22."
+  },
+  {
+    "id": "calc-story-07",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "За 6 часов цех делает 84 деталей. Сколько деталей он сделает за 15 часов при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-07-1",
+        "text": "210"
+      },
+      {
+        "id": "calc-story-07-2",
+        "text": "99"
+      },
+      {
+        "id": "calc-story-07-3",
+        "text": "14"
+      },
+      {
+        "id": "calc-story-07-4",
+        "text": "90"
+      }
+    ],
+    "correctOptionId": "calc-story-07-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 210. Сумма выпуска и новых часов дает 99. Остановка на скорости за час дает 14. Произведение часов без выпуска дает 90."
+  },
+  {
+    "id": "calc-story-08",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "За 8 часов цех делает 96 деталей. Сколько деталей он сделает за 13 часов при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-08-1",
+        "text": "156"
+      },
+      {
+        "id": "calc-story-08-2",
+        "text": "109"
+      },
+      {
+        "id": "calc-story-08-3",
+        "text": "12"
+      },
+      {
+        "id": "calc-story-08-4",
+        "text": "104"
+      }
+    ],
+    "correctOptionId": "calc-story-08-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 156. Сумма выпуска и новых часов дает 109. Остановка на скорости за час дает 12. Произведение часов без выпуска дает 104."
+  },
+  {
+    "id": "calc-story-09",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "За 7 часов цех делает 91 деталей. Сколько деталей он сделает за 12 часов при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-09-1",
+        "text": "156"
+      },
+      {
+        "id": "calc-story-09-2",
+        "text": "103"
+      },
+      {
+        "id": "calc-story-09-3",
+        "text": "13"
+      },
+      {
+        "id": "calc-story-09-4",
+        "text": "84"
+      }
+    ],
+    "correctOptionId": "calc-story-09-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 156. Сумма выпуска и новых часов дает 103. Остановка на скорости за час дает 13. Произведение часов без выпуска дает 84."
+  },
+  {
+    "id": "calc-story-10",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "За 9 часов цех делает 108 деталей. Сколько деталей он сделает за 14 часов при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-10-1",
+        "text": "168"
+      },
+      {
+        "id": "calc-story-10-2",
+        "text": "122"
+      },
+      {
+        "id": "calc-story-10-3",
+        "text": "12"
+      },
+      {
+        "id": "calc-story-10-4",
+        "text": "126"
+      }
+    ],
+    "correctOptionId": "calc-story-10-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 168. Сумма выпуска и новых часов дает 122. Остановка на скорости за час дает 12. Произведение часов без выпуска дает 126."
+  },
+  {
+    "id": "calc-story-11",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "За 5 часов цех делает 85 деталей. Сколько деталей он сделает за 12 часов при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-11-1",
+        "text": "204"
+      },
+      {
+        "id": "calc-story-11-2",
+        "text": "97"
+      },
+      {
+        "id": "calc-story-11-3",
+        "text": "17"
+      },
+      {
+        "id": "calc-story-11-4",
+        "text": "60"
+      }
+    ],
+    "correctOptionId": "calc-story-11-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 204. Сумма выпуска и новых часов дает 97. Остановка на скорости за час дает 17. Произведение часов без выпуска дает 60."
+  },
+  {
+    "id": "calc-story-12",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Поезд шел 4 ч со скоростью 65 км/ч и еще 3 ч со скоростью 48 км/ч. Какой путь он прошел?"
+    },
+    "options": [
+      {
+        "id": "calc-story-12-1",
+        "text": "404"
+      },
+      {
+        "id": "calc-story-12-2",
+        "text": "260"
+      },
+      {
+        "id": "calc-story-12-3",
+        "text": "455"
+      },
+      {
+        "id": "calc-story-12-4",
+        "text": "308"
+      }
+    ],
+    "correctOptionId": "calc-story-12-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 404. Учтен только первый участок дает 260. Оба участка посчитаны с первой скоростью дает 455. Вторая скорость прибавлена к первому участку дает 308."
+  },
+  {
+    "id": "calc-story-13",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Поезд шел 5 ч со скоростью 36 км/ч и еще 4 ч со скоростью 27 км/ч. Какой путь он прошел?"
+    },
+    "options": [
+      {
+        "id": "calc-story-13-1",
+        "text": "288"
+      },
+      {
+        "id": "calc-story-13-2",
+        "text": "180"
+      },
+      {
+        "id": "calc-story-13-3",
+        "text": "324"
+      },
+      {
+        "id": "calc-story-13-4",
+        "text": "207"
+      }
+    ],
+    "correctOptionId": "calc-story-13-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 288. Учтен только первый участок дает 180. Оба участка посчитаны с первой скоростью дает 324. Вторая скорость прибавлена к первому участку дает 207."
+  },
+  {
+    "id": "calc-story-14",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Поезд шел 3 ч со скоростью 48 км/ч и еще 6 ч со скоростью 25 км/ч. Какой путь он прошел?"
+    },
+    "options": [
+      {
+        "id": "calc-story-14-1",
+        "text": "294"
+      },
+      {
+        "id": "calc-story-14-2",
+        "text": "144"
+      },
+      {
+        "id": "calc-story-14-3",
+        "text": "432"
+      },
+      {
+        "id": "calc-story-14-4",
+        "text": "169"
+      }
+    ],
+    "correctOptionId": "calc-story-14-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 294. Учтен только первый участок дает 144. Оба участка посчитаны с первой скоростью дает 432. Вторая скорость прибавлена к первому участку дает 169."
+  },
+  {
+    "id": "calc-story-15",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Поезд шел 2 ч со скоростью 85 км/ч и еще 5 ч со скоростью 32 км/ч. Какой путь он прошел?"
+    },
+    "options": [
+      {
+        "id": "calc-story-15-1",
+        "text": "330"
+      },
+      {
+        "id": "calc-story-15-2",
+        "text": "170"
+      },
+      {
+        "id": "calc-story-15-3",
+        "text": "595"
+      },
+      {
+        "id": "calc-story-15-4",
+        "text": "202"
+      }
+    ],
+    "correctOptionId": "calc-story-15-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 330. Учтен только первый участок дает 170. Оба участка посчитаны с первой скоростью дает 595. Вторая скорость прибавлена к первому участку дает 202."
+  },
+  {
+    "id": "calc-story-16",
+    "scale": "calculation",
+    "type": "calc-story",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Пальто стоило 640 рублей. Скидка 15 процентов. Доставка 28 рублей в цену пальто не входит. Сколько стоит пальто?"
+    },
+    "options": [
+      {
+        "id": "calc-story-16-1",
+        "text": "544"
+      },
+      {
+        "id": "calc-story-16-2",
+        "text": "612"
+      },
+      {
+        "id": "calc-story-16-3",
+        "text": "625"
+      },
+      {
+        "id": "calc-story-16-4",
+        "text": "516"
+      }
+    ],
+    "correctOptionId": "calc-story-16-1",
+    "shuffle": true,
+    "hint": "Доведите названные действия до конца и не включайте данное, которого нет в вопросе.",
+    "explanation": "Счет доведен до вопроса. Верный результат: 544. Вычли доставку вместо скидки дает 612. Вычли проценты как рубли дает 625. Вычли и скидку, и лишнюю доставку дает 516."
   },
   {
     "id": "calc-series-01",
     "scale": "calculation",
     "type": "calc-series",
-    "source": "analog",
     "difficulty": "easy",
     "stimulus": {
-      "text": "5, 10, 20, 40, ?"
+      "text": "28, 41, 54, 67, ?"
     },
     "options": [
       {
@@ -501,430 +510,794 @@
       },
       {
         "id": "calc-series-01-2",
-        "text": "90"
+        "text": "79"
       },
       {
         "id": "calc-series-01-3",
-        "text": "70"
+        "text": "93"
       },
       {
         "id": "calc-series-01-4",
-        "text": "85"
+        "text": "54"
       }
     ],
     "correctOptionId": "calc-series-01-1",
     "shuffle": true,
-    "hint": "Посмотрите, как каждое число получается из предыдущего.",
-    "explanation": "Каждое число вдвое больше предыдущего, поэтому дальше 80."
+    "hint": "Найдите постоянную разность и примените ее к последнему числу.",
+    "explanation": "Шаг ряда постоянен. Верный результат: 80. Шаг на единицу меньше дает 79. Удвоенный последний шаг дает 93. Возврат на один шаг дает 54."
   },
   {
     "id": "calc-series-02",
     "scale": "calculation",
     "type": "calc-series",
-    "source": "analog",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "2, 5, 11, 23, ?"
+      "text": "47, 64, 81, 98, ?"
     },
     "options": [
       {
         "id": "calc-series-02-1",
-        "text": "47"
+        "text": "115"
       },
       {
         "id": "calc-series-02-2",
-        "text": "57"
+        "text": "114"
       },
       {
         "id": "calc-series-02-3",
-        "text": "37"
+        "text": "132"
       },
       {
         "id": "calc-series-02-4",
-        "text": "50"
+        "text": "81"
       }
     ],
     "correctOptionId": "calc-series-02-1",
     "shuffle": true,
-    "hint": "Посмотрите, как каждое число получается из предыдущего.",
-    "explanation": "Каждый шаг удваивает предыдущее число и прибавляет единицу: дальше 47."
+    "hint": "Найдите постоянную разность и примените ее к последнему числу.",
+    "explanation": "Шаг ряда постоянен. Верный результат: 115. Шаг на единицу меньше дает 114. Удвоенный последний шаг дает 132. Возврат на один шаг дает 81."
   },
   {
     "id": "calc-series-03",
     "scale": "calculation",
     "type": "calc-series",
-    "source": "analog",
-    "difficulty": "hard",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "4, 5, 7, 11, 19, ?"
+      "text": "36, 55, 74, 93, ?"
     },
     "options": [
       {
         "id": "calc-series-03-1",
-        "text": "35"
+        "text": "112"
       },
       {
         "id": "calc-series-03-2",
-        "text": "45"
+        "text": "111"
       },
       {
         "id": "calc-series-03-3",
-        "text": "25"
+        "text": "131"
       },
       {
         "id": "calc-series-03-4",
-        "text": "36"
+        "text": "74"
       }
     ],
     "correctOptionId": "calc-series-03-1",
     "shuffle": true,
-    "hint": "Посмотрите, как каждое число получается из предыдущего.",
-    "explanation": "Прибавки удваиваются: 1, 2, 4, 8, 16. Дальше 35."
+    "hint": "Найдите постоянную разность и примените ее к последнему числу.",
+    "explanation": "Шаг ряда постоянен. Верный результат: 112. Шаг на единицу меньше дает 111. Удвоенный последний шаг дает 131. Возврат на один шаг дает 74."
   },
   {
-    "id": "calc-share-01",
+    "id": "calc-series-04",
     "scale": "calculation",
-    "type": "calc-share",
-    "source": "analog",
+    "type": "calc-series",
     "difficulty": "easy",
     "stimulus": {
-      "text": "В ящике 40 деталей, 8 из них бракованные. Какая это доля?"
+      "text": "52, 63, 74, 85, ?"
     },
     "options": [
       {
-        "id": "calc-share-01-1",
-        "text": "1/5"
+        "id": "calc-series-04-1",
+        "text": "96"
       },
       {
-        "id": "calc-share-01-2",
-        "text": "1/4"
+        "id": "calc-series-04-2",
+        "text": "95"
       },
       {
-        "id": "calc-share-01-3",
-        "text": "1/8"
+        "id": "calc-series-04-3",
+        "text": "107"
       },
       {
-        "id": "calc-share-01-4",
-        "text": "1/2"
+        "id": "calc-series-04-4",
+        "text": "74"
       }
     ],
-    "correctOptionId": "calc-share-01-1",
+    "correctOptionId": "calc-series-04-1",
     "shuffle": true,
-    "hint": "Разделите часть на целое и сократите дробь.",
-    "explanation": "8 / 40 = 1/5."
+    "hint": "Найдите постоянную разность и примените ее к последнему числу.",
+    "explanation": "Шаг ряда постоянен. Верный результат: 96. Шаг на единицу меньше дает 95. Удвоенный последний шаг дает 107. Возврат на один шаг дает 74."
   },
   {
-    "id": "calc-share-02",
+    "id": "calc-series-05",
     "scale": "calculation",
-    "type": "calc-share",
-    "source": "analog",
+    "type": "calc-series",
     "difficulty": "easy",
     "stimulus": {
-      "text": "Из 20 учеников 5 опоздали. Какая это доля?"
+      "text": "41, 64, 87, 110, ?"
     },
     "options": [
       {
-        "id": "calc-share-02-1",
-        "text": "1/4"
+        "id": "calc-series-05-1",
+        "text": "133"
       },
       {
-        "id": "calc-share-02-2",
-        "text": "1/5"
+        "id": "calc-series-05-2",
+        "text": "132"
       },
       {
-        "id": "calc-share-02-3",
-        "text": "1/2"
+        "id": "calc-series-05-3",
+        "text": "156"
       },
       {
-        "id": "calc-share-02-4",
-        "text": "1/10"
+        "id": "calc-series-05-4",
+        "text": "87"
       }
     ],
-    "correctOptionId": "calc-share-02-1",
+    "correctOptionId": "calc-series-05-1",
     "shuffle": true,
-    "hint": "Разделите число опоздавших на число всех учеников и сократите.",
-    "explanation": "5 / 20 = 1/4."
+    "hint": "Найдите постоянную разность и примените ее к последнему числу.",
+    "explanation": "Шаг ряда постоянен. Верный результат: 133. Шаг на единицу меньше дает 132. Удвоенный последний шаг дает 156. Возврат на один шаг дает 87."
   },
   {
-    "id": "calc-share-03",
+    "id": "calc-series-06",
     "scale": "calculation",
-    "type": "calc-share",
-    "source": "analog",
+    "type": "calc-series",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "63, 79, 95, 111, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-06-1",
+        "text": "127"
+      },
+      {
+        "id": "calc-series-06-2",
+        "text": "126"
+      },
+      {
+        "id": "calc-series-06-3",
+        "text": "143"
+      },
+      {
+        "id": "calc-series-06-4",
+        "text": "95"
+      }
+    ],
+    "correctOptionId": "calc-series-06-1",
+    "shuffle": true,
+    "hint": "Найдите постоянную разность и примените ее к последнему числу.",
+    "explanation": "Шаг ряда постоянен. Верный результат: 127. Шаг на единицу меньше дает 126. Удвоенный последний шаг дает 143. Возврат на один шаг дает 95."
+  },
+  {
+    "id": "calc-series-07",
+    "scale": "calculation",
+    "type": "calc-series",
     "difficulty": "medium",
     "stimulus": {
-      "text": "Сколько процентов составляют 12 от 48?"
+      "text": "20, 24, 35, 39, ?"
     },
     "options": [
       {
-        "id": "calc-share-03-1",
-        "text": "25"
+        "id": "calc-series-07-1",
+        "text": "50"
       },
       {
-        "id": "calc-share-03-2",
-        "text": "20"
+        "id": "calc-series-07-2",
+        "text": "43"
       },
       {
-        "id": "calc-share-03-3",
-        "text": "30"
+        "id": "calc-series-07-3",
+        "text": "54"
       },
       {
-        "id": "calc-share-03-4",
-        "text": "12"
-      }
-    ],
-    "correctOptionId": "calc-share-03-1",
-    "shuffle": true,
-    "hint": "Разделите часть на целое и переведите дробь в проценты.",
-    "explanation": "12 / 48 = 1/4, это 25%."
-  },
-  {
-    "id": "calc-motion-01",
-    "scale": "calculation",
-    "type": "calc-motion",
-    "source": "analog",
-    "difficulty": "medium",
-    "stimulus": {
-      "text": "Автомобиль ехал 2 часа со скоростью 50 км/ч и еще 1 час со скоростью 80 км/ч. Сколько километров он проехал?"
-    },
-    "options": [
-      {
-        "id": "calc-motion-01-1",
-        "text": "180"
-      },
-      {
-        "id": "calc-motion-01-2",
-        "text": "130"
-      },
-      {
-        "id": "calc-motion-01-3",
-        "text": "150"
-      },
-      {
-        "id": "calc-motion-01-4",
-        "text": "210"
-      }
-    ],
-    "correctOptionId": "calc-motion-01-1",
-    "shuffle": true,
-    "hint": "Посчитайте путь на каждом участке отдельно и сложите.",
-    "explanation": "2 * 50 = 100, плюс 80, всего 180."
-  },
-  {
-    "id": "calc-motion-02",
-    "scale": "calculation",
-    "type": "calc-motion",
-    "source": "analog",
-    "difficulty": "easy",
-    "stimulus": {
-      "text": "Пешеход шел 3 часа со скоростью 4 км/ч. Какой путь он прошел?"
-    },
-    "options": [
-      {
-        "id": "calc-motion-02-1",
-        "text": "12"
-      },
-      {
-        "id": "calc-motion-02-2",
-        "text": "7"
-      },
-      {
-        "id": "calc-motion-02-3",
-        "text": "16"
-      },
-      {
-        "id": "calc-motion-02-4",
-        "text": "9"
-      }
-    ],
-    "correctOptionId": "calc-motion-02-1",
-    "shuffle": true,
-    "hint": "Умножьте скорость на время.",
-    "explanation": "3 * 4 = 12."
-  },
-  {
-    "id": "calc-motion-03",
-    "scale": "calculation",
-    "type": "calc-motion",
-    "source": "analog",
-    "difficulty": "hard",
-    "stimulus": {
-      "text": "Лодка плыла 2 часа со скоростью 11 км/ч и еще 3 часа со скоростью 9 км/ч. Какой путь она прошла?"
-    },
-    "options": [
-      {
-        "id": "calc-motion-03-1",
+        "id": "calc-series-07-4",
         "text": "49"
+      }
+    ],
+    "correctOptionId": "calc-series-07-1",
+    "shuffle": true,
+    "hint": "Шаги чередуются. Следующий не равен предыдущему.",
+    "explanation": "Короткий и длинный шаги чередуются. Верный результат: 50. Повтор предыдущего шага дает 43. Сумма обоих шагов дает 54. Нужный шаг на единицу меньше дает 49."
+  },
+  {
+    "id": "calc-series-08",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "35, 41, 56, 62, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-08-1",
+        "text": "77"
       },
       {
-        "id": "calc-motion-03-2",
-        "text": "40"
+        "id": "calc-series-08-2",
+        "text": "68"
       },
       {
-        "id": "calc-motion-03-3",
+        "id": "calc-series-08-3",
+        "text": "83"
+      },
+      {
+        "id": "calc-series-08-4",
+        "text": "76"
+      }
+    ],
+    "correctOptionId": "calc-series-08-1",
+    "shuffle": true,
+    "hint": "Шаги чередуются. Следующий не равен предыдущему.",
+    "explanation": "Короткий и длинный шаги чередуются. Верный результат: 77. Повтор предыдущего шага дает 68. Сумма обоих шагов дает 83. Нужный шаг на единицу меньше дает 76."
+  },
+  {
+    "id": "calc-series-09",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "18, 23, 35, 40, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-09-1",
+        "text": "52"
+      },
+      {
+        "id": "calc-series-09-2",
         "text": "45"
       },
       {
-        "id": "calc-motion-03-4",
-        "text": "52"
+        "id": "calc-series-09-3",
+        "text": "57"
+      },
+      {
+        "id": "calc-series-09-4",
+        "text": "51"
       }
     ],
-    "correctOptionId": "calc-motion-03-1",
+    "correctOptionId": "calc-series-09-1",
     "shuffle": true,
-    "hint": "Найдите путь каждого участка и сложите пути.",
-    "explanation": "2 * 11 = 22, 3 * 9 = 27, вместе 49."
+    "hint": "Шаги чередуются. Следующий не равен предыдущему.",
+    "explanation": "Короткий и длинный шаги чередуются. Верный результат: 52. Повтор предыдущего шага дает 45. Сумма обоих шагов дает 57. Нужный шаг на единицу меньше дает 51."
   },
   {
-    "id": "calc-estimate-01",
+    "id": "calc-series-10",
     "scale": "calculation",
-    "type": "calc-estimate",
-    "source": "analog",
-    "difficulty": "easy",
-    "stimulus": {
-      "text": "Чему примерно равно 198 * 5?"
-    },
-    "options": [
-      {
-        "id": "calc-estimate-01-1",
-        "text": "около 1000"
-      },
-      {
-        "id": "calc-estimate-01-2",
-        "text": "около 500"
-      },
-      {
-        "id": "calc-estimate-01-3",
-        "text": "около 2000"
-      },
-      {
-        "id": "calc-estimate-01-4",
-        "text": "около 100"
-      }
-    ],
-    "correctOptionId": "calc-estimate-01-1",
-    "shuffle": true,
-    "hint": "Замените множитель на близкое круглое число и оцените порядок, не считая в столбик.",
-    "explanation": "200 * 5 = 1000, 198 чуть меньше 200, результат около 1000."
-  },
-  {
-    "id": "calc-estimate-02",
-    "scale": "calculation",
-    "type": "calc-estimate",
-    "source": "analog",
-    "difficulty": "easy",
-    "stimulus": {
-      "text": "Чему примерно равно 51 * 19?"
-    },
-    "options": [
-      {
-        "id": "calc-estimate-02-1",
-        "text": "около 1000"
-      },
-      {
-        "id": "calc-estimate-02-2",
-        "text": "около 100"
-      },
-      {
-        "id": "calc-estimate-02-3",
-        "text": "около 500"
-      },
-      {
-        "id": "calc-estimate-02-4",
-        "text": "около 5000"
-      }
-    ],
-    "correctOptionId": "calc-estimate-02-1",
-    "shuffle": true,
-    "hint": "Замените оба множителя близкими круглыми числами.",
-    "explanation": "50 * 20 = 1000, исходные числа близки к ним."
-  },
-  {
-    "id": "calc-estimate-03",
-    "scale": "calculation",
-    "type": "calc-estimate",
-    "source": "analog",
+    "type": "calc-series",
     "difficulty": "medium",
     "stimulus": {
-      "text": "Чему примерно равно 310 * 21?"
+      "text": "44, 51, 67, 74, ?"
     },
     "options": [
       {
-        "id": "calc-estimate-03-1",
-        "text": "около 6000"
+        "id": "calc-series-10-1",
+        "text": "90"
       },
       {
-        "id": "calc-estimate-03-2",
-        "text": "около 3000"
+        "id": "calc-series-10-2",
+        "text": "81"
       },
       {
-        "id": "calc-estimate-03-3",
-        "text": "около 9000"
+        "id": "calc-series-10-3",
+        "text": "97"
       },
       {
-        "id": "calc-estimate-03-4",
-        "text": "около 600"
+        "id": "calc-series-10-4",
+        "text": "89"
       }
     ],
-    "correctOptionId": "calc-estimate-03-1",
+    "correctOptionId": "calc-series-10-1",
     "shuffle": true,
-    "hint": "Округлите числа так, чтобы произведение читалось без столбика.",
-    "explanation": "300 * 20 = 6000, оба множителя чуть больше этих круглых значений, порядок тот же."
+    "hint": "Шаги чередуются. Следующий не равен предыдущему.",
+    "explanation": "Короткий и длинный шаги чередуются. Верный результат: 90. Повтор предыдущего шага дает 81. Сумма обоих шагов дает 97. Нужный шаг на единицу меньше дает 89."
+  },
+  {
+    "id": "calc-series-11",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "27, 35, 54, 62, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-11-1",
+        "text": "81"
+      },
+      {
+        "id": "calc-series-11-2",
+        "text": "70"
+      },
+      {
+        "id": "calc-series-11-3",
+        "text": "89"
+      },
+      {
+        "id": "calc-series-11-4",
+        "text": "80"
+      }
+    ],
+    "correctOptionId": "calc-series-11-1",
+    "shuffle": true,
+    "hint": "Шаги чередуются. Следующий не равен предыдущему.",
+    "explanation": "Короткий и длинный шаги чередуются. Верный результат: 81. Повтор предыдущего шага дает 70. Сумма обоих шагов дает 89. Нужный шаг на единицу меньше дает 80."
+  },
+  {
+    "id": "calc-series-12",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "8, 11, 17, 26, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-12-1",
+        "text": "38"
+      },
+      {
+        "id": "calc-series-12-2",
+        "text": "35"
+      },
+      {
+        "id": "calc-series-12-3",
+        "text": "29"
+      },
+      {
+        "id": "calc-series-12-4",
+        "text": "41"
+      }
+    ],
+    "correctOptionId": "calc-series-12-1",
+    "shuffle": true,
+    "hint": "Разность сама растет на одно и то же число.",
+    "explanation": "Каждая следующая разность больше предыдущей. Верный результат: 38. Повтор последнего шага дает 35. Постоянный первый шаг дает 29. Шаг вырос на два лишних приращения дает 41."
+  },
+  {
+    "id": "calc-series-13",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "15, 19, 25, 33, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-13-1",
+        "text": "43"
+      },
+      {
+        "id": "calc-series-13-2",
+        "text": "41"
+      },
+      {
+        "id": "calc-series-13-3",
+        "text": "37"
+      },
+      {
+        "id": "calc-series-13-4",
+        "text": "45"
+      }
+    ],
+    "correctOptionId": "calc-series-13-1",
+    "shuffle": true,
+    "hint": "Разность сама растет на одно и то же число.",
+    "explanation": "Каждая следующая разность больше предыдущей. Верный результат: 43. Повтор последнего шага дает 41. Постоянный первый шаг дает 37. Шаг вырос на два лишних приращения дает 45."
+  },
+  {
+    "id": "calc-series-14",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "12, 17, 25, 36, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-14-1",
+        "text": "50"
+      },
+      {
+        "id": "calc-series-14-2",
+        "text": "47"
+      },
+      {
+        "id": "calc-series-14-3",
+        "text": "41"
+      },
+      {
+        "id": "calc-series-14-4",
+        "text": "53"
+      }
+    ],
+    "correctOptionId": "calc-series-14-1",
+    "shuffle": true,
+    "hint": "Разность сама растет на одно и то же число.",
+    "explanation": "Каждая следующая разность больше предыдущей. Верный результат: 50. Повтор последнего шага дает 47. Постоянный первый шаг дает 41. Шаг вырос на два лишних приращения дает 53."
+  },
+  {
+    "id": "calc-series-15",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "21, 23, 29, 39, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-15-1",
+        "text": "53"
+      },
+      {
+        "id": "calc-series-15-2",
+        "text": "49"
+      },
+      {
+        "id": "calc-series-15-3",
+        "text": "41"
+      },
+      {
+        "id": "calc-series-15-4",
+        "text": "57"
+      }
+    ],
+    "correctOptionId": "calc-series-15-1",
+    "shuffle": true,
+    "hint": "Разность сама растет на одно и то же число.",
+    "explanation": "Каждая следующая разность больше предыдущей. Верный результат: 53. Повтор последнего шага дает 49. Постоянный первый шаг дает 41. Шаг вырос на два лишних приращения дает 57."
+  },
+  {
+    "id": "calc-series-16",
+    "scale": "calculation",
+    "type": "calc-series",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "9, 15, 23, 33, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-16-1",
+        "text": "45"
+      },
+      {
+        "id": "calc-series-16-2",
+        "text": "43"
+      },
+      {
+        "id": "calc-series-16-3",
+        "text": "39"
+      },
+      {
+        "id": "calc-series-16-4",
+        "text": "47"
+      }
+    ],
+    "correctOptionId": "calc-series-16-1",
+    "shuffle": true,
+    "hint": "Разность сама растет на одно и то же число.",
+    "explanation": "Каждая следующая разность больше предыдущей. Верный результат: 45. Повтор последнего шага дает 43. Постоянный первый шаг дает 39. Шаг вырос на два лишних приращения дает 47."
   },
   {
     "id": "calc-chart-01",
     "scale": "calculation",
     "type": "calc-chart",
-    "source": "analog",
-    "difficulty": "medium",
+    "difficulty": "easy",
     "stimulus": {
-      "text": "На сколько февраль больше марта?",
+      "text": "Столбики: март 28, апрель 46, май 19, июнь 33. На сколько апрель больше, чем май?",
       "scene": {
         "kind": "chart",
         "variant": "bar",
         "labels": [
-          "янв",
-          "фев",
-          "мар",
-          "апр"
+          "март",
+          "апрель",
+          "май",
+          "июнь"
         ],
         "values": [
-          12,
-          30,
-          18,
-          24
+          28,
+          46,
+          19,
+          33
         ]
       }
     },
     "options": [
       {
         "id": "calc-chart-01-1",
-        "text": "12"
+        "text": "27"
       },
       {
         "id": "calc-chart-01-2",
-        "text": "18"
+        "text": "46"
       },
       {
         "id": "calc-chart-01-3",
-        "text": "6"
+        "text": "19"
       },
       {
         "id": "calc-chart-01-4",
-        "text": "24"
+        "text": "65"
       }
     ],
     "correctOptionId": "calc-chart-01-1",
     "shuffle": true,
-    "hint": "Вычтите высоту одного названного столбца из высоты другого.",
-    "explanation": "30 - 18 = 12."
+    "hint": "Вычтите один названный столбец из другого.",
+    "explanation": "Взята разность двух названных значений. Верный результат: 27. Взят столбец без вычитания дает 46. Взят второй столбец дает 19. Сумма вместо разности дает 65."
   },
   {
     "id": "calc-chart-02",
     "scale": "calculation",
     "type": "calc-chart",
-    "source": "analog",
     "difficulty": "easy",
     "stimulus": {
-      "text": "Чему равна высота столбца понедельника?",
+      "text": "Столбики: I 22, II 51, III 17, IV 39. На сколько II больше, чем I?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "I",
+          "II",
+          "III",
+          "IV"
+        ],
+        "values": [
+          22,
+          51,
+          17,
+          39
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-02-1",
+        "text": "29"
+      },
+      {
+        "id": "calc-chart-02-2",
+        "text": "51"
+      },
+      {
+        "id": "calc-chart-02-3",
+        "text": "22"
+      },
+      {
+        "id": "calc-chart-02-4",
+        "text": "73"
+      }
+    ],
+    "correctOptionId": "calc-chart-02-1",
+    "shuffle": true,
+    "hint": "Вычтите один названный столбец из другого.",
+    "explanation": "Взята разность двух названных значений. Верный результат: 29. Взят столбец без вычитания дает 51. Взят второй столбец дает 22. Сумма вместо разности дает 73."
+  },
+  {
+    "id": "calc-chart-03",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "На сколько юг больше, чем восток?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "период",
+          "значение"
+        ],
+        "rows": [
+          [
+            "север",
+            "34"
+          ],
+          [
+            "юг",
+            "58"
+          ],
+          [
+            "запад",
+            "21"
+          ],
+          [
+            "восток",
+            "40"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-03-1",
+        "text": "18"
+      },
+      {
+        "id": "calc-chart-03-2",
+        "text": "58"
+      },
+      {
+        "id": "calc-chart-03-3",
+        "text": "40"
+      },
+      {
+        "id": "calc-chart-03-4",
+        "text": "98"
+      }
+    ],
+    "correctOptionId": "calc-chart-03-1",
+    "shuffle": true,
+    "hint": "Вычтите один названный столбец из другого.",
+    "explanation": "Взята разность двух названных значений. Верный результат: 18. Взят столбец без вычитания дает 58. Взят второй столбец дает 40. Сумма вместо разности дает 98."
+  },
+  {
+    "id": "calc-chart-04",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Столбики: цех А 27, цех Б 63, цех В 18, цех Г 44. На сколько цех Б больше, чем цех В?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "цех А",
+          "цех Б",
+          "цех В",
+          "цех Г"
+        ],
+        "values": [
+          27,
+          63,
+          18,
+          44
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-04-1",
+        "text": "45"
+      },
+      {
+        "id": "calc-chart-04-2",
+        "text": "63"
+      },
+      {
+        "id": "calc-chart-04-3",
+        "text": "18"
+      },
+      {
+        "id": "calc-chart-04-4",
+        "text": "81"
+      }
+    ],
+    "correctOptionId": "calc-chart-04-1",
+    "shuffle": true,
+    "hint": "Вычтите один названный столбец из другого.",
+    "explanation": "Взята разность двух названных значений. Верный результат: 45. Взят столбец без вычитания дает 63. Взят второй столбец дает 18. Сумма вместо разности дает 81."
+  },
+  {
+    "id": "calc-chart-05",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "На сколько днем больше, чем вечером?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "период",
+          "значение"
+        ],
+        "rows": [
+          [
+            "утром",
+            "16"
+          ],
+          [
+            "днем",
+            "49"
+          ],
+          [
+            "вечером",
+            "31"
+          ],
+          [
+            "ночью",
+            "12"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-05-1",
+        "text": "18"
+      },
+      {
+        "id": "calc-chart-05-2",
+        "text": "49"
+      },
+      {
+        "id": "calc-chart-05-3",
+        "text": "31"
+      },
+      {
+        "id": "calc-chart-05-4",
+        "text": "80"
+      }
+    ],
+    "correctOptionId": "calc-chart-05-1",
+    "shuffle": true,
+    "hint": "Вычтите один названный столбец из другого.",
+    "explanation": "Взята разность двух названных значений. Верный результат: 18. Взят столбец без вычитания дает 49. Взят второй столбец дает 31. Сумма вместо разности дает 80."
+  },
+  {
+    "id": "calc-chart-06",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Столбики: смена 1 25, смена 2 54, смена 3 37, смена 4 14. На сколько смена 2 больше, чем смена 4?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "смена 1",
+          "смена 2",
+          "смена 3",
+          "смена 4"
+        ],
+        "values": [
+          25,
+          54,
+          37,
+          14
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-06-1",
+        "text": "40"
+      },
+      {
+        "id": "calc-chart-06-2",
+        "text": "54"
+      },
+      {
+        "id": "calc-chart-06-3",
+        "text": "14"
+      },
+      {
+        "id": "calc-chart-06-4",
+        "text": "68"
+      }
+    ],
+    "correctOptionId": "calc-chart-06-1",
+    "shuffle": true,
+    "hint": "Вычтите один названный столбец из другого.",
+    "explanation": "Взята разность двух названных значений. Верный результат: 40. Взят столбец без вычитания дает 54. Взят второй столбец дает 14. Сумма вместо разности дает 68."
+  },
+  {
+    "id": "calc-chart-07",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Столбики: пн 48, вт 13, ср 15, чт 9. На сколько пн больше суммы вт и ср?",
       "scene": {
         "kind": "chart",
         "variant": "bar",
@@ -935,44 +1308,90 @@
           "чт"
         ],
         "values": [
-          5,
-          9,
-          8,
-          4
+          48,
+          13,
+          15,
+          9
         ]
       }
     },
     "options": [
       {
-        "id": "calc-chart-02-1",
-        "text": "5"
+        "id": "calc-chart-07-1",
+        "text": "20"
       },
       {
-        "id": "calc-chart-02-2",
-        "text": "11"
+        "id": "calc-chart-07-2",
+        "text": "48"
       },
       {
-        "id": "calc-chart-02-3",
-        "text": "10"
+        "id": "calc-chart-07-3",
+        "text": "28"
       },
       {
-        "id": "calc-chart-02-4",
-        "text": "6"
+        "id": "calc-chart-07-4",
+        "text": "76"
       }
     ],
-    "correctOptionId": "calc-chart-02-1",
+    "correctOptionId": "calc-chart-07-1",
     "shuffle": true,
-    "hint": "Вычтите высоту одного названного столбца из высоты другого.",
-    "explanation": "Столбец понедельника имеет высоту 5."
+    "hint": "Сначала сложите два меньших столбца, затем сравните с названным.",
+    "explanation": "Из большого столбца вычтена сумма двух других. Верный результат: 20. Взят столбец без вычитания дает 48. Остановка на сумме двух столбцов дает 28. Сумма трех столбцов дает 76."
   },
   {
-    "id": "calc-chart-03",
+    "id": "calc-chart-08",
     "scale": "calculation",
     "type": "calc-chart",
-    "source": "analog",
-    "difficulty": "hard",
+    "difficulty": "medium",
     "stimulus": {
-      "text": "На сколько Г больше В?",
+      "text": "Столбики: янв 70, фев 18, мар 22, апр 11. На сколько янв больше суммы фев и мар?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "янв",
+          "фев",
+          "мар",
+          "апр"
+        ],
+        "values": [
+          70,
+          18,
+          22,
+          11
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-08-1",
+        "text": "30"
+      },
+      {
+        "id": "calc-chart-08-2",
+        "text": "70"
+      },
+      {
+        "id": "calc-chart-08-3",
+        "text": "40"
+      },
+      {
+        "id": "calc-chart-08-4",
+        "text": "110"
+      }
+    ],
+    "correctOptionId": "calc-chart-08-1",
+    "shuffle": true,
+    "hint": "Сначала сложите два меньших столбца, затем сравните с названным.",
+    "explanation": "Из большого столбца вычтена сумма двух других. Верный результат: 30. Взят столбец без вычитания дает 70. Остановка на сумме двух столбцов дает 40. Сумма трех столбцов дает 110."
+  },
+  {
+    "id": "calc-chart-09",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Столбики: А 55, Б 12, В 16, Г 8. На сколько А больше суммы Б и В?",
       "scene": {
         "kind": "chart",
         "variant": "bar",
@@ -983,34 +1402,408 @@
           "Г"
         ],
         "values": [
+          55,
+          12,
           16,
-          27,
-          21,
-          40
+          8
         ]
       }
     },
     "options": [
       {
-        "id": "calc-chart-03-1",
-        "text": "19"
+        "id": "calc-chart-09-1",
+        "text": "27"
       },
       {
-        "id": "calc-chart-03-2",
-        "text": "25"
+        "id": "calc-chart-09-2",
+        "text": "55"
       },
       {
-        "id": "calc-chart-03-3",
-        "text": "13"
+        "id": "calc-chart-09-3",
+        "text": "28"
       },
       {
-        "id": "calc-chart-03-4",
-        "text": "35"
+        "id": "calc-chart-09-4",
+        "text": "83"
       }
     ],
-    "correctOptionId": "calc-chart-03-1",
+    "correctOptionId": "calc-chart-09-1",
     "shuffle": true,
-    "hint": "Вычтите высоту одного названного столбца из высоты другого.",
-    "explanation": "40 - 21 = 19."
+    "hint": "Сначала сложите два меньших столбца, затем сравните с названным.",
+    "explanation": "Из большого столбца вычтена сумма двух других. Верный результат: 27. Взят столбец без вычитания дает 55. Остановка на сумме двух столбцов дает 28. Сумма трех столбцов дает 83."
+  },
+  {
+    "id": "calc-chart-10",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Столбики: север 64, юг 17, запад 19, восток 10. На сколько север больше суммы юг и восток?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "север",
+          "юг",
+          "запад",
+          "восток"
+        ],
+        "values": [
+          64,
+          17,
+          19,
+          10
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-10-1",
+        "text": "37"
+      },
+      {
+        "id": "calc-chart-10-2",
+        "text": "64"
+      },
+      {
+        "id": "calc-chart-10-3",
+        "text": "27"
+      },
+      {
+        "id": "calc-chart-10-4",
+        "text": "91"
+      }
+    ],
+    "correctOptionId": "calc-chart-10-1",
+    "shuffle": true,
+    "hint": "Сначала сложите два меньших столбца, затем сравните с названным.",
+    "explanation": "Из большого столбца вычтена сумма двух других. Верный результат: 37. Взят столбец без вычитания дает 64. Остановка на сумме двух столбцов дает 27. Сумма трех столбцов дает 91."
+  },
+  {
+    "id": "calc-chart-11",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Столбики: утро 59, день 14, вечер 21, ночь 7. На сколько утро больше суммы день и вечер?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "утро",
+          "день",
+          "вечер",
+          "ночь"
+        ],
+        "values": [
+          59,
+          14,
+          21,
+          7
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-11-1",
+        "text": "24"
+      },
+      {
+        "id": "calc-chart-11-2",
+        "text": "59"
+      },
+      {
+        "id": "calc-chart-11-3",
+        "text": "35"
+      },
+      {
+        "id": "calc-chart-11-4",
+        "text": "94"
+      }
+    ],
+    "correctOptionId": "calc-chart-11-1",
+    "shuffle": true,
+    "hint": "Сначала сложите два меньших столбца, затем сравните с названным.",
+    "explanation": "Из большого столбца вычтена сумма двух других. Верный результат: 24. Взят столбец без вычитания дает 59. Остановка на сумме двух столбцов дает 35. Сумма трех столбцов дает 94."
+  },
+  {
+    "id": "calc-chart-12",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Цена показывает цену. Скидка 15 процентов. Доставка в цену не входит. Какова цена после скидки?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "показатель",
+          "значение"
+        ],
+        "rows": [
+          [
+            "цена",
+            "480"
+          ],
+          [
+            "скидка-служебная",
+            "15"
+          ],
+          [
+            "доставка",
+            "36"
+          ],
+          [
+            "упаковка",
+            "12"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-12-1",
+        "text": "408"
+      },
+      {
+        "id": "calc-chart-12-2",
+        "text": "444"
+      },
+      {
+        "id": "calc-chart-12-3",
+        "text": "465"
+      },
+      {
+        "id": "calc-chart-12-4",
+        "text": "372"
+      }
+    ],
+    "correctOptionId": "calc-chart-12-1",
+    "shuffle": true,
+    "hint": "Возьмите цену, снимите названный процент и не трогайте лишний столбец.",
+    "explanation": "Скидка снята с цены, лишний столбец не вошел. Верный результат: 408. Вычли лишний столбец вместо скидки дает 444. Вычли проценты как рубли дает 465. Вычли и скидку, и лишний столбец дает 372."
+  },
+  {
+    "id": "calc-chart-13",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Товар показывает цену. Скидка 20 процентов. Страховка в цену не входит. Какова цена после скидки?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "показатель",
+          "значение"
+        ],
+        "rows": [
+          [
+            "товар",
+            "800"
+          ],
+          [
+            "процент",
+            "20"
+          ],
+          [
+            "страховка",
+            "45"
+          ],
+          [
+            "тара",
+            "18"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-13-1",
+        "text": "640"
+      },
+      {
+        "id": "calc-chart-13-2",
+        "text": "755"
+      },
+      {
+        "id": "calc-chart-13-3",
+        "text": "780"
+      },
+      {
+        "id": "calc-chart-13-4",
+        "text": "595"
+      }
+    ],
+    "correctOptionId": "calc-chart-13-1",
+    "shuffle": true,
+    "hint": "Возьмите цену, снимите названный процент и не трогайте лишний столбец.",
+    "explanation": "Скидка снята с цены, лишний столбец не вошел. Верный результат: 640. Вычли лишний столбец вместо скидки дает 755. Вычли проценты как рубли дает 780. Вычли и скидку, и лишний столбец дает 595."
+  },
+  {
+    "id": "calc-chart-14",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Партия показывает цену. Скидка 12 процентов. Брак в цену не входит. Какова цена после скидки?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "показатель",
+          "значение"
+        ],
+        "rows": [
+          [
+            "партия",
+            "250"
+          ],
+          [
+            "норма",
+            "12"
+          ],
+          [
+            "брак",
+            "18"
+          ],
+          [
+            "тара",
+            "8"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-14-1",
+        "text": "220"
+      },
+      {
+        "id": "calc-chart-14-2",
+        "text": "232"
+      },
+      {
+        "id": "calc-chart-14-3",
+        "text": "238"
+      },
+      {
+        "id": "calc-chart-14-4",
+        "text": "202"
+      }
+    ],
+    "correctOptionId": "calc-chart-14-1",
+    "shuffle": true,
+    "hint": "Возьмите цену, снимите названный процент и не трогайте лишний столбец.",
+    "explanation": "Скидка снята с цены, лишний столбец не вошел. Верный результат: 220. Вычли лишний столбец вместо скидки дает 232. Вычли проценты как рубли дает 238. Вычли и скидку, и лишний столбец дает 202."
+  },
+  {
+    "id": "calc-chart-15",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Заказ показывает цену. Скидка 10 процентов. Доставка в цену не входит. Какова цена после скидки?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "показатель",
+          "значение"
+        ],
+        "rows": [
+          [
+            "заказ",
+            "900"
+          ],
+          [
+            "ставка",
+            "10"
+          ],
+          [
+            "доставка",
+            "60"
+          ],
+          [
+            "скидка",
+            "40"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-15-1",
+        "text": "810"
+      },
+      {
+        "id": "calc-chart-15-2",
+        "text": "840"
+      },
+      {
+        "id": "calc-chart-15-3",
+        "text": "890"
+      },
+      {
+        "id": "calc-chart-15-4",
+        "text": "750"
+      }
+    ],
+    "correctOptionId": "calc-chart-15-1",
+    "shuffle": true,
+    "hint": "Возьмите цену, снимите названный процент и не трогайте лишний столбец.",
+    "explanation": "Скидка снята с цены, лишний столбец не вошел. Верный результат: 810. Вычли лишний столбец вместо скидки дает 840. Вычли проценты как рубли дает 890. Вычли и скидку, и лишний столбец дает 750."
+  },
+  {
+    "id": "calc-chart-16",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Счет показывает цену. Скидка 8 процентов. Пени в цену не входит. Какова цена после скидки?",
+      "scene": {
+        "kind": "table",
+        "headers": [
+          "показатель",
+          "значение"
+        ],
+        "rows": [
+          [
+            "счет",
+            "750"
+          ],
+          [
+            "доля",
+            "8"
+          ],
+          [
+            "пени",
+            "24"
+          ],
+          [
+            "залог",
+            "16"
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-16-1",
+        "text": "690"
+      },
+      {
+        "id": "calc-chart-16-2",
+        "text": "726"
+      },
+      {
+        "id": "calc-chart-16-3",
+        "text": "742"
+      },
+      {
+        "id": "calc-chart-16-4",
+        "text": "666"
+      }
+    ],
+    "correctOptionId": "calc-chart-16-1",
+    "shuffle": true,
+    "hint": "Возьмите цену, снимите названный процент и не трогайте лишний столбец.",
+    "explanation": "Скидка снята с цены, лишний столбец не вошел. Верный результат: 690. Вычли лишний столбец вместо скидки дает 726. Вычли проценты как рубли дает 742. Вычли и скидку, и лишний столбец дает 666."
   }
 ]

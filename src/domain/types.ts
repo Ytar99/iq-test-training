@@ -22,7 +22,6 @@ export const TOPICS = [
 
 export type EruditionTopic = (typeof TOPICS)[number]
 
-export type Source = 'demo' | 'analog'
 export type Difficulty = 'easy' | 'medium' | 'hard'
 
 export type CardShape = 'square' | 'circle' | 'triangle' | 'diamond' | 'line' | 'dot'
@@ -41,14 +40,7 @@ export type CardContent = {
 
 export type FaceMark = 'blank' | 'circle' | 'triangle' | 'square' | 'line'
 
-export type SchemePart =
-  | { type: 'circle' }
-  | { type: 'rect'; labels?: Partial<Record<'top' | 'right' | 'bottom' | 'left', string>> }
-  | { type: 'label'; text: string; place: 'top' | 'right' | 'bottom' | 'left' }
-  | { type: 'arrow'; dir: 'up' | 'down' | 'left' | 'right' }
-
 export type Scene =
-  | { kind: 'scheme'; parts: SchemePart[] }
   | {
       kind: 'cells'
       cols?: number
@@ -71,7 +63,6 @@ export type Scene =
 export type Stimulus = {
   text?: string
   scene?: Scene
-  rows?: (string | null)[][]
 }
 
 export type Option = {
@@ -84,7 +75,6 @@ export type Item = {
   id: string
   scale: ScaleId
   type: string
-  source: Source
   topic?: EruditionTopic
   difficulty: Difficulty
   stimulus: Stimulus

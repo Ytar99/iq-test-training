@@ -58,7 +58,7 @@ export function ResultScreen({ state, onPrint, onRestart }: { state: AttemptStat
   })
   const scaleNames =
     state.blocks.length === SCALE_ORDER.length ? 'Полный тест' : state.blocks.map((block) => SCALES[block.scaleId].name).join(', ')
-  const typeOrder = SCALE_ORDER.flatMap((scaleId) => [...SCALES[scaleId].demo, ...SCALES[scaleId].analog])
+  const typeOrder = SCALE_ORDER.flatMap((scaleId) => SCALES[scaleId].forms.map((form) => form.type))
   const typeRows = typeOrder
     .map((type) => {
       const slots = rows.filter((row) => row.slot.item.type === type).map((row) => row.slot)
