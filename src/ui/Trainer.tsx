@@ -57,7 +57,7 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
     </NavButton>
   ) : null
   const backDisabled = !onTask || phase.itemIndex === 0
-  const instructionDisabled = !onTask
+  // const instructionDisabled = !onTask
 
   const left = (
     <SideButtons place="left">
@@ -70,9 +70,9 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
         </NavButton>
       </Box>
       <Stack gap={6} align="center">
-        <NavButton icon="info" disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
+        {/* <NavButton icon="info" disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
           Инструкция
-        </NavButton>
+        </NavButton> */}
         {hintButton}
       </Stack>
     </SideButtons>
@@ -89,9 +89,9 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
       <Button size="compact-xs" variant="default" disabled={backDisabled} onClick={() => dispatch({ type: 'back' })}>
         Назад
       </Button>
-      <Button size="compact-xs" variant="default" disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
+      {/* <Button size="compact-xs" variant="default" disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
         Инструкция
-      </Button>
+      </Button> */}
       {state.hints && slot ? (
         <Button
           size="compact-xs"

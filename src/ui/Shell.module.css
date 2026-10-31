@@ -290,10 +290,11 @@ button.seg:focus-visible,
 
 @media (max-width: 61.99em) {
   .phoneBar :global(.mantine-Button-root) {
+    height: var(--button-height-md);
     padding-inline: 2px;
   }
 
   .contentPad {
-    padding-bottom: 4.5rem;
+    padding-bottom: 5.75rem;
   }
 }

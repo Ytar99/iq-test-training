@@ -208,13 +208,13 @@ function CubeView({ front, top, right }: { front: FaceMark; top: FaceMark; right
   const mark = (face: 'top' | 'front' | 'right', value: FaceMark, x: number, y: number) =>
     value === 'blank' ? null : (
       <g clipPath={`url(#${id}-${face})`}>
-        <g transform={`translate(${x} ${y}) scale(1.05)`}>
+        <g transform={`translate(${x} ${y}) scale(0.62)`}>
           <FaceMarkShape mark={value} />
         </g>
       </g>
     )
   return (
-    <svg className={classes.cube} viewBox="0 0 150 130" role="img">
+    <svg className={classes.cube} viewBox="32 20 92 100" role="img">
       <defs>
         <clipPath id={`${id}-top`}>
           <polygon points="40,48 78,28 116,48 78,68" />

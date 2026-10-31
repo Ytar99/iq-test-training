@@ -114,7 +114,7 @@
 }
 
 .cube {
-  width: min(100%, 7.25rem);
+  width: min(100%, 6rem);
   height: auto;
   display: block;
 }
