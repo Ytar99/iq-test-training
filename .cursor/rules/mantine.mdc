@@ -1,0 +1,17 @@
+---
+description: UI на Mantine v9. Пропсы сверять с MCP, адаптив через брейкпоинты Mantine.
+globs: "**/*.{tsx,css}"
+alwaysApply: false
+---
+
+# Mantine
+
+Интерфейс на Mantine v9: `@mantine/core` и `@mantine/hooks`. `@mantine/form` не подключен.
+
+Свой кусок оформляй CSS-модулем и Styles API. Второй CSS-фреймворк не подключать.
+
+Адаптив через брейкпоинты Mantine (`visibleFrom`, `hiddenFrom`, `cols`). Точки темы не сдвигать. Десктоп от `md`, телефон ниже `md`.
+
+Основной цвет `teal`, второй акцент `orange`.
+
+Перед пропсами и примерами смотри MCP `mantine`, не память. Если задача совпала со skill в `.agents/skills` (`mantine-combobox`, `mantine-form`, `mantine-custom-components`), сначала прочитай этот skill. Кнопки, радио и сетка остаются компонентами `@mantine/core`.
