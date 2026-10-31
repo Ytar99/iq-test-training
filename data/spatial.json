@@ -1,0 +1,2997 @@
+[
+  {
+    "id": "spa-assembly-01",
+    "scale": "spatial",
+    "type": "spa-assembly",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.",
+      "scene": {
+        "kind": "cells",
+        "cols": 4,
+        "rows": 2,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-assembly-01-1",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-01-2",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-01-3",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-01-4",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ],
+              [
+                3,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-assembly-01-1",
+    "shuffle": true,
+    "hint": "Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.",
+    "explanation": "Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом."
+  },
+  {
+    "id": "spa-assembly-02",
+    "scale": "spatial",
+    "type": "spa-assembly",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.",
+      "scene": {
+        "kind": "cells",
+        "cols": 2,
+        "rows": 2,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-assembly-02-1",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-02-2",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-02-3",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-02-4",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-assembly-02-1",
+    "shuffle": true,
+    "hint": "Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.",
+    "explanation": "Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом."
+  },
+  {
+    "id": "spa-assembly-03",
+    "scale": "spatial",
+    "type": "spa-assembly",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.",
+      "scene": {
+        "kind": "cells",
+        "cols": 3,
+        "rows": 2,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-assembly-03-1",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-03-2",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-03-3",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-03-4",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-assembly-03-1",
+    "shuffle": true,
+    "hint": "Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.",
+    "explanation": "Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом."
+  },
+  {
+    "id": "spa-assembly-04",
+    "scale": "spatial",
+    "type": "spa-assembly",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.",
+      "scene": {
+        "kind": "cells",
+        "cols": 4,
+        "rows": 2,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-assembly-04-1",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-04-2",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-04-3",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                3,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-04-4",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-assembly-04-1",
+    "shuffle": true,
+    "hint": "Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.",
+    "explanation": "Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом."
+  },
+  {
+    "id": "spa-assembly-05",
+    "scale": "spatial",
+    "type": "spa-assembly",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.",
+      "scene": {
+        "kind": "cells",
+        "cols": 3,
+        "rows": 3,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-assembly-05-1",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-05-2",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-05-3",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-05-4",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-assembly-05-1",
+    "shuffle": true,
+    "hint": "Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.",
+    "explanation": "Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом."
+  },
+  {
+    "id": "spa-assembly-06",
+    "scale": "spatial",
+    "type": "spa-assembly",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какой набор фигурок складывается в силуэт? Фигурки можно поворачивать на 90 градусов.",
+      "scene": {
+        "kind": "cells",
+        "cols": 4,
+        "rows": 3,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            2
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-assembly-06-1",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-06-2",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-06-3",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                0
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                2,
+                2
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-assembly-06-4",
+        "scene": {
+          "kind": "cells",
+          "pieces": [
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                0,
+                2
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                0
+              ],
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ]
+            ],
+            [
+              [
+                0,
+                1
+              ],
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ]
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-assembly-06-1",
+    "shuffle": true,
+    "hint": "Сравните число клеток силуэта и набора, затем проверьте, стыкуются ли формы. Поворот разрешен.",
+    "explanation": "Верный набор закрывает силуэт без наложений и без клеток снаружи. Остальные наборы либо не сходятся по числу клеток, либо не складываются в этот контур даже с поворотом."
+  },
+  {
+    "id": "spa-scheme-01",
+    "scale": "spatial",
+    "type": "spa-scheme",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Куда показывает стрелка?",
+      "scene": {
+        "kind": "scheme",
+        "parts": [
+          {
+            "type": "circle"
+          },
+          {
+            "type": "label",
+            "text": "С",
+            "place": "top"
+          },
+          {
+            "type": "arrow",
+            "dir": "down"
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-scheme-01-1",
+        "text": "север"
+      },
+      {
+        "id": "spa-scheme-01-2",
+        "text": "восток"
+      },
+      {
+        "id": "spa-scheme-01-3",
+        "text": "юг"
+      },
+      {
+        "id": "spa-scheme-01-4",
+        "text": "запад"
+      }
+    ],
+    "correctOptionId": "spa-scheme-01-3",
+    "shuffle": true,
+    "hint": "Подпись задает одну сторону света, остальные идут от нее по кругу.",
+    "explanation": "Подпись отмечает сторону \"север\", стрелка относительно нее показывает юг."
+  },
+  {
+    "id": "spa-scheme-02",
+    "scale": "spatial",
+    "type": "spa-scheme",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Куда показывает стрелка?",
+      "scene": {
+        "kind": "scheme",
+        "parts": [
+          {
+            "type": "circle"
+          },
+          {
+            "type": "label",
+            "text": "С",
+            "place": "top"
+          },
+          {
+            "type": "arrow",
+            "dir": "left"
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-scheme-02-1",
+        "text": "север"
+      },
+      {
+        "id": "spa-scheme-02-2",
+        "text": "восток"
+      },
+      {
+        "id": "spa-scheme-02-3",
+        "text": "юг"
+      },
+      {
+        "id": "spa-scheme-02-4",
+        "text": "запад"
+      }
+    ],
+    "correctOptionId": "spa-scheme-02-4",
+    "shuffle": true,
+    "hint": "Подпись задает одну сторону света, остальные идут от нее по кругу.",
+    "explanation": "Подпись отмечает сторону \"север\", стрелка относительно нее показывает запад."
+  },
+  {
+    "id": "spa-scheme-03",
+    "scale": "spatial",
+    "type": "spa-scheme",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Куда показывает стрелка?",
+      "scene": {
+        "kind": "scheme",
+        "parts": [
+          {
+            "type": "circle"
+          },
+          {
+            "type": "label",
+            "text": "С",
+            "place": "top"
+          },
+          {
+            "type": "arrow",
+            "dir": "right"
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-scheme-03-1",
+        "text": "север"
+      },
+      {
+        "id": "spa-scheme-03-2",
+        "text": "восток"
+      },
+      {
+        "id": "spa-scheme-03-3",
+        "text": "юг"
+      },
+      {
+        "id": "spa-scheme-03-4",
+        "text": "запад"
+      }
+    ],
+    "correctOptionId": "spa-scheme-03-2",
+    "shuffle": true,
+    "hint": "Подпись задает одну сторону света, остальные идут от нее по кругу.",
+    "explanation": "Подпись отмечает сторону \"север\", стрелка относительно нее показывает восток."
+  },
+  {
+    "id": "spa-scheme-04",
+    "scale": "spatial",
+    "type": "spa-scheme",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Куда показывает стрелка?",
+      "scene": {
+        "kind": "scheme",
+        "parts": [
+          {
+            "type": "circle"
+          },
+          {
+            "type": "label",
+            "text": "В",
+            "place": "right"
+          },
+          {
+            "type": "arrow",
+            "dir": "down"
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-scheme-04-1",
+        "text": "север"
+      },
+      {
+        "id": "spa-scheme-04-2",
+        "text": "восток"
+      },
+      {
+        "id": "spa-scheme-04-3",
+        "text": "юг"
+      },
+      {
+        "id": "spa-scheme-04-4",
+        "text": "запад"
+      }
+    ],
+    "correctOptionId": "spa-scheme-04-3",
+    "shuffle": true,
+    "hint": "Подпись задает одну сторону света, остальные идут от нее по кругу.",
+    "explanation": "Подпись отмечает сторону \"восток\", стрелка относительно нее показывает юг."
+  },
+  {
+    "id": "spa-scheme-05",
+    "scale": "spatial",
+    "type": "spa-scheme",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Куда показывает стрелка?",
+      "scene": {
+        "kind": "scheme",
+        "parts": [
+          {
+            "type": "circle"
+          },
+          {
+            "type": "label",
+            "text": "Ю",
+            "place": "bottom"
+          },
+          {
+            "type": "arrow",
+            "dir": "up"
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-scheme-05-1",
+        "text": "север"
+      },
+      {
+        "id": "spa-scheme-05-2",
+        "text": "восток"
+      },
+      {
+        "id": "spa-scheme-05-3",
+        "text": "юг"
+      },
+      {
+        "id": "spa-scheme-05-4",
+        "text": "запад"
+      }
+    ],
+    "correctOptionId": "spa-scheme-05-1",
+    "shuffle": true,
+    "hint": "Подпись задает одну сторону света, остальные идут от нее по кругу.",
+    "explanation": "Подпись отмечает сторону \"юг\", стрелка относительно нее показывает север."
+  },
+  {
+    "id": "spa-scheme-06",
+    "scale": "spatial",
+    "type": "spa-scheme",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Куда показывает стрелка?",
+      "scene": {
+        "kind": "scheme",
+        "parts": [
+          {
+            "type": "circle"
+          },
+          {
+            "type": "label",
+            "text": "З",
+            "place": "left"
+          },
+          {
+            "type": "arrow",
+            "dir": "right"
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-scheme-06-1",
+        "text": "север"
+      },
+      {
+        "id": "spa-scheme-06-2",
+        "text": "восток"
+      },
+      {
+        "id": "spa-scheme-06-3",
+        "text": "юг"
+      },
+      {
+        "id": "spa-scheme-06-4",
+        "text": "запад"
+      }
+    ],
+    "correctOptionId": "spa-scheme-06-2",
+    "shuffle": true,
+    "hint": "Подпись задает одну сторону света, остальные идут от нее по кругу.",
+    "explanation": "Подпись отмечает сторону \"запад\", стрелка относительно нее показывает восток."
+  },
+  {
+    "id": "spa-net-01",
+    "scale": "spatial",
+    "type": "spa-net",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На каком кубике спереди круг, а сверху треугольник?",
+      "scene": {
+        "kind": "net",
+        "layout": [
+          [
+            null,
+            "triangle",
+            null,
+            null
+          ],
+          [
+            "blank",
+            "circle",
+            "blank",
+            "blank"
+          ],
+          [
+            null,
+            "blank",
+            null,
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-net-01-1",
+        "scene": {
+          "kind": "cube",
+          "front": "circle",
+          "top": "triangle",
+          "right": "blank"
+        }
+      },
+      {
+        "id": "spa-net-01-2",
+        "scene": {
+          "kind": "cube",
+          "front": "triangle",
+          "top": "circle",
+          "right": "blank"
+        }
+      },
+      {
+        "id": "spa-net-01-3",
+        "scene": {
+          "kind": "cube",
+          "front": "circle",
+          "top": "blank",
+          "right": "triangle"
+        }
+      },
+      {
+        "id": "spa-net-01-4",
+        "scene": {
+          "kind": "cube",
+          "front": "blank",
+          "top": "triangle",
+          "right": "circle"
+        }
+      }
+    ],
+    "correctOptionId": "spa-net-01-1",
+    "shuffle": true,
+    "hint": "На крестовой развертке верхняя клетка становится верхом кубика, центральная - передом, клетка справа от нее - правой гранью.",
+    "explanation": "Передняя грань развертки - круг, верхняя - треугольник. Верный кубик показывает их так же."
+  },
+  {
+    "id": "spa-net-02",
+    "scale": "spatial",
+    "type": "spa-net",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "На каком кубике спереди линию, а сверху квадрат?",
+      "scene": {
+        "kind": "net",
+        "layout": [
+          [
+            null,
+            "square",
+            null,
+            null
+          ],
+          [
+            "blank",
+            "line",
+            "blank",
+            "blank"
+          ],
+          [
+            null,
+            "blank",
+            null,
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-net-02-1",
+        "scene": {
+          "kind": "cube",
+          "front": "line",
+          "top": "square",
+          "right": "blank"
+        }
+      },
+      {
+        "id": "spa-net-02-2",
+        "scene": {
+          "kind": "cube",
+          "front": "square",
+          "top": "line",
+          "right": "blank"
+        }
+      },
+      {
+        "id": "spa-net-02-3",
+        "scene": {
+          "kind": "cube",
+          "front": "line",
+          "top": "blank",
+          "right": "square"
+        }
+      },
+      {
+        "id": "spa-net-02-4",
+        "scene": {
+          "kind": "cube",
+          "front": "blank",
+          "top": "square",
+          "right": "line"
+        }
+      }
+    ],
+    "correctOptionId": "spa-net-02-1",
+    "shuffle": true,
+    "hint": "На крестовой развертке верхняя клетка становится верхом кубика, центральная - передом, клетка справа от нее - правой гранью.",
+    "explanation": "Передняя грань развертки - линию, верхняя - квадрат. Верный кубик показывает их так же."
+  },
+  {
+    "id": "spa-net-03",
+    "scale": "spatial",
+    "type": "spa-net",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На каком кубике спереди треугольник, а сверху круг?",
+      "scene": {
+        "kind": "net",
+        "layout": [
+          [
+            null,
+            "circle",
+            null,
+            null
+          ],
+          [
+            "blank",
+            "triangle",
+            "square",
+            "blank"
+          ],
+          [
+            null,
+            "blank",
+            null,
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-net-03-1",
+        "scene": {
+          "kind": "cube",
+          "front": "triangle",
+          "top": "circle",
+          "right": "square"
+        }
+      },
+      {
+        "id": "spa-net-03-2",
+        "scene": {
+          "kind": "cube",
+          "front": "circle",
+          "top": "triangle",
+          "right": "square"
+        }
+      },
+      {
+        "id": "spa-net-03-3",
+        "scene": {
+          "kind": "cube",
+          "front": "triangle",
+          "top": "square",
+          "right": "circle"
+        }
+      },
+      {
+        "id": "spa-net-03-4",
+        "scene": {
+          "kind": "cube",
+          "front": "square",
+          "top": "circle",
+          "right": "triangle"
+        }
+      }
+    ],
+    "correctOptionId": "spa-net-03-1",
+    "shuffle": true,
+    "hint": "На крестовой развертке верхняя клетка становится верхом кубика, центральная - передом, клетка справа от нее - правой гранью.",
+    "explanation": "Передняя грань развертки - треугольник, верхняя - круг. Верный кубик показывает их так же."
+  },
+  {
+    "id": "spa-transform-01",
+    "scale": "spatial",
+    "type": "spa-transform",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура получена поворотом образца?",
+      "scene": {
+        "kind": "cells",
+        "cols": 2,
+        "rows": 3,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "mode": "rotate"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-transform-01-1",
+        "scene": {
+          "kind": "cells",
+          "cols": 3,
+          "rows": 2,
+          "filled": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-01-2",
+        "scene": {
+          "kind": "cells",
+          "cols": 2,
+          "rows": 3,
+          "filled": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-01-3",
+        "scene": {
+          "kind": "cells",
+          "cols": 2,
+          "rows": 3,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-01-4",
+        "scene": {
+          "kind": "cells",
+          "cols": 3,
+          "rows": 2,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-transform-01-1",
+    "shuffle": true,
+    "hint": "Мысленно поверните образец. Фигура, у которой выступ оказался с другой стороны, получается отражением, а не поворотом.",
+    "explanation": "Верная фигура совпадает с образцом после поворота. Зеркальный вариант поворотом не получить."
+  },
+  {
+    "id": "spa-transform-02",
+    "scale": "spatial",
+    "type": "spa-transform",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая фигура получена поворотом образца?",
+      "scene": {
+        "kind": "cells",
+        "cols": 3,
+        "rows": 2,
+        "filled": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "mode": "rotate"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-transform-02-1",
+        "scene": {
+          "kind": "cells",
+          "cols": 2,
+          "rows": 3,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-02-2",
+        "scene": {
+          "kind": "cells",
+          "cols": 3,
+          "rows": 2,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-02-3",
+        "scene": {
+          "kind": "cells",
+          "cols": 3,
+          "rows": 2,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-02-4",
+        "scene": {
+          "kind": "cells",
+          "cols": 2,
+          "rows": 3,
+          "filled": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-transform-02-1",
+    "shuffle": true,
+    "hint": "Мысленно поверните образец. Фигура, у которой выступ оказался с другой стороны, получается отражением, а не поворотом.",
+    "explanation": "Верная фигура совпадает с образцом после поворота. Зеркальный вариант поворотом не получить."
+  },
+  {
+    "id": "spa-transform-03",
+    "scale": "spatial",
+    "type": "spa-transform",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура является зеркальным отражением образца?",
+      "scene": {
+        "kind": "cells",
+        "cols": 2,
+        "rows": 3,
+        "filled": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "mode": "mirror"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-transform-03-1",
+        "scene": {
+          "kind": "cells",
+          "cols": 2,
+          "rows": 3,
+          "filled": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-03-2",
+        "scene": {
+          "kind": "cells",
+          "cols": 3,
+          "rows": 2,
+          "filled": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              2,
+              0
+            ],
+            [
+              2,
+              1
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-03-3",
+        "scene": {
+          "kind": "cells",
+          "cols": 2,
+          "rows": 3,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              2
+            ]
+          ]
+        }
+      },
+      {
+        "id": "spa-transform-03-4",
+        "scene": {
+          "kind": "cells",
+          "cols": 3,
+          "rows": 2,
+          "filled": [
+            [
+              0,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              2,
+              0
+            ]
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "spa-transform-03-1",
+    "shuffle": true,
+    "hint": "Отразите образец как в зеркале. Обычный поворот оставляет выступ с той же стороны относительно длинной части.",
+    "explanation": "Верная фигура - отражение образца. Остальные получаются поворотом или имеют другую форму."
+  },
+  {
+    "id": "spa-top-01",
+    "scale": "spatial",
+    "type": "spa-top",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой вид сверху верен?",
+      "scene": {
+        "kind": "stack",
+        "heights": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "view": "iso"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-top-01-1",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              1,
+              3
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-01-2",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              3,
+              1
+            ],
+            [
+              2,
+              1
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-01-3",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              2,
+              3
+            ],
+            [
+              1,
+              1
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-01-4",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              1,
+              2
+            ],
+            [
+              3,
+              1
+            ]
+          ],
+          "view": "top"
+        }
+      }
+    ],
+    "correctOptionId": "spa-top-01-1",
+    "shuffle": true,
+    "hint": "Число в клетке вида сверху - высота столбика в этой же клетке.",
+    "explanation": "Вид сверху повторяет сетку высот без перестановки чисел."
+  },
+  {
+    "id": "spa-top-02",
+    "scale": "spatial",
+    "type": "spa-top",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой вид сверху верен?",
+      "scene": {
+        "kind": "stack",
+        "heights": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            4
+          ]
+        ],
+        "view": "iso"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-top-02-1",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              4
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-02-2",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-02-3",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              4,
+              2
+            ],
+            [
+              1,
+              2
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-02-4",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              2,
+              1
+            ],
+            [
+              2,
+              4
+            ]
+          ],
+          "view": "top"
+        }
+      }
+    ],
+    "correctOptionId": "spa-top-02-1",
+    "shuffle": true,
+    "hint": "Число в клетке вида сверху - высота столбика в этой же клетке.",
+    "explanation": "Вид сверху повторяет сетку высот без перестановки чисел."
+  },
+  {
+    "id": "spa-top-03",
+    "scale": "spatial",
+    "type": "spa-top",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какой вид сверху верен?",
+      "scene": {
+        "kind": "stack",
+        "heights": [
+          [
+            1,
+            2,
+            1
+          ],
+          [
+            3,
+            1,
+            2
+          ]
+        ],
+        "view": "iso"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-top-03-1",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              1,
+              2,
+              1
+            ],
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-03-2",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              2,
+              1,
+              1
+            ],
+            [
+              3,
+              1,
+              2
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-03-3",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              3,
+              2,
+              1
+            ],
+            [
+              1,
+              1,
+              2
+            ]
+          ],
+          "view": "top"
+        }
+      },
+      {
+        "id": "spa-top-03-4",
+        "scene": {
+          "kind": "stack",
+          "heights": [
+            [
+              2,
+              2,
+              1
+            ],
+            [
+              3,
+              1,
+              1
+            ]
+          ],
+          "view": "top"
+        }
+      }
+    ],
+    "correctOptionId": "spa-top-03-1",
+    "shuffle": true,
+    "hint": "Число в клетке вида сверху - высота столбика в этой же клетке.",
+    "explanation": "Вид сверху повторяет сетку высот без перестановки чисел."
+  },
+  {
+    "id": "spa-cubes-01",
+    "scale": "spatial",
+    "type": "spa-cubes",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Сколько кубиков в постройке, включая невидимые?",
+      "scene": {
+        "kind": "stack",
+        "heights": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "view": "iso"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-cubes-01-1",
+        "text": "5"
+      },
+      {
+        "id": "spa-cubes-01-2",
+        "text": "4"
+      },
+      {
+        "id": "spa-cubes-01-3",
+        "text": "6"
+      },
+      {
+        "id": "spa-cubes-01-4",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "spa-cubes-01-1",
+    "shuffle": true,
+    "hint": "Сложите высоты всех столбиков, в том числе тех, что закрыты спереди.",
+    "explanation": "Сумма высот равна 5."
+  },
+  {
+    "id": "spa-cubes-02",
+    "scale": "spatial",
+    "type": "spa-cubes",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Сколько кубиков в постройке, включая невидимые?",
+      "scene": {
+        "kind": "stack",
+        "heights": [
+          [
+            3,
+            1
+          ],
+          [
+            2,
+            2
+          ]
+        ],
+        "view": "iso"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-cubes-02-1",
+        "text": "8"
+      },
+      {
+        "id": "spa-cubes-02-2",
+        "text": "7"
+      },
+      {
+        "id": "spa-cubes-02-3",
+        "text": "9"
+      },
+      {
+        "id": "spa-cubes-02-4",
+        "text": "10"
+      }
+    ],
+    "correctOptionId": "spa-cubes-02-1",
+    "shuffle": true,
+    "hint": "Сложите высоты всех столбиков, в том числе тех, что закрыты спереди.",
+    "explanation": "Сумма высот равна 8."
+  },
+  {
+    "id": "spa-cubes-03",
+    "scale": "spatial",
+    "type": "spa-cubes",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Сколько кубиков в постройке, включая невидимые?",
+      "scene": {
+        "kind": "stack",
+        "heights": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            2
+          ]
+        ],
+        "view": "iso"
+      }
+    },
+    "options": [
+      {
+        "id": "spa-cubes-03-1",
+        "text": "5"
+      },
+      {
+        "id": "spa-cubes-03-2",
+        "text": "4"
+      },
+      {
+        "id": "spa-cubes-03-3",
+        "text": "6"
+      },
+      {
+        "id": "spa-cubes-03-4",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "spa-cubes-03-1",
+    "shuffle": true,
+    "hint": "Сложите высоты всех столбиков, в том числе тех, что закрыты спереди.",
+    "explanation": "Сумма высот равна 5."
+  },
+  {
+    "id": "spa-chart-01",
+    "scale": "spatial",
+    "type": "spa-chart",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой столбец самый высокий?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "values": [
+          4,
+          9,
+          6,
+          2
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-chart-01-1",
+        "text": "первый"
+      },
+      {
+        "id": "spa-chart-01-2",
+        "text": "второй"
+      },
+      {
+        "id": "spa-chart-01-3",
+        "text": "третий"
+      },
+      {
+        "id": "spa-chart-01-4",
+        "text": "четвертый"
+      }
+    ],
+    "correctOptionId": "spa-chart-01-2",
+    "shuffle": true,
+    "hint": "Сравните высоты столбцов, разницу считать не нужно.",
+    "explanation": "Второй столбец выше остальных."
+  },
+  {
+    "id": "spa-chart-02",
+    "scale": "spatial",
+    "type": "spa-chart",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой столбец самый низкий?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "values": [
+          8,
+          3,
+          5,
+          7
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-chart-02-1",
+        "text": "первый"
+      },
+      {
+        "id": "spa-chart-02-2",
+        "text": "второй"
+      },
+      {
+        "id": "spa-chart-02-3",
+        "text": "третий"
+      },
+      {
+        "id": "spa-chart-02-4",
+        "text": "четвертый"
+      }
+    ],
+    "correctOptionId": "spa-chart-02-2",
+    "shuffle": true,
+    "hint": "Сравните высоты столбцов, разницу считать не нужно.",
+    "explanation": "Второй столбец ниже остальных."
+  },
+  {
+    "id": "spa-chart-03",
+    "scale": "spatial",
+    "type": "spa-chart",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой столбец самый высокий?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "values": [
+          2,
+          6,
+          6,
+          9
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "spa-chart-03-1",
+        "text": "первый"
+      },
+      {
+        "id": "spa-chart-03-2",
+        "text": "второй"
+      },
+      {
+        "id": "spa-chart-03-3",
+        "text": "третий"
+      },
+      {
+        "id": "spa-chart-03-4",
+        "text": "четвертый"
+      }
+    ],
+    "correctOptionId": "spa-chart-03-4",
+    "shuffle": true,
+    "hint": "Сравните высоты столбцов, разницу считать не нужно.",
+    "explanation": "Четвертый столбец выше двух одинаковых средних и первого."
+  }
+]

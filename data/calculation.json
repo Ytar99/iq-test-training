@@ -1,0 +1,1016 @@
+[
+  {
+    "id": "calc-grid-01",
+    "scale": "calculation",
+    "type": "calc-grid",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какое число стоит в пустой клетке?",
+      "rows": [
+        [
+          "2",
+          "5",
+          "8"
+        ],
+        [
+          "6",
+          "9",
+          "12"
+        ],
+        [
+          "10",
+          "13",
+          null
+        ]
+      ]
+    },
+    "options": [
+      {
+        "id": "calc-grid-01-1",
+        "text": "16"
+      },
+      {
+        "id": "calc-grid-01-2",
+        "text": "19"
+      },
+      {
+        "id": "calc-grid-01-3",
+        "text": "13"
+      },
+      {
+        "id": "calc-grid-01-4",
+        "text": "20"
+      }
+    ],
+    "correctOptionId": "calc-grid-01-1",
+    "shuffle": true,
+    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
+    "explanation": "В строке шаг 3, в столбце шаг 4, оба дают 16."
+  },
+  {
+    "id": "calc-grid-02",
+    "scale": "calculation",
+    "type": "calc-grid",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какое число стоит в пустой клетке?",
+      "rows": [
+        [
+          "1",
+          "2",
+          "3"
+        ],
+        [
+          "2",
+          "3",
+          "4"
+        ],
+        [
+          "3",
+          "4",
+          null
+        ]
+      ]
+    },
+    "options": [
+      {
+        "id": "calc-grid-02-1",
+        "text": "5"
+      },
+      {
+        "id": "calc-grid-02-2",
+        "text": "6"
+      },
+      {
+        "id": "calc-grid-02-3",
+        "text": "4"
+      },
+      {
+        "id": "calc-grid-02-4",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "calc-grid-02-1",
+    "shuffle": true,
+    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
+    "explanation": "В строке шаг 1, в столбце шаг 1, оба дают 5."
+  },
+  {
+    "id": "calc-grid-03",
+    "scale": "calculation",
+    "type": "calc-grid",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какое число стоит в пустой клетке?",
+      "rows": [
+        [
+          "10",
+          "20",
+          "30"
+        ],
+        [
+          "11",
+          "21",
+          "31"
+        ],
+        [
+          "12",
+          "22",
+          null
+        ]
+      ]
+    },
+    "options": [
+      {
+        "id": "calc-grid-03-1",
+        "text": "32"
+      },
+      {
+        "id": "calc-grid-03-2",
+        "text": "42"
+      },
+      {
+        "id": "calc-grid-03-3",
+        "text": "22"
+      },
+      {
+        "id": "calc-grid-03-4",
+        "text": "33"
+      }
+    ],
+    "correctOptionId": "calc-grid-03-1",
+    "shuffle": true,
+    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
+    "explanation": "В строке шаг 10, в столбце шаг 1, оба дают 32."
+  },
+  {
+    "id": "calc-grid-04",
+    "scale": "calculation",
+    "type": "calc-grid",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какое число стоит в пустой клетке?",
+      "rows": [
+        [
+          "4",
+          "6",
+          "8"
+        ],
+        [
+          "9",
+          "11",
+          "13"
+        ],
+        [
+          "14",
+          null,
+          "18"
+        ]
+      ]
+    },
+    "options": [
+      {
+        "id": "calc-grid-04-1",
+        "text": "16"
+      },
+      {
+        "id": "calc-grid-04-2",
+        "text": "18"
+      },
+      {
+        "id": "calc-grid-04-3",
+        "text": "14"
+      },
+      {
+        "id": "calc-grid-04-4",
+        "text": "21"
+      }
+    ],
+    "correctOptionId": "calc-grid-04-1",
+    "shuffle": true,
+    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
+    "explanation": "В строке шаг 2, в столбце шаг 5, оба дают 16."
+  },
+  {
+    "id": "calc-grid-05",
+    "scale": "calculation",
+    "type": "calc-grid",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какое число стоит в пустой клетке?",
+      "rows": [
+        [
+          "7",
+          "10",
+          "13"
+        ],
+        [
+          "15",
+          "18",
+          "21"
+        ],
+        [
+          null,
+          "26",
+          "29"
+        ]
+      ]
+    },
+    "options": [
+      {
+        "id": "calc-grid-05-1",
+        "text": "23"
+      },
+      {
+        "id": "calc-grid-05-2",
+        "text": "26"
+      },
+      {
+        "id": "calc-grid-05-3",
+        "text": "20"
+      },
+      {
+        "id": "calc-grid-05-4",
+        "text": "31"
+      }
+    ],
+    "correctOptionId": "calc-grid-05-1",
+    "shuffle": true,
+    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
+    "explanation": "В строке шаг 3, в столбце шаг 8, оба дают 23."
+  },
+  {
+    "id": "calc-grid-06",
+    "scale": "calculation",
+    "type": "calc-grid",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какое число стоит в пустой клетке?",
+      "rows": [
+        [
+          "6",
+          "10",
+          "14"
+        ],
+        [
+          "15",
+          "19",
+          null
+        ],
+        [
+          "24",
+          "28",
+          "32"
+        ]
+      ]
+    },
+    "options": [
+      {
+        "id": "calc-grid-06-1",
+        "text": "23"
+      },
+      {
+        "id": "calc-grid-06-2",
+        "text": "27"
+      },
+      {
+        "id": "calc-grid-06-3",
+        "text": "19"
+      },
+      {
+        "id": "calc-grid-06-4",
+        "text": "32"
+      }
+    ],
+    "correctOptionId": "calc-grid-06-1",
+    "shuffle": true,
+    "hint": "Сравните шаг вдоль строки и шаг вдоль столбца. Оба должны сойтись в пустой клетке.",
+    "explanation": "В строке шаг 4, в столбце шаг 9, оба дают 23."
+  },
+  {
+    "id": "calc-story-01",
+    "scale": "calculation",
+    "type": "calc-story",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "За 3 часа мастер делает 18 рам. Сколько рам он сделает за 8 часов при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-01-1",
+        "text": "48"
+      },
+      {
+        "id": "calc-story-01-2",
+        "text": "42"
+      },
+      {
+        "id": "calc-story-01-3",
+        "text": "54"
+      },
+      {
+        "id": "calc-story-01-4",
+        "text": "36"
+      }
+    ],
+    "correctOptionId": "calc-story-01-1",
+    "shuffle": true,
+    "hint": "Сначала найдите, сколько рам выходит за один час, затем пересчитайте на нужное время.",
+    "explanation": "18 / 3 = 6 рам в час, 6 * 8 = 48."
+  },
+  {
+    "id": "calc-story-02",
+    "scale": "calculation",
+    "type": "calc-story",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "В пачке 6 тетрадей. Сколько тетрадей в 4 таких пачках?"
+    },
+    "options": [
+      {
+        "id": "calc-story-02-1",
+        "text": "24"
+      },
+      {
+        "id": "calc-story-02-2",
+        "text": "10"
+      },
+      {
+        "id": "calc-story-02-3",
+        "text": "20"
+      },
+      {
+        "id": "calc-story-02-4",
+        "text": "28"
+      }
+    ],
+    "correctOptionId": "calc-story-02-1",
+    "shuffle": true,
+    "hint": "Перемножьте число пачек и число тетрадей в одной.",
+    "explanation": "4 * 6 = 24."
+  },
+  {
+    "id": "calc-story-03",
+    "scale": "calculation",
+    "type": "calc-story",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Один билет стоит 15 рублей. Сколько стоят 3 билета?"
+    },
+    "options": [
+      {
+        "id": "calc-story-03-1",
+        "text": "45"
+      },
+      {
+        "id": "calc-story-03-2",
+        "text": "18"
+      },
+      {
+        "id": "calc-story-03-3",
+        "text": "30"
+      },
+      {
+        "id": "calc-story-03-4",
+        "text": "60"
+      }
+    ],
+    "correctOptionId": "calc-story-03-1",
+    "shuffle": true,
+    "hint": "Умножьте цену одного билета на их число.",
+    "explanation": "15 * 3 = 45."
+  },
+  {
+    "id": "calc-story-04",
+    "scale": "calculation",
+    "type": "calc-story",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Куртка стоила 2000 рублей. Магазин снизил цену на 10%. Сколько она стоит теперь?"
+    },
+    "options": [
+      {
+        "id": "calc-story-04-1",
+        "text": "1800"
+      },
+      {
+        "id": "calc-story-04-2",
+        "text": "1900"
+      },
+      {
+        "id": "calc-story-04-3",
+        "text": "1500"
+      },
+      {
+        "id": "calc-story-04-4",
+        "text": "1990"
+      }
+    ],
+    "correctOptionId": "calc-story-04-1",
+    "shuffle": true,
+    "hint": "Сначала найдите сумму скидки, затем вычтите ее из начальной цены.",
+    "explanation": "10% от 2000 равно 200, 2000 - 200 = 1800."
+  },
+  {
+    "id": "calc-story-05",
+    "scale": "calculation",
+    "type": "calc-story",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Бригада за 4 дня делает 20 деталей. Сколько дней нужно на 35 деталей при той же скорости?"
+    },
+    "options": [
+      {
+        "id": "calc-story-05-1",
+        "text": "7"
+      },
+      {
+        "id": "calc-story-05-2",
+        "text": "6"
+      },
+      {
+        "id": "calc-story-05-3",
+        "text": "8"
+      },
+      {
+        "id": "calc-story-05-4",
+        "text": "9"
+      }
+    ],
+    "correctOptionId": "calc-story-05-1",
+    "shuffle": true,
+    "hint": "Сначала найдите дневную выработку, затем разделите весь заказ на эту выработку.",
+    "explanation": "20 / 4 = 5 деталей в день, 35 / 5 = 7 дней."
+  },
+  {
+    "id": "calc-story-06",
+    "scale": "calculation",
+    "type": "calc-story",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "В бочке было 40 литров воды. За день израсходовали четверть. Сколько литров осталось?"
+    },
+    "options": [
+      {
+        "id": "calc-story-06-1",
+        "text": "30"
+      },
+      {
+        "id": "calc-story-06-2",
+        "text": "10"
+      },
+      {
+        "id": "calc-story-06-3",
+        "text": "20"
+      },
+      {
+        "id": "calc-story-06-4",
+        "text": "36"
+      }
+    ],
+    "correctOptionId": "calc-story-06-1",
+    "shuffle": true,
+    "hint": "Найдите израсходованную часть и вычтите ее из исходного объема.",
+    "explanation": "Четверть от 40 равна 10, 40 - 10 = 30."
+  },
+  {
+    "id": "calc-series-01",
+    "scale": "calculation",
+    "type": "calc-series",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "5, 10, 20, 40, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-01-1",
+        "text": "80"
+      },
+      {
+        "id": "calc-series-01-2",
+        "text": "90"
+      },
+      {
+        "id": "calc-series-01-3",
+        "text": "70"
+      },
+      {
+        "id": "calc-series-01-4",
+        "text": "85"
+      }
+    ],
+    "correctOptionId": "calc-series-01-1",
+    "shuffle": true,
+    "hint": "Посмотрите, как каждое число получается из предыдущего.",
+    "explanation": "Каждое число вдвое больше предыдущего, поэтому дальше 80."
+  },
+  {
+    "id": "calc-series-02",
+    "scale": "calculation",
+    "type": "calc-series",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "2, 5, 11, 23, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-02-1",
+        "text": "47"
+      },
+      {
+        "id": "calc-series-02-2",
+        "text": "57"
+      },
+      {
+        "id": "calc-series-02-3",
+        "text": "37"
+      },
+      {
+        "id": "calc-series-02-4",
+        "text": "50"
+      }
+    ],
+    "correctOptionId": "calc-series-02-1",
+    "shuffle": true,
+    "hint": "Посмотрите, как каждое число получается из предыдущего.",
+    "explanation": "Каждый шаг удваивает предыдущее число и прибавляет единицу: дальше 47."
+  },
+  {
+    "id": "calc-series-03",
+    "scale": "calculation",
+    "type": "calc-series",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "4, 5, 7, 11, 19, ?"
+    },
+    "options": [
+      {
+        "id": "calc-series-03-1",
+        "text": "35"
+      },
+      {
+        "id": "calc-series-03-2",
+        "text": "45"
+      },
+      {
+        "id": "calc-series-03-3",
+        "text": "25"
+      },
+      {
+        "id": "calc-series-03-4",
+        "text": "36"
+      }
+    ],
+    "correctOptionId": "calc-series-03-1",
+    "shuffle": true,
+    "hint": "Посмотрите, как каждое число получается из предыдущего.",
+    "explanation": "Прибавки удваиваются: 1, 2, 4, 8, 16. Дальше 35."
+  },
+  {
+    "id": "calc-share-01",
+    "scale": "calculation",
+    "type": "calc-share",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "В ящике 40 деталей, 8 из них бракованные. Какая это доля?"
+    },
+    "options": [
+      {
+        "id": "calc-share-01-1",
+        "text": "1/5"
+      },
+      {
+        "id": "calc-share-01-2",
+        "text": "1/4"
+      },
+      {
+        "id": "calc-share-01-3",
+        "text": "1/8"
+      },
+      {
+        "id": "calc-share-01-4",
+        "text": "1/2"
+      }
+    ],
+    "correctOptionId": "calc-share-01-1",
+    "shuffle": true,
+    "hint": "Разделите часть на целое и сократите дробь.",
+    "explanation": "8 / 40 = 1/5."
+  },
+  {
+    "id": "calc-share-02",
+    "scale": "calculation",
+    "type": "calc-share",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Из 20 учеников 5 опоздали. Какая это доля?"
+    },
+    "options": [
+      {
+        "id": "calc-share-02-1",
+        "text": "1/4"
+      },
+      {
+        "id": "calc-share-02-2",
+        "text": "1/5"
+      },
+      {
+        "id": "calc-share-02-3",
+        "text": "1/2"
+      },
+      {
+        "id": "calc-share-02-4",
+        "text": "1/10"
+      }
+    ],
+    "correctOptionId": "calc-share-02-1",
+    "shuffle": true,
+    "hint": "Разделите число опоздавших на число всех учеников и сократите.",
+    "explanation": "5 / 20 = 1/4."
+  },
+  {
+    "id": "calc-share-03",
+    "scale": "calculation",
+    "type": "calc-share",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Сколько процентов составляют 12 от 48?"
+    },
+    "options": [
+      {
+        "id": "calc-share-03-1",
+        "text": "25"
+      },
+      {
+        "id": "calc-share-03-2",
+        "text": "20"
+      },
+      {
+        "id": "calc-share-03-3",
+        "text": "30"
+      },
+      {
+        "id": "calc-share-03-4",
+        "text": "12"
+      }
+    ],
+    "correctOptionId": "calc-share-03-1",
+    "shuffle": true,
+    "hint": "Разделите часть на целое и переведите дробь в проценты.",
+    "explanation": "12 / 48 = 1/4, это 25%."
+  },
+  {
+    "id": "calc-motion-01",
+    "scale": "calculation",
+    "type": "calc-motion",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Автомобиль ехал 2 часа со скоростью 50 км/ч и еще 1 час со скоростью 80 км/ч. Сколько километров он проехал?"
+    },
+    "options": [
+      {
+        "id": "calc-motion-01-1",
+        "text": "180"
+      },
+      {
+        "id": "calc-motion-01-2",
+        "text": "130"
+      },
+      {
+        "id": "calc-motion-01-3",
+        "text": "150"
+      },
+      {
+        "id": "calc-motion-01-4",
+        "text": "210"
+      }
+    ],
+    "correctOptionId": "calc-motion-01-1",
+    "shuffle": true,
+    "hint": "Посчитайте путь на каждом участке отдельно и сложите.",
+    "explanation": "2 * 50 = 100, плюс 80, всего 180."
+  },
+  {
+    "id": "calc-motion-02",
+    "scale": "calculation",
+    "type": "calc-motion",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Пешеход шел 3 часа со скоростью 4 км/ч. Какой путь он прошел?"
+    },
+    "options": [
+      {
+        "id": "calc-motion-02-1",
+        "text": "12"
+      },
+      {
+        "id": "calc-motion-02-2",
+        "text": "7"
+      },
+      {
+        "id": "calc-motion-02-3",
+        "text": "16"
+      },
+      {
+        "id": "calc-motion-02-4",
+        "text": "9"
+      }
+    ],
+    "correctOptionId": "calc-motion-02-1",
+    "shuffle": true,
+    "hint": "Умножьте скорость на время.",
+    "explanation": "3 * 4 = 12."
+  },
+  {
+    "id": "calc-motion-03",
+    "scale": "calculation",
+    "type": "calc-motion",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Лодка плыла 2 часа со скоростью 11 км/ч и еще 3 часа со скоростью 9 км/ч. Какой путь она прошла?"
+    },
+    "options": [
+      {
+        "id": "calc-motion-03-1",
+        "text": "49"
+      },
+      {
+        "id": "calc-motion-03-2",
+        "text": "40"
+      },
+      {
+        "id": "calc-motion-03-3",
+        "text": "45"
+      },
+      {
+        "id": "calc-motion-03-4",
+        "text": "52"
+      }
+    ],
+    "correctOptionId": "calc-motion-03-1",
+    "shuffle": true,
+    "hint": "Найдите путь каждого участка и сложите пути.",
+    "explanation": "2 * 11 = 22, 3 * 9 = 27, вместе 49."
+  },
+  {
+    "id": "calc-estimate-01",
+    "scale": "calculation",
+    "type": "calc-estimate",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Чему примерно равно 198 * 5?"
+    },
+    "options": [
+      {
+        "id": "calc-estimate-01-1",
+        "text": "около 1000"
+      },
+      {
+        "id": "calc-estimate-01-2",
+        "text": "около 500"
+      },
+      {
+        "id": "calc-estimate-01-3",
+        "text": "около 2000"
+      },
+      {
+        "id": "calc-estimate-01-4",
+        "text": "около 100"
+      }
+    ],
+    "correctOptionId": "calc-estimate-01-1",
+    "shuffle": true,
+    "hint": "Замените множитель на близкое круглое число и оцените порядок, не считая в столбик.",
+    "explanation": "200 * 5 = 1000, 198 чуть меньше 200, результат около 1000."
+  },
+  {
+    "id": "calc-estimate-02",
+    "scale": "calculation",
+    "type": "calc-estimate",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Чему примерно равно 51 * 19?"
+    },
+    "options": [
+      {
+        "id": "calc-estimate-02-1",
+        "text": "около 1000"
+      },
+      {
+        "id": "calc-estimate-02-2",
+        "text": "около 100"
+      },
+      {
+        "id": "calc-estimate-02-3",
+        "text": "около 500"
+      },
+      {
+        "id": "calc-estimate-02-4",
+        "text": "около 5000"
+      }
+    ],
+    "correctOptionId": "calc-estimate-02-1",
+    "shuffle": true,
+    "hint": "Замените оба множителя близкими круглыми числами.",
+    "explanation": "50 * 20 = 1000, исходные числа близки к ним."
+  },
+  {
+    "id": "calc-estimate-03",
+    "scale": "calculation",
+    "type": "calc-estimate",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Чему примерно равно 310 * 21?"
+    },
+    "options": [
+      {
+        "id": "calc-estimate-03-1",
+        "text": "около 6000"
+      },
+      {
+        "id": "calc-estimate-03-2",
+        "text": "около 3000"
+      },
+      {
+        "id": "calc-estimate-03-3",
+        "text": "около 9000"
+      },
+      {
+        "id": "calc-estimate-03-4",
+        "text": "около 600"
+      }
+    ],
+    "correctOptionId": "calc-estimate-03-1",
+    "shuffle": true,
+    "hint": "Округлите числа так, чтобы произведение читалось без столбика.",
+    "explanation": "300 * 20 = 6000, оба множителя чуть больше этих круглых значений, порядок тот же."
+  },
+  {
+    "id": "calc-chart-01",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "На сколько февраль больше марта?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "янв",
+          "фев",
+          "мар",
+          "апр"
+        ],
+        "values": [
+          12,
+          30,
+          18,
+          24
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-01-1",
+        "text": "12"
+      },
+      {
+        "id": "calc-chart-01-2",
+        "text": "18"
+      },
+      {
+        "id": "calc-chart-01-3",
+        "text": "6"
+      },
+      {
+        "id": "calc-chart-01-4",
+        "text": "24"
+      }
+    ],
+    "correctOptionId": "calc-chart-01-1",
+    "shuffle": true,
+    "hint": "Вычтите высоту одного названного столбца из высоты другого.",
+    "explanation": "30 - 18 = 12."
+  },
+  {
+    "id": "calc-chart-02",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Чему равна высота столбца понедельника?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "пн",
+          "вт",
+          "ср",
+          "чт"
+        ],
+        "values": [
+          5,
+          9,
+          8,
+          4
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-02-1",
+        "text": "5"
+      },
+      {
+        "id": "calc-chart-02-2",
+        "text": "11"
+      },
+      {
+        "id": "calc-chart-02-3",
+        "text": "10"
+      },
+      {
+        "id": "calc-chart-02-4",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "calc-chart-02-1",
+    "shuffle": true,
+    "hint": "Вычтите высоту одного названного столбца из высоты другого.",
+    "explanation": "Столбец понедельника имеет высоту 5."
+  },
+  {
+    "id": "calc-chart-03",
+    "scale": "calculation",
+    "type": "calc-chart",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На сколько Г больше В?",
+      "scene": {
+        "kind": "chart",
+        "variant": "bar",
+        "labels": [
+          "А",
+          "Б",
+          "В",
+          "Г"
+        ],
+        "values": [
+          16,
+          27,
+          21,
+          40
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "calc-chart-03-1",
+        "text": "19"
+      },
+      {
+        "id": "calc-chart-03-2",
+        "text": "25"
+      },
+      {
+        "id": "calc-chart-03-3",
+        "text": "13"
+      },
+      {
+        "id": "calc-chart-03-4",
+        "text": "35"
+      }
+    ],
+    "correctOptionId": "calc-chart-03-1",
+    "shuffle": true,
+    "hint": "Вычтите высоту одного названного столбца из высоты другого.",
+    "explanation": "40 - 21 = 19."
+  }
+]

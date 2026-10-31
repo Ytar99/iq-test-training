@@ -1,0 +1,4249 @@
+[
+  {
+    "id": "non-matrix-01",
+    "scale": "nonverbal",
+    "type": "non-matrix",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая карточка стоит в пустой клетке?",
+      "scene": {
+        "kind": "matrix",
+        "cells": [
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-matrix-01-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-01-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-01-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-01-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-matrix-01-3",
+    "shuffle": true,
+    "hint": "Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.",
+    "explanation": "Шаг вправо и шаг вниз добавляют одну точку. В пустой клетке 5."
+  },
+  {
+    "id": "non-matrix-02",
+    "scale": "nonverbal",
+    "type": "non-matrix",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая карточка стоит в пустой клетке?",
+      "scene": {
+        "kind": "matrix",
+        "cells": [
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-matrix-02-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-02-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-02-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-02-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-matrix-02-2",
+    "shuffle": true,
+    "hint": "Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.",
+    "explanation": "В каждой строке повторяется один и тот же ряд. В пустой клетке 3."
+  },
+  {
+    "id": "non-matrix-03",
+    "scale": "nonverbal",
+    "type": "non-matrix",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая карточка стоит в пустой клетке?",
+      "scene": {
+        "kind": "matrix",
+        "cells": [
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-matrix-03-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-03-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-03-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-03-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-matrix-03-2",
+    "shuffle": true,
+    "hint": "Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.",
+    "explanation": "Вправо и вниз число точек растет на одну. В пустой клетке 6."
+  },
+  {
+    "id": "non-matrix-04",
+    "scale": "nonverbal",
+    "type": "non-matrix",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая карточка стоит в пустой клетке?",
+      "scene": {
+        "kind": "matrix",
+        "cells": [
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-matrix-04-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-04-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-04-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-04-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-matrix-04-2",
+    "shuffle": true,
+    "hint": "Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.",
+    "explanation": "Третье число строки равно сумме двух предыдущих. В пустой клетке 5."
+  },
+  {
+    "id": "non-matrix-05",
+    "scale": "nonverbal",
+    "type": "non-matrix",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая карточка стоит в пустой клетке?",
+      "scene": {
+        "kind": "matrix",
+        "cells": [
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-matrix-05-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-05-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-05-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-05-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-matrix-05-2",
+    "shuffle": true,
+    "hint": "Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.",
+    "explanation": "Строки одинаковые, в строке число убывает. В пустой клетке 2."
+  },
+  {
+    "id": "non-matrix-06",
+    "scale": "nonverbal",
+    "type": "non-matrix",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая карточка стоит в пустой клетке?",
+      "scene": {
+        "kind": "matrix",
+        "cells": [
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.28,
+                  "size": 0.14
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            {
+              "elements": [
+                {
+                  "shape": "dot",
+                  "x": 0.5,
+                  "y": 0.5,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.7,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.68,
+                  "y": 0.3,
+                  "size": 0.14
+                },
+                {
+                  "shape": "dot",
+                  "x": 0.32,
+                  "y": 0.7,
+                  "size": 0.14
+                }
+              ]
+            },
+            null
+          ]
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-matrix-06-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-06-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-06-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.26,
+              "y": 0.5,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-matrix-06-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.26,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.74,
+              "y": 0.5,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-matrix-06-1",
+    "shuffle": true,
+    "hint": "Проследите, как меняется число точек на один шаг вправо и на один шаг вниз.",
+    "explanation": "В строке числа идут через одно, следующая строка начинается на единицу выше. В пустой клетке 7."
+  },
+  {
+    "id": "non-odd-01",
+    "scale": "nonverbal",
+    "type": "non-odd",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая фигура устроена иначе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "down"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-odd-01-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.46,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-01-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.46,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-01-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.46,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-01-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.46,
+              "dir": "down"
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-odd-01-4",
+    "shuffle": true,
+    "hint": "Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.",
+    "explanation": "Лишняя карточка - та, где треугольник направлен вниз."
+  },
+  {
+    "id": "non-odd-02",
+    "scale": "nonverbal",
+    "type": "non-odd",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая фигура устроена иначе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.4
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.4
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.4
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.4
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-odd-02-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-02-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-02-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-02-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-odd-02-4",
+    "shuffle": true,
+    "hint": "Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.",
+    "explanation": "Три карточки с кругом, лишняя - с квадратом."
+  },
+  {
+    "id": "non-odd-03",
+    "scale": "nonverbal",
+    "type": "non-odd",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура устроена иначе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "diamond",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "diamond",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "diamond",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-odd-03-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-03-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-03-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-03-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.16
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-odd-03-4",
+    "shuffle": true,
+    "hint": "Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.",
+    "explanation": "Три карточки с ромбом, лишняя - с точкой."
+  },
+  {
+    "id": "non-odd-04",
+    "scale": "nonverbal",
+    "type": "non-odd",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура устроена иначе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "line",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.5
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "line",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.5
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "line",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.5
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.36
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-odd-04-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "line",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.5
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-04-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "line",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.5
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-04-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "line",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.5
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-04-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.36
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-odd-04-4",
+    "shuffle": true,
+    "hint": "Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.",
+    "explanation": "Три карточки с линией, лишняя - с квадратом."
+  },
+  {
+    "id": "non-odd-05",
+    "scale": "nonverbal",
+    "type": "non-odd",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая фигура устроена иначе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.28,
+                "size": 0.36,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.28,
+                "size": 0.32
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.28,
+                "size": 0.32
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "diamond",
+                "x": 0.5,
+                "y": 0.74,
+                "size": 0.32
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-odd-05-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.36,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-05-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.32
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-05-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.32
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-05-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.32
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-odd-05-4",
+    "shuffle": true,
+    "hint": "Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.",
+    "explanation": "У трех карточек фигура в верхней половине, у лишней - в нижней."
+  },
+  {
+    "id": "non-odd-06",
+    "scale": "nonverbal",
+    "type": "non-odd",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая фигура устроена иначе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.16
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.16
+              },
+              {
+                "shape": "dot",
+                "x": 0.68,
+                "y": 0.7,
+                "size": 0.16
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.16
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.16
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-odd-06-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.16
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-06-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.16
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.16
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-06-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.16
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-odd-06-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.16
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-odd-06-2",
+    "shuffle": true,
+    "hint": "Сравните форму, число или положение. Три фигуры устроены одинаково в выбранном признаке.",
+    "explanation": "Три карточки с одной точкой, лишняя - с двумя."
+  },
+  {
+    "id": "non-sequence-01",
+    "scale": "nonverbal",
+    "type": "non-sequence",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая фигура продолжает ряд?",
+      "scene": {
+        "kind": "sequence",
+        "steps": [
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-sequence-01-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-01-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-01-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.42,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-01-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-sequence-01-1",
+    "shuffle": true,
+    "hint": "Найдите повтор или шаг изменения и продолжите его на одну фигуру.",
+    "explanation": "Фигуры чередуются, следующая - круг."
+  },
+  {
+    "id": "non-sequence-02",
+    "scale": "nonverbal",
+    "type": "non-sequence",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая фигура продолжает ряд?",
+      "scene": {
+        "kind": "sequence",
+        "steps": [
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.14
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.68,
+                "y": 0.7,
+                "size": 0.14
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.68,
+                "y": 0.7,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.68,
+                "y": 0.3,
+                "size": 0.14
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-sequence-02-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-02-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-02-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.7,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-02-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.14
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-sequence-02-1",
+    "shuffle": true,
+    "hint": "Найдите повтор или шаг изменения и продолжите его на одну фигуру.",
+    "explanation": "Число точек растет на одну, дальше пять."
+  },
+  {
+    "id": "non-sequence-03",
+    "scale": "nonverbal",
+    "type": "non-sequence",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура продолжает ряд?",
+      "scene": {
+        "kind": "sequence",
+        "steps": [
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "down"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "down"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-sequence-03-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.46,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-03-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.46,
+              "dir": "down"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-03-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-03-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-sequence-03-1",
+    "shuffle": true,
+    "hint": "Найдите повтор или шаг изменения и продолжите его на одну фигуру.",
+    "explanation": "Направление треугольника чередуется, следующий смотрит вверх."
+  },
+  {
+    "id": "non-sequence-04",
+    "scale": "nonverbal",
+    "type": "non-sequence",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая фигура продолжает ряд?",
+      "scene": {
+        "kind": "sequence",
+        "steps": [
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.42,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.34
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-sequence-04-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.42,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-04-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-04-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-sequence-04-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-sequence-04-1",
+    "shuffle": true,
+    "hint": "Найдите повтор или шаг изменения и продолжите его на одну фигуру.",
+    "explanation": "Повторяется тройка фигур, следующая замыкает вторую тройку."
+  },
+  {
+    "id": "non-analogy-01",
+    "scale": "nonverbal",
+    "type": "non-analogy",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Первая фигура относится ко второй, как третья к какой?",
+      "scene": {
+        "kind": "analogy",
+        "pair": [
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              },
+              {
+                "shape": "dot",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.14
+              }
+            ]
+          }
+        ],
+        "given": {
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      }
+    },
+    "options": [
+      {
+        "id": "non-analogy-01-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.28
+            },
+            {
+              "shape": "square",
+              "x": 0.68,
+              "y": 0.3,
+              "size": 0.28
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-01-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-01-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4,
+              "dir": "up"
+            },
+            {
+              "shape": "triangle",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.4,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-01-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.24
+            },
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.24
+            },
+            {
+              "shape": "square",
+              "x": 0.68,
+              "y": 0.7,
+              "size": 0.24
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-analogy-01-1",
+    "shuffle": true,
+    "hint": "Заметьте, что изменилось от первой фигуры ко второй, и повторите это с третьей.",
+    "explanation": "Число фигур удваивается, форма второй пары сохраняется."
+  },
+  {
+    "id": "non-analogy-02",
+    "scale": "nonverbal",
+    "type": "non-analogy",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Первая фигура относится ко второй, как третья к какой?",
+      "scene": {
+        "kind": "analogy",
+        "pair": [
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.22
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.48
+              }
+            ]
+          }
+        ],
+        "given": {
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.24,
+              "dir": "up"
+            }
+          ]
+        }
+      }
+    },
+    "options": [
+      {
+        "id": "non-analogy-02-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.5,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-02-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.24,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-02-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.5
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-02-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.48
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-analogy-02-1",
+    "shuffle": true,
+    "hint": "Заметьте, что изменилось от первой фигуры ко второй, и повторите это с третьей.",
+    "explanation": "Фигура той же формы становится крупнее."
+  },
+  {
+    "id": "non-analogy-03",
+    "scale": "nonverbal",
+    "type": "non-analogy",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Первая фигура относится ко второй, как третья к какой?",
+      "scene": {
+        "kind": "analogy",
+        "pair": [
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "down"
+              }
+            ]
+          }
+        ],
+        "given": {
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.3
+            }
+          ]
+        }
+      }
+    },
+    "options": [
+      {
+        "id": "non-analogy-03-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-03-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-03-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-03-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.4,
+              "dir": "down"
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-analogy-03-1",
+    "shuffle": true,
+    "hint": "Заметьте, что изменилось от первой фигуры ко второй, и повторите это с третьей.",
+    "explanation": "Фигура переходит из верхней половины в нижнюю, форма сохраняется."
+  },
+  {
+    "id": "non-analogy-04",
+    "scale": "nonverbal",
+    "type": "non-analogy",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Первая фигура относится ко второй, как третья к какой?",
+      "scene": {
+        "kind": "analogy",
+        "pair": [
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.26,
+                "y": 0.5,
+                "size": 0.24
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.74,
+                "y": 0.5,
+                "size": 0.24
+              }
+            ]
+          }
+        ],
+        "given": {
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.26,
+              "y": 0.5,
+              "size": 0.26
+            }
+          ]
+        }
+      }
+    },
+    "options": [
+      {
+        "id": "non-analogy-04-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.74,
+              "y": 0.5,
+              "size": 0.26
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-04-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.26,
+              "y": 0.5,
+              "size": 0.26
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-04-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.74,
+              "y": 0.5,
+              "size": 0.24
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-analogy-04-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.74,
+              "y": 0.5,
+              "size": 0.26
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-analogy-04-1",
+    "shuffle": true,
+    "hint": "Заметьте, что изменилось от первой фигуры ко второй, и повторите это с третьей.",
+    "explanation": "Фигура смещается к противоположному краю рамки и не меняет форму."
+  },
+  {
+    "id": "non-group-01",
+    "scale": "nonverbal",
+    "type": "non-group",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура подходит к группе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.28,
+                "size": 0.36,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.28,
+                "size": 0.3
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "square",
+                "x": 0.5,
+                "y": 0.28,
+                "size": 0.3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-group-01-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-01-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "diamond",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-01-3",
+        "scene": {
+          "kind": "card",
+          "elements": []
+        }
+      },
+      {
+        "id": "non-group-01-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.12
+            },
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.12
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-group-01-1",
+    "shuffle": true,
+    "hint": "Общий признак может быть положением, формой или числом элементов, а не случайной деталью одной карточки.",
+    "explanation": "У карточек группы элемент в верхней половине, верный вариант устроен так же."
+  },
+  {
+    "id": "non-group-02",
+    "scale": "nonverbal",
+    "type": "non-group",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая фигура подходит к группе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.42
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.28
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "circle",
+                "x": 0.68,
+                "y": 0.7,
+                "size": 0.24
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-group-02-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.3
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-02-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-02-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.42,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-02-4",
+        "scene": {
+          "kind": "card",
+          "elements": []
+        }
+      }
+    ],
+    "correctOptionId": "non-group-02-1",
+    "shuffle": true,
+    "hint": "Общий признак может быть положением, формой или числом элементов, а не случайной деталью одной карточки.",
+    "explanation": "Общий признак - круг. Верный вариант тоже содержит только круг."
+  },
+  {
+    "id": "non-group-03",
+    "scale": "nonverbal",
+    "type": "non-group",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая фигура подходит к группе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "dot",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.14
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-group-03-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-03-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "dot",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.14
+            },
+            {
+              "shape": "dot",
+              "x": 0.32,
+              "y": 0.3,
+              "size": 0.14
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-03-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "square",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-03-4",
+        "scene": {
+          "kind": "card",
+          "elements": []
+        }
+      }
+    ],
+    "correctOptionId": "non-group-03-1",
+    "shuffle": true,
+    "hint": "Общий признак может быть положением, формой или числом элементов, а не случайной деталью одной карточки.",
+    "explanation": "В группе ровно одна точка. Верный вариант сохраняет это число."
+  },
+  {
+    "id": "non-group-04",
+    "scale": "nonverbal",
+    "type": "non-group",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая фигура подходит к группе?",
+      "scene": {
+        "kind": "group",
+        "cards": [
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.5,
+                "y": 0.5,
+                "size": 0.46,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.32,
+                "y": 0.3,
+                "size": 0.36,
+                "dir": "up"
+              }
+            ]
+          },
+          {
+            "elements": [
+              {
+                "shape": "triangle",
+                "x": 0.68,
+                "y": 0.7,
+                "size": 0.36,
+                "dir": "up"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "non-group-04-1",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4,
+              "dir": "up"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-04-2",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.4,
+              "dir": "down"
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-04-3",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "circle",
+              "x": 0.5,
+              "y": 0.5,
+              "size": 0.34
+            }
+          ]
+        }
+      },
+      {
+        "id": "non-group-04-4",
+        "scene": {
+          "kind": "card",
+          "elements": [
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.28,
+              "size": 0.3,
+              "dir": "up"
+            },
+            {
+              "shape": "triangle",
+              "x": 0.5,
+              "y": 0.74,
+              "size": 0.3,
+              "dir": "up"
+            }
+          ]
+        }
+      }
+    ],
+    "correctOptionId": "non-group-04-1",
+    "shuffle": true,
+    "hint": "Общий признак может быть положением, формой или числом элементов, а не случайной деталью одной карточки.",
+    "explanation": "В группе один треугольник смотрит вверх. Верный вариант повторяет и число, и направление."
+  }
+]

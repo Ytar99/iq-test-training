@@ -1,0 +1,890 @@
+[
+  {
+    "id": "fact-01",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "geography",
+    "stimulus": {
+      "text": "Столица Австралии."
+    },
+    "options": [
+      {
+        "id": "fact-01-1",
+        "text": "Канберра"
+      },
+      {
+        "id": "fact-01-2",
+        "text": "Сидней"
+      },
+      {
+        "id": "fact-01-3",
+        "text": "Мельбурн"
+      },
+      {
+        "id": "fact-01-4",
+        "text": "Перт"
+      },
+      {
+        "id": "fact-01-5",
+        "text": "Аделаида"
+      }
+    ],
+    "correctOptionId": "fact-01-1",
+    "shuffle": true,
+    "hint": "Столица и самый большой город здесь не совпадают.",
+    "explanation": "Столица Австралии - Канберра, не Сидней."
+  },
+  {
+    "id": "fact-02",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "geography",
+    "stimulus": {
+      "text": "Столица Канады."
+    },
+    "options": [
+      {
+        "id": "fact-02-1",
+        "text": "Оттава"
+      },
+      {
+        "id": "fact-02-2",
+        "text": "Торонто"
+      },
+      {
+        "id": "fact-02-3",
+        "text": "Монреаль"
+      },
+      {
+        "id": "fact-02-4",
+        "text": "Ванкувер"
+      },
+      {
+        "id": "fact-02-5",
+        "text": "Квебек"
+      }
+    ],
+    "correctOptionId": "fact-02-1",
+    "shuffle": true,
+    "hint": "Столица и крупнейший город здесь разные.",
+    "explanation": "Столица Канады - Оттава."
+  },
+  {
+    "id": "fact-03",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "geography",
+    "stimulus": {
+      "text": "Самое глубокое озеро мира."
+    },
+    "options": [
+      {
+        "id": "fact-03-1",
+        "text": "Байкал"
+      },
+      {
+        "id": "fact-03-2",
+        "text": "Верхнее"
+      },
+      {
+        "id": "fact-03-3",
+        "text": "Виктория"
+      },
+      {
+        "id": "fact-03-4",
+        "text": "Танганьика"
+      },
+      {
+        "id": "fact-03-5",
+        "text": "Ладожское"
+      }
+    ],
+    "correctOptionId": "fact-03-1",
+    "shuffle": true,
+    "hint": "Сравнивайте глубину, а не площадь водной поверхности.",
+    "explanation": "Самое глубокое озеро - Байкал."
+  },
+  {
+    "id": "fact-04",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "hard",
+    "topic": "geography",
+    "stimulus": {
+      "text": "Какой пролив отделяет Азию от Северной Америки?"
+    },
+    "options": [
+      {
+        "id": "fact-04-1",
+        "text": "Берингов"
+      },
+      {
+        "id": "fact-04-2",
+        "text": "Гибралтарский"
+      },
+      {
+        "id": "fact-04-3",
+        "text": "Магелланов"
+      },
+      {
+        "id": "fact-04-4",
+        "text": "Ла-Манш"
+      },
+      {
+        "id": "fact-04-5",
+        "text": "Босфор"
+      }
+    ],
+    "correctOptionId": "fact-04-1",
+    "shuffle": true,
+    "hint": "Он лежит между Чукоткой и Аляской.",
+    "explanation": "Азию и Северную Америку разделяет Берингов пролив."
+  },
+  {
+    "id": "fact-05",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "history",
+    "stimulus": {
+      "text": "В каком году началась Великая Отечественная война?"
+    },
+    "options": [
+      {
+        "id": "fact-05-1",
+        "text": "в 1941 году"
+      },
+      {
+        "id": "fact-05-2",
+        "text": "в 1939 году"
+      },
+      {
+        "id": "fact-05-3",
+        "text": "в 1945 году"
+      },
+      {
+        "id": "fact-05-4",
+        "text": "в 1914 году"
+      },
+      {
+        "id": "fact-05-5",
+        "text": "в 1940 году"
+      }
+    ],
+    "correctOptionId": "fact-05-1",
+    "shuffle": true,
+    "hint": "Вопрос про Великую Отечественную, а не про начало войны в Европе и не про год ее окончания.",
+    "explanation": "1939 год - начало Второй мировой войны в Европе, вопрос про Великую Отечественную."
+  },
+  {
+    "id": "fact-06",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "history",
+    "stimulus": {
+      "text": "В каком году человек впервые полетел в космос?"
+    },
+    "options": [
+      {
+        "id": "fact-06-1",
+        "text": "в 1961 году"
+      },
+      {
+        "id": "fact-06-2",
+        "text": "в 1957 году"
+      },
+      {
+        "id": "fact-06-3",
+        "text": "в 1969 году"
+      },
+      {
+        "id": "fact-06-4",
+        "text": "в 1971 году"
+      },
+      {
+        "id": "fact-06-5",
+        "text": "в 1945 году"
+      }
+    ],
+    "correctOptionId": "fact-06-1",
+    "shuffle": true,
+    "hint": "Это полет Юрия Гагарина, не запуск первого спутника и не высадка на Луну.",
+    "explanation": "Первый полет человека в космос состоялся в 1961 году."
+  },
+  {
+    "id": "fact-07",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "hard",
+    "topic": "history",
+    "stimulus": {
+      "text": "В каком году была Куликовская битва?"
+    },
+    "options": [
+      {
+        "id": "fact-07-1",
+        "text": "в 1380 году"
+      },
+      {
+        "id": "fact-07-2",
+        "text": "в 1240 году"
+      },
+      {
+        "id": "fact-07-3",
+        "text": "в 1480 году"
+      },
+      {
+        "id": "fact-07-4",
+        "text": "в 1382 году"
+      },
+      {
+        "id": "fact-07-5",
+        "text": "в 1812 году"
+      }
+    ],
+    "correctOptionId": "fact-07-1",
+    "shuffle": true,
+    "hint": "Сражение Дмитрия Донского с Мамаем, не Ледовое побоище и не стояние на Угре.",
+    "explanation": "Куликовская битва была в 1380 году."
+  },
+  {
+    "id": "fact-08",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "hard",
+    "topic": "history",
+    "stimulus": {
+      "text": "В каком году в России отменили крепостное право?"
+    },
+    "options": [
+      {
+        "id": "fact-08-1",
+        "text": "в 1861 году"
+      },
+      {
+        "id": "fact-08-2",
+        "text": "в 1801 году"
+      },
+      {
+        "id": "fact-08-3",
+        "text": "в 1905 году"
+      },
+      {
+        "id": "fact-08-4",
+        "text": "в 1762 году"
+      },
+      {
+        "id": "fact-08-5",
+        "text": "в 1812 году"
+      }
+    ],
+    "correctOptionId": "fact-08-1",
+    "shuffle": true,
+    "hint": "Это реформа Александра II.",
+    "explanation": "Крепостное право отменили в 1861 году."
+  },
+  {
+    "id": "fact-09",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "science",
+    "stimulus": {
+      "text": "Химическая формула воды."
+    },
+    "options": [
+      {
+        "id": "fact-09-1",
+        "text": "H2O"
+      },
+      {
+        "id": "fact-09-2",
+        "text": "CO2"
+      },
+      {
+        "id": "fact-09-3",
+        "text": "NaCl"
+      },
+      {
+        "id": "fact-09-4",
+        "text": "O2"
+      },
+      {
+        "id": "fact-09-5",
+        "text": "H2SO4"
+      }
+    ],
+    "correctOptionId": "fact-09-1",
+    "shuffle": true,
+    "hint": "В формуле есть водород и кислород.",
+    "explanation": "Формула воды - H2O."
+  },
+  {
+    "id": "fact-10",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "science",
+    "stimulus": {
+      "text": "Ближайшая к Солнцу планета."
+    },
+    "options": [
+      {
+        "id": "fact-10-1",
+        "text": "Меркурий"
+      },
+      {
+        "id": "fact-10-2",
+        "text": "Венера"
+      },
+      {
+        "id": "fact-10-3",
+        "text": "Земля"
+      },
+      {
+        "id": "fact-10-4",
+        "text": "Марс"
+      },
+      {
+        "id": "fact-10-5",
+        "text": "Юпитер"
+      }
+    ],
+    "correctOptionId": "fact-10-1",
+    "shuffle": true,
+    "hint": "Это не самая яркая планета на небе и не наша собственная.",
+    "explanation": "Ближе всех к Солнцу стоит Меркурий."
+  },
+  {
+    "id": "fact-11",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "science",
+    "stimulus": {
+      "text": "Сколько планет в Солнечной системе?"
+    },
+    "options": [
+      {
+        "id": "fact-11-1",
+        "text": "8"
+      },
+      {
+        "id": "fact-11-2",
+        "text": "9"
+      },
+      {
+        "id": "fact-11-3",
+        "text": "7"
+      },
+      {
+        "id": "fact-11-4",
+        "text": "10"
+      },
+      {
+        "id": "fact-11-5",
+        "text": "12"
+      }
+    ],
+    "correctOptionId": "fact-11-1",
+    "shuffle": true,
+    "hint": "Плутон больше не считают планетой этой системы.",
+    "explanation": "Планет восемь, Плутон относят к карликовым."
+  },
+  {
+    "id": "fact-12",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "hard",
+    "topic": "science",
+    "stimulus": {
+      "text": "Единица силы в СИ."
+    },
+    "options": [
+      {
+        "id": "fact-12-1",
+        "text": "ньютон"
+      },
+      {
+        "id": "fact-12-2",
+        "text": "джоуль"
+      },
+      {
+        "id": "fact-12-3",
+        "text": "паскаль"
+      },
+      {
+        "id": "fact-12-4",
+        "text": "ватт"
+      },
+      {
+        "id": "fact-12-5",
+        "text": "генри"
+      }
+    ],
+    "correctOptionId": "fact-12-1",
+    "shuffle": true,
+    "hint": "Ее называют по фамилии автора законов механики.",
+    "explanation": "Единица силы - ньютон."
+  },
+  {
+    "id": "fact-13",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "culture",
+    "stimulus": {
+      "text": "Кто написал роман \"Война и мир\"?"
+    },
+    "options": [
+      {
+        "id": "fact-13-1",
+        "text": "Толстой"
+      },
+      {
+        "id": "fact-13-2",
+        "text": "Достоевский"
+      },
+      {
+        "id": "fact-13-3",
+        "text": "Тургенев"
+      },
+      {
+        "id": "fact-13-4",
+        "text": "Гоголь"
+      },
+      {
+        "id": "fact-13-5",
+        "text": "Чехов"
+      }
+    ],
+    "correctOptionId": "fact-13-1",
+    "shuffle": true,
+    "hint": "Автор также написал \"Анну Каренину\".",
+    "explanation": "Роман написал Лев Толстой."
+  },
+  {
+    "id": "fact-14",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "culture",
+    "stimulus": {
+      "text": "Кто написал \"Евгения Онегина\"?"
+    },
+    "options": [
+      {
+        "id": "fact-14-1",
+        "text": "Пушкин"
+      },
+      {
+        "id": "fact-14-2",
+        "text": "Лермонтов"
+      },
+      {
+        "id": "fact-14-3",
+        "text": "Грибоедов"
+      },
+      {
+        "id": "fact-14-4",
+        "text": "Жуковский"
+      },
+      {
+        "id": "fact-14-5",
+        "text": "Крылов"
+      }
+    ],
+    "correctOptionId": "fact-14-1",
+    "shuffle": true,
+    "hint": "Это роман в стихах.",
+    "explanation": "Евгения Онегина написал Александр Пушкин."
+  },
+  {
+    "id": "fact-15",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "culture",
+    "stimulus": {
+      "text": "Кто написал картину \"Черный квадрат\"?"
+    },
+    "options": [
+      {
+        "id": "fact-15-1",
+        "text": "Малевич"
+      },
+      {
+        "id": "fact-15-2",
+        "text": "Кандинский"
+      },
+      {
+        "id": "fact-15-3",
+        "text": "Шагал"
+      },
+      {
+        "id": "fact-15-4",
+        "text": "Репин"
+      },
+      {
+        "id": "fact-15-5",
+        "text": "Айвазовский"
+      }
+    ],
+    "correctOptionId": "fact-15-1",
+    "shuffle": true,
+    "hint": "Художник русского авангарда, не передвижник.",
+    "explanation": "Черный квадрат написал Казимир Малевич."
+  },
+  {
+    "id": "fact-16",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "economy",
+    "stimulus": {
+      "text": "Валюта Японии."
+    },
+    "options": [
+      {
+        "id": "fact-16-1",
+        "text": "иена"
+      },
+      {
+        "id": "fact-16-2",
+        "text": "юань"
+      },
+      {
+        "id": "fact-16-3",
+        "text": "вон"
+      },
+      {
+        "id": "fact-16-4",
+        "text": "рупия"
+      },
+      {
+        "id": "fact-16-5",
+        "text": "бат"
+      }
+    ],
+    "correctOptionId": "fact-16-1",
+    "shuffle": true,
+    "hint": "Ее не путают с валютой Китая.",
+    "explanation": "Валюта Японии - иена."
+  },
+  {
+    "id": "fact-17",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "economy",
+    "stimulus": {
+      "text": "Валюта Великобритании."
+    },
+    "options": [
+      {
+        "id": "fact-17-1",
+        "text": "фунт стерлингов"
+      },
+      {
+        "id": "fact-17-2",
+        "text": "евро"
+      },
+      {
+        "id": "fact-17-3",
+        "text": "крона"
+      },
+      {
+        "id": "fact-17-4",
+        "text": "франк"
+      },
+      {
+        "id": "fact-17-5",
+        "text": "доллар"
+      }
+    ],
+    "correctOptionId": "fact-17-1",
+    "shuffle": true,
+    "hint": "Страна не перешла на общую европейскую валюту.",
+    "explanation": "Валюта Великобритании - фунт стерлингов."
+  },
+  {
+    "id": "fact-18",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "hard",
+    "topic": "economy",
+    "stimulus": {
+      "text": "Валюта Китая."
+    },
+    "options": [
+      {
+        "id": "fact-18-1",
+        "text": "юань"
+      },
+      {
+        "id": "fact-18-2",
+        "text": "иена"
+      },
+      {
+        "id": "fact-18-3",
+        "text": "вон"
+      },
+      {
+        "id": "fact-18-4",
+        "text": "рупия"
+      },
+      {
+        "id": "fact-18-5",
+        "text": "доллар"
+      }
+    ],
+    "correctOptionId": "fact-18-1",
+    "shuffle": true,
+    "hint": "Это валюта КНР, не соседней островной страны.",
+    "explanation": "Валюта Китая - юань."
+  },
+  {
+    "id": "fact-19",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "nature",
+    "stimulus": {
+      "text": "Самое крупное современное млекопитающее."
+    },
+    "options": [
+      {
+        "id": "fact-19-1",
+        "text": "синий кит"
+      },
+      {
+        "id": "fact-19-2",
+        "text": "африканский слон"
+      },
+      {
+        "id": "fact-19-3",
+        "text": "кашалот"
+      },
+      {
+        "id": "fact-19-4",
+        "text": "белый медведь"
+      },
+      {
+        "id": "fact-19-5",
+        "text": "жираф"
+      }
+    ],
+    "correctOptionId": "fact-19-1",
+    "shuffle": true,
+    "hint": "Оно живет в океане, это не сухопутное животное.",
+    "explanation": "Самое крупное млекопитающее - синий кит."
+  },
+  {
+    "id": "fact-20",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "nature",
+    "stimulus": {
+      "text": "Где в природе живут императорские пингвины?"
+    },
+    "options": [
+      {
+        "id": "fact-20-1",
+        "text": "в Антарктиде"
+      },
+      {
+        "id": "fact-20-2",
+        "text": "в Арктике"
+      },
+      {
+        "id": "fact-20-3",
+        "text": "в Гренландии"
+      },
+      {
+        "id": "fact-20-4",
+        "text": "на Аляске"
+      },
+      {
+        "id": "fact-20-5",
+        "text": "в Исландии"
+      }
+    ],
+    "correctOptionId": "fact-20-1",
+    "shuffle": true,
+    "hint": "Их родина у южного полюса, а не у северного.",
+    "explanation": "Императорские пингвины живут в Антарктиде."
+  },
+  {
+    "id": "fact-21",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "hard",
+    "topic": "nature",
+    "stimulus": {
+      "text": "Высочайшая вершина Земли."
+    },
+    "options": [
+      {
+        "id": "fact-21-1",
+        "text": "Джомолунгма"
+      },
+      {
+        "id": "fact-21-2",
+        "text": "Аконкагуа"
+      },
+      {
+        "id": "fact-21-3",
+        "text": "Денали"
+      },
+      {
+        "id": "fact-21-4",
+        "text": "Эльбрус"
+      },
+      {
+        "id": "fact-21-5",
+        "text": "Килиманджаро"
+      }
+    ],
+    "correctOptionId": "fact-21-1",
+    "shuffle": true,
+    "hint": "Она стоит в Гималаях.",
+    "explanation": "Высочайшая вершина Земли - Джомолунгма."
+  },
+  {
+    "id": "fact-22",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "easy",
+    "topic": "sport",
+    "stimulus": {
+      "text": "Сколько игроков одной команды одновременно на поле в футболе?"
+    },
+    "options": [
+      {
+        "id": "fact-22-1",
+        "text": "11"
+      },
+      {
+        "id": "fact-22-2",
+        "text": "10"
+      },
+      {
+        "id": "fact-22-3",
+        "text": "9"
+      },
+      {
+        "id": "fact-22-4",
+        "text": "12"
+      },
+      {
+        "id": "fact-22-5",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "fact-22-1",
+    "shuffle": true,
+    "hint": "Считайте полевых игроков вместе с вратарем.",
+    "explanation": "На поле одиннадцать игроков."
+  },
+  {
+    "id": "fact-23",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "sport",
+    "stimulus": {
+      "text": "Сколько очков приносит штрафной бросок в баскетболе?"
+    },
+    "options": [
+      {
+        "id": "fact-23-1",
+        "text": "1"
+      },
+      {
+        "id": "fact-23-2",
+        "text": "2"
+      },
+      {
+        "id": "fact-23-3",
+        "text": "3"
+      },
+      {
+        "id": "fact-23-4",
+        "text": "4"
+      },
+      {
+        "id": "fact-23-5",
+        "text": "5"
+      }
+    ],
+    "correctOptionId": "fact-23-1",
+    "shuffle": true,
+    "hint": "Это самый дешевый успешный бросок, не бросок из игры и не из-за дуги.",
+    "explanation": "Штрафной бросок приносит одно очко."
+  },
+  {
+    "id": "fact-24",
+    "scale": "erudition",
+    "type": "fact",
+    "source": "demo",
+    "difficulty": "medium",
+    "topic": "sport",
+    "stimulus": {
+      "text": "Через сколько лет повторяются летние Олимпийские игры?"
+    },
+    "options": [
+      {
+        "id": "fact-24-1",
+        "text": "4"
+      },
+      {
+        "id": "fact-24-2",
+        "text": "2"
+      },
+      {
+        "id": "fact-24-3",
+        "text": "3"
+      },
+      {
+        "id": "fact-24-4",
+        "text": "5"
+      },
+      {
+        "id": "fact-24-5",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "fact-24-1",
+    "shuffle": true,
+    "hint": "Между соседними летними Играми один и тот же многолетний промежуток.",
+    "explanation": "Летние Игры проводят раз в четыре года."
+  }
+]

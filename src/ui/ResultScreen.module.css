@@ -1,0 +1,27 @@
+.summaryTable {
+  display: none;
+}
+
+.summaryCards {
+  display: block;
+}
+
+@media (min-width: $mantine-breakpoint-md) {
+  .summaryTable {
+    display: block;
+  }
+
+  .summaryCards {
+    display: none;
+  }
+}
+
+@media print {
+  .summaryTable {
+    display: block !important;
+  }
+
+  .summaryCards {
+    display: none !important;
+  }
+}

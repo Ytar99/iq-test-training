@@ -1,0 +1,26 @@
+.print-only {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  .keep-together {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  @page {
+    margin: 12mm;
+  }
+}

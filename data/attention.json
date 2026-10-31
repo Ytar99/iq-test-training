@@ -1,0 +1,866 @@
+[
+  {
+    "id": "att-count-01",
+    "scale": "attention",
+    "type": "att-count",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Сколько нечетных чисел в строках?\n12 7 18 3 40\n9 22 15 6 11\n8 4 13 30 2"
+    },
+    "options": [
+      {
+        "id": "att-count-01-1",
+        "text": "6"
+      },
+      {
+        "id": "att-count-01-2",
+        "text": "5"
+      },
+      {
+        "id": "att-count-01-3",
+        "text": "7"
+      },
+      {
+        "id": "att-count-01-4",
+        "text": "8"
+      },
+      {
+        "id": "att-count-01-5",
+        "text": "4"
+      }
+    ],
+    "correctOptionId": "att-count-01-1",
+    "shuffle": true,
+    "hint": "Идите по строкам и отмечайте числа, которые не делятся на два.",
+    "explanation": "Нечетных чисел 6."
+  },
+  {
+    "id": "att-count-02",
+    "scale": "attention",
+    "type": "att-count",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Сколько нечетных чисел в строках?\n2 4 6\n1 8 3\n10 5 12"
+    },
+    "options": [
+      {
+        "id": "att-count-02-1",
+        "text": "3"
+      },
+      {
+        "id": "att-count-02-2",
+        "text": "2"
+      },
+      {
+        "id": "att-count-02-3",
+        "text": "4"
+      },
+      {
+        "id": "att-count-02-4",
+        "text": "5"
+      },
+      {
+        "id": "att-count-02-5",
+        "text": "1"
+      }
+    ],
+    "correctOptionId": "att-count-02-1",
+    "shuffle": true,
+    "hint": "Идите по строкам и отмечайте числа, которые не делятся на два.",
+    "explanation": "Нечетных чисел 3."
+  },
+  {
+    "id": "att-count-03",
+    "scale": "attention",
+    "type": "att-count",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Сколько нечетных чисел в строках?\n14 21 8 33\n16 19 40 7\n2 25 18 11\n6 9 28 15"
+    },
+    "options": [
+      {
+        "id": "att-count-03-1",
+        "text": "8"
+      },
+      {
+        "id": "att-count-03-2",
+        "text": "7"
+      },
+      {
+        "id": "att-count-03-3",
+        "text": "9"
+      },
+      {
+        "id": "att-count-03-4",
+        "text": "10"
+      },
+      {
+        "id": "att-count-03-5",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "att-count-03-1",
+    "shuffle": true,
+    "hint": "Идите по строкам и отмечайте числа, которые не делятся на два.",
+    "explanation": "Нечетных чисел 8."
+  },
+  {
+    "id": "att-count-04",
+    "scale": "attention",
+    "type": "att-count",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Сколько чисел больше 5?\n3 8 10\n1 4 12\n6 2 9"
+    },
+    "options": [
+      {
+        "id": "att-count-04-1",
+        "text": "5"
+      },
+      {
+        "id": "att-count-04-2",
+        "text": "4"
+      },
+      {
+        "id": "att-count-04-3",
+        "text": "6"
+      },
+      {
+        "id": "att-count-04-4",
+        "text": "7"
+      },
+      {
+        "id": "att-count-04-5",
+        "text": "3"
+      }
+    ],
+    "correctOptionId": "att-count-04-1",
+    "shuffle": true,
+    "hint": "Идите по строкам и отмечайте только числа строго больше названного порога.",
+    "explanation": "Чисел больше порога 5."
+  },
+  {
+    "id": "att-count-05",
+    "scale": "attention",
+    "type": "att-count",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Сколько чисел больше 10?\n11 20 4 18\n15 7 30 2\n16 19 5 22"
+    },
+    "options": [
+      {
+        "id": "att-count-05-1",
+        "text": "8"
+      },
+      {
+        "id": "att-count-05-2",
+        "text": "7"
+      },
+      {
+        "id": "att-count-05-3",
+        "text": "9"
+      },
+      {
+        "id": "att-count-05-4",
+        "text": "10"
+      },
+      {
+        "id": "att-count-05-5",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "att-count-05-1",
+    "shuffle": true,
+    "hint": "Идите по строкам и отмечайте только числа строго больше названного порога.",
+    "explanation": "Чисел больше порога 8."
+  },
+  {
+    "id": "att-count-06",
+    "scale": "attention",
+    "type": "att-count",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Сколько чисел больше 20?\n25 40 12 33\n18 50 27 8\n41 16 29 36"
+    },
+    "options": [
+      {
+        "id": "att-count-06-1",
+        "text": "8"
+      },
+      {
+        "id": "att-count-06-2",
+        "text": "7"
+      },
+      {
+        "id": "att-count-06-3",
+        "text": "9"
+      },
+      {
+        "id": "att-count-06-4",
+        "text": "10"
+      },
+      {
+        "id": "att-count-06-5",
+        "text": "6"
+      }
+    ],
+    "correctOptionId": "att-count-06-1",
+    "shuffle": true,
+    "hint": "Идите по строкам и отмечайте только числа строго больше названного порога.",
+    "explanation": "Чисел больше порога 8."
+  },
+  {
+    "id": "att-cycle-01",
+    "scale": "attention",
+    "type": "att-cycle",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "В какой строке цикл сбит?"
+    },
+    "options": [
+      {
+        "id": "att-cycle-01-1",
+        "text": "246246346246246"
+      },
+      {
+        "id": "att-cycle-01-2",
+        "text": "135135135135135"
+      },
+      {
+        "id": "att-cycle-01-3",
+        "text": "808808808808808"
+      },
+      {
+        "id": "att-cycle-01-4",
+        "text": "919919919919919"
+      },
+      {
+        "id": "att-cycle-01-5",
+        "text": "472472472472472"
+      }
+    ],
+    "correctOptionId": "att-cycle-01-1",
+    "shuffle": true,
+    "hint": "В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.",
+    "explanation": "В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор."
+  },
+  {
+    "id": "att-cycle-02",
+    "scale": "attention",
+    "type": "att-cycle",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "В какой строке цикл сбит?"
+    },
+    "options": [
+      {
+        "id": "att-cycle-02-1",
+        "text": "121121221121121"
+      },
+      {
+        "id": "att-cycle-02-2",
+        "text": "343343343343343"
+      },
+      {
+        "id": "att-cycle-02-3",
+        "text": "565565565565565"
+      },
+      {
+        "id": "att-cycle-02-4",
+        "text": "787787787787787"
+      },
+      {
+        "id": "att-cycle-02-5",
+        "text": "909909909909909"
+      }
+    ],
+    "correctOptionId": "att-cycle-02-1",
+    "shuffle": true,
+    "hint": "В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.",
+    "explanation": "В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор."
+  },
+  {
+    "id": "att-cycle-03",
+    "scale": "attention",
+    "type": "att-cycle",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "В какой строке цикл сбит?"
+    },
+    "options": [
+      {
+        "id": "att-cycle-03-1",
+        "text": "314314414314314"
+      },
+      {
+        "id": "att-cycle-03-2",
+        "text": "628628628628628"
+      },
+      {
+        "id": "att-cycle-03-3",
+        "text": "707707707707707"
+      },
+      {
+        "id": "att-cycle-03-4",
+        "text": "151151151151151"
+      },
+      {
+        "id": "att-cycle-03-5",
+        "text": "262262262262262"
+      }
+    ],
+    "correctOptionId": "att-cycle-03-1",
+    "shuffle": true,
+    "hint": "В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.",
+    "explanation": "В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор."
+  },
+  {
+    "id": "att-cycle-04",
+    "scale": "attention",
+    "type": "att-cycle",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "В какой строке цикл сбит?"
+    },
+    "options": [
+      {
+        "id": "att-cycle-04-1",
+        "text": "482482582482482"
+      },
+      {
+        "id": "att-cycle-04-2",
+        "text": "593593593593593"
+      },
+      {
+        "id": "att-cycle-04-3",
+        "text": "160160160160160"
+      },
+      {
+        "id": "att-cycle-04-4",
+        "text": "271271271271271"
+      },
+      {
+        "id": "att-cycle-04-5",
+        "text": "384384384384384"
+      }
+    ],
+    "correctOptionId": "att-cycle-04-1",
+    "shuffle": true,
+    "hint": "В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.",
+    "explanation": "В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор."
+  },
+  {
+    "id": "att-cycle-05",
+    "scale": "attention",
+    "type": "att-cycle",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "В какой строке цикл сбит?"
+    },
+    "options": [
+      {
+        "id": "att-cycle-05-1",
+        "text": "101101201101101"
+      },
+      {
+        "id": "att-cycle-05-2",
+        "text": "202202202202202"
+      },
+      {
+        "id": "att-cycle-05-3",
+        "text": "303303303303303"
+      },
+      {
+        "id": "att-cycle-05-4",
+        "text": "404404404404404"
+      },
+      {
+        "id": "att-cycle-05-5",
+        "text": "505505505505505"
+      }
+    ],
+    "correctOptionId": "att-cycle-05-1",
+    "shuffle": true,
+    "hint": "В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.",
+    "explanation": "В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор."
+  },
+  {
+    "id": "att-cycle-06",
+    "scale": "attention",
+    "type": "att-cycle",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "В какой строке цикл сбит?"
+    },
+    "options": [
+      {
+        "id": "att-cycle-06-1",
+        "text": "675675775675675"
+      },
+      {
+        "id": "att-cycle-06-2",
+        "text": "786786786786786"
+      },
+      {
+        "id": "att-cycle-06-3",
+        "text": "213213213213213"
+      },
+      {
+        "id": "att-cycle-06-4",
+        "text": "324324324324324"
+      },
+      {
+        "id": "att-cycle-06-5",
+        "text": "435435435435435"
+      }
+    ],
+    "correctOptionId": "att-cycle-06-1",
+    "shuffle": true,
+    "hint": "В каждой строке найдите короткий повторяющийся кусок и проверьте, не сбился ли он.",
+    "explanation": "В верной строке один повтор заменен соседней цифрой, остальные строки держат свой повтор."
+  },
+  {
+    "id": "att-diff-01",
+    "scale": "attention",
+    "type": "att-diff",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Петров П.П., ул. Речная, д. 14, кв. 8\nПетров П.П., ул. Речная, д. 14, кв. 3"
+    },
+    "options": [
+      {
+        "id": "att-diff-01-1",
+        "text": "фамилия"
+      },
+      {
+        "id": "att-diff-01-2",
+        "text": "улица"
+      },
+      {
+        "id": "att-diff-01-3",
+        "text": "дом"
+      },
+      {
+        "id": "att-diff-01-4",
+        "text": "квартира"
+      },
+      {
+        "id": "att-diff-01-5",
+        "text": "нет расхождений"
+      }
+    ],
+    "correctOptionId": "att-diff-01-4",
+    "shuffle": true,
+    "hint": "Сверяйте две записи по одинаковым частям слева направо.",
+    "explanation": "Фамилия, улица и дом совпадают. Расходится номер квартиры."
+  },
+  {
+    "id": "att-diff-02",
+    "scale": "attention",
+    "type": "att-diff",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Иванова А.С., ул. Лесная, д. 7, кв. 2\nИванова А.С., ул. Луговая, д. 7, кв. 2"
+    },
+    "options": [
+      {
+        "id": "att-diff-02-1",
+        "text": "фамилия"
+      },
+      {
+        "id": "att-diff-02-2",
+        "text": "улица"
+      },
+      {
+        "id": "att-diff-02-3",
+        "text": "дом"
+      },
+      {
+        "id": "att-diff-02-4",
+        "text": "квартира"
+      },
+      {
+        "id": "att-diff-02-5",
+        "text": "нет расхождений"
+      }
+    ],
+    "correctOptionId": "att-diff-02-2",
+    "shuffle": true,
+    "hint": "Сверяйте две записи по одинаковым частям слева направо.",
+    "explanation": "Фамилия, дом и квартира совпадают. Расходится улица."
+  },
+  {
+    "id": "att-diff-03",
+    "scale": "attention",
+    "type": "att-diff",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Сидоров И.И., ул. Садовая, д. 3, кв. 11\nСидоров И.И., ул. Садовая, д. 3, кв. 11"
+    },
+    "options": [
+      {
+        "id": "att-diff-03-1",
+        "text": "фамилия"
+      },
+      {
+        "id": "att-diff-03-2",
+        "text": "улица"
+      },
+      {
+        "id": "att-diff-03-3",
+        "text": "дом"
+      },
+      {
+        "id": "att-diff-03-4",
+        "text": "квартира"
+      },
+      {
+        "id": "att-diff-03-5",
+        "text": "нет расхождений"
+      }
+    ],
+    "correctOptionId": "att-diff-03-5",
+    "shuffle": true,
+    "hint": "Сверяйте две записи по одинаковым частям слева направо.",
+    "explanation": "Все четыре поля двух записей совпадают."
+  },
+  {
+    "id": "att-typo-01",
+    "scale": "attention",
+    "type": "att-typo",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Заказчик обязуется аплатить документ вовремя."
+    },
+    "options": [
+      {
+        "id": "att-typo-01-1",
+        "text": "заказчик"
+      },
+      {
+        "id": "att-typo-01-2",
+        "text": "обязуется"
+      },
+      {
+        "id": "att-typo-01-3",
+        "text": "аплатить"
+      },
+      {
+        "id": "att-typo-01-4",
+        "text": "документ"
+      },
+      {
+        "id": "att-typo-01-5",
+        "text": "вовремя"
+      }
+    ],
+    "correctOptionId": "att-typo-01-3",
+    "shuffle": true,
+    "hint": "Прочитайте каждое слово отдельно и проверьте буквы.",
+    "explanation": "Нужно \"оплатить\"."
+  },
+  {
+    "id": "att-typo-02",
+    "scale": "attention",
+    "type": "att-typo",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Секретарь отправляет атчет в архив."
+    },
+    "options": [
+      {
+        "id": "att-typo-02-1",
+        "text": "секретарь"
+      },
+      {
+        "id": "att-typo-02-2",
+        "text": "отправляет"
+      },
+      {
+        "id": "att-typo-02-3",
+        "text": "атчет"
+      },
+      {
+        "id": "att-typo-02-4",
+        "text": "в"
+      },
+      {
+        "id": "att-typo-02-5",
+        "text": "архив"
+      }
+    ],
+    "correctOptionId": "att-typo-02-3",
+    "shuffle": true,
+    "hint": "Прочитайте каждое слово отдельно и проверьте буквы.",
+    "explanation": "Нужно \"отчет\"."
+  },
+  {
+    "id": "att-typo-03",
+    "scale": "attention",
+    "type": "att-typo",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Курьер привез пакет вофис сегодня."
+    },
+    "options": [
+      {
+        "id": "att-typo-03-1",
+        "text": "курьер"
+      },
+      {
+        "id": "att-typo-03-2",
+        "text": "привез"
+      },
+      {
+        "id": "att-typo-03-3",
+        "text": "пакет"
+      },
+      {
+        "id": "att-typo-03-4",
+        "text": "вофис"
+      },
+      {
+        "id": "att-typo-03-5",
+        "text": "сегодня"
+      }
+    ],
+    "correctOptionId": "att-typo-03-4",
+    "shuffle": true,
+    "hint": "Прочитайте каждое слово отдельно и проверьте буквы.",
+    "explanation": "Нужно \"в офис\"."
+  },
+  {
+    "id": "att-symbol-01",
+    "scale": "attention",
+    "type": "att-symbol",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Сколько раз встречается цифра 7: 717 177 717 771 177"
+    },
+    "options": [
+      {
+        "id": "att-symbol-01-1",
+        "text": "10"
+      },
+      {
+        "id": "att-symbol-01-2",
+        "text": "9"
+      },
+      {
+        "id": "att-symbol-01-3",
+        "text": "11"
+      },
+      {
+        "id": "att-symbol-01-4",
+        "text": "12"
+      },
+      {
+        "id": "att-symbol-01-5",
+        "text": "8"
+      }
+    ],
+    "correctOptionId": "att-symbol-01-1",
+    "shuffle": true,
+    "hint": "Считайте только заданную цифру в каждой группе, затем сложите.",
+    "explanation": "Цифра встречается 10 раз."
+  },
+  {
+    "id": "att-symbol-02",
+    "scale": "attention",
+    "type": "att-symbol",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Сколько раз встречается цифра 2: 202 220 202"
+    },
+    "options": [
+      {
+        "id": "att-symbol-02-1",
+        "text": "6"
+      },
+      {
+        "id": "att-symbol-02-2",
+        "text": "5"
+      },
+      {
+        "id": "att-symbol-02-3",
+        "text": "7"
+      },
+      {
+        "id": "att-symbol-02-4",
+        "text": "8"
+      },
+      {
+        "id": "att-symbol-02-5",
+        "text": "4"
+      }
+    ],
+    "correctOptionId": "att-symbol-02-1",
+    "shuffle": true,
+    "hint": "Считайте только заданную цифру в каждой группе, затем сложите.",
+    "explanation": "Цифра встречается 6 раз."
+  },
+  {
+    "id": "att-symbol-03",
+    "scale": "attention",
+    "type": "att-symbol",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Сколько раз встречается цифра 3: 353 335 533 353 535"
+    },
+    "options": [
+      {
+        "id": "att-symbol-03-1",
+        "text": "9"
+      },
+      {
+        "id": "att-symbol-03-2",
+        "text": "8"
+      },
+      {
+        "id": "att-symbol-03-3",
+        "text": "10"
+      },
+      {
+        "id": "att-symbol-03-4",
+        "text": "11"
+      },
+      {
+        "id": "att-symbol-03-5",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "att-symbol-03-1",
+    "shuffle": true,
+    "hint": "Считайте только заданную цифру в каждой группе, затем сложите.",
+    "explanation": "Цифра встречается 9 раз."
+  },
+  {
+    "id": "att-match-01",
+    "scale": "attention",
+    "type": "att-match",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какая строка совпадает с образцом 48291?"
+    },
+    "options": [
+      {
+        "id": "att-match-01-1",
+        "text": "48291"
+      },
+      {
+        "id": "att-match-01-2",
+        "text": "49291"
+      },
+      {
+        "id": "att-match-01-3",
+        "text": "48391"
+      },
+      {
+        "id": "att-match-01-4",
+        "text": "48281"
+      },
+      {
+        "id": "att-match-01-5",
+        "text": "48292"
+      }
+    ],
+    "correctOptionId": "att-match-01-1",
+    "shuffle": true,
+    "hint": "Сверьте образец с каждой строкой по знакам. Совпадение должно быть полным.",
+    "explanation": "Одна строка совпадает с образцом целиком, в остальных изменен один знак."
+  },
+  {
+    "id": "att-match-02",
+    "scale": "attention",
+    "type": "att-match",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какая строка совпадает с образцом 73064?"
+    },
+    "options": [
+      {
+        "id": "att-match-02-1",
+        "text": "73064"
+      },
+      {
+        "id": "att-match-02-2",
+        "text": "74064"
+      },
+      {
+        "id": "att-match-02-3",
+        "text": "73164"
+      },
+      {
+        "id": "att-match-02-4",
+        "text": "73074"
+      },
+      {
+        "id": "att-match-02-5",
+        "text": "73065"
+      }
+    ],
+    "correctOptionId": "att-match-02-1",
+    "shuffle": true,
+    "hint": "Сверьте образец с каждой строкой по знакам. Совпадение должно быть полным.",
+    "explanation": "Одна строка совпадает с образцом целиком, в остальных изменен один знак."
+  },
+  {
+    "id": "att-match-03",
+    "scale": "attention",
+    "type": "att-match",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какая строка совпадает с образцом 15928?"
+    },
+    "options": [
+      {
+        "id": "att-match-03-1",
+        "text": "15928"
+      },
+      {
+        "id": "att-match-03-2",
+        "text": "16928"
+      },
+      {
+        "id": "att-match-03-3",
+        "text": "15828"
+      },
+      {
+        "id": "att-match-03-4",
+        "text": "15938"
+      },
+      {
+        "id": "att-match-03-5",
+        "text": "15929"
+      }
+    ],
+    "correctOptionId": "att-match-03-1",
+    "shuffle": true,
+    "hint": "Сверьте образец с каждой строкой по знакам. Совпадение должно быть полным.",
+    "explanation": "Одна строка совпадает с образцом целиком, в остальных изменен один знак."
+  }
+]

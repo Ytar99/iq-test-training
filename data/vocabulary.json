@@ -1,0 +1,974 @@
+[
+  {
+    "id": "voc-anagram-01",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Соберите слова. Какое из них лишнее?"
+    },
+    "options": [
+      {
+        "id": "voc-anagram-01-1",
+        "text": "ШАКОК"
+      },
+      {
+        "id": "voc-anagram-01-2",
+        "text": "РГИТ"
+      },
+      {
+        "id": "voc-anagram-01-3",
+        "text": "КЛОВ"
+      },
+      {
+        "id": "voc-anagram-01-4",
+        "text": "САИЛ"
+      },
+      {
+        "id": "voc-anagram-01-5",
+        "text": "ТОЛС"
+      }
+    ],
+    "correctOptionId": "voc-anagram-01-5",
+    "shuffle": true,
+    "hint": "Соберите из букв обычные слова и найдите то, которое не из общей группы.",
+    "explanation": "ШАКОК - кошка, РГИТ - тигр, КЛОВ - волк, САИЛ - лиса, ТОЛС - стол. Общая группа - животные, лишнее слово - стол."
+  },
+  {
+    "id": "voc-anagram-02",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Соберите слова. Какое из них лишнее?"
+    },
+    "options": [
+      {
+        "id": "voc-anagram-02-1",
+        "text": "ОБЛОКЯ"
+      },
+      {
+        "id": "voc-anagram-02-2",
+        "text": "АШУРГ"
+      },
+      {
+        "id": "voc-anagram-02-3",
+        "text": "АИВЛС"
+      },
+      {
+        "id": "voc-anagram-02-4",
+        "text": "ЯИНШВ"
+      },
+      {
+        "id": "voc-anagram-02-5",
+        "text": "КОЬОРВМ"
+      }
+    ],
+    "correctOptionId": "voc-anagram-02-5",
+    "shuffle": true,
+    "hint": "Соберите из букв обычные слова и найдите то, которое не из общей группы.",
+    "explanation": "ОБЛОКЯ - яблоко, АШУРГ - груша, АИВЛС - слива, ЯИНШВ - вишня, КОЬОРВМ - морковь. Общая группа - фрукты, лишнее слово - морковь."
+  },
+  {
+    "id": "voc-anagram-03",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Соберите слова. Какое из них лишнее?"
+    },
+    "options": [
+      {
+        "id": "voc-anagram-03-1",
+        "text": "РАИПККС"
+      },
+      {
+        "id": "voc-anagram-03-2",
+        "text": "ТЛЬА"
+      },
+      {
+        "id": "voc-anagram-03-3",
+        "text": "ЛЕЧНИЬОЛОВ"
+      },
+      {
+        "id": "voc-anagram-03-4",
+        "text": "АБАНТРОСК"
+      },
+      {
+        "id": "voc-anagram-03-5",
+        "text": "ЛАЙТЕФ"
+      }
+    ],
+    "correctOptionId": "voc-anagram-03-5",
+    "shuffle": true,
+    "hint": "Соберите из букв обычные слова и найдите то, которое не из общей группы.",
+    "explanation": "РАИПККС - скрипка, ТЛЬА - альт, ЛЕЧНИЬОЛОВ - виолончель, АБАНТРОСК - контрабас, ЛАЙТЕФ - флейта. Общая группа - смычковые, лишнее слово - флейта."
+  },
+  {
+    "id": "voc-anagram-04",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Соберите слова. Какое из них лишнее?"
+    },
+    "options": [
+      {
+        "id": "voc-anagram-04-1",
+        "text": "ЙРСНЫАК"
+      },
+      {
+        "id": "voc-anagram-04-2",
+        "text": "ИЙИНС"
+      },
+      {
+        "id": "voc-anagram-04-3",
+        "text": "НЕЫЕЙЛЗ"
+      },
+      {
+        "id": "voc-anagram-04-4",
+        "text": "ЫЙЛЕБ"
+      },
+      {
+        "id": "voc-anagram-04-5",
+        "text": "ЛТУС"
+      }
+    ],
+    "correctOptionId": "voc-anagram-04-5",
+    "shuffle": true,
+    "hint": "Соберите из букв обычные слова и найдите то, которое не из общей группы.",
+    "explanation": "ЙРСНЫАК - красный, ИЙИНС - синий, НЕЫЕЙЛЗ - зеленый, ЫЙЛЕБ - белый, ЛТУС - стул. Общая группа - цвета, лишнее слово - стул."
+  },
+  {
+    "id": "voc-anagram-05",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Соберите слова. Какое из них лишнее?"
+    },
+    "options": [
+      {
+        "id": "voc-anagram-05-1",
+        "text": "УБД"
+      },
+      {
+        "id": "voc-anagram-05-2",
+        "text": "ЕНЛК"
+      },
+      {
+        "id": "voc-anagram-05-3",
+        "text": "АИПЛ"
+      },
+      {
+        "id": "voc-anagram-05-4",
+        "text": "АЗЕРЕБ"
+      },
+      {
+        "id": "voc-anagram-05-5",
+        "text": "ЗОАР"
+      }
+    ],
+    "correctOptionId": "voc-anagram-05-5",
+    "shuffle": true,
+    "hint": "Соберите из букв обычные слова и найдите то, которое не из общей группы.",
+    "explanation": "УБД - дуб, ЕНЛК - клен, АИПЛ - липа, АЗЕРЕБ - береза, ЗОАР - роза. Общая группа - деревья, лишнее слово - роза."
+  },
+  {
+    "id": "voc-anagram-06",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Соберите слова. Какое из них лишнее?"
+    },
+    "options": [
+      {
+        "id": "voc-anagram-06-1",
+        "text": "САКВОМ"
+      },
+      {
+        "id": "voc-anagram-06-2",
+        "text": "ЬАНЗАК"
+      },
+      {
+        "id": "voc-anagram-06-3",
+        "text": "СМКО"
+      },
+      {
+        "id": "voc-anagram-06-4",
+        "text": "АЛУТ"
+      },
+      {
+        "id": "voc-anagram-06-5",
+        "text": "ЛГОАВ"
+      }
+    ],
+    "correctOptionId": "voc-anagram-06-5",
+    "shuffle": true,
+    "hint": "Соберите из букв обычные слова и найдите то, которое не из общей группы.",
+    "explanation": "САКВОМ - Москва, ЬАНЗАК - Казань, СМКО - Омск, АЛУТ - Тула, ЛГОАВ - Волга. Общая группа - города, лишнее слово - Волга."
+  },
+  {
+    "id": "voc-spelling-01",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Укажите неверное написание."
+    },
+    "options": [
+      {
+        "id": "voc-spelling-01-1",
+        "text": "пространство"
+      },
+      {
+        "id": "voc-spelling-01-2",
+        "text": "будующий"
+      },
+      {
+        "id": "voc-spelling-01-3",
+        "text": "лестница"
+      },
+      {
+        "id": "voc-spelling-01-4",
+        "text": "агентство"
+      },
+      {
+        "id": "voc-spelling-01-5",
+        "text": "привилегия"
+      }
+    ],
+    "correctOptionId": "voc-spelling-01-2",
+    "shuffle": true,
+    "hint": "Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.",
+    "explanation": "Верная форма - будущий."
+  },
+  {
+    "id": "voc-spelling-02",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Укажите неверное написание."
+    },
+    "options": [
+      {
+        "id": "voc-spelling-02-1",
+        "text": "претензия"
+      },
+      {
+        "id": "voc-spelling-02-2",
+        "text": "алюминий"
+      },
+      {
+        "id": "voc-spelling-02-3",
+        "text": "приоритет"
+      },
+      {
+        "id": "voc-spelling-02-4",
+        "text": "катастрофа"
+      },
+      {
+        "id": "voc-spelling-02-5",
+        "text": "инциндент"
+      }
+    ],
+    "correctOptionId": "voc-spelling-02-5",
+    "shuffle": true,
+    "hint": "Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.",
+    "explanation": "Верная форма - инцидент."
+  },
+  {
+    "id": "voc-spelling-03",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Укажите неверное написание."
+    },
+    "options": [
+      {
+        "id": "voc-spelling-03-1",
+        "text": "абонент"
+      },
+      {
+        "id": "voc-spelling-03-2",
+        "text": "стипендия"
+      },
+      {
+        "id": "voc-spelling-03-3",
+        "text": "жюри"
+      },
+      {
+        "id": "voc-spelling-03-4",
+        "text": "дилетант"
+      },
+      {
+        "id": "voc-spelling-03-5",
+        "text": "бюлетень"
+      }
+    ],
+    "correctOptionId": "voc-spelling-03-5",
+    "shuffle": true,
+    "hint": "Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.",
+    "explanation": "Верная форма - бюллетень."
+  },
+  {
+    "id": "voc-spelling-04",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Укажите неверное написание."
+    },
+    "options": [
+      {
+        "id": "voc-spelling-04-1",
+        "text": "академия"
+      },
+      {
+        "id": "voc-spelling-04-2",
+        "text": "интеллигенция"
+      },
+      {
+        "id": "voc-spelling-04-3",
+        "text": "винегрет"
+      },
+      {
+        "id": "voc-spelling-04-4",
+        "text": "перила"
+      },
+      {
+        "id": "voc-spelling-04-5",
+        "text": "акадэмия"
+      }
+    ],
+    "correctOptionId": "voc-spelling-04-5",
+    "shuffle": true,
+    "hint": "Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.",
+    "explanation": "Верная форма - академия."
+  },
+  {
+    "id": "voc-spelling-05",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Укажите неверное написание."
+    },
+    "options": [
+      {
+        "id": "voc-spelling-05-1",
+        "text": "кристалл"
+      },
+      {
+        "id": "voc-spelling-05-2",
+        "text": "колоссальный"
+      },
+      {
+        "id": "voc-spelling-05-3",
+        "text": "искусный"
+      },
+      {
+        "id": "voc-spelling-05-4",
+        "text": "антагонизм"
+      },
+      {
+        "id": "voc-spelling-05-5",
+        "text": "полисадник"
+      }
+    ],
+    "correctOptionId": "voc-spelling-05-5",
+    "shuffle": true,
+    "hint": "Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.",
+    "explanation": "Верная форма - палисадник."
+  },
+  {
+    "id": "voc-spelling-06",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Укажите неверное написание."
+    },
+    "options": [
+      {
+        "id": "voc-spelling-06-1",
+        "text": "рассчитывать"
+      },
+      {
+        "id": "voc-spelling-06-2",
+        "text": "конъюнктура"
+      },
+      {
+        "id": "voc-spelling-06-3",
+        "text": "привилегия"
+      },
+      {
+        "id": "voc-spelling-06-4",
+        "text": "подскользнуться"
+      },
+      {
+        "id": "voc-spelling-06-5",
+        "text": "беспрецедентный"
+      }
+    ],
+    "correctOptionId": "voc-spelling-06-4",
+    "shuffle": true,
+    "hint": "Сверьте каждое слово с привычным написанием, ошибка в одной букве или в лишней букве.",
+    "explanation": "Верная форма - поскользнуться."
+  },
+  {
+    "id": "voc-synonym-01",
+    "scale": "vocabulary",
+    "type": "voc-synonym",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Синоним слова \"быстрый\"."
+    },
+    "options": [
+      {
+        "id": "voc-synonym-01-1",
+        "text": "скорый"
+      },
+      {
+        "id": "voc-synonym-01-2",
+        "text": "медленный"
+      },
+      {
+        "id": "voc-synonym-01-3",
+        "text": "тихий"
+      },
+      {
+        "id": "voc-synonym-01-4",
+        "text": "поздний"
+      },
+      {
+        "id": "voc-synonym-01-5",
+        "text": "редкий"
+      }
+    ],
+    "correctOptionId": "voc-synonym-01-1",
+    "shuffle": true,
+    "hint": "Нужно слово с тем же смыслом, а не противоположное.",
+    "explanation": "Скорый значит быстрый. Медленный - антоним."
+  },
+  {
+    "id": "voc-synonym-02",
+    "scale": "vocabulary",
+    "type": "voc-synonym",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Антоним слова \"широкий\"."
+    },
+    "options": [
+      {
+        "id": "voc-synonym-02-1",
+        "text": "узкий"
+      },
+      {
+        "id": "voc-synonym-02-2",
+        "text": "просторный"
+      },
+      {
+        "id": "voc-synonym-02-3",
+        "text": "высокий"
+      },
+      {
+        "id": "voc-synonym-02-4",
+        "text": "ровный"
+      },
+      {
+        "id": "voc-synonym-02-5",
+        "text": "частый"
+      }
+    ],
+    "correctOptionId": "voc-synonym-02-1",
+    "shuffle": true,
+    "hint": "Нужно слово с противоположным смыслом.",
+    "explanation": "Узкий противоположен широкому."
+  },
+  {
+    "id": "voc-synonym-03",
+    "scale": "vocabulary",
+    "type": "voc-synonym",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Синоним слова \"храбрый\"."
+    },
+    "options": [
+      {
+        "id": "voc-synonym-03-1",
+        "text": "смелый"
+      },
+      {
+        "id": "voc-synonym-03-2",
+        "text": "робкий"
+      },
+      {
+        "id": "voc-synonym-03-3",
+        "text": "громкий"
+      },
+      {
+        "id": "voc-synonym-03-4",
+        "text": "быстрый"
+      },
+      {
+        "id": "voc-synonym-03-5",
+        "text": "добрый"
+      }
+    ],
+    "correctOptionId": "voc-synonym-03-1",
+    "shuffle": true,
+    "hint": "Ищите близкое по смыслу слово, а не противоположное.",
+    "explanation": "Смелый и храбрый обозначают одно и то же качество."
+  },
+  {
+    "id": "voc-meaning-01",
+    "scale": "vocabulary",
+    "type": "voc-meaning",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Что означает слово \"лаконичный\"?"
+    },
+    "options": [
+      {
+        "id": "voc-meaning-01-1",
+        "text": "краткий"
+      },
+      {
+        "id": "voc-meaning-01-2",
+        "text": "яркий"
+      },
+      {
+        "id": "voc-meaning-01-3",
+        "text": "древний"
+      },
+      {
+        "id": "voc-meaning-01-4",
+        "text": "случайный"
+      },
+      {
+        "id": "voc-meaning-01-5",
+        "text": "шумный"
+      }
+    ],
+    "correctOptionId": "voc-meaning-01-1",
+    "shuffle": true,
+    "hint": "Подставьте толкование вместо слова и оставьте то, которое не меняет смысл.",
+    "explanation": "Лаконичный - краткий, без лишних слов."
+  },
+  {
+    "id": "voc-meaning-02",
+    "scale": "vocabulary",
+    "type": "voc-meaning",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Что означает слово \"альбом\"?"
+    },
+    "options": [
+      {
+        "id": "voc-meaning-02-1",
+        "text": "книга для рисунков или снимков"
+      },
+      {
+        "id": "voc-meaning-02-2",
+        "text": "кухонная посуда"
+      },
+      {
+        "id": "voc-meaning-02-3",
+        "text": "вид транспорта"
+      },
+      {
+        "id": "voc-meaning-02-4",
+        "text": "единица времени"
+      },
+      {
+        "id": "voc-meaning-02-5",
+        "text": "садовый инструмент"
+      }
+    ],
+    "correctOptionId": "voc-meaning-02-1",
+    "shuffle": true,
+    "hint": "Вспомните, куда обычно складывают рисунки и фотографии.",
+    "explanation": "Альбом - книга или тетрадь для рисунков и снимков."
+  },
+  {
+    "id": "voc-meaning-03",
+    "scale": "vocabulary",
+    "type": "voc-meaning",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Что означает слово \"дефицит\"?"
+    },
+    "options": [
+      {
+        "id": "voc-meaning-03-1",
+        "text": "нехватка"
+      },
+      {
+        "id": "voc-meaning-03-2",
+        "text": "избыток"
+      },
+      {
+        "id": "voc-meaning-03-3",
+        "text": "равенство"
+      },
+      {
+        "id": "voc-meaning-03-4",
+        "text": "обмен"
+      },
+      {
+        "id": "voc-meaning-03-5",
+        "text": "заказ"
+      }
+    ],
+    "correctOptionId": "voc-meaning-03-1",
+    "shuffle": true,
+    "hint": "Слово говорит о том, чего не хватает, а не о том, чего слишком много.",
+    "explanation": "Дефицит - это нехватка."
+  },
+  {
+    "id": "voc-odd-word-01",
+    "scale": "vocabulary",
+    "type": "voc-odd-word",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какое слово из другой группы?"
+    },
+    "options": [
+      {
+        "id": "voc-odd-word-01-1",
+        "text": "яблоко"
+      },
+      {
+        "id": "voc-odd-word-01-2",
+        "text": "груша"
+      },
+      {
+        "id": "voc-odd-word-01-3",
+        "text": "слива"
+      },
+      {
+        "id": "voc-odd-word-01-4",
+        "text": "морковь"
+      },
+      {
+        "id": "voc-odd-word-01-5",
+        "text": "вишня"
+      }
+    ],
+    "correctOptionId": "voc-odd-word-01-4",
+    "shuffle": true,
+    "hint": "Четыре слова из одной группы, одно из другой. Буквы переставлять не нужно.",
+    "explanation": "Остальные - фрукты, морковь - овощ."
+  },
+  {
+    "id": "voc-odd-word-02",
+    "scale": "vocabulary",
+    "type": "voc-odd-word",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какое слово из другой группы?"
+    },
+    "options": [
+      {
+        "id": "voc-odd-word-02-1",
+        "text": "гитара"
+      },
+      {
+        "id": "voc-odd-word-02-2",
+        "text": "скрипка"
+      },
+      {
+        "id": "voc-odd-word-02-3",
+        "text": "барабан"
+      },
+      {
+        "id": "voc-odd-word-02-4",
+        "text": "молоток"
+      },
+      {
+        "id": "voc-odd-word-02-5",
+        "text": "флейта"
+      }
+    ],
+    "correctOptionId": "voc-odd-word-02-4",
+    "shuffle": true,
+    "hint": "Четыре слова из одной группы, одно из другой. Буквы переставлять не нужно.",
+    "explanation": "Остальные - музыкальные инструменты, молоток - инструмент столяра."
+  },
+  {
+    "id": "voc-odd-word-03",
+    "scale": "vocabulary",
+    "type": "voc-odd-word",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какое слово из другой группы?"
+    },
+    "options": [
+      {
+        "id": "voc-odd-word-03-1",
+        "text": "утро"
+      },
+      {
+        "id": "voc-odd-word-03-2",
+        "text": "вечер"
+      },
+      {
+        "id": "voc-odd-word-03-3",
+        "text": "ночь"
+      },
+      {
+        "id": "voc-odd-word-03-4",
+        "text": "вторник"
+      },
+      {
+        "id": "voc-odd-word-03-5",
+        "text": "полдень"
+      }
+    ],
+    "correctOptionId": "voc-odd-word-03-4",
+    "shuffle": true,
+    "hint": "Четыре слова из одной группы, одно из другой. Буквы переставлять не нужно.",
+    "explanation": "Остальные - части суток, вторник - день недели."
+  },
+  {
+    "id": "voc-letter-01",
+    "scale": "vocabulary",
+    "type": "voc-letter",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Вставьте букву: в...кзал."
+    },
+    "options": [
+      {
+        "id": "voc-letter-01-1",
+        "text": "о"
+      },
+      {
+        "id": "voc-letter-01-2",
+        "text": "а"
+      },
+      {
+        "id": "voc-letter-01-3",
+        "text": "е"
+      },
+      {
+        "id": "voc-letter-01-4",
+        "text": "и"
+      },
+      {
+        "id": "voc-letter-01-5",
+        "text": "ы"
+      }
+    ],
+    "correctOptionId": "voc-letter-01-1",
+    "shuffle": true,
+    "hint": "Прочитайте слово целиком и вспомните привычное написание.",
+    "explanation": "Верное слово - вокзал."
+  },
+  {
+    "id": "voc-letter-02",
+    "scale": "vocabulary",
+    "type": "voc-letter",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Вставьте букву: к...рман."
+    },
+    "options": [
+      {
+        "id": "voc-letter-02-1",
+        "text": "а"
+      },
+      {
+        "id": "voc-letter-02-2",
+        "text": "о"
+      },
+      {
+        "id": "voc-letter-02-3",
+        "text": "е"
+      },
+      {
+        "id": "voc-letter-02-4",
+        "text": "и"
+      },
+      {
+        "id": "voc-letter-02-5",
+        "text": "у"
+      }
+    ],
+    "correctOptionId": "voc-letter-02-1",
+    "shuffle": true,
+    "hint": "Прочитайте слово целиком и вспомните привычное написание.",
+    "explanation": "Верное слово - карман."
+  },
+  {
+    "id": "voc-letter-03",
+    "scale": "vocabulary",
+    "type": "voc-letter",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Вставьте букву: св...сток."
+    },
+    "options": [
+      {
+        "id": "voc-letter-03-1",
+        "text": "и"
+      },
+      {
+        "id": "voc-letter-03-2",
+        "text": "е"
+      },
+      {
+        "id": "voc-letter-03-3",
+        "text": "о"
+      },
+      {
+        "id": "voc-letter-03-4",
+        "text": "а"
+      },
+      {
+        "id": "voc-letter-03-5",
+        "text": "у"
+      }
+    ],
+    "correctOptionId": "voc-letter-03-1",
+    "shuffle": true,
+    "hint": "Прочитайте слово целиком и вспомните привычное написание.",
+    "explanation": "Верное слово - свисток."
+  },
+  {
+    "id": "voc-paronym-01",
+    "scale": "vocabulary",
+    "type": "voc-paronym",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Ведущий ... слово гостю."
+    },
+    "options": [
+      {
+        "id": "voc-paronym-01-1",
+        "text": "предоставил"
+      },
+      {
+        "id": "voc-paronym-01-2",
+        "text": "представил"
+      },
+      {
+        "id": "voc-paronym-01-3",
+        "text": "представился"
+      },
+      {
+        "id": "voc-paronym-01-4",
+        "text": "предоставился"
+      },
+      {
+        "id": "voc-paronym-01-5",
+        "text": "представлял"
+      }
+    ],
+    "correctOptionId": "voc-paronym-01-1",
+    "shuffle": true,
+    "hint": "Здесь устойчивое сочетание со словом \"слово\". Похожие глаголы значат другое.",
+    "explanation": "Устойчивое сочетание - предоставить слово."
+  },
+  {
+    "id": "voc-paronym-02",
+    "scale": "vocabulary",
+    "type": "voc-paronym",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "На улице холодно, ... шапку."
+    },
+    "options": [
+      {
+        "id": "voc-paronym-02-1",
+        "text": "надень"
+      },
+      {
+        "id": "voc-paronym-02-2",
+        "text": "одень"
+      },
+      {
+        "id": "voc-paronym-02-3",
+        "text": "оденься"
+      },
+      {
+        "id": "voc-paronym-02-4",
+        "text": "наденься"
+      },
+      {
+        "id": "voc-paronym-02-5",
+        "text": "одевай"
+      }
+    ],
+    "correctOptionId": "voc-paronym-02-1",
+    "shuffle": true,
+    "hint": "Речь о предмете одежды, который человек надевает на себя.",
+    "explanation": "Шапку надевают, а одевают другого человека."
+  },
+  {
+    "id": "voc-paronym-03",
+    "scale": "vocabulary",
+    "type": "voc-paronym",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Библиотечный ... дает право брать книги домой."
+    },
+    "options": [
+      {
+        "id": "voc-paronym-03-1",
+        "text": "абонемент"
+      },
+      {
+        "id": "voc-paronym-03-2",
+        "text": "абонент"
+      },
+      {
+        "id": "voc-paronym-03-3",
+        "text": "абонента"
+      },
+      {
+        "id": "voc-paronym-03-4",
+        "text": "абонирование"
+      },
+      {
+        "id": "voc-paronym-03-5",
+        "text": "абонемента"
+      }
+    ],
+    "correctOptionId": "voc-paronym-03-1",
+    "shuffle": true,
+    "hint": "Нужно название документа на право пользования, а не человек, который им пользуется.",
+    "explanation": "Абонемент дает право брать книги, абонент - это человек."
+  }
+]

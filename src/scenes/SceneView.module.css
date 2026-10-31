@@ -1,0 +1,111 @@
+.frame {
+  position: relative;
+  width: 4.5rem;
+  height: 4.5rem;
+  border: 2px solid var(--mantine-color-gray-6);
+  border-radius: var(--mantine-radius-sm);
+  background: white;
+  flex: 0 0 auto;
+}
+
+.mark {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--mantine-color-gray-6);
+}
+
+.element {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.cells {
+  display: grid;
+  gap: 2px;
+}
+
+.cell {
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1px solid var(--mantine-color-gray-4);
+  background: var(--mantine-color-gray-1);
+}
+
+.filled {
+  background: var(--mantine-color-teal-6);
+  border-color: var(--mantine-color-teal-8);
+}
+
+.pieces {
+  display: flex;
+  gap: var(--mantine-spacing-xs);
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.face {
+  width: 2.6rem;
+  height: 2.6rem;
+  border: 1px solid var(--mantine-color-gray-6);
+  display: grid;
+  place-items: center;
+  background: white;
+}
+
+.net {
+  display: grid;
+  gap: 3px;
+  width: max-content;
+}
+
+.heights {
+  display: grid;
+  gap: 3px;
+  width: max-content;
+}
+
+.height {
+  width: 1.8rem;
+  height: 1.8rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--mantine-color-gray-5);
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+
+.chart {
+  width: min(100%, 22rem);
+  height: auto;
+}
+
+.scene {
+  max-width: 100%;
+}
+
+.numberGrid {
+  display: grid;
+  gap: 4px;
+  width: max-content;
+  font-variant-numeric: tabular-nums;
+  font-family: var(--mantine-font-family-monospace);
+}
+
+.numberCell {
+  min-width: 2.2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--mantine-color-gray-4);
+}
+
+.layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mantine-spacing-sm);
+  align-items: center;
+}

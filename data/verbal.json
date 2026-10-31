@@ -1,0 +1,866 @@
+[
+  {
+    "id": "ver-set-01",
+    "scale": "verbal",
+    "type": "ver-set",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой предмет относится к множеству \"скрипка, виолончель, альт\"?"
+    },
+    "options": [
+      {
+        "id": "ver-set-01-1",
+        "text": "контрабас"
+      },
+      {
+        "id": "ver-set-01-2",
+        "text": "флейта"
+      },
+      {
+        "id": "ver-set-01-3",
+        "text": "барабан"
+      },
+      {
+        "id": "ver-set-01-4",
+        "text": "труба"
+      }
+    ],
+    "correctOptionId": "ver-set-01-1",
+    "shuffle": true,
+    "hint": "Все слова множества называют инструменты одного способа игры.",
+    "explanation": "Это смычковые струнные, остальные - другие группы инструментов."
+  },
+  {
+    "id": "ver-set-02",
+    "scale": "verbal",
+    "type": "ver-set",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой предмет относится к множеству \"дуб, береза, клен\"?"
+    },
+    "options": [
+      {
+        "id": "ver-set-02-1",
+        "text": "липа"
+      },
+      {
+        "id": "ver-set-02-2",
+        "text": "роза"
+      },
+      {
+        "id": "ver-set-02-3",
+        "text": "пшеница"
+      },
+      {
+        "id": "ver-set-02-4",
+        "text": "мох"
+      }
+    ],
+    "correctOptionId": "ver-set-02-1",
+    "shuffle": true,
+    "hint": "Все слова множества называют растения одного вида.",
+    "explanation": "Это деревья, липа тоже дерево."
+  },
+  {
+    "id": "ver-set-03",
+    "scale": "verbal",
+    "type": "ver-set",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой предмет относится к множеству \"килограмм, грамм, тонна\"?"
+    },
+    "options": [
+      {
+        "id": "ver-set-03-1",
+        "text": "центнер"
+      },
+      {
+        "id": "ver-set-03-2",
+        "text": "метр"
+      },
+      {
+        "id": "ver-set-03-3",
+        "text": "литр"
+      },
+      {
+        "id": "ver-set-03-4",
+        "text": "секунда"
+      }
+    ],
+    "correctOptionId": "ver-set-03-1",
+    "shuffle": true,
+    "hint": "Слова множества называют единицы одной величины.",
+    "explanation": "Это единицы массы, центнер тоже единица массы."
+  },
+  {
+    "id": "ver-set-04",
+    "scale": "verbal",
+    "type": "ver-set",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Какой предмет относится к множеству \"январь, март, май\"?"
+    },
+    "options": [
+      {
+        "id": "ver-set-04-1",
+        "text": "июль"
+      },
+      {
+        "id": "ver-set-04-2",
+        "text": "вторник"
+      },
+      {
+        "id": "ver-set-04-3",
+        "text": "утро"
+      },
+      {
+        "id": "ver-set-04-4",
+        "text": "весна"
+      }
+    ],
+    "correctOptionId": "ver-set-04-1",
+    "shuffle": true,
+    "hint": "Слова множества называют отрезки одного календаря.",
+    "explanation": "Это месяцы, июль тоже месяц."
+  },
+  {
+    "id": "ver-set-05",
+    "scale": "verbal",
+    "type": "ver-set",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Какой предмет относится к множеству \"медь, железо, алюминий\"?"
+    },
+    "options": [
+      {
+        "id": "ver-set-05-1",
+        "text": "цинк"
+      },
+      {
+        "id": "ver-set-05-2",
+        "text": "вода"
+      },
+      {
+        "id": "ver-set-05-3",
+        "text": "уголь"
+      },
+      {
+        "id": "ver-set-05-4",
+        "text": "стекло"
+      }
+    ],
+    "correctOptionId": "ver-set-05-1",
+    "shuffle": true,
+    "hint": "Слова множества называют вещества одного класса.",
+    "explanation": "Это металлы, цинк тоже металл."
+  },
+  {
+    "id": "ver-set-06",
+    "scale": "verbal",
+    "type": "ver-set",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Какой предмет относится к множеству \"Москва, Казань, Омск\"?"
+    },
+    "options": [
+      {
+        "id": "ver-set-06-1",
+        "text": "Тула"
+      },
+      {
+        "id": "ver-set-06-2",
+        "text": "Волга"
+      },
+      {
+        "id": "ver-set-06-3",
+        "text": "Урал"
+      },
+      {
+        "id": "ver-set-06-4",
+        "text": "Байкал"
+      }
+    ],
+    "correctOptionId": "ver-set-06-1",
+    "shuffle": true,
+    "hint": "Слова множества называют населенные пункты, а не реки и горы.",
+    "explanation": "Тула - город, как и остальные слова множества."
+  },
+  {
+    "id": "ver-inference-01",
+    "scale": "verbal",
+    "type": "ver-inference",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Все архивисты музея знают латынь. Все переводчики музея - архивисты. Какой вывод следует из текста?"
+    },
+    "options": [
+      {
+        "id": "ver-inference-01-1",
+        "text": "Все переводчики музея знают латынь."
+      },
+      {
+        "id": "ver-inference-01-2",
+        "text": "Все, кто знает латынь, - архивисты."
+      },
+      {
+        "id": "ver-inference-01-3",
+        "text": "Все сотрудники музея знают латынь."
+      },
+      {
+        "id": "ver-inference-01-4",
+        "text": "Некоторые переводчики музея не знают латынь."
+      }
+    ],
+    "correctOptionId": "ver-inference-01-1",
+    "shuffle": true,
+    "hint": "Проверьте, входит ли группа из второй фразы в группу из первой. Обратное включение из текста не следует.",
+    "explanation": "Переводчики входят в архивистов, архивисты знают латынь, значит переводчики знают латынь."
+  },
+  {
+    "id": "ver-inference-02",
+    "scale": "verbal",
+    "type": "ver-inference",
+    "source": "demo",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Все березы - деревья. Это растение - береза. Какой вывод следует из текста?"
+    },
+    "options": [
+      {
+        "id": "ver-inference-02-1",
+        "text": "Это растение - дерево."
+      },
+      {
+        "id": "ver-inference-02-2",
+        "text": "Все деревья - березы."
+      },
+      {
+        "id": "ver-inference-02-3",
+        "text": "Это растение - дуб."
+      },
+      {
+        "id": "ver-inference-02-4",
+        "text": "Некоторые березы не деревья."
+      }
+    ],
+    "correctOptionId": "ver-inference-02-1",
+    "shuffle": true,
+    "hint": "Частный предмет наследует свойство всей своей группы.",
+    "explanation": "Раз это береза, а все березы - деревья, это растение - дерево."
+  },
+  {
+    "id": "ver-inference-03",
+    "scale": "verbal",
+    "type": "ver-inference",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Ни один пингвин в этом зоопарке не живет в теплом павильоне. Кеша - пингвин этого зоопарка. Какой вывод следует из текста?"
+    },
+    "options": [
+      {
+        "id": "ver-inference-03-1",
+        "text": "Кеша не живет в теплом павильоне."
+      },
+      {
+        "id": "ver-inference-03-2",
+        "text": "Все обитатели зоопарка не живут в теплом павильоне."
+      },
+      {
+        "id": "ver-inference-03-3",
+        "text": "Кеша живет в теплом павильоне."
+      },
+      {
+        "id": "ver-inference-03-4",
+        "text": "Все, кто не живет в теплом павильоне, - пингвины."
+      }
+    ],
+    "correctOptionId": "ver-inference-03-1",
+    "shuffle": true,
+    "hint": "Свойство всей группы переходит к названному члену этой группы.",
+    "explanation": "Кеша входит в группу пингвинов зоопарка, поэтому теплый павильон ему не подходит."
+  },
+  {
+    "id": "ver-inference-04",
+    "scale": "verbal",
+    "type": "ver-inference",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Все рейсы этой авиакомпании утренние. Рейс 17 принадлежит этой авиакомпании. Какой вывод следует из текста?"
+    },
+    "options": [
+      {
+        "id": "ver-inference-04-1",
+        "text": "Рейс 17 утренний."
+      },
+      {
+        "id": "ver-inference-04-2",
+        "text": "Все утренние рейсы принадлежат этой авиакомпании."
+      },
+      {
+        "id": "ver-inference-04-3",
+        "text": "Рейс 17 вечерний."
+      },
+      {
+        "id": "ver-inference-04-4",
+        "text": "У этой авиакомпании нет утренних рейсов."
+      }
+    ],
+    "correctOptionId": "ver-inference-04-1",
+    "shuffle": true,
+    "hint": "Номер рейса не меняет правило, если рейс входит в названную компанию.",
+    "explanation": "Рейс 17 входит в компанию, у которой все рейсы утренние."
+  },
+  {
+    "id": "ver-inference-05",
+    "scale": "verbal",
+    "type": "ver-inference",
+    "source": "demo",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Все экспонаты витрины - монеты. Этот предмет стоит в витрине. Какой вывод следует из текста?"
+    },
+    "options": [
+      {
+        "id": "ver-inference-05-1",
+        "text": "Этот предмет - монета."
+      },
+      {
+        "id": "ver-inference-05-2",
+        "text": "Все монеты стоят в витрине."
+      },
+      {
+        "id": "ver-inference-05-3",
+        "text": "Этот предмет - марка."
+      },
+      {
+        "id": "ver-inference-05-4",
+        "text": "В витрине есть экспонат, который не монета."
+      }
+    ],
+    "correctOptionId": "ver-inference-05-1",
+    "shuffle": true,
+    "hint": "Место предмета включает его в группу, о которой сказано \"все\".",
+    "explanation": "Предмет из витрины входит в экспонаты, а все они монеты."
+  },
+  {
+    "id": "ver-inference-06",
+    "scale": "verbal",
+    "type": "ver-inference",
+    "source": "demo",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Каждый чертеж в папке подписан. Этот лист - чертеж из папки. Какой вывод следует из текста?"
+    },
+    "options": [
+      {
+        "id": "ver-inference-06-1",
+        "text": "Этот лист подписан."
+      },
+      {
+        "id": "ver-inference-06-2",
+        "text": "Каждый подписанный лист лежит в папке."
+      },
+      {
+        "id": "ver-inference-06-3",
+        "text": "Этот лист без подписи."
+      },
+      {
+        "id": "ver-inference-06-4",
+        "text": "В папке есть неподписанный чертеж."
+      }
+    ],
+    "correctOptionId": "ver-inference-06-1",
+    "shuffle": true,
+    "hint": "Слово \"каждый\" относит признак ко всем членам группы, включая названный лист.",
+    "explanation": "Лист входит в чертежи папки, а каждый из них подписан."
+  },
+  {
+    "id": "ver-analogy-01",
+    "scale": "verbal",
+    "type": "ver-analogy",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Холод относится к жаре, как день к ..."
+    },
+    "options": [
+      {
+        "id": "ver-analogy-01-1",
+        "text": "ночи"
+      },
+      {
+        "id": "ver-analogy-01-2",
+        "text": "солнцу"
+      },
+      {
+        "id": "ver-analogy-01-3",
+        "text": "утру"
+      },
+      {
+        "id": "ver-analogy-01-4",
+        "text": "лету"
+      }
+    ],
+    "correctOptionId": "ver-analogy-01-1",
+    "shuffle": true,
+    "hint": "Отношение в первой паре - противоположность. Во второй паре ищите то же отношение.",
+    "explanation": "Во второй паре тоже противоположность."
+  },
+  {
+    "id": "ver-analogy-02",
+    "scale": "verbal",
+    "type": "ver-analogy",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Кисть относится к художнику, как молоток к ..."
+    },
+    "options": [
+      {
+        "id": "ver-analogy-02-1",
+        "text": "столяру"
+      },
+      {
+        "id": "ver-analogy-02-2",
+        "text": "гвоздю"
+      },
+      {
+        "id": "ver-analogy-02-3",
+        "text": "картине"
+      },
+      {
+        "id": "ver-analogy-02-4",
+        "text": "краске"
+      }
+    ],
+    "correctOptionId": "ver-analogy-02-1",
+    "shuffle": true,
+    "hint": "Первое слово - инструмент, второе - тот, кто им работает.",
+    "explanation": "Молоток - инструмент столяра, как кисть - инструмент художника."
+  },
+  {
+    "id": "ver-analogy-03",
+    "scale": "verbal",
+    "type": "ver-analogy",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Глава относится к книге, как акт к ..."
+    },
+    "options": [
+      {
+        "id": "ver-analogy-03-1",
+        "text": "пьесе"
+      },
+      {
+        "id": "ver-analogy-03-2",
+        "text": "театру"
+      },
+      {
+        "id": "ver-analogy-03-3",
+        "text": "актеру"
+      },
+      {
+        "id": "ver-analogy-03-4",
+        "text": "странице"
+      }
+    ],
+    "correctOptionId": "ver-analogy-03-1",
+    "shuffle": true,
+    "hint": "Первое слово - часть целого, названного вторым.",
+    "explanation": "Акт - часть пьесы, как глава - часть книги."
+  },
+  {
+    "id": "ver-general-01",
+    "scale": "verbal",
+    "type": "ver-general",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Найдите общее для слов \"дуб\" и \"береза\"."
+    },
+    "options": [
+      {
+        "id": "ver-general-01-1",
+        "text": "деревья"
+      },
+      {
+        "id": "ver-general-01-2",
+        "text": "цветы"
+      },
+      {
+        "id": "ver-general-01-3",
+        "text": "кустарники"
+      },
+      {
+        "id": "ver-general-01-4",
+        "text": "травы"
+      }
+    ],
+    "correctOptionId": "ver-general-01-1",
+    "shuffle": true,
+    "hint": "Оба слова называют растения одного вида. Выберите имя этой группы.",
+    "explanation": "Дуб и береза - деревья."
+  },
+  {
+    "id": "ver-general-02",
+    "scale": "verbal",
+    "type": "ver-general",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Найдите общее для слов \"скрипка\" и \"виолончель\"."
+    },
+    "options": [
+      {
+        "id": "ver-general-02-1",
+        "text": "струнные инструменты"
+      },
+      {
+        "id": "ver-general-02-2",
+        "text": "ударные инструменты"
+      },
+      {
+        "id": "ver-general-02-3",
+        "text": "клавишные инструменты"
+      },
+      {
+        "id": "ver-general-02-4",
+        "text": "духовые инструменты"
+      }
+    ],
+    "correctOptionId": "ver-general-02-1",
+    "shuffle": true,
+    "hint": "Оба слова называют инструменты одного способа звука.",
+    "explanation": "Скрипка и виолончель - струнные инструменты."
+  },
+  {
+    "id": "ver-general-03",
+    "scale": "verbal",
+    "type": "ver-general",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Найдите общее для слов \"Москва\" и \"Казань\"."
+    },
+    "options": [
+      {
+        "id": "ver-general-03-1",
+        "text": "города"
+      },
+      {
+        "id": "ver-general-03-2",
+        "text": "реки"
+      },
+      {
+        "id": "ver-general-03-3",
+        "text": "страны"
+      },
+      {
+        "id": "ver-general-03-4",
+        "text": "моря"
+      }
+    ],
+    "correctOptionId": "ver-general-03-1",
+    "shuffle": true,
+    "hint": "Оба слова называют населенные пункты одного типа.",
+    "explanation": "Москва и Казань - города."
+  },
+  {
+    "id": "ver-syllogism-01",
+    "scale": "verbal",
+    "type": "ver-syllogism",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Ни один пингвин не умеет летать. Некоторые птицы - пингвины. Какой вывод верен?"
+    },
+    "options": [
+      {
+        "id": "ver-syllogism-01-1",
+        "text": "Некоторые птицы не умеют летать."
+      },
+      {
+        "id": "ver-syllogism-01-2",
+        "text": "Ни одна птица не умеет летать."
+      },
+      {
+        "id": "ver-syllogism-01-3",
+        "text": "Все птицы - пингвины."
+      },
+      {
+        "id": "ver-syllogism-01-4",
+        "text": "Некоторые пингвины умеют летать."
+      }
+    ],
+    "correctOptionId": "ver-syllogism-01-1",
+    "shuffle": true,
+    "hint": "Частный случай наследует свойство всей своей группы. Вывод про всех членов более широкой группы не следует.",
+    "explanation": "Пингвины - часть птиц и летать не умеют, значит часть птиц не летает."
+  },
+  {
+    "id": "ver-syllogism-02",
+    "scale": "verbal",
+    "type": "ver-syllogism",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Все архивисты знают латынь. Некоторые сотрудники - архивисты. Какой вывод верен?"
+    },
+    "options": [
+      {
+        "id": "ver-syllogism-02-1",
+        "text": "Некоторые сотрудники знают латынь."
+      },
+      {
+        "id": "ver-syllogism-02-2",
+        "text": "Все сотрудники знают латынь."
+      },
+      {
+        "id": "ver-syllogism-02-3",
+        "text": "Все, кто знает латынь, - сотрудники."
+      },
+      {
+        "id": "ver-syllogism-02-4",
+        "text": "Ни один сотрудник не знает латынь."
+      }
+    ],
+    "correctOptionId": "ver-syllogism-02-1",
+    "shuffle": true,
+    "hint": "Свойство всей узкой группы переходит хотя бы к тем, кто в нее входит.",
+    "explanation": "Часть сотрудников - архивисты, а все архивисты знают латынь."
+  },
+  {
+    "id": "ver-syllogism-03",
+    "scale": "verbal",
+    "type": "ver-syllogism",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Ни одна река этого списка не впадает в озеро. Некоторые водоемы списка - реки. Какой вывод верен?"
+    },
+    "options": [
+      {
+        "id": "ver-syllogism-03-1",
+        "text": "Некоторые водоемы списка не впадают в озеро."
+      },
+      {
+        "id": "ver-syllogism-03-2",
+        "text": "Ни один водоем списка не впадает в озеро."
+      },
+      {
+        "id": "ver-syllogism-03-3",
+        "text": "Все водоемы списка - реки."
+      },
+      {
+        "id": "ver-syllogism-03-4",
+        "text": "Некоторые реки списка впадают в озеро."
+      }
+    ],
+    "correctOptionId": "ver-syllogism-03-1",
+    "shuffle": true,
+    "hint": "Запрет для всей группы рек сохраняется у тех водоемов, которые являются этими реками.",
+    "explanation": "Часть водоемов - реки, а ни одна такая река не впадает в озеро."
+  },
+  {
+    "id": "ver-follows-01",
+    "scale": "verbal",
+    "type": "ver-follows",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "В офисе три принтера. Два из них цветные. Цветные принтеры стоят у окна. Что из этого следует?"
+    },
+    "options": [
+      {
+        "id": "ver-follows-01-1",
+        "text": "Хотя бы один принтер стоит у окна."
+      },
+      {
+        "id": "ver-follows-01-2",
+        "text": "Все принтеры стоят у окна."
+      },
+      {
+        "id": "ver-follows-01-3",
+        "text": "Третий принтер цветной."
+      },
+      {
+        "id": "ver-follows-01-4",
+        "text": "У окна нет принтеров."
+      }
+    ],
+    "correctOptionId": "ver-follows-01-1",
+    "shuffle": true,
+    "hint": "Отделите то, что сказано про часть предметов, от вывода про все предметы.",
+    "explanation": "Два цветных стоят у окна, значит у окна есть хотя бы один."
+  },
+  {
+    "id": "ver-follows-02",
+    "scale": "verbal",
+    "type": "ver-follows",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "В корзине 5 яблок. 2 из них зеленые. Что из этого следует?"
+    },
+    "options": [
+      {
+        "id": "ver-follows-02-1",
+        "text": "В корзине есть зеленое яблоко."
+      },
+      {
+        "id": "ver-follows-02-2",
+        "text": "Все яблоки зеленые."
+      },
+      {
+        "id": "ver-follows-02-3",
+        "text": "В корзине нет зеленых яблок."
+      },
+      {
+        "id": "ver-follows-02-4",
+        "text": "Зеленых яблок больше, чем остальных."
+      }
+    ],
+    "correctOptionId": "ver-follows-02-1",
+    "shuffle": true,
+    "hint": "Число больше нуля уже позволяет утверждать, что такой предмет есть.",
+    "explanation": "Два зеленых яблока лежат в корзине, значит зеленое яблоко там есть."
+  },
+  {
+    "id": "ver-follows-03",
+    "scale": "verbal",
+    "type": "ver-follows",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "На полке 6 книг. Некоторые из них на английском. Все английские книги стоят слева. Что из этого следует?"
+    },
+    "options": [
+      {
+        "id": "ver-follows-03-1",
+        "text": "Слева стоит хотя бы одна книга."
+      },
+      {
+        "id": "ver-follows-03-2",
+        "text": "Все книги стоят слева."
+      },
+      {
+        "id": "ver-follows-03-3",
+        "text": "Все книги на английском."
+      },
+      {
+        "id": "ver-follows-03-4",
+        "text": "Слева нет книг."
+      }
+    ],
+    "correctOptionId": "ver-follows-03-1",
+    "shuffle": true,
+    "hint": "Слово \"некоторые\" гарантирует непустую часть, но не распространяет признак на все книги.",
+    "explanation": "Английские книги есть, и все они слева, значит слева есть книга."
+  },
+  {
+    "id": "ver-order-01",
+    "scale": "verbal",
+    "type": "ver-order",
+    "source": "analog",
+    "difficulty": "medium",
+    "stimulus": {
+      "text": "Анна старше Бориса. Борис старше Веры. Вера старше Глеба. Кто самый старший?"
+    },
+    "options": [
+      {
+        "id": "ver-order-01-1",
+        "text": "Анна"
+      },
+      {
+        "id": "ver-order-01-2",
+        "text": "Борис"
+      },
+      {
+        "id": "ver-order-01-3",
+        "text": "Вера"
+      },
+      {
+        "id": "ver-order-01-4",
+        "text": "Глеб"
+      }
+    ],
+    "correctOptionId": "ver-order-01-1",
+    "shuffle": true,
+    "hint": "Выпишите цепочку от старшего к младшему по каждой следующей фразе.",
+    "explanation": "Анна старше Бориса, а Борис старше остальных, значит Анна старше всех."
+  },
+  {
+    "id": "ver-order-02",
+    "scale": "verbal",
+    "type": "ver-order",
+    "source": "analog",
+    "difficulty": "easy",
+    "stimulus": {
+      "text": "Кот больше щенка. Щенок больше хомяка. Кто самый маленький?"
+    },
+    "options": [
+      {
+        "id": "ver-order-02-1",
+        "text": "хомяк"
+      },
+      {
+        "id": "ver-order-02-2",
+        "text": "кот"
+      },
+      {
+        "id": "ver-order-02-3",
+        "text": "щенок"
+      },
+      {
+        "id": "ver-order-02-4",
+        "text": "никто"
+      }
+    ],
+    "correctOptionId": "ver-order-02-1",
+    "shuffle": true,
+    "hint": "Каждая следующая фраза называет еще меньшего.",
+    "explanation": "Хомяк меньше щенка, а щенок меньше кота."
+  },
+  {
+    "id": "ver-order-03",
+    "scale": "verbal",
+    "type": "ver-order",
+    "source": "analog",
+    "difficulty": "hard",
+    "stimulus": {
+      "text": "Дом левее башни. Башня левее моста. Мост левее сарая. Что стоит правее всех?"
+    },
+    "options": [
+      {
+        "id": "ver-order-03-1",
+        "text": "сарай"
+      },
+      {
+        "id": "ver-order-03-2",
+        "text": "дом"
+      },
+      {
+        "id": "ver-order-03-3",
+        "text": "башня"
+      },
+      {
+        "id": "ver-order-03-4",
+        "text": "мост"
+      }
+    ],
+    "correctOptionId": "ver-order-03-1",
+    "shuffle": true,
+    "hint": "Соберите ряд слева направо и посмотрите на конец ряда.",
+    "explanation": "Сарай правее моста, а мост правее остальных названных объектов."
+  }
+]
