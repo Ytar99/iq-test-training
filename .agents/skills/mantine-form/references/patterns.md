@@ -1,6 +1,7 @@
 # @mantine/form Patterns
 
 ## Table of Contents
+
 - [Basic form with validation](#basic-form-with-validation)
 - [Nested object fields](#nested-object-fields)
 - [Array / list fields](#array--list-fields)
@@ -28,24 +29,24 @@
 ## Basic form with validation
 
 ```tsx
-import { useForm, isEmail, isNotEmpty, hasLength } from '@mantine/form';
+import { useForm, isEmail, isNotEmpty, hasLength } from "@mantine/form";
 
 function BasicForm() {
   const form = useForm({
-    mode: 'uncontrolled',
-    initialValues: { name: '', email: '', password: '' },
+    mode: "uncontrolled",
+    initialValues: { name: "", email: "", password: "" },
     validate: {
-      name: isNotEmpty('Name is required'),
-      email: isEmail('Invalid email'),
-      password: hasLength({ min: 8 }, 'Password must be at least 8 characters'),
+      name: isNotEmpty("Name is required"),
+      email: isEmail("Invalid email"),
+      password: hasLength({ min: 8 }, "Password must be at least 8 characters"),
     },
   });
 
   return (
     <form onSubmit={form.onSubmit((values) => console.log(values))}>
-      <TextInput label="Name" key={form.key('name')} {...form.getInputProps('name')} />
-      <TextInput label="Email" key={form.key('email')} {...form.getInputProps('email')} />
-      <PasswordInput label="Password" key={form.key('password')} {...form.getInputProps('password')} />
+      <TextInput label="Name" key={form.key("name")} {...form.getInputProps("name")} />
+      <TextInput label="Email" key={form.key("email")} {...form.getInputProps("email")} />
+      <PasswordInput label="Password" key={form.key("password")} {...form.getInputProps("password")} />
       <Button type="submit">Submit</Button>
     </form>
   );
@@ -95,19 +96,19 @@ Give every item a stable `key` value (`randomId` from `@mantine/hooks`) and use 
 of the row. Use `formRootRule` to validate the list itself next to its items.
 
 ```tsx
-import { formRootRule, isNotEmpty, useForm } from '@mantine/form';
-import { randomId } from '@mantine/hooks';
+import { formRootRule, isNotEmpty, useForm } from "@mantine/form";
+import { randomId } from "@mantine/hooks";
 
 const form = useForm({
-  mode: 'uncontrolled',
+  mode: "uncontrolled",
   initialValues: {
-    employees: [{ name: '', role: '', key: randomId() }],
+    employees: [{ name: "", role: "", key: randomId() }],
   },
   validate: {
     employees: {
-      [formRootRule]: isNotEmpty('At least one employee is required'),
-      name: isNotEmpty('Name required'),
-      role: isNotEmpty('Role required'),
+      [formRootRule]: isNotEmpty("At least one employee is required"),
+      name: isNotEmpty("Name required"),
+      role: isNotEmpty("Role required"),
     },
   },
 });
@@ -125,7 +126,7 @@ const fields = form.getValues().employees.map((item, index) => (
       key={form.key(`employees.${index}.role`)}
       {...form.getInputProps(`employees.${index}.role`)}
     />
-    <ActionIcon aria-label="Remove employee" onClick={() => form.removeListItem('employees', index)}>
+    <ActionIcon aria-label="Remove employee" onClick={() => form.removeListItem("employees", index)}>
       <IconTrash />
     </ActionIcon>
   </Group>
@@ -134,10 +135,12 @@ const fields = form.getValues().employees.map((item, index) => (
 return (
   <form onSubmit={form.onSubmit((values) => console.log(values))}>
     {fields}
-    {form.errors.employees && <Text c="red" size="sm">{form.errors.employees}</Text>}
-    <Button
-      onClick={() => form.insertListItem('employees', { name: '', role: '', key: randomId() })}
-    >
+    {form.errors.employees && (
+      <Text c="red" size="sm">
+        {form.errors.employees}
+      </Text>
+    )}
+    <Button onClick={() => form.insertListItem("employees", { name: "", role: "", key: randomId() })}>
       Add employee
     </Button>
     <Button type="submit">Submit</Button>
@@ -146,12 +149,13 @@ return (
 ```
 
 **List methods:**
+
 ```tsx
-form.insertListItem('employees', { name: '', role: '', key: randomId() });     // append
-form.insertListItem('employees', { name: '', role: '', key: randomId() }, 0);  // prepend
-form.removeListItem('employees', index);
-form.reorderListItem('employees', { from: 2, to: 0 });
-form.replaceListItem('employees', index, { name: 'New', role: 'Dev', key: randomId() });
+form.insertListItem("employees", { name: "", role: "", key: randomId() }); // append
+form.insertListItem("employees", { name: "", role: "", key: randomId() }, 0); // prepend
+form.removeListItem("employees", index);
+form.reorderListItem("employees", { from: 2, to: 0 });
+form.replaceListItem("employees", index, { name: "New", role: "Dev", key: randomId() });
 ```
 
 List methods rerender the component in both modes, and field errors move with their rows.
@@ -178,19 +182,19 @@ Return a `Promise` from any validator. Use the provided `AbortSignal` to avoid s
 
 ```tsx
 const form = useForm({
-  mode: 'uncontrolled',
-  initialValues: { username: '' },
+  mode: "uncontrolled",
+  initialValues: { username: "" },
   validate: {
     username: async (value, _values, _path, signal) => {
-      if (!value) return 'Username is required';
+      if (!value) return "Username is required";
       const response = await fetch(`/api/check-username?q=${value}`, { signal });
       if (signal?.aborted) return null;
       const { taken } = await response.json();
-      return taken ? 'Username is already taken' : null;
+      return taken ? "Username is already taken" : null;
     },
   },
-  validateInputOnChange: ['username'],
-  validateDebounce: 500,   // debounce on-change validation
+  validateInputOnChange: ["username"],
+  validateDebounce: 500, // debounce on-change validation
 });
 ```
 
@@ -198,19 +202,19 @@ A schema can be async too. Use `schemaResolver(schema)` without `{ sync: true }`
 
 ```tsx
 const schema = z.object({
-  discountCode: z.string().refine(async (code) => code === '' || (await checkCode(code)), {
-    error: 'Unknown discount code',
+  discountCode: z.string().refine(async (code) => code === "" || (await checkCode(code)), {
+    error: "Unknown discount code",
   }),
 });
 
 const form = useForm({
-  mode: 'uncontrolled',
-  initialValues: { discountCode: '' },
+  mode: "uncontrolled",
+  initialValues: { discountCode: "" },
   validate: schemaResolver(schema),
 });
 
 // Validate one field and act on the result, for example on blur
-const { hasError } = await form.validateField('discountCode');
+const { hasError } = await form.validateField("discountCode");
 ```
 
 `form.submitting` is `true` during async validation on submit as well, so `loading={form.submitting}`
@@ -226,24 +230,20 @@ component in uncontrolled mode.
 
 ```tsx
 const form = useForm({
-  mode: 'uncontrolled',
-  initialValues: { hasCompany: false, companyName: '' },
+  mode: "uncontrolled",
+  initialValues: { hasCompany: false, companyName: "" },
 });
 
-const hasCompany = form.useWatchValue('hasCompany');
+const hasCompany = form.useWatchValue("hasCompany");
 
 <Checkbox
   label="I represent a company"
-  key={form.key('hasCompany')}
-  {...form.getInputProps('hasCompany', { type: 'checkbox' })}
-/>
-{hasCompany && (
-  <TextInput
-    label="Company name"
-    key={form.key('companyName')}
-    {...form.getInputProps('companyName')}
-  />
-)}
+  key={form.key("hasCompany")}
+  {...form.getInputProps("hasCompany", { type: "checkbox" })}
+/>;
+{
+  hasCompany && <TextInput label="Company name" key={form.key("companyName")} {...form.getInputProps("companyName")} />;
+}
 ```
 
 ---
@@ -279,8 +279,8 @@ returns `{ hasError }`. Await the results: with async rules they are promises.
 
 ```tsx
 const stepFields = [
-  ['username', 'password'],
-  ['fullName', 'country'],
+  ["username", "password"],
+  ["fullName", "country"],
 ] as const;
 
 const handleNext = async () => {
@@ -302,7 +302,7 @@ Call `form.initialize` when the data arrives. It sets both values and initial va
 is not dirty afterwards and `form.reset()` returns to the loaded values. It works once.
 
 ```tsx
-const form = useForm({ mode: 'uncontrolled', initialValues: { name: '', country: '' } });
+const form = useForm({ mode: "uncontrolled", initialValues: { name: "", country: "" } });
 
 useEffect(() => {
   if (query.data) {
@@ -310,7 +310,9 @@ useEffect(() => {
   }
 }, [query.data]);
 
-<Button disabled={!form.isDirty()} onClick={form.reset}>Discard changes</Button>
+<Button disabled={!form.isDirty()} onClick={form.reset}>
+  Discard changes
+</Button>;
 ```
 
 ---
@@ -345,7 +347,9 @@ const openFor = (user: UserValues) => {
   setOpened(true);
 };
 
-<Button type="submit" disabled={!form.isDirty()}>Save</Button>
+<Button type="submit" disabled={!form.isDirty()}>
+  Save
+</Button>;
 ```
 
 `form.isDirty()` compares with the values the form was opened with, so it is `false` again when
@@ -401,13 +405,13 @@ To transform what the user types (uppercase, strip characters), control that one
 would remount the input and lose focus.
 
 ```tsx
-const code = form.useWatchValue('warehouseCode');
+const code = form.useWatchValue("warehouseCode");
 
 <PinInput
   value={code}
-  onChange={(value) => form.setFieldValue('warehouseCode', value.toUpperCase())}
+  onChange={(value) => form.setFieldValue("warehouseCode", value.toUpperCase())}
   error={!!form.errors.warehouseCode}
-/>
+/>;
 ```
 
 ---
@@ -430,7 +434,7 @@ const productProps = form.getInputProps(`lines.${index}.productId`);
       form.setFieldValue(`lines.${index}.unitPrice`, product.price);
     }
   }}
-/>
+/>;
 ```
 
 `setFieldValue` updates the other input (its `key` changes) and clears its error.
@@ -461,7 +465,7 @@ To change every input at once (for example disable them while saving), use `enha
 
 ```tsx
 const form = useForm({
-  mode: 'uncontrolled',
+  mode: "uncontrolled",
   initialValues,
   enhanceGetInputProps: ({ form }) => ({ disabled: form.submitting }),
 });
@@ -477,8 +481,8 @@ from `@mantine/hooks` so that it works in both form modes; `key={form.key(path)}
 `form.reset()`.
 
 ```tsx
-import { ActionIcon, Group, Input, Text } from '@mantine/core';
-import { useUncontrolled } from '@mantine/hooks';
+import { ActionIcon, Group, Input, Text } from "@mantine/core";
+import { useUncontrolled } from "@mantine/hooks";
 
 interface StepperInputProps {
   label?: React.ReactNode;
@@ -496,15 +500,19 @@ function StepperInput({ label, error, value, defaultValue, onChange, onFocus, on
   return (
     <Input.Wrapper label={label} error={error} labelElement="div" onFocus={onFocus} onBlur={onBlur}>
       <Group gap="xs">
-        <ActionIcon aria-label="Decrease" onClick={() => setCurrent(current - 1)}>−</ActionIcon>
+        <ActionIcon aria-label="Decrease" onClick={() => setCurrent(current - 1)}>
+          −
+        </ActionIcon>
         <Text>{current}</Text>
-        <ActionIcon aria-label="Increase" onClick={() => setCurrent(current + 1)}>+</ActionIcon>
+        <ActionIcon aria-label="Increase" onClick={() => setCurrent(current + 1)}>
+          +
+        </ActionIcon>
       </Group>
     </Input.Wrapper>
   );
 }
 
-<StepperInput label="Guests" key={form.key('guests')} {...form.getInputProps('guests')} />
+<StepperInput label="Guests" key={form.key("guests")} {...form.getInputProps("guests")} />;
 ```
 
 - `getInputProps` also returns `data-path`. Spread the remaining props onto the focusable element
@@ -526,7 +534,7 @@ Share one form instance across a component tree without prop drilling.
 
 ```tsx
 // 1. Create typed context once
-import { createFormContext, isNotEmpty } from '@mantine/form';
+import { createFormContext, isNotEmpty } from "@mantine/form";
 
 interface ProfileValues {
   bio: string;
@@ -539,10 +547,10 @@ const [FormProvider, useFormContext, useProfileForm] = createFormContext<Profile
 // 2. Wrap your form tree with FormProvider
 function ProfileForm() {
   const form = useProfileForm({
-    mode: 'uncontrolled',
-    initialValues: { bio: '', website: '' },
+    mode: "uncontrolled",
+    initialValues: { bio: "", website: "" },
     validate: {
-      bio: isNotEmpty('Bio is required'),
+      bio: isNotEmpty("Bio is required"),
     },
   });
 
@@ -560,12 +568,12 @@ function ProfileForm() {
 // 3. Access form in any child — no prop drilling
 function BioField() {
   const form = useFormContext();
-  return <Textarea label="Bio" key={form.key('bio')} {...form.getInputProps('bio')} />;
+  return <Textarea label="Bio" key={form.key("bio")} {...form.getInputProps("bio")} />;
 }
 
 function WebsiteField() {
   const form = useFormContext();
-  return <TextInput label="Website" key={form.key('website')} {...form.getInputProps('website')} />;
+  return <TextInput label="Website" key={form.key("website")} {...form.getInputProps("website")} />;
 }
 ```
 
@@ -577,14 +585,14 @@ Shape the values before they reach `onSubmit`. The transform is applied transpar
 
 ```tsx
 const form = useForm({
-  mode: 'uncontrolled',
+  mode: "uncontrolled",
   initialValues: {
-    price: '',        // stored as string in input
-    tags: 'a, b, c', // stored as comma-separated string
+    price: "", // stored as string in input
+    tags: "a, b, c", // stored as comma-separated string
   },
   transformValues: (values) => ({
     price: Number(values.price),
-    tags: values.tags.split(',').map((t) => t.trim()),
+    tags: values.tags.split(",").map((t) => t.trim()),
   }),
 });
 
@@ -630,18 +638,16 @@ const current = form.getValues();
 Manage a single field without a full form — useful for isolated inputs or custom field components.
 
 ```tsx
-import { useField, isEmail } from '@mantine/form';
+import { useField, isEmail } from "@mantine/form";
 
 function EmailField() {
   const field = useField({
-    initialValue: '',
-    validate: isEmail('Invalid email'),
+    initialValue: "",
+    validate: isEmail("Invalid email"),
     validateOnBlur: true,
   });
 
-  return (
-    <TextInput label="Email" {...field.getInputProps()} />
-  );
+  return <TextInput label="Email" {...field.getInputProps()} />;
 }
 ```
 
@@ -654,7 +660,7 @@ too (`'lines.2.quantity'`). A server error is cleared when the user changes that
 error that does not belong to a field, keep it in your own state.
 
 ```tsx
-const form = useForm({ mode: 'uncontrolled', initialValues: { email: '', password: '' } });
+const form = useForm({ mode: "uncontrolled", initialValues: { email: "", password: "" } });
 
 const handleSubmit = async (values: typeof form.values) => {
   try {
@@ -664,14 +670,16 @@ const handleSubmit = async (values: typeof form.values) => {
       // Map server field errors onto form: { email: 'Already registered' }
       form.setErrors(error.fields);
     } else {
-      form.setFieldError('password', 'Invalid email or password');
+      form.setFieldError("password", "Invalid email or password");
     }
   }
 };
 
 <form onSubmit={form.onSubmit(handleSubmit)}>
-  <TextInput label="Email" key={form.key('email')} {...form.getInputProps('email')} />
-  <PasswordInput label="Password" key={form.key('password')} {...form.getInputProps('password')} />
-  <Button type="submit" loading={form.submitting}>Sign in</Button>
-</form>
+  <TextInput label="Email" key={form.key("email")} {...form.getInputProps("email")} />
+  <PasswordInput label="Password" key={form.key("password")} {...form.getInputProps("password")} />
+  <Button type="submit" loading={form.submitting}>
+    Sign in
+  </Button>
+</form>;
 ```

@@ -21,17 +21,17 @@ Written for Mantine 9.x.
 
 Build with `Combobox` primitives only when none of these fit:
 
-| Need | Use |
-|---|---|
-| Standard select, multi-select, autocomplete or tags input | `Select`, `MultiSelect`, `Autocomplete`, `TagsInput` (all support `renderOption`) |
+| Need                                                                 | Use                                                                                    |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Standard select, multi-select, autocomplete or tags input            | `Select`, `MultiSelect`, `Autocomplete`, `TagsInput` (all support `renderOption`)      |
 | Options dropdown attached to a button or any other element, no input | `ComboboxPopover` (data-driven: `data`, `value`, `onChange`, `searchable`, `multiple`) |
-| Hierarchical options | `TreeSelect` (see below) |
-| More than a few hundred options | `Combobox` with `useVirtualizedCombobox`, see the virtualized pattern |
+| Hierarchical options                                                 | `TreeSelect` (see below)                                                               |
+| More than a few hundred options                                      | `Combobox` with `useVirtualizedCombobox`, see the virtualized pattern                  |
 
 ```tsx
-<ComboboxPopover data={['React', 'Angular', 'Vue']} value={value} onChange={setValue}>
+<ComboboxPopover data={["React", "Angular", "Vue"]} value={value} onChange={setValue}>
   <ComboboxPopover.Target>
-    <Button variant="default">{value || 'Select framework'}</Button>
+    <Button variant="default">{value || "Select framework"}</Button>
   </ComboboxPopover.Target>
 </ComboboxPopover>
 ```
@@ -80,7 +80,9 @@ const combobox = useCombobox({
   <Combobox.Dropdown>
     <Combobox.Options>
       {options.map((item) => (
-        <Combobox.Option value={item} key={item}>{item}</Combobox.Option>
+        <Combobox.Option value={item} key={item}>
+          {item}
+        </Combobox.Option>
       ))}
     </Combobox.Options>
   </Combobox.Dropdown>
@@ -98,10 +100,10 @@ const handleSubmit = (val: string) => {
 
 ## Target Types
 
-| Scenario | Use |
-|---|---|
-| Button trigger (no text input) | `<Combobox.Target targetType="button">` |
-| Input trigger | `<Combobox.Target>` (default) |
+| Scenario                              | Use                                                     |
+| ------------------------------------- | ------------------------------------------------------- |
+| Button trigger (no text input)        | `<Combobox.Target targetType="button">`                 |
+| Input trigger                         | `<Combobox.Target>` (default)                           |
 | Pills + separate input (multi-select) | `<Combobox.DropdownTarget>` + `<Combobox.EventsTarget>` |
 
 ## What Combobox does for you
@@ -150,4 +152,3 @@ If the references do not cover what you need, do not guess:
 
 - If the Mantine MCP server (`@mantine/mcp-server`) is connected, use `search_docs` and `get_item_doc`
 - Otherwise fetch `https://mantine.dev/llms.txt` and open the Combobox page. More than 50 complete examples are at `https://mantine.dev/combobox/`
-

@@ -1,62 +1,66 @@
-import { Alert, Box, Button, Group, Paper, Radio, SimpleGrid, Stack, Text } from '@mantine/core'
-import { useState } from 'react'
-import { SCALES } from '../domain/catalog.ts'
-import type { AttemptAction, AttemptState, ItemSlot } from '../domain/attempt.ts'
-import { formatClock } from '../domain/format.ts'
-import { StimulusView } from './content.tsx'
-import { LETTERS, optionsInColumn } from './options.ts'
-import { NavButton, Shell, SideButtons, type StripTone } from './Shell.tsx'
-import classes from './Shell.module.css'
+import { Box, Button, Group, Paper, SimpleGrid, Stack, Text } from "@mantine/core";
+import { useState } from "react";
+import { SCALES } from "../domain/catalog.ts";
+import type { AttemptAction, AttemptState, ItemSlot } from "../domain/attempt.ts";
+import { formatClock } from "../domain/format.ts";
+import { NavButton, Shell, SideButtons, type StripTone } from "./Shell.tsx";
+import { TaskCard } from "./TaskCard.tsx";
+import classes from "./Shell.module.css";
 
 function stripTone(slot: ItemSlot, current: boolean): StripTone {
-  if (current) return 'current'
-  if (slot.selection != null || slot.outcome.kind === 'answer') return 'answered'
-  if (slot.remainingSec === 0) return 'missed'
-  if (!slot.opened) return 'empty'
-  return 'timed'
+  if (current) return "current";
+  if (slot.selection != null || slot.outcome.kind === "answer") return "answered";
+  if (slot.remainingSec === 0) return "missed";
+  if (!slot.opened) return "empty";
+  return "timed";
 }
 
 type TrainerProps = {
-  state: AttemptState
-  dispatch: (action: AttemptAction) => void
-  onMenu: () => void
-}
+  state: AttemptState;
+  dispatch: (action: AttemptAction) => void;
+  onMenu: () => void;
+};
 
 export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
-  const phase = state.phase
-  const scaleIndex = phase.kind === 'result' ? 0 : phase.scaleIndex
-  const block = state.blocks[scaleIndex]
-  const itemIndex = phase.kind === 'task' ? phase.itemIndex : phase.kind === 'instruction' && phase.mode === 'return' ? phase.itemIndex : null
-  const slot = itemIndex == null || !block ? null : block.slots[itemIndex]
-  const [hintFor, setHintFor] = useState<string | null>(null)
-  if (!block || phase.kind === 'result') return null
+  const phase = state.phase;
+  const scaleIndex = phase.kind === "result" ? 0 : phase.scaleIndex;
+  const block = state.blocks[scaleIndex];
+  const itemIndex =
+    phase.kind === "task"
+      ? phase.itemIndex
+      : phase.kind === "instruction" && phase.mode === "return"
+        ? phase.itemIndex
+        : null;
+  const slot = itemIndex == null || !block ? null : block.slots[itemIndex];
+  const [hintFor, setHintFor] = useState<string | null>(null);
+  if (!block || phase.kind === "result") return null;
 
-  const info = SCALES[block.scaleId]
-  const onTask = phase.kind === 'task'
-  const returned = phase.kind === 'instruction' && phase.mode === 'return'
-  const hintOpen = Boolean(slot && hintFor === slot.item.id && state.hints)
-  const column = slot ? optionsInColumn(slot.item.options) : true
+  const info = SCALES[block.scaleId];
+  const onTask = phase.kind === "task";
+  const returned = phase.kind === "instruction" && phase.mode === "return";
+  const hintOpen = Boolean(slot && hintFor === slot.item.id && state.hints);
   const strip = block.slots.map((item, index) => ({
     tone: stripTone(item, itemIndex === index),
-  }))
+  }));
 
   const menu = (
     <Button hiddenFrom="md" variant="subtle" color="teal" size="compact-sm" onClick={onMenu}>
       Меню
     </Button>
-  )
-  const hintButton = state.hints && slot ? (
-    <NavButton
-      icon="hint"
-      color="orange"
-      filled={hintOpen}
-      pressed={hintOpen}
-      onClick={() => setHintFor(hintOpen ? null : slot.item.id)}
-    >
-      Подсказка
-    </NavButton>
-  ) : null
-  const backDisabled = !onTask || phase.itemIndex === 0
+  );
+  const hintButton =
+    state.hints && slot ? (
+      <NavButton
+        icon="hint"
+        color="orange"
+        filled={hintOpen}
+        pressed={hintOpen}
+        onClick={() => setHintFor(hintOpen ? null : slot.item.id)}
+      >
+        Подсказка
+      </NavButton>
+    ) : null;
+  const backDisabled = !onTask || phase.itemIndex === 0;
   // const instructionDisabled = !onTask
 
   const left = (
@@ -65,7 +69,7 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
         Меню
       </NavButton>
       <Box className={classes.railMiddle}>
-        <NavButton icon="back" disabled={backDisabled} onClick={() => dispatch({ type: 'back' })}>
+        <NavButton icon="back" disabled={backDisabled} onClick={() => dispatch({ type: "back" })}>
           Назад
         </NavButton>
       </Box>
@@ -76,17 +80,17 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
         {hintButton}
       </Stack>
     </SideButtons>
-  )
+  );
   const right = (
     <SideButtons place="right">
-      <NavButton icon="next" color="orange" filled onClick={() => dispatch({ type: 'next' })}>
+      <NavButton icon="next" color="orange" filled onClick={() => dispatch({ type: "next" })}>
         Далее
       </NavButton>
     </SideButtons>
-  )
+  );
   const bottom = (
     <Group className={classes.phoneBar} hiddenFrom="md" grow gap={4} wrap="nowrap">
-      <Button size="compact-xs" variant="default" disabled={backDisabled} onClick={() => dispatch({ type: 'back' })}>
+      <Button size="compact-xs" variant="default" disabled={backDisabled} onClick={() => dispatch({ type: "back" })}>
         Назад
       </Button>
       {/* <Button size="compact-xs" variant="default" disabled={instructionDisabled} onClick={() => dispatch({ type: 'instruction' })}>
@@ -96,71 +100,41 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
         <Button
           size="compact-xs"
           color="orange"
-          variant={hintOpen ? 'filled' : 'light'}
+          variant={hintOpen ? "filled" : "light"}
           aria-pressed={hintOpen}
           onClick={() => setHintFor(hintOpen ? null : slot.item.id)}
         >
           Подсказка
         </Button>
       ) : null}
-      <Button size="compact-xs" color="teal" onClick={() => dispatch({ type: 'next' })}>
+      <Button size="compact-xs" color="teal" onClick={() => dispatch({ type: "next" })}>
         Далее
       </Button>
     </Group>
-  )
+  );
 
   return (
     <Shell
-      center={onTask && slot ? `Задание ${itemIndex! + 1} / 12` : 'Инструкция к блоку'}
+      center={onTask && slot ? `Задание ${itemIndex! + 1} / 12` : "Инструкция к блоку"}
       blockLabel={`Блок ${scaleIndex + 1} / ${state.blocks.length}`}
       blockSeconds={block.remainingSec}
-      itemSeconds={returned || onTask ? slot?.remainingSec ?? null : null}
+      itemSeconds={returned || onTask ? (slot?.remainingSec ?? null) : null}
       strip={strip}
       onHome={onMenu}
-      onBlock={onTask ? () => dispatch({ type: 'instruction' }) : undefined}
+      onBlock={onTask ? () => dispatch({ type: "instruction" }) : undefined}
       menu={menu}
       left={left}
       right={right}
       bottom={bottom}
     >
       {onTask && slot ? (
-        <Stack gap="md">
-          <StimulusView stimulus={slot.item.stimulus} />
-          {hintOpen ? (
-            <Paper withBorder p="sm" radius="md" bg="orange.0">
-              <Text size="sm">{slot.item.hint}</Text>
-            </Paper>
-          ) : null}
-          {slot.remainingSec === 0 ? (
-            <Alert color="orange" radius="md">
-              Время ответа истекло
-            </Alert>
-          ) : null}
-          <Radio.Group
-            value={slot.selection}
-            onChange={(value) => dispatch({ type: 'select', optionId: value })}
-            disabled={slot.remainingSec === 0}
-          >
-            <div className={column ? classes.options : `${classes.options} ${classes.optionsInline}`}>
-              {slot.item.options.map((option, index) => (
-                <Radio.Card key={option.id} value={option.id} withBorder p="sm" radius="md" disabled={slot.remainingSec === 0}>
-                  <Group className={classes.optionLine} align="flex-start" wrap="nowrap" gap="sm">
-                    <Group gap={6} wrap="nowrap" align="center">
-                      <Radio.Indicator disabled={slot.remainingSec === 0} />
-                      <Text fw={700} c="teal">
-                        {LETTERS[index]}
-                      </Text>
-                    </Group>
-                    <Stack className={classes.optionScene} gap={4}>
-                      {option.text ? <Text style={{ whiteSpace: 'pre-wrap' }}>{option.text}</Text> : null}
-                      {option.scene ? <StimulusView stimulus={{ scene: option.scene }} /> : null}
-                    </Stack>
-                  </Group>
-                </Radio.Card>
-              ))}
-            </div>
-          </Radio.Group>
-        </Stack>
+        <TaskCard
+          item={slot.item}
+          selection={slot.selection}
+          onSelect={(optionId) => dispatch({ type: "select", optionId })}
+          hintOpen={hintOpen}
+          expired={slot.remainingSec === 0}
+        />
       ) : (
         <Stack gap="md">
           <Text fw={700} size="xl">
@@ -203,5 +177,5 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
         </Stack>
       )}
     </Shell>
-  )
+  );
 }

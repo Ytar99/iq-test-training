@@ -1,21 +1,21 @@
-import { Button, Group, Paper, SimpleGrid, Stack, Text, Title } from '@mantine/core'
-import { SCALES } from '../domain/catalog.ts'
-import { bankIssues } from '../domain/bank.ts'
-import { SCALE_ORDER, type ScaleId } from '../domain/types.ts'
-import { Shell } from './Shell.tsx'
+import { Button, Group, Paper, SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { SCALES } from "../domain/catalog.ts";
+import { bankIssues } from "../domain/bank.ts";
+import { SCALE_ORDER, type ScaleId } from "../domain/types.ts";
+import { Shell } from "./Shell.tsx";
 
 type StartScreenProps = {
-  selected: ScaleId[]
-  hints: boolean
-  explanations: boolean
-  assembleError: string | null
-  onToggleScale: (scaleId: ScaleId) => void
-  onToggleHints: () => void
-  onToggleExplanations: () => void
-  onAll: () => void
-  onNone: () => void
-  onStart: () => void
-}
+  selected: ScaleId[];
+  hints: boolean;
+  explanations: boolean;
+  assembleError: string | null;
+  onToggleScale: (scaleId: ScaleId) => void;
+  onToggleHints: () => void;
+  onToggleExplanations: () => void;
+  onAll: () => void;
+  onNone: () => void;
+  onStart: () => void;
+};
 
 function Tile({
   pressed,
@@ -23,27 +23,27 @@ function Tile({
   children,
   onClick,
 }: {
-  pressed: boolean
-  color: 'teal' | 'orange'
-  children: string
-  onClick: () => void
+  pressed: boolean;
+  color: "teal" | "orange";
+  children: string;
+  onClick: () => void;
 }) {
   return (
     <Button
       fullWidth
       size="md"
-      variant={pressed ? 'filled' : 'outline'}
+      variant={pressed ? "filled" : "outline"}
       color={color}
       aria-pressed={pressed}
       onClick={onClick}
       styles={{
-        root: { height: 'auto', paddingBlock: '0.55rem' },
-        label: { whiteSpace: 'normal', textAlign: 'center', lineHeight: 1.25 },
+        root: { height: "auto", paddingBlock: "0.55rem" },
+        label: { whiteSpace: "normal", textAlign: "center", lineHeight: 1.25 },
       }}
     >
       {children}
     </Button>
-  )
+  );
 }
 
 export function StartScreen({
@@ -58,7 +58,7 @@ export function StartScreen({
   onNone,
   onStart,
 }: StartScreenProps) {
-  const blocked = selected.length === 0 || bankIssues.length > 0
+  const blocked = selected.length === 0 || bankIssues.length > 0;
   return (
     <Shell>
       <Stack gap="xl" maw={720} mx="auto" w="100%">
@@ -75,7 +75,12 @@ export function StartScreen({
           </Group>
           <SimpleGrid cols={2} spacing="sm">
             {SCALE_ORDER.map((scaleId) => (
-              <Tile key={scaleId} pressed={selected.includes(scaleId)} color="teal" onClick={() => onToggleScale(scaleId)}>
+              <Tile
+                key={scaleId}
+                pressed={selected.includes(scaleId)}
+                color="teal"
+                onClick={() => onToggleScale(scaleId)}
+              >
                 {SCALES[scaleId].name}
               </Tile>
             ))}
@@ -128,5 +133,5 @@ export function StartScreen({
         ) : null}
       </Stack>
     </Shell>
-  )
+  );
 }

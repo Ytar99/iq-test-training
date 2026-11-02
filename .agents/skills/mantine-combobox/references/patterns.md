@@ -1,6 +1,7 @@
 # Combobox Implementation Patterns
 
 ## Table of Contents
+
 - [Basic select (button trigger)](#basic-select-button-trigger)
 - [Searchable select (input trigger)](#searchable-select-input-trigger)
 - [Multi-select with pills](#multi-select-with-pills)
@@ -77,7 +78,7 @@ Input acts as both trigger and search field. Filter options based on the typed v
 ```tsx
 function SearchableSelect({ data }: { data: string[] }) {
   const [value, setValue] = useState<string | null>(null);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
 
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -90,11 +91,16 @@ function SearchableSelect({ data }: { data: string[] }) {
     ? data.filter((item) => item.toLowerCase().includes(search.toLowerCase().trim()))
     : data;
 
-  const options = filtered.length > 0
-    ? filtered.map((item) => (
-        <Combobox.Option value={item} key={item}>{item}</Combobox.Option>
+  const options =
+    filtered.length > 0 ? (
+      filtered.map((item) => (
+        <Combobox.Option value={item} key={item}>
+          {item}
+        </Combobox.Option>
       ))
-    : <Combobox.Empty>Nothing found</Combobox.Empty>;
+    ) : (
+      <Combobox.Empty>Nothing found</Combobox.Empty>
+    );
 
   return (
     <Combobox
@@ -118,7 +124,7 @@ function SearchableSelect({ data }: { data: string[] }) {
           onFocus={() => combobox.openDropdown()}
           onBlur={() => {
             combobox.closeDropdown();
-            setSearch(value || '');
+            setSearch(value || "");
           }}
           placeholder="Search value"
           rightSectionPointerEvents="none"
@@ -142,16 +148,13 @@ Use `Combobox.DropdownTarget` for the outer container and `Combobox.EventsTarget
 ```tsx
 function MultiSelect({ data }: { data: string[] }) {
   const combobox = useCombobox({ onDropdownClose: () => combobox.resetSelectedOption() });
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [value, setValue] = useState<string[]>([]);
 
   const handleValueSelect = (val: string) =>
-    setValue((current) =>
-      current.includes(val) ? current.filter((v) => v !== val) : [...current, val]
-    );
+    setValue((current) => (current.includes(val) ? current.filter((v) => v !== val) : [...current, val]));
 
-  const handleValueRemove = (val: string) =>
-    setValue((current) => current.filter((v) => v !== val));
+  const handleValueRemove = (val: string) => setValue((current) => current.filter((v) => v !== val));
 
   const options = data
     .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
@@ -187,7 +190,7 @@ function MultiSelect({ data }: { data: string[] }) {
                   setSearch(e.currentTarget.value);
                 }}
                 onKeyDown={(e) => {
-                  if (e.key === 'Backspace' && search.length === 0) {
+                  if (e.key === "Backspace" && search.length === 0) {
                     e.preventDefault();
                     handleValueRemove(value[value.length - 1]);
                   }
@@ -224,7 +227,7 @@ const groups = data.map((group) => (
 ));
 
 // Inside Combobox.Dropdown:
-<Combobox.Options>{groups}</Combobox.Options>
+<Combobox.Options>{groups}</Combobox.Options>;
 ```
 
 ---
@@ -240,7 +243,9 @@ const options = data.map((item) => (
       <Avatar src={item.avatar} size="sm" />
       <div>
         <Text size="sm">{item.label}</Text>
-        <Text size="xs" c="dimmed">{item.email}</Text>
+        <Text size="xs" c="dimmed">
+          {item.email}
+        </Text>
       </div>
     </Group>
   </Combobox.Option>
@@ -253,15 +258,17 @@ const options = data.map((item) => (
 
 ```tsx
 const rightSection = value ? (
-  <Combobox.ClearButton onClear={() => { setValue(null); setSearch(''); }} />
+  <Combobox.ClearButton
+    onClear={() => {
+      setValue(null);
+      setSearch("");
+    }}
+  />
 ) : (
   <Combobox.Chevron />
 );
 
-<InputBase
-  rightSection={rightSection}
-  rightSectionPointerEvents={value ? 'all' : 'none'}
-/>
+<InputBase rightSection={rightSection} rightSectionPointerEvents={value ? "all" : "none"} />;
 ```
 
 ---
@@ -288,7 +295,7 @@ const combobox = useCombobox({
   onDropdownClose: () => combobox.resetSelectedOption(),
   onDropdownOpen: () => {
     combobox.selectActiveOption(); // highlight
-    combobox.updateSelectedOptionIndex('active', { scrollIntoView: true }); // scroll to it
+    combobox.updateSelectedOptionIndex("active", { scrollIntoView: true }); // scroll to it
   },
 });
 
@@ -297,7 +304,7 @@ const combobox = useCombobox({
     {item === value && <CheckIcon size={12} />}
     {item}
   </Group>
-</Combobox.Option>
+</Combobox.Option>;
 ```
 
 `updateSelectedOptionIndex('active')` alone does not show a highlight.
@@ -314,12 +321,12 @@ const exactMatch = data.some((item) => item.toLowerCase() === search.trim().toLo
 <Combobox
   store={combobox}
   onOptionSubmit={(val) => {
-    if (val === '$create') {
+    if (val === "$create") {
       onCreate(search.trim());
     } else {
       onChange(val);
     }
-    setSearch('');
+    setSearch("");
   }}
 >
   {/* target */}
@@ -331,7 +338,7 @@ const exactMatch = data.some((item) => item.toLowerCase() === search.trim().toLo
       )}
     </Combobox.Options>
   </Combobox.Dropdown>
-</Combobox>
+</Combobox>;
 ```
 
 ---
@@ -343,20 +350,20 @@ results arrive, hide the dropdown for an empty query with `hidden`, and keep foc
 when the user clicks Retry.
 
 ```tsx
-const [search, setSearch] = useState('');
+const [search, setSearch] = useState("");
 const [debounced] = useDebouncedValue(search, 300);
-const [state, setState] = useState<{ status: 'idle' | 'loading' | 'error' | 'done'; items: User[] }>({
-  status: 'idle',
+const [state, setState] = useState<{ status: "idle" | "loading" | "error" | "done"; items: User[] }>({
+  status: "idle",
   items: [],
 });
 const requestId = useRef(0);
 
 const load = (query: string) => {
   const id = ++requestId.current;
-  setState((current) => ({ ...current, status: 'loading' }));
+  setState((current) => ({ ...current, status: "loading" }));
   searchUsers(query).then(
-    (items) => id === requestId.current && setState({ status: 'done', items }),
-    () => id === requestId.current && setState({ status: 'error', items: [] })
+    (items) => id === requestId.current && setState({ status: "done", items }),
+    () => id === requestId.current && setState({ status: "error", items: [] }),
   );
 };
 
@@ -374,7 +381,7 @@ useEffect(() => {
   <Combobox.Target>
     <TextInput
       value={search}
-      rightSection={state.status === 'loading' ? <Loader size="xs" /> : null}
+      rightSection={state.status === "loading" ? <Loader size="xs" /> : null}
       onChange={(event) => {
         setSearch(event.currentTarget.value);
         combobox.openDropdown();
@@ -383,20 +390,16 @@ useEffect(() => {
     />
   </Combobox.Target>
 
-  <Combobox.Dropdown hidden={search.trim() === '' || state.status === 'idle'}>
+  <Combobox.Dropdown hidden={search.trim() === "" || state.status === "idle"}>
     <Combobox.Options>
-      {state.status === 'error' ? (
+      {state.status === "error" ? (
         <Combobox.Empty>
-          Could not load users{' '}
-          <Anchor
-            component="button"
-            onMouseDown={(event) => event.preventDefault()}
-            onClick={() => load(debounced)}
-          >
+          Could not load users{" "}
+          <Anchor component="button" onMouseDown={(event) => event.preventDefault()} onClick={() => load(debounced)}>
             Retry
           </Anchor>
         </Combobox.Empty>
-      ) : state.status === 'done' && state.items.length === 0 ? (
+      ) : state.status === "done" && state.items.length === 0 ? (
         <Combobox.Empty>No users found</Combobox.Empty>
       ) : (
         state.items.map((user) => (
@@ -407,7 +410,7 @@ useEffect(() => {
       )}
     </Combobox.Options>
   </Combobox.Dropdown>
-</Combobox>
+</Combobox>;
 ```
 
 ---
@@ -429,7 +432,7 @@ in your own `onKeyDown`, which runs before the built-in handling:
         combobox.openDropdown();
       }}
       onKeyDown={(event) => {
-        if (event.key === 'Enter' && combobox.getSelectedOptionIndex() === -1) {
+        if (event.key === "Enter" && combobox.getSelectedOptionIndex() === -1) {
           onSearch(query);
           combobox.closeDropdown();
         }
@@ -439,10 +442,10 @@ in your own `onKeyDown`, which runs before the built-in handling:
     />
   </Combobox.Target>
 
-  <Combobox.Dropdown hidden={suggestions.length === 0 && query.trim() === ''}>
+  <Combobox.Dropdown hidden={suggestions.length === 0 && query.trim() === ""}>
     <Combobox.Options>
       {suggestions}
-      {query.trim() !== '' && <Combobox.Option value="$search">Search for "{query}"</Combobox.Option>}
+      {query.trim() !== "" && <Combobox.Option value="$search">Search for "{query}"</Combobox.Option>}
     </Combobox.Options>
     <Combobox.Footer>↑↓ to navigate · ↵ to select · esc to close</Combobox.Footer>
   </Combobox.Dropdown>
@@ -508,16 +511,16 @@ useEffect(() => {
         if (!combobox.dropdownOpened) {
           return;
         }
-        if (event.key === 'ArrowDown') {
+        if (event.key === "ArrowDown") {
           event.preventDefault();
           combobox.selectNextOption();
-        } else if (event.key === 'ArrowUp') {
+        } else if (event.key === "ArrowUp") {
           event.preventDefault();
           combobox.selectPreviousOption();
-        } else if (event.key === 'Enter' || event.key === 'Tab') {
+        } else if (event.key === "Enter" || event.key === "Tab") {
           event.preventDefault();
           combobox.clickSelectedOption();
-        } else if (event.key === 'Escape') {
+        } else if (event.key === "Escape") {
           combobox.closeDropdown();
         }
       }}
@@ -526,7 +529,7 @@ useEffect(() => {
   <Combobox.Dropdown>
     <Combobox.Options>{options}</Combobox.Options>
   </Combobox.Dropdown>
-</Combobox>
+</Combobox>;
 ```
 
 In `insertMention`, replace the text from `trigger.start` to the caret and restore the caret with
@@ -548,7 +551,7 @@ are overriding.
   radius={12}
   shadow="lg"
   offset={6}
-  transitionProps={{ transition: 'pop-top-left', duration: 150 }}
+  transitionProps={{ transition: "pop-top-left", duration: 150 }}
   classNames={{ options: classes.options, option: classes.option }}
 >
   <Combobox.Target targetType="button">
@@ -608,7 +611,7 @@ const ITEM_HEIGHT = 36;
 function Demo({ data }: { data: { value: string; label: string }[] }) {
   const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1); // keyboard highlight
   const [activeOptionIndex, setActiveOptionIndex] = useState(-1); // option that holds the value
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const [scrollParent, setScrollParent] = useState<HTMLDivElement | null>(null);
 
   const virtualizer = useVirtualizer({
@@ -622,7 +625,7 @@ function Demo({ data }: { data: { value: string; label: string }[] }) {
     onDropdownOpen: () => {
       if (activeOptionIndex !== -1) {
         setSelectedOptionIndex(activeOptionIndex);
-        requestAnimationFrame(() => virtualizer.scrollToIndex(activeOptionIndex, { align: 'auto' }));
+        requestAnimationFrame(() => virtualizer.scrollToIndex(activeOptionIndex, { align: "auto" }));
       }
     },
     totalOptionsCount: data.length,
@@ -632,7 +635,7 @@ function Demo({ data }: { data: { value: string; label: string }[] }) {
     setSelectedOptionIndex: (index) => {
       setSelectedOptionIndex(index);
       if (index !== -1) {
-        virtualizer.scrollToIndex(index, { align: 'auto' });
+        virtualizer.scrollToIndex(index, { align: "auto" });
       }
     },
     onSelectedOptionSubmit: handleSubmit,
@@ -660,7 +663,7 @@ function Demo({ data }: { data: { value: string; label: string }[] }) {
             viewportRef={setScrollParent}
             onMouseDown={(event) => event.preventDefault()}
           >
-            <div style={{ height: virtualizer.getTotalSize(), position: 'relative' }}>
+            <div style={{ height: virtualizer.getTotalSize(), position: "relative" }}>
               {virtualizer.getVirtualItems().map((row) => (
                 <Combobox.Option
                   value={data[row.index].value}
@@ -670,10 +673,10 @@ function Demo({ data }: { data: { value: string; label: string }[] }) {
                   selected={row.index === selectedOptionIndex}
                   onClick={() => handleSubmit(row.index)}
                   style={{
-                    position: 'absolute',
+                    position: "absolute",
                     top: 0,
                     left: 0,
-                    width: '100%',
+                    width: "100%",
                     height: row.size,
                     transform: `translateY(${row.start}px)`,
                   }}
@@ -705,7 +708,17 @@ A select built on `Combobox` that works with `form.getInputProps` from `@mantine
 value, and report blur only when focus leaves both the trigger and the dropdown search:
 
 ```tsx
-function CountrySelect({ value, defaultValue, onChange, onFocus, onBlur, error, label, readOnly, ...others }: CountrySelectProps) {
+function CountrySelect({
+  value,
+  defaultValue,
+  onChange,
+  onFocus,
+  onBlur,
+  error,
+  label,
+  readOnly,
+  ...others
+}: CountrySelectProps) {
   const [current, setCurrent] = useUncontrolled<string | null>({ value, defaultValue, finalValue: null, onChange });
   const combobox = useCombobox({
     onDropdownOpen: () => combobox.focusSearchInput(),
@@ -754,7 +767,7 @@ function CountrySelect({ value, defaultValue, onChange, onFocus, onBlur, error, 
   );
 }
 
-<CountrySelect label="Country" key={form.key('country')} {...form.getInputProps('country')} />
+<CountrySelect label="Country" key={form.key("country")} {...form.getInputProps("country")} />;
 ```
 
 Spread the remaining props onto the trigger: `getInputProps` also passes `data-path`, which
@@ -774,14 +787,14 @@ opens and return focus to the target when it closes. Call `combobox.updateSelect
 whenever the options list changes, otherwise keyboard navigation keeps the old index.
 
 ```tsx
-const [search, setSearch] = useState('');
+const [search, setSearch] = useState("");
 const [value, setValue] = useState<string | null>(null);
 
 const combobox = useCombobox({
   onDropdownClose: () => {
     combobox.resetSelectedOption();
     combobox.focusTarget();
-    setSearch('');
+    setSearch("");
   },
   onDropdownOpen: () => combobox.focusSearchInput(),
 });
@@ -804,7 +817,7 @@ const options = data
   }}
 >
   <Combobox.Target withAriaAttributes={false}>
-    <Button onClick={() => combobox.toggleDropdown()}>{value || 'Pick item'}</Button>
+    <Button onClick={() => combobox.toggleDropdown()}>{value || "Pick item"}</Button>
   </Combobox.Target>
 
   <Combobox.Dropdown>
@@ -816,11 +829,9 @@ const options = data
       }}
       placeholder="Search"
     />
-    <Combobox.Options>
-      {options.length > 0 ? options : <Combobox.Empty>Nothing found</Combobox.Empty>}
-    </Combobox.Options>
+    <Combobox.Options>{options.length > 0 ? options : <Combobox.Empty>Nothing found</Combobox.Empty>}</Combobox.Options>
   </Combobox.Dropdown>
-</Combobox>
+</Combobox>;
 ```
 
 If no custom option markup is needed, `<ComboboxPopover searchable data={data} />` does the same
@@ -852,9 +863,7 @@ For long lists, let the dropdown take the available viewport height and scroll i
 ```tsx
 <Combobox.Dropdown>
   <Combobox.Options>
-    {filteredOptions.length > 0
-      ? filteredOptions
-      : <Combobox.Empty>Nothing found for "{search}"</Combobox.Empty>}
+    {filteredOptions.length > 0 ? filteredOptions : <Combobox.Empty>Nothing found for "{search}"</Combobox.Empty>}
   </Combobox.Options>
 </Combobox.Dropdown>
 ```

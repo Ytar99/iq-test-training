@@ -1,6 +1,7 @@
 # Custom Components API Reference
 
 ## Table of Contents
+
 - [Imports cheatsheet](#imports-cheatsheet)
 - [factory / polymorphicFactory / genericFactory](#factory--polymorphicfactory--genericfactory)
 - [Factory type fields](#factory-type-fields)
@@ -64,7 +65,7 @@ import {
   // Theme
   useMantineTheme, // theme object inside a component body
   MantineThemeProvider, // theme override for a part of the tree
-} from '@mantine/core';
+} from "@mantine/core";
 ```
 
 ---
@@ -130,16 +131,16 @@ Factory<{
   ref: HTMLDivElement;
 
   // Union of Styles API selector strings (must match CSS module class names)
-  stylesNames: 'root' | 'label' | 'icon';
+  stylesNames: "root" | "label" | "icon";
 
   // CSS variables definition: { selectorName: '--var-name' | '--other-var' }
   vars: {
-    root: '--my-height' | '--my-color';
-    label: '--my-label-fz';
+    root: "--my-height" | "--my-color";
+    label: "--my-label-fz";
   };
 
   // Accepted values for the variant prop
-  variant: 'filled' | 'outline' | 'subtle';
+  variant: "filled" | "outline" | "subtle";
 
   // Sub-components for compound pattern
   staticComponents: {
@@ -155,7 +156,7 @@ Factory<{
 
   // Generic signature (genericFactory only)
   signature: <T extends boolean = false>(props: MyProps<T>) => React.JSX.Element;
-}>
+}>;
 ```
 
 ---
@@ -163,6 +164,7 @@ Factory<{
 ## useProps
 
 Merges default props from three sources in priority order (highest → lowest):
+
 1. Props passed by the user
 2. Default props from `MantineProvider` theme (`components.MyComponent.defaultProps`)
 3. Component-level `defaultProps`
@@ -181,9 +183,9 @@ An array of names shares theme configuration between components. Later names win
 `useProps(['Input', 'MyInput'], defaultProps, _props)` applies `theme.components.Input.defaultProps` first, then `MyInput`.
 
 ```ts
-const defaultProps = { size: 'md', variant: 'filled' } satisfies Partial<MyProps>;
+const defaultProps = { size: "md", variant: "filled" } satisfies Partial<MyProps>;
 
-const props = useProps('MyComponent', defaultProps, _props);
+const props = useProps("MyComponent", defaultProps, _props);
 const { className, style, classNames, styles, unstyled, vars, attributes, ...others } = props;
 ```
 
@@ -217,6 +219,7 @@ useStyles<Payload extends FactoryPayload>(input: {
 ```
 
 **`getStyles` function:**
+
 ```ts
 getStyles(
   selector: StylesNames,
@@ -235,6 +238,7 @@ getStyles(
 ```
 
 Usage:
+
 ```tsx
 <Box {...getStyles('root')} {...others} />
 <div {...getStyles('label', { className: cx(extraClass), style: { color: 'red' } })} />
@@ -262,13 +266,14 @@ The resolver must return an object matching the `vars` structure defined in `Fac
 // Factory vars: { root: '--my-height' | '--my-color' }
 const varsResolver = createVarsResolver<MyFactory>((_theme, { size, color }) => ({
   root: {
-    '--my-height': getSize(size, 'my-height'),
-    '--my-color': color ?? undefined,   // undefined = CSS var not set (uses CSS fallback)
+    "--my-height": getSize(size, "my-height"),
+    "--my-color": color ?? undefined, // undefined = CSS var not set (uses CSS fallback)
   },
 }));
 ```
 
 Assign to the component after creation:
+
 ```ts
 MyComponent.varsResolver = varsResolver;
 ```
@@ -278,22 +283,25 @@ MyComponent.varsResolver = varsResolver;
 ## StylesApiProps and CompoundStylesApiProps
 
 **`StylesApiProps`** — extend on the root/main component's props interface:
+
 ```ts
 interface StylesApiProps<Payload extends FactoryPayload> {
   unstyled?: boolean;
-  variant?: Payload['variant'] | (string & {});
-  classNames?: ClassNames<Payload>;    // { root: 'my-class', inner: 'other' } or callback
-  styles?: Styles<Payload>;            // { root: { color: 'red' } } or callback
+  variant?: Payload["variant"] | (string & {});
+  classNames?: ClassNames<Payload>; // { root: 'my-class', inner: 'other' } or callback
+  styles?: Styles<Payload>; // { root: { color: 'red' } } or callback
   vars?: PartialVarsResolver<Payload>; // (theme, props) => { root: { '--my-var': '...' } }
-  attributes?: Attributes<Payload>;    // { root: { 'data-custom': value } }
+  attributes?: Attributes<Payload>; // { root: { 'data-custom': value } }
 }
 ```
 
 **`CompoundStylesApiProps`** — extend on sub-component (compound) props instead. Subset of `StylesApiProps` — no `unstyled` or `attributes`.
 
 ```ts
-interface CompoundStylesApiProps<Payload extends FactoryPayload>
-  extends Omit<StylesApiProps<Payload>, 'unstyled' | 'attributes'> {}
+interface CompoundStylesApiProps<Payload extends FactoryPayload> extends Omit<
+  StylesApiProps<Payload>,
+  "unstyled" | "attributes"
+> {}
 ```
 
 Compound sub-components also use `Factory<{ ..., compound: true }>` and access styles via the parent context's `getStyles`.
@@ -303,42 +311,44 @@ Compound sub-components also use `Factory<{ ..., compound: true }>` and access s
 ## BoxProps and ElementProps
 
 **`BoxProps`** — extends `MantineStyleProps`, adds:
+
 ```ts
 interface BoxProps extends MantineStyleProps {
   className?: string;
-  style?: MantineStyleProp;           // accepts function: (theme) => CSSProperties
+  style?: MantineStyleProp; // accepts function: (theme) => CSSProperties
   mod?: string | Record<string, any> | (string | Record<string, any>)[]; // data-* attributes
-  hiddenFrom?: MantineBreakpoint;     // hidden at this breakpoint and above
-  visibleFrom?: MantineBreakpoint;    // visible only at this breakpoint and above
-  lightHidden?: boolean;              // hidden in light color scheme
-  darkHidden?: boolean;               // hidden in dark color scheme
+  hiddenFrom?: MantineBreakpoint; // hidden at this breakpoint and above
+  visibleFrom?: MantineBreakpoint; // visible only at this breakpoint and above
+  lightHidden?: boolean; // hidden in light color scheme
+  darkHidden?: boolean; // hidden in dark color scheme
 }
 ```
 
 **`MantineStyleProps`** — shorthand style props (all accept responsive `{ base, sm, md, lg, xl }` objects):
 
-| Prop | CSS property | Prop | CSS property |
-|---|---|---|---|
-| `m` `mt` `mb` `ml` `mr` `mx` `my` `ms` `me` | margin variants | `p` `pt` `pb` `pl` `pr` `px` `py` `ps` `pe` | padding variants |
-| `w` `miw` `maw` | width | `h` `mih` `mah` | height |
-| `c` | color | `bg` | background |
-| `fz` | font-size | `fw` | font-weight |
-| `ff` | font-family | `fs` | font-style |
-| `lh` | line-height | `lts` | letter-spacing |
-| `ta` | text-align | `tt` | text-transform |
-| `td` | text-decoration | `bd` | border |
-| `bdrs` | border-radius | `opacity` | opacity |
-| `pos` | position | `top` `left` `bottom` `right` `inset` | positioning |
-| `display` | display | `flex` | flex |
-| `mis` `mie` `pis` `pie` | margin/padding inline start/end | `bgsz` `bgp` `bgr` `bga` | background size/position/repeat/attachment |
+| Prop                                        | CSS property                    | Prop                                        | CSS property                               |
+| ------------------------------------------- | ------------------------------- | ------------------------------------------- | ------------------------------------------ |
+| `m` `mt` `mb` `ml` `mr` `mx` `my` `ms` `me` | margin variants                 | `p` `pt` `pb` `pl` `pr` `px` `py` `ps` `pe` | padding variants                           |
+| `w` `miw` `maw`                             | width                           | `h` `mih` `mah`                             | height                                     |
+| `c`                                         | color                           | `bg`                                        | background                                 |
+| `fz`                                        | font-size                       | `fw`                                        | font-weight                                |
+| `ff`                                        | font-family                     | `fs`                                        | font-style                                 |
+| `lh`                                        | line-height                     | `lts`                                       | letter-spacing                             |
+| `ta`                                        | text-align                      | `tt`                                        | text-transform                             |
+| `td`                                        | text-decoration                 | `bd`                                        | border                                     |
+| `bdrs`                                      | border-radius                   | `opacity`                                   | opacity                                    |
+| `pos`                                       | position                        | `top` `left` `bottom` `right` `inset`       | positioning                                |
+| `display`                                   | display                         | `flex`                                      | flex                                       |
+| `mis` `mie` `pis` `pie`                     | margin/padding inline start/end | `bgsz` `bgp` `bgr` `bga`                    | background size/position/repeat/attachment |
 
 **`ElementProps`** — gets HTML element props, remapping `style` to Mantine's type:
+
 ```ts
 // Include all div props except style (remapped) and any conflicting props
-interface MyProps extends ElementProps<'div'> {}
+interface MyProps extends ElementProps<"div"> {}
 
 // Omit conflicting HTML attrs (e.g. input has native 'size' and 'color')
-interface MyProps extends ElementProps<'input', 'size' | 'color'> {
+interface MyProps extends ElementProps<"input", "size" | "color"> {
   size?: MantineSize;
   color?: MantineColor;
 }
@@ -363,33 +373,36 @@ createSafeContext<ContextValue>(
 ```
 
 **Usage pattern (in ComponentName.context.ts):**
+
 ```ts
-import { createSafeContext, GetStylesApi } from '@mantine/core';
-import { MyFactory } from './MyComponent';
+import { createSafeContext, GetStylesApi } from "@mantine/core";
+import { MyFactory } from "./MyComponent";
 
 interface MyContextValue {
   getStyles: GetStylesApi<MyFactory>;
   // other shared state...
 }
 
-export const [MyProvider, useMyContext] = createSafeContext<MyContextValue>(
-  'MyComponent was not found in tree'
-);
+export const [MyProvider, useMyContext] = createSafeContext<MyContextValue>("MyComponent was not found in tree");
 ```
 
 In the root component:
+
 ```tsx
 return (
   <MyProvider value={{ getStyles }}>
-    <Box {...getStyles('root')} {...others}>{children}</Box>
+    <Box {...getStyles("root")} {...others}>
+      {children}
+    </Box>
   </MyProvider>
 );
 ```
 
 In sub-components:
+
 ```tsx
 const { getStyles } = useMyContext();
-return <div {...getStyles('item')} />;
+return <div {...getStyles("item")} />;
 ```
 
 ---
@@ -398,17 +411,17 @@ return <div {...getStyles('item')} />;
 
 Use these in `createVarsResolver` to convert Mantine size tokens to CSS values:
 
-| Function | Input | Output example |
-|---|---|---|
-| `getSize(size, prefix)` | `'sm'`, `'button-height'` | `'var(--button-height-sm)'` (define `--button-height-sm` etc. in your CSS) |
-| `getSpacing(size)` | `'md'` or `16` | `'var(--mantine-spacing-md)'` or `'calc(1rem * var(--mantine-scale))'` |
-| `getRadius(size)` | `'sm'` or `4` | `'var(--mantine-radius-sm)'` or `'calc(0.25rem * var(--mantine-scale))'` |
-| `getFontSize(size)` | `'sm'` | `'var(--mantine-font-size-sm)'` |
-| `getLineHeight(size)` | `'sm'` | `'var(--mantine-line-height-sm)'` |
-| `getShadow(size)` | `'md'` | `'var(--mantine-shadow-md)'` |
-| `rem(value)` | `16` | `'calc(1rem * var(--mantine-scale))'` |
-| `em(value)` | `16` | `'1em'` |
-| `getThemeColor(color, theme)` | `'blue'`, `'blue.7'`, `'#fff'` | CSS color value for a theme color, shade or any CSS color |
+| Function                      | Input                          | Output example                                                             |
+| ----------------------------- | ------------------------------ | -------------------------------------------------------------------------- |
+| `getSize(size, prefix)`       | `'sm'`, `'button-height'`      | `'var(--button-height-sm)'` (define `--button-height-sm` etc. in your CSS) |
+| `getSpacing(size)`            | `'md'` or `16`                 | `'var(--mantine-spacing-md)'` or `'calc(1rem * var(--mantine-scale))'`     |
+| `getRadius(size)`             | `'sm'` or `4`                  | `'var(--mantine-radius-sm)'` or `'calc(0.25rem * var(--mantine-scale))'`   |
+| `getFontSize(size)`           | `'sm'`                         | `'var(--mantine-font-size-sm)'`                                            |
+| `getLineHeight(size)`         | `'sm'`                         | `'var(--mantine-line-height-sm)'`                                          |
+| `getShadow(size)`             | `'md'`                         | `'var(--mantine-shadow-md)'`                                               |
+| `rem(value)`                  | `16`                           | `'calc(1rem * var(--mantine-scale))'`                                      |
+| `em(value)`                   | `16`                           | `'1em'`                                                                    |
+| `getThemeColor(color, theme)` | `'blue'`, `'blue.7'`, `'#fff'` | CSS color value for a theme color, shade or any CSS color                  |
 
 Return `undefined` from a var resolver entry to leave that CSS variable unset (CSS fallback applies).
 The same holds for `vars` in the theme and in props: a key that is `undefined` keeps the component's own value.
@@ -423,9 +436,9 @@ use `radius === undefined ? undefined : getRadius(radius)` when the CSS has its 
 Set these on every component after creation (`varsResolver` only when the component has one):
 
 ```ts
-MyComponent.displayName = 'MyComponent';
-MyComponent.classes = classes;                          // CSS module classes object
-MyComponent.varsResolver = varsResolver;               // only if component defines vars
+MyComponent.displayName = "MyComponent";
+MyComponent.classes = classes; // CSS module classes object
+MyComponent.varsResolver = varsResolver; // only if component defines vars
 
 // Sub-components (compound pattern)
 MyComponent.Item = MyItem;
@@ -442,14 +455,18 @@ MyComponent.Label = MyLabel;
 CSS should react to:
 
 ```tsx
-<Box mod={{ active, disabled, orientation }} {...getStyles('root')} />
+<Box mod={{ active, disabled, orientation }} {...getStyles("root")} />
 // active={true} orientation="vertical" -> data-active data-orientation="vertical"
 ```
 
 ```css
 .root {
-  &[data-active] { background-color: var(--mantine-primary-color-light); }
-  &[data-orientation='vertical'] { flex-direction: column; }
+  &[data-active] {
+    background-color: var(--mantine-primary-color-light);
+  }
+  &[data-orientation="vertical"] {
+    flex-direction: column;
+  }
 }
 ```
 
@@ -468,7 +485,7 @@ To apply `theme.components` overrides to one subtree (a story, a section of a pa
 unlike a nested `MantineProvider`:
 
 ```tsx
-<MantineThemeProvider theme={{ components: { MyComponent: MyComponent.extend({ defaultProps: { radius: 'xl' } }) } }}>
+<MantineThemeProvider theme={{ components: { MyComponent: MyComponent.extend({ defaultProps: { radius: "xl" } }) } }}>
   <MyComponent />
 </MantineThemeProvider>
 ```
@@ -481,9 +498,9 @@ unlike a nested `MantineProvider`:
 
 ```ts
 MyComponent.extend({
-  classNames: (theme, props, ctx) => ({ root: props.variant === 'outline' ? 'is-outline' : undefined }),
-  styles: (theme, props, ctx) => ({ label: props.size === 'lg' ? { letterSpacing: 1 } : {} }),
-  vars: (theme, props, ctx) => ({ root: { '--my-height': props.size === 'lg' ? '50px' : undefined } }),
+  classNames: (theme, props, ctx) => ({ root: props.variant === "outline" ? "is-outline" : undefined }),
+  styles: (theme, props, ctx) => ({ label: props.size === "lg" ? { letterSpacing: 1 } : {} }),
+  vars: (theme, props, ctx) => ({ root: { "--my-height": props.size === "lg" ? "50px" : undefined } }),
 });
 ```
 
@@ -497,11 +514,11 @@ are also called for elements rendered by sub-components, with the root's `ctx`.
 for the variants you do not change:
 
 ```ts
-import { defaultVariantColorsResolver, VariantColorsResolver } from '@mantine/core';
+import { defaultVariantColorsResolver, VariantColorsResolver } from "@mantine/core";
 
 const variantColorResolver: VariantColorsResolver = (input) => {
-  if (input.variant === 'danger') {
-    return { background: '#e03131', hover: '#c92a2a', color: '#fff', border: '2px solid #c92a2a' };
+  if (input.variant === "danger") {
+    return { background: "#e03131", hover: "#c92a2a", color: "#fff", border: "2px solid #c92a2a" };
   }
   return defaultVariantColorsResolver(input);
 };
@@ -524,7 +541,9 @@ The project CSS goes through `postcss-preset-mantine`, which adds:
     background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-5));
   }
 
-  &[data-active] { /* attributes from the mod prop */ }
+  &[data-active] {
+    /* attributes from the mod prop */
+  }
 }
 ```
 

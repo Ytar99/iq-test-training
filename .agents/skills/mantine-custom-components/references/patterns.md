@@ -1,6 +1,7 @@
 # Custom Component Patterns
 
 ## Table of Contents
+
 - [Minimal component (no styles API)](#minimal-component-no-styles-api)
 - [Component with CSS variables](#component-with-css-variables)
 - [Compound component with context](#compound-component-with-context)
@@ -20,9 +21,9 @@
 When you don't need theming/Styles API support — just Box + useProps.
 
 ```tsx
-import { Box, BoxProps, ElementProps, factory, Factory, useProps } from '@mantine/core';
+import { Box, BoxProps, ElementProps, factory, Factory, useProps } from "@mantine/core";
 
-export interface MinimalProps extends BoxProps, ElementProps<'div'> {
+export interface MinimalProps extends BoxProps, ElementProps<"div"> {
   label?: string;
 }
 
@@ -34,7 +35,7 @@ export type MinimalFactory = Factory<{
 const defaultProps = {} satisfies Partial<MinimalProps>;
 
 export const Minimal = factory<MinimalFactory>((_props) => {
-  const props = useProps('Minimal', defaultProps, _props);
+  const props = useProps("Minimal", defaultProps, _props);
   const { label, children, ...others } = props;
 
   return (
@@ -45,7 +46,7 @@ export const Minimal = factory<MinimalFactory>((_props) => {
   );
 });
 
-Minimal.displayName = 'Minimal';
+Minimal.displayName = "Minimal";
 ```
 
 ---
@@ -55,6 +56,7 @@ Minimal.displayName = 'Minimal';
 Full example with Styles API, CSS variables, and theme integration.
 
 **MyComponent.module.css:**
+
 ```css
 .root {
   border-radius: var(--my-radius);
@@ -67,23 +69,35 @@ Full example with Styles API, CSS variables, and theme integration.
 ```
 
 **MyComponent.tsx:**
+
 ```tsx
 import {
-  Box, BoxProps, createVarsResolver, ElementProps, factory, Factory,
-  getFontSize, getRadius, getSpacing, MantineFontSize, MantineRadius,
-  MantineSpacing, StylesApiProps, useProps, useStyles,
-} from '@mantine/core';
-import classes from './MyComponent.module.css';
+  Box,
+  BoxProps,
+  createVarsResolver,
+  ElementProps,
+  factory,
+  Factory,
+  getFontSize,
+  getRadius,
+  getSpacing,
+  MantineFontSize,
+  MantineRadius,
+  MantineSpacing,
+  StylesApiProps,
+  useProps,
+  useStyles,
+} from "@mantine/core";
+import classes from "./MyComponent.module.css";
 
-export type MyComponentStylesNames = 'root' | 'inner';
-export type MyComponentVariant = 'filled' | 'outline';
+export type MyComponentStylesNames = "root" | "inner";
+export type MyComponentVariant = "filled" | "outline";
 export type MyComponentCssVariables = {
-  root: '--my-radius' | '--my-padding';
-  inner: '--my-fz';
+  root: "--my-radius" | "--my-padding";
+  inner: "--my-fz";
 };
 
-export interface MyComponentProps
-  extends BoxProps, StylesApiProps<MyComponentFactory>, ElementProps<'div'> {
+export interface MyComponentProps extends BoxProps, StylesApiProps<MyComponentFactory>, ElementProps<"div"> {
   radius?: MantineRadius;
   padding?: MantineSpacing;
   size?: MantineFontSize;
@@ -98,32 +112,40 @@ export type MyComponentFactory = Factory<{
 }>;
 
 const defaultProps = {
-  radius: 'sm',
-  padding: 'md',
-  size: 'md',
+  radius: "sm",
+  padding: "md",
+  size: "md",
 } satisfies Partial<MyComponentProps>;
 
 const varsResolver = createVarsResolver<MyComponentFactory>((_theme, { radius, padding, size }) => ({
   root: {
-    '--my-radius': getRadius(radius),
-    '--my-padding': getSpacing(padding),
+    "--my-radius": getRadius(radius),
+    "--my-padding": getSpacing(padding),
   },
   inner: {
-    '--my-fz': getFontSize(size),
+    "--my-fz": getFontSize(size),
   },
 }));
 
 export const MyComponent = factory<MyComponentFactory>((_props) => {
-  const props = useProps('MyComponent', defaultProps, _props);
+  const props = useProps("MyComponent", defaultProps, _props);
   const {
-    classNames, className, style, styles, unstyled, vars, attributes,
-    radius, padding, size,
+    classNames,
+    className,
+    style,
+    styles,
+    unstyled,
+    vars,
+    attributes,
+    radius,
+    padding,
+    size,
     children,
     ...others
   } = props;
 
   const getStyles = useStyles<MyComponentFactory>({
-    name: 'MyComponent',
+    name: "MyComponent",
     classes,
     props,
     className,
@@ -137,13 +159,13 @@ export const MyComponent = factory<MyComponentFactory>((_props) => {
   });
 
   return (
-    <Box {...getStyles('root')} {...others}>
-      <div {...getStyles('inner')}>{children}</div>
+    <Box {...getStyles("root")} {...others}>
+      <div {...getStyles("inner")}>{children}</div>
     </Box>
   );
 });
 
-MyComponent.displayName = 'MyComponent';
+MyComponent.displayName = "MyComponent";
 MyComponent.classes = classes;
 MyComponent.varsResolver = varsResolver;
 ```
@@ -155,33 +177,41 @@ MyComponent.varsResolver = varsResolver;
 Pattern for components with typed sub-components (e.g. `Card.Section`, `Tabs.Tab`).
 
 **MyCard.context.ts:**
+
 ```ts
-import { createSafeContext, GetStylesApi } from '@mantine/core';
-import type { MyCardFactory } from './MyCard';
+import { createSafeContext, GetStylesApi } from "@mantine/core";
+import type { MyCardFactory } from "./MyCard";
 
 interface MyCardContextValue {
   getStyles: GetStylesApi<MyCardFactory>;
-  orientation: 'horizontal' | 'vertical';
+  orientation: "horizontal" | "vertical";
 }
 
 export const [MyCardProvider, useMyCardContext] = createSafeContext<MyCardContextValue>(
-  'MyCard component was not found in tree'
+  "MyCard component was not found in tree",
 );
 ```
 
 **MyCardSection.tsx** (sub-component):
+
 ```tsx
 import {
-  Box, BoxProps, CompoundStylesApiProps, ElementProps,
-  factory, Factory, useProps, useStyles,
-} from '@mantine/core';
-import { useMyCardContext } from './MyCard.context';
-import classes from './MyCard.module.css';
+  Box,
+  BoxProps,
+  CompoundStylesApiProps,
+  ElementProps,
+  factory,
+  Factory,
+  useProps,
+  useStyles,
+} from "@mantine/core";
+import { useMyCardContext } from "./MyCard.context";
+import classes from "./MyCard.module.css";
 
-export type MyCardSectionStylesNames = 'section';
+export type MyCardSectionStylesNames = "section";
 
 export interface MyCardSectionProps
-  extends BoxProps, CompoundStylesApiProps<MyCardSectionFactory>, ElementProps<'div'> {
+  extends BoxProps, CompoundStylesApiProps<MyCardSectionFactory>, ElementProps<"div"> {
   withBorder?: boolean;
 }
 
@@ -189,14 +219,14 @@ export type MyCardSectionFactory = Factory<{
   props: MyCardSectionProps;
   ref: HTMLDivElement;
   stylesNames: MyCardSectionStylesNames;
-  compound: true;   // marks as a compound sub-component
+  compound: true; // marks as a compound sub-component
 }>;
 
 const defaultProps = {} satisfies Partial<MyCardSectionProps>;
 
 export const MyCardSection = factory<MyCardSectionFactory>((_props) => {
   // The name is the theme key: theme.components.MyCardSection (no dot). Keep it equal to displayName
-  const props = useProps('MyCardSection', defaultProps, _props);
+  const props = useProps("MyCardSection", defaultProps, _props);
   const { className, style, classNames, styles, vars, withBorder, children, ...others } = props;
 
   // Access styles and shared settings from the parent context.
@@ -205,8 +235,8 @@ export const MyCardSection = factory<MyCardSectionFactory>((_props) => {
 
   return (
     <Box
-      {...getStyles('section', { className, style, classNames, styles, props })}
-      mod={{ 'with-border': withBorder, orientation }}
+      {...getStyles("section", { className, style, classNames, styles, props })}
+      mod={{ "with-border": withBorder, orientation }}
       {...others}
     >
       {children}
@@ -214,10 +244,11 @@ export const MyCardSection = factory<MyCardSectionFactory>((_props) => {
   );
 });
 
-MyCardSection.displayName = 'MyCardSection';
+MyCardSection.displayName = "MyCardSection";
 ```
 
 **MyCard.tsx** (root component):
+
 ```tsx
 import { MyCardProvider } from './MyCard.context';
 
@@ -274,12 +305,17 @@ Supports `component` prop to render as any element or React component.
 
 ```tsx
 import {
-  Box, BoxProps, polymorphicFactory, PolymorphicFactory,
-  StylesApiProps, useProps, useStyles,
-} from '@mantine/core';
-import classes from './MyLink.module.css';
+  Box,
+  BoxProps,
+  polymorphicFactory,
+  PolymorphicFactory,
+  StylesApiProps,
+  useProps,
+  useStyles,
+} from "@mantine/core";
+import classes from "./MyLink.module.css";
 
-export type MyLinkStylesNames = 'root';
+export type MyLinkStylesNames = "root";
 
 export interface MyLinkProps extends BoxProps, StylesApiProps<MyLinkFactory> {
   active?: boolean;
@@ -288,7 +324,7 @@ export interface MyLinkProps extends BoxProps, StylesApiProps<MyLinkFactory> {
 export type MyLinkFactory = PolymorphicFactory<{
   props: MyLinkProps;
   defaultRef: HTMLAnchorElement;
-  defaultComponent: 'a';            // renders as <a> unless component prop is provided
+  defaultComponent: "a"; // renders as <a> unless component prop is provided
   stylesNames: MyLinkStylesNames;
 }>;
 
@@ -296,32 +332,38 @@ const defaultProps = {} satisfies Partial<MyLinkProps>;
 
 // `component` and `renderRoot` are not part of your props type: add them to the argument type to read them
 export const MyLink = polymorphicFactory<MyLinkFactory>((_props: MyLinkProps & { component?: any }) => {
-  const props = useProps('MyLink', defaultProps, _props);
-  const {
-    classNames, className, style, styles, unstyled, vars, attributes,
-    active, ...others
-  } = props;
+  const props = useProps("MyLink", defaultProps, _props);
+  const { classNames, className, style, styles, unstyled, vars, attributes, active, ...others } = props;
 
   const getStyles = useStyles<MyLinkFactory>({
-    name: 'MyLink', classes, props, className, style,
-    classNames, styles, unstyled, vars, attributes,
+    name: "MyLink",
+    classes,
+    props,
+    className,
+    style,
+    classNames,
+    styles,
+    unstyled,
+    vars,
+    attributes,
   });
 
   return (
     <Box
-      component="a"          // default element
+      component="a" // default element
       data-active={active || undefined}
-      {...getStyles('root')}
+      {...getStyles("root")}
       {...others}
     />
   );
 });
 
-MyLink.displayName = 'MyLink';
+MyLink.displayName = "MyLink";
 MyLink.classes = classes;
 ```
 
 **Usage:**
+
 ```tsx
 <MyLink href="/about">Link</MyLink>
 <MyLink component="button" onClick={fn}>As button</MyLink>
@@ -333,9 +375,14 @@ MyLink.classes = classes;
 To set an attribute only for the default element (for example `type="button"`), read `component`:
 
 ```tsx
-const { component = 'button', ...others } = props;
+const { component = "button", ...others } = props;
 
-<Box component={component} type={component === 'button' ? 'button' : undefined} {...getStyles('root', { focusable: true })} {...others} />
+<Box
+  component={component}
+  type={component === "button" ? "button" : undefined}
+  {...getStyles("root", { focusable: true })}
+  {...others}
+/>;
 ```
 
 Callers can use `component="a"` (anchor attributes are then type-checked), `component={Link}` (the
@@ -349,13 +396,12 @@ when `component` cannot be used. The `ref` type follows the rendered element.
 For components where prop types depend on a generic parameter.
 
 ```tsx
-import { Box, BoxProps, Factory, genericFactory, StylesApiProps, useProps, useStyles } from '@mantine/core';
-import classes from './MySelect.module.css';
+import { Box, BoxProps, Factory, genericFactory, StylesApiProps, useProps, useStyles } from "@mantine/core";
+import classes from "./MySelect.module.css";
 
 type SelectValue<M extends boolean> = M extends true ? string[] : string | null;
 
-export interface MySelectProps<M extends boolean = false>
-  extends BoxProps, StylesApiProps<MySelectFactory> {
+export interface MySelectProps<M extends boolean = false> extends BoxProps, StylesApiProps<MySelectFactory> {
   multiple?: M;
   value?: SelectValue<M>;
   defaultValue?: SelectValue<M>;
@@ -366,26 +412,35 @@ export type MySelectFactory = Factory<{
   props: MySelectProps;
   ref: HTMLDivElement;
   signature: <M extends boolean = false>(props: MySelectProps<M>) => React.JSX.Element;
-  stylesNames: 'root';
+  stylesNames: "root";
 }>;
 
 const defaultProps = { multiple: false } satisfies Partial<MySelectProps>;
 
 export const MySelect = genericFactory<MySelectFactory>((_props) => {
-  const props = useProps('MySelect', defaultProps as any, _props);
-  const { classNames, className, style, styles, unstyled, vars, attributes, multiple, value, onChange, ...others } = props;
+  const props = useProps("MySelect", defaultProps as any, _props);
+  const { classNames, className, style, styles, unstyled, vars, attributes, multiple, value, onChange, ...others } =
+    props;
 
   // Inside the callback, props carry the free type parameter (MySelectProps<M>), which useStyles
   // cannot accept: cast them to the non-generic props. `defaultProps as any` is needed for the same reason
   const getStyles = useStyles<MySelectFactory>({
-    name: 'MySelect', classes, props: props as MySelectProps,
-    className, style, classNames, styles, unstyled, vars, attributes,
+    name: "MySelect",
+    classes,
+    props: props as MySelectProps,
+    className,
+    style,
+    classNames,
+    styles,
+    unstyled,
+    vars,
+    attributes,
   });
 
-  return <Box {...getStyles('root')} {...others} />;
+  return <Box {...getStyles("root")} {...others} />;
 });
 
-MySelect.displayName = 'MySelect';
+MySelect.displayName = "MySelect";
 ```
 
 A generic component can have static sub-components: add `staticComponents` to the same `Factory`
@@ -395,6 +450,7 @@ parameters (`<T, M extends boolean = false>`), use `props: MySelectProps<any, bo
 (`createSafeContext<MyContextValue<any>>`) and keep the typed API on the root's props.
 
 **Usage:**
+
 ```tsx
 // TypeScript infers value as string | null
 <MySelect value={val} onChange={(v) => setVal(v)} />
@@ -413,15 +469,26 @@ around it) and accepts both its own selectors and the inner component's selector
 
 ```tsx
 import {
-  __InputStylesNames, Box, extractStyleProps, Factory, factory, StylesApiProps, TextInput, TextInputProps,
-  useMantineTheme, useProps, useResolvedStylesApi, useStyles,
-} from '@mantine/core';
-import classes from './HintInput.module.css';
+  __InputStylesNames,
+  Box,
+  extractStyleProps,
+  Factory,
+  factory,
+  StylesApiProps,
+  TextInput,
+  TextInputProps,
+  useMantineTheme,
+  useProps,
+  useResolvedStylesApi,
+  useStyles,
+} from "@mantine/core";
+import classes from "./HintInput.module.css";
 
-export type HintInputStylesNames = 'hint' | __InputStylesNames; // own selectors + inner selectors
+export type HintInputStylesNames = "hint" | __InputStylesNames; // own selectors + inner selectors
 
 export interface HintInputProps
-  extends Omit<TextInputProps, 'classNames' | 'styles' | 'vars' | 'attributes' | 'variant' | 'unstyled'>,
+  extends
+    Omit<TextInputProps, "classNames" | "styles" | "vars" | "attributes" | "variant" | "unstyled">,
     StylesApiProps<HintInputFactory> {
   hint?: string;
 }
@@ -439,20 +506,26 @@ function mergeByKey<T>(merge: (a: T | undefined, b: T) => T, ...items: (Record<s
       if (value) {
         result[key] = merge(result[key], value);
       }
-    })
+    }),
   );
   return result;
 }
 
 export const HintInput = factory<HintInputFactory>((_props) => {
-  const props = useProps('HintInput', null, _props);
+  const props = useProps("HintInput", null, _props);
   const { classNames, styles, unstyled, vars, attributes, className, style, hint, ...others } = props;
   const { styleProps, rest } = extractStyleProps(others); // mt, w... go to the outer element only
   const theme = useMantineTheme();
 
   // Own selectors: theme and props classNames/styles are handled by useStyles
   const getStyles = useStyles<HintInputFactory>({
-    name: 'HintInput', classes, props, classNames, styles, unstyled, attributes,
+    name: "HintInput",
+    classes,
+    props,
+    classNames,
+    styles,
+    unstyled,
+    attributes,
   });
 
   // Inner selectors: turn function forms into objects, from props and from the theme entry of this component
@@ -468,15 +541,23 @@ export const HintInput = factory<HintInputFactory>((_props) => {
       <TextInput
         {...rest}
         unstyled={unstyled}
-        classNames={mergeByKey<string>((a, b) => (a ? `${a} ${b}` : b), fromTheme.resolvedClassNames, fromProps.resolvedClassNames)}
-        styles={mergeByKey<React.CSSProperties>((a, b) => ({ ...a, ...b }), fromTheme.resolvedStyles, fromProps.resolvedStyles)}
+        classNames={mergeByKey<string>(
+          (a, b) => (a ? `${a} ${b}` : b),
+          fromTheme.resolvedClassNames,
+          fromProps.resolvedClassNames,
+        )}
+        styles={mergeByKey<React.CSSProperties>(
+          (a, b) => ({ ...a, ...b }),
+          fromTheme.resolvedStyles,
+          fromProps.resolvedStyles,
+        )}
       />
-      {hint && <div {...getStyles('hint')}>{hint}</div>}
+      {hint && <div {...getStyles("hint")}>{hint}</div>}
     </Box>
   );
 });
 
-HintInput.displayName = 'HintInput';
+HintInput.displayName = "HintInput";
 HintInput.classes = classes;
 ```
 
@@ -495,11 +576,20 @@ For a family built on one visual base (`Surface`, and `Panel` and `Callout` on t
 base name before the component's own name to both hooks:
 
 ```tsx
-const props = useProps(['Surface', 'Panel'], defaultProps, _props);
+const props = useProps(["Surface", "Panel"], defaultProps, _props);
 
 const getStyles = useStyles<PanelFactory>({
-  name: ['Surface', 'Panel'],
-  classes, props, className, style, classNames, styles, unstyled, vars, attributes, varsResolver,
+  name: ["Surface", "Panel"],
+  classes,
+  props,
+  className,
+  style,
+  classNames,
+  styles,
+  unstyled,
+  vars,
+  attributes,
+  varsResolver,
 });
 ```
 
@@ -552,19 +642,20 @@ components. Let each sub-component register itself instead:
 Components built with `factory()` automatically get `.extend()` and `.withProps()`.
 
 **`.extend()`** — for theme-level configuration in `createTheme`:
+
 ```tsx
 const theme = createTheme({
   components: {
     MyComponent: MyComponent.extend({
       // Override default props
       defaultProps: {
-        radius: 'xl',
-        size: 'lg',
+        radius: "xl",
+        size: "lg",
       },
       // Add classes to selectors
       classNames: {
-        root: 'my-root-class',
-        inner: 'my-inner-class',
+        root: "my-root-class",
+        inner: "my-inner-class",
       },
       // Add inline styles to selectors: an object, or a callback for theme-aware styles
       styles: (theme) => ({
@@ -572,7 +663,7 @@ const theme = createTheme({
       }),
       // Override CSS variables
       vars: (_theme, props) => ({
-        root: { '--my-radius': props.radius ? getRadius(props.radius) : undefined },
+        root: { "--my-radius": props.radius ? getRadius(props.radius) : undefined },
       }),
     }),
   },
@@ -580,11 +671,12 @@ const theme = createTheme({
 ```
 
 **`.withProps()`** — create a pre-configured variant at the call site:
+
 ```tsx
-const BigMyComponent = MyComponent.withProps({ size: 'xl', radius: 'lg' });
+const BigMyComponent = MyComponent.withProps({ size: "xl", radius: "lg" });
 
 // Same as MyComponent but with size and radius pre-set
-<BigMyComponent>Content</BigMyComponent>
+<BigMyComponent>Content</BigMyComponent>;
 ```
 
 ---
@@ -610,9 +702,10 @@ export namespace MyComponent {
 ```
 
 **Usage:**
+
 ```ts
-import { MyComponent } from './MyComponent';
+import { MyComponent } from "./MyComponent";
 
 // No need to import MyComponentProps separately
-const props: MyComponent.Props = { radius: 'md' };
+const props: MyComponent.Props = { radius: "md" };
 ```

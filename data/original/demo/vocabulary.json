@@ -1,0 +1,72 @@
+[
+  {
+    "id": "demo-voc-anagram-01",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "original": true,
+    "stimulus": {
+      "text": "Решите анаграммы (найдите осмысленные слова путем перестановки букв) и определите, какое слово отличается от четырех других:"
+    },
+    "options": [
+      {
+        "id": "demo-voc-anagram-01-1",
+        "text": "ЙНАДРЕ"
+      },
+      {
+        "id": "demo-voc-anagram-01-2",
+        "text": "НИИТАК"
+      },
+      {
+        "id": "demo-voc-anagram-01-3",
+        "text": "ЛАЙКЕСЕ"
+      },
+      {
+        "id": "demo-voc-anagram-01-4",
+        "text": "ХИЛАМИ"
+      },
+      {
+        "id": "demo-voc-anagram-01-5",
+        "text": "ДАЖНЕДА"
+      }
+    ],
+    "correctOptionId": "demo-voc-anagram-01-5",
+    "shuffle": true,
+    "hint": "Соберите каждое слово и сравните, какая группа общая у четырех из них.",
+    "explanation": "ЙНАДРЕ, НИИТАК, ЛАЙКЕСЕ и ХИЛАМИ собираются в мужские имена: Андрей, Никита, Алексей, Михаил. ДАЖНЕДА собирается в Надежда."
+  },
+  {
+    "id": "demo-voc-spelling-01",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "original": true,
+    "stimulus": {
+      "text": "Укажите неправильный вариант написания слова:"
+    },
+    "options": [
+      {
+        "id": "demo-voc-spelling-01-1",
+        "text": "КОЛЛЕКТИВНЫЙ"
+      },
+      {
+        "id": "demo-voc-spelling-01-2",
+        "text": "УХАЖЁР"
+      },
+      {
+        "id": "demo-voc-spelling-01-3",
+        "text": "КАТАЛОГ"
+      },
+      {
+        "id": "demo-voc-spelling-01-4",
+        "text": "БЕЗШУМНЫЙ"
+      },
+      {
+        "id": "demo-voc-spelling-01-5",
+        "text": "ТРЕЩОТКА"
+      }
+    ],
+    "correctOptionId": "demo-voc-spelling-01-4",
+    "shuffle": true,
+    "hint": "Сверьте приставку с первой буквой корня: перед глухим согласным приставка меняется.",
+    "explanation": "БЕЗШУМНЫЙ написано с приставкой без- перед глухой ш. Верно бесшумный. КОЛЛЕКТИВНЫЙ, УХАЖЁР, КАТАЛОГ и ТРЕЩОТКА написаны верно."
+  }
+]

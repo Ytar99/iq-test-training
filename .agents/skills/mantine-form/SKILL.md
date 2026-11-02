@@ -21,14 +21,14 @@ Uncontrolled mode is the recommended mode for all forms. The default is `'contro
 
 ```tsx
 const form = useForm({
-  mode: 'uncontrolled',
+  mode: "uncontrolled",
   initialValues: {
-    email: '',
+    email: "",
     age: 0,
   },
   validate: {
-    email: isEmail('Invalid email'),
-    age: isInRange({ min: 18 }, 'Must be at least 18'),
+    email: isEmail("Invalid email"),
+    age: isInRange({ min: 18 }, "Must be at least 18"),
   },
 });
 ```
@@ -46,18 +46,14 @@ update after `form.setFieldValue`, `form.setValues` or `form.reset`.
 Checkboxes and switches need `{ type: 'checkbox' }`:
 
 ```tsx
-<Checkbox
-  label="I agree"
-  key={form.key('agreed')}
-  {...form.getInputProps('agreed', { type: 'checkbox' })}
-/>
+<Checkbox label="I agree" key={form.key("agreed")} {...form.getInputProps("agreed", { type: "checkbox" })} />
 ```
 
 `Select`, `NumberInput`, `Radio.Group`, `Checkbox.Group` and other Mantine inputs with a `value` /
 `onChange` pair work with plain `getInputProps` and a `key`:
 
 ```tsx
-<Radio.Group label="Delivery" key={form.key('delivery')} {...form.getInputProps('delivery')}>
+<Radio.Group label="Delivery" key={form.key("delivery")} {...form.getInputProps("delivery")}>
   <Radio value="standard" label="Standard" />
   <Radio value="express" label="Express" />
 </Radio.Group>
@@ -70,8 +66,14 @@ Components without an `error` prop (`Slider`, `RangeSlider`, `Rating`, `Segmente
 need `{ withError: false }`, and you render the error yourself:
 
 ```tsx
-<Slider key={form.key('stock')} {...form.getInputProps('stock', { withError: false })} />
-{form.errors.stock && <Text c="red" size="sm">{form.errors.stock}</Text>}
+<Slider key={form.key("stock")} {...form.getInputProps("stock", { withError: false })} />;
+{
+  form.errors.stock && (
+    <Text c="red" size="sm">
+      {form.errors.stock}
+    </Text>
+  );
+}
 ```
 
 ### 3. Handle submission
@@ -89,7 +91,7 @@ need `{ withError: false }`, and you render the error yourself:
 ```tsx
 form.onSubmit(
   (values, event) => save(values),
-  (errors, values, event) => console.log('Validation failed', errors) // { 'user.email': 'Invalid email' }
+  (errors, values, event) => console.log("Validation failed", errors), // { 'user.email': 'Invalid email' }
 );
 ```
 
@@ -109,17 +111,17 @@ validate: {
 ### Schema (zod, valibot, arktype and other Standard Schema libraries)
 
 ```tsx
-import { z } from 'zod/v4';
-import { schemaResolver, useForm } from '@mantine/form';
+import { z } from "zod/v4";
+import { schemaResolver, useForm } from "@mantine/form";
 
 const schema = z.object({
-  email: z.email({ error: 'Invalid email' }),
-  age: z.number().min(18, { error: 'Must be at least 18' }),
+  email: z.email({ error: "Invalid email" }),
+  age: z.number().min(18, { error: "Must be at least 18" }),
 });
 
 const form = useForm({
-  mode: 'uncontrolled',
-  initialValues: { email: '', age: 0 },
+  mode: "uncontrolled",
+  initialValues: { email: "", age: 0 },
   validate: schemaResolver(schema, { sync: true }),
 });
 ```
@@ -131,7 +133,7 @@ synchronous schemas so that `form.validate()` returns a plain result instead of 
 
 ```tsx
 validate: (values) => ({
-  endDate: values.endDate < values.startDate ? 'End must be after start' : null,
+  endDate: values.endDate < values.startDate ? "End must be after start" : null,
 });
 ```
 
@@ -171,7 +173,7 @@ when errors appear (for example a footer with fixed position), or validate on ch
   `form.validating` can be used during render in both modes: the form rerenders when they change.
 
 ```tsx
-const shipsInternationally = form.useWatchValue('shipsInternationally');
+const shipsInternationally = form.useWatchValue("shipsInternationally");
 ```
 
 ## References
