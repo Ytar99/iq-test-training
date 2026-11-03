@@ -1,0 +1,27 @@
+.key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.4rem;
+  min-height: 2.4rem;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+:global([data-mantine-color-scheme="light"]) .key {
+  background-color: #e4e4e4;
+  border-color: #cfcfcf;
+  color: #343434;
+}
+
+.row {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.45rem;
+}
+
+.expression {
+  justify-content: center;
+}

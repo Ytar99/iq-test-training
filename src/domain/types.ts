@@ -16,7 +16,7 @@ export type EruditionTopic = (typeof TOPICS)[number];
 
 export type Difficulty = "easy" | "medium" | "hard";
 
-export type CardShape = "square" | "circle" | "triangle" | "diamond" | "line" | "dot";
+export type CardShape = "square" | "circle" | "triangle" | "diamond" | "line" | "dot" | "stroke" | "ring";
 
 export type CardElement = {
   shape: CardShape;
@@ -24,6 +24,8 @@ export type CardElement = {
   y: number;
   size: number;
   dir?: "up" | "down";
+  x2?: number;
+  y2?: number;
 };
 
 export type CardContent = {
@@ -41,17 +43,18 @@ export type Scene =
       pieces?: number[][][];
       mode?: "rotate" | "mirror";
     }
-  | { kind: "card"; elements: CardElement[] }
-  | { kind: "matrix"; cells: (CardContent | null)[][] }
-  | { kind: "sequence"; steps: CardContent[] }
-  | { kind: "analogy"; pair: [CardContent, CardContent]; given: CardContent }
-  | { kind: "group"; cards: CardContent[] }
+  | { kind: "card"; elements: CardElement[]; portrait?: true }
+  | { kind: "matrix"; cells: (CardContent | null)[][]; portrait?: true }
+  | { kind: "sequence"; steps: CardContent[]; portrait?: true }
+  | { kind: "analogy"; pair: [CardContent, CardContent]; given: CardContent; portrait?: true }
+  | { kind: "group"; cards: CardContent[]; portrait?: true }
   | { kind: "net"; layout: (FaceMark | null)[][] }
   | { kind: "cube"; front: FaceMark; top: FaceMark; right: FaceMark }
   | { kind: "chart"; variant: "bar" | "line"; labels: string[]; values: number[] }
   | { kind: "table"; headers: string[]; rows: string[][] }
   | { kind: "stack"; heights: number[][]; view: "iso" | "top" }
-  | { kind: "compass"; arrow: number; label: string; labelAt: number };
+  | { kind: "compass"; arrow: number; label: string; labelAt: number }
+  | { kind: "shelf"; volumes: number[] };
 
 export type Stimulus = {
   text?: string;

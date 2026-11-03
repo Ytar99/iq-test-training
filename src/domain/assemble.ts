@@ -38,6 +38,24 @@ function sampleK<T>(items: readonly T[], count: number, rng: () => number): T[] 
   return shuffle(items, rng).slice(0, count);
 }
 
+function samplePreferOriginal(items: readonly Item[], count: number, rng: () => number): Item[] | null {
+  if (items.length < count) return null;
+  const originals = shuffle(
+    items.filter((item) => item.original),
+    rng,
+  );
+  const taken = originals.slice(0, count);
+  const need = count - taken.length;
+  if (need === 0) return taken;
+  const rest = sampleK(
+    items.filter((item) => !item.original),
+    need,
+    rng,
+  );
+  if (!rest) return null;
+  return [...taken, ...rest];
+}
+
 function balanced(items: Item[]): boolean {
   const counts: Record<Difficulty, number> = { easy: 0, medium: 0, hard: 0 };
   for (const item of items) {
@@ -96,7 +114,7 @@ function present(item: Item, rng: () => number): Item {
 function tryExact(pools: Item[][], quotas: number[], difficulty: boolean, rng: () => number): Item[] | null {
   if (pools.some((pool, index) => pool.length < quotas[index]!)) return null;
   for (let attempt = 0; attempt < 2500; attempt += 1) {
-    const parts = pools.map((pool, index) => sampleK(pool, quotas[index]!, rng));
+    const parts = pools.map((pool, index) => samplePreferOriginal(pool, quotas[index]!, rng));
     if (parts.some((part) => !part)) return null;
     const set = parts.flatMap((part) => part ?? []);
     if (difficulty && !balanced(set)) continue;
@@ -123,7 +141,7 @@ function tryRelaxed(pools: Item[][], quotas: number[], rng: () => number): Item[
       }
     }
     if (left > 0) continue;
-    const parts = pools.map((pool, index) => sampleK(pool, counts[index]!, rng));
+    const parts = pools.map((pool, index) => samplePreferOriginal(pool, counts[index]!, rng));
     if (parts.some((part) => !part)) continue;
     return shuffle(
       parts.flatMap((part) => part ?? []),

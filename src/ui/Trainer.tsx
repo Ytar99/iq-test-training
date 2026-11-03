@@ -3,6 +3,7 @@ import { useState } from "react";
 import { SCALES } from "../domain/catalog.ts";
 import type { AttemptAction, AttemptState, ItemSlot } from "../domain/attempt.ts";
 import { formatClock } from "../domain/format.ts";
+import { OriginBadge } from "./origin.tsx";
 import { NavButton, Shell, SideButtons, type StripTone } from "./Shell.tsx";
 import { TaskCard } from "./TaskCard.tsx";
 import classes from "./Shell.module.css";
@@ -128,13 +129,16 @@ export function Trainer({ state, dispatch, onMenu }: TrainerProps) {
       bottom={bottom}
     >
       {onTask && slot ? (
-        <TaskCard
-          item={slot.item}
-          selection={slot.selection}
-          onSelect={(optionId) => dispatch({ type: "select", optionId })}
-          hintOpen={hintOpen}
-          expired={slot.remainingSec === 0}
-        />
+        <Stack gap="sm">
+          <OriginBadge item={slot.item} />
+          <TaskCard
+            item={slot.item}
+            selection={slot.selection}
+            onSelect={(optionId) => dispatch({ type: "select", optionId })}
+            hintOpen={hintOpen}
+            expired={slot.remainingSec === 0}
+          />
+        </Stack>
       ) : (
         <Stack gap="md">
           <Text fw={700} size="xl">

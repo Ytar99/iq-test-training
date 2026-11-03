@@ -1,0 +1,5 @@
+@media (min-width: $mantine-breakpoint-md) {
+  .answerCentered.answerCentered {
+    align-items: center;
+  }
+}

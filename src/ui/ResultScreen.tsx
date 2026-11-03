@@ -5,6 +5,7 @@ import { grade, type AttemptState, type ItemSlot } from "../domain/attempt.ts";
 import { formatClock } from "../domain/format.ts";
 import { SCALE_ORDER, type ScaleId } from "../domain/types.ts";
 import { AnswerView, StimulusView } from "./content.tsx";
+import { OriginBadge } from "./origin.tsx";
 import { Shell } from "./Shell.tsx";
 import classes from "./ResultScreen.module.css";
 
@@ -177,11 +178,12 @@ export function ResultScreen({
                   <Text fw={700}>
                     {SCALES[row.scaleId].name}, задание {row.number}
                   </Text>
+                  <OriginBadge item={row.slot.item} />
                   <StimulusView stimulus={row.slot.item.stimulus} type={row.slot.item.type} />
                   <Text fw={600}>Ваш ответ</Text>
-                  <AnswerView option={chosen} chip={row.slot.item.type === "calc-grid"} />
+                  <AnswerView option={chosen} type={row.slot.item.type} />
                   <Text fw={600}>Верный ответ</Text>
-                  <AnswerView option={correct} chip={row.slot.item.type === "calc-grid"} />
+                  <AnswerView option={correct} type={row.slot.item.type} />
                   {state.explanations ? <Text size="sm">{row.slot.item.explanation}</Text> : null}
                   <Text c={row.mark === "correct" ? "teal" : row.mark === "wrong" ? "orange" : "dimmed"}>
                     {markText}

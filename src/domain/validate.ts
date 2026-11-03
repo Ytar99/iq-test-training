@@ -73,23 +73,32 @@ export function validateBank(files: { scale: ScaleId; bucket: BankBucket; items:
         issues.push(`${id}: тема допустима только у эрудиции.`);
       }
 
-      if (originalFile) {
+      const difficultyOk =
+        typeof raw.difficulty === "string" && DIFFICULTIES.includes(raw.difficulty as (typeof DIFFICULTIES)[number]);
+
+      if (file.bucket === "demo") {
         if (raw.original !== true) {
           issues.push(`${id}: нужно поле original: true.`);
         }
         if (raw.difficulty != null) {
-          issues.push(`${id}: у оригинального задания нет сложности.`);
+          issues.push(`${id}: у демо нет сложности.`);
         }
-        const prefix = file.bucket === "demo" ? "demo-" : "example-";
-        if (typeof raw.id === "string" && raw.id.trim() !== "" && !raw.id.startsWith(prefix)) {
-          issues.push(`${id}: id начинается с ${prefix}.`);
+        if (typeof raw.id === "string" && raw.id.trim() !== "" && !raw.id.startsWith("demo-")) {
+          issues.push(`${id}: id начинается с demo-.`);
+        }
+      } else if (file.bucket === "example") {
+        if (raw.original !== true) {
+          issues.push(`${id}: нужно поле original: true.`);
+        }
+        if (!difficultyOk) {
+          issues.push(`${id}: неизвестная сложность.`);
+        }
+        if (typeof raw.id === "string" && raw.id.trim() !== "" && !raw.id.startsWith("example-")) {
+          issues.push(`${id}: id начинается с example-.`);
         }
       } else if (raw.original != null) {
         issues.push(`${id}: поле original допустимо только в файле data/original.`);
-      } else if (
-        typeof raw.difficulty !== "string" ||
-        !DIFFICULTIES.includes(raw.difficulty as (typeof DIFFICULTIES)[number])
-      ) {
+      } else if (!difficultyOk) {
         issues.push(`${id}: неизвестная сложность.`);
       }
 
@@ -148,7 +157,8 @@ export function validateBank(files: { scale: ScaleId; bucket: BankBucket; items:
       }
 
       if (
-        !originalFile &&
+        file.bucket !== "demo" &&
+        difficultyOk &&
         raw.scale === file.scale &&
         knownType &&
         typeof raw.id === "string" &&

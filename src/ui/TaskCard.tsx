@@ -1,7 +1,6 @@
 import { Alert, Group, Paper, Radio, Stack, Text } from "@mantine/core";
 import type { Item } from "../domain/types.ts";
-import { NumberToken } from "./CalcGrid.tsx";
-import { StimulusView } from "./content.tsx";
+import { AnswerView, StimulusView } from "./content.tsx";
 import { LETTERS, optionsInColumn } from "./options.ts";
 import classes from "./Shell.module.css";
 
@@ -14,7 +13,7 @@ type TaskCardProps = {
 };
 
 export function TaskCard({ item, selection, onSelect, hintOpen, expired }: TaskCardProps) {
-  const column = optionsInColumn(item.options);
+  const column = item.type === "calc-signs" || optionsInColumn(item.options);
   return (
     <Stack gap="md">
       <StimulusView stimulus={item.stimulus} type={item.type} />
@@ -40,14 +39,7 @@ export function TaskCard({ item, selection, onSelect, hintOpen, expired }: TaskC
                   </Text>
                 </Group>
                 <Stack className={classes.optionScene} gap={4}>
-                  {option.text ? (
-                    item.type === "calc-grid" ? (
-                      <NumberToken value={option.text} />
-                    ) : (
-                      <Text style={{ whiteSpace: "pre-wrap" }}>{option.text}</Text>
-                    )
-                  ) : null}
-                  {option.scene ? <StimulusView stimulus={{ scene: option.scene }} /> : null}
+                  <AnswerView option={option} type={item.type} centered={!column} />
                 </Stack>
               </Group>
             </Radio.Card>

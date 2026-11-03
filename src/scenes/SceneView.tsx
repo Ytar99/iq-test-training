@@ -15,13 +15,30 @@ const pieceColors = [
 const ink = "var(--mantine-color-gray-8)";
 const teal = "var(--mantine-color-teal-6)";
 const orange = "var(--mantine-color-orange-6)";
+const contour = "var(--mantine-color-gray-9)";
 
 function CardElementView({ element }: { element: CardElement }) {
+  if (element.shape === "stroke") {
+    return (
+      <svg className={classes.stroke} viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <line
+          x1={element.x * 100}
+          y1={element.y * 100}
+          x2={(element.x2 ?? element.x) * 100}
+          y2={(element.y2 ?? element.y) * 100}
+          stroke={contour}
+          strokeWidth="2"
+          vectorEffect="non-scaling-stroke"
+        />
+      </svg>
+    );
+  }
+  const side = `calc(${element.size} * var(--card-short))`;
   const style = {
     left: `${element.x * 100}%`,
     top: `${element.y * 100}%`,
-    width: `${element.size * 100}%`,
-    height: element.shape === "line" ? 4 : `${element.size * 100}%`,
+    width: side,
+    height: element.shape === "line" ? 4 : side,
   };
   if (element.shape === "line") {
     return <span className={classes.element} style={{ ...style, background: "var(--mantine-color-gray-7)" }} />;
@@ -29,7 +46,16 @@ function CardElementView({ element }: { element: CardElement }) {
   const points = element.dir === "down" ? "4,8 96,8 50,94" : "50,6 96,94 4,94";
   return (
     <svg className={classes.element} style={style} viewBox="0 0 100 100" aria-hidden="true">
-      {element.shape === "circle" ? <circle cx="50" cy="50" r="38" fill="none" stroke={teal} strokeWidth="10" /> : null}
+      {element.shape === "circle" || element.shape === "ring" ? (
+        <circle
+          cx="50"
+          cy="50"
+          r="38"
+          fill="none"
+          stroke={element.shape === "ring" ? contour : teal}
+          strokeWidth="10"
+        />
+      ) : null}
       {element.shape === "dot" ? <circle cx="50" cy="50" r="46" fill={teal} /> : null}
       {element.shape === "square" ? <rect x="2" y="2" width="96" height="96" fill={orange} /> : null}
       {element.shape === "diamond" ? (
@@ -294,6 +320,18 @@ function CubeView({ front, top, right }: { front: FaceMark; top: FaceMark; right
   );
 }
 
+function ShelfView({ volumes }: { volumes: number[] }) {
+  return (
+    <div className={classes.shelf} role="img" aria-label={`Полка с томами: ${volumes.join(", ")}`}>
+      {volumes.map((volume, index) => (
+        <div key={`${volume}-${index}`} className={classes.book}>
+          {volume}
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function isNumeric(value: string) {
   return /^-?\d+(?:[.,]\d+)?$/.test(value.trim());
 }
@@ -375,7 +413,7 @@ function renderScene(scene: Scene) {
   if (scene.kind === "matrix") {
     const columns = scene.cells[0]?.length ?? 1;
     return (
-      <div className={classes.matrix} style={{ gridTemplateColumns: `repeat(${columns}, 4.5rem)` }}>
+      <div className={classes.matrix} style={{ gridTemplateColumns: `repeat(${columns}, var(--card-width))` }}>
         {scene.cells.flat().map((cell, index) => (
           <CardFrame key={index} content={cell} />
         ))}
@@ -460,6 +498,7 @@ function renderScene(scene: Scene) {
   if (scene.kind === "chart") return <ChartView labels={scene.labels} values={scene.values} variant={scene.variant} />;
   if (scene.kind === "table") return <TableView headers={scene.headers} rows={scene.rows} />;
   if (scene.kind === "compass") return <CompassView arrow={scene.arrow} label={scene.label} labelAt={scene.labelAt} />;
+  if (scene.kind === "shelf") return <ShelfView volumes={scene.volumes} />;
   if (scene.view === "top") {
     const columns = scene.heights[0]?.length ?? 1;
     return (
@@ -481,6 +520,16 @@ function renderScene(scene: Scene) {
   return <StackIso heights={scene.heights} />;
 }
 
-export function SceneView({ scene }: { scene: Scene }) {
-  return <div className={classes.scene}>{renderScene(scene)}</div>;
+function isPortrait(scene: Scene) {
+  return "portrait" in scene && scene.portrait === true;
+}
+
+export function SceneView({ scene, centered }: { scene: Scene; centered?: boolean }) {
+  const className = [
+    isPortrait(scene) ? `${classes.scene} ${classes.portrait}` : classes.scene,
+    centered ? classes.centered : "",
+  ]
+    .filter(Boolean)
+    .join(" ");
+  return <div className={className}>{renderScene(scene)}</div>;
 }

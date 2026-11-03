@@ -1,9 +1,9 @@
-import { Badge, Box, Button, Group, Stack, Text } from "@mantine/core";
+import { Box, Button, Group, Stack, Text } from "@mantine/core";
 import { useState } from "react";
 import { SCALES } from "../domain/catalog.ts";
 import { bankFiles } from "../domain/bank.ts";
 import type { Item } from "../domain/types.ts";
-import type { BankBucket } from "../domain/validate.ts";
+import { OriginBadge } from "./origin.tsx";
 import { NavButton, Shell, SideButtons, type StripTone } from "./Shell.tsx";
 import { TaskCard } from "./TaskCard.tsx";
 import classes from "./Shell.module.css";
@@ -13,16 +13,10 @@ const strip: { tone: StripTone }[] = [
   ...Array.from({ length: 11 }, (): { tone: StripTone } => ({ tone: "empty" })),
 ];
 
-const origin: Record<BankBucket, { label: string; color: string }> = {
-  demo: { label: "Демо пример", color: "orange" },
-  example: { label: "Реальный пример", color: "teal" },
-  invented: { label: "Аналогичный пример", color: "blue" },
-};
-
-function findItem(itemId: string): { item: Item; bucket: BankBucket } | null {
+function findItem(itemId: string): Item | null {
   for (const file of bankFiles) {
     const item = file.items.find((entry) => entry.id === itemId);
-    if (item) return { item, bucket: file.bucket };
+    if (item) return item;
   }
   return null;
 }
@@ -32,7 +26,7 @@ export function ItemPreview({ itemId }: { itemId: string }) {
   const [selection, setSelection] = useState<string | null>(null);
   if (!found) return <Text p="md">{itemId ? `Задание ${itemId} не найдено` : "Задание не найдено"}</Text>;
 
-  const { item, bucket } = found;
+  const item = found;
   const info = SCALES[item.scale];
   return (
     <Shell
@@ -77,9 +71,7 @@ export function ItemPreview({ itemId }: { itemId: string }) {
       }
     >
       <Stack gap="sm">
-        <Badge variant="light" size="xl" color={origin[bucket].color} tt="none">
-          {origin[bucket].label}
-        </Badge>
+        <OriginBadge item={item} />
         <TaskCard item={item} selection={selection} onSelect={setSelection} hintOpen={false} expired={false} />
       </Stack>
     </Shell>
