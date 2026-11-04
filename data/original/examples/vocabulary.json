@@ -1,1 +1,915 @@
-[]
+[
+  {
+    "id": "example-voc-anagram-01",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Решите анаграммы (найдите осмысленные слова путём перестановки букв) и определите, какое слово отличается от четырёх других."
+    },
+    "options": [
+      {
+        "id": "example-voc-anagram-01-1",
+        "text": "КУВРАБЬ"
+      },
+      {
+        "id": "example-voc-anagram-01-2",
+        "text": "ФЬОРНА"
+      },
+      {
+        "id": "example-voc-anagram-01-3",
+        "text": "АВРОСЛЬ"
+      },
+      {
+        "id": "example-voc-anagram-01-4",
+        "text": "КЕЧУБИН"
+      },
+      {
+        "id": "example-voc-anagram-01-5",
+        "text": "АНИКГ"
+      }
+    ],
+    "correctOptionId": "example-voc-anagram-01-2",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждой строки и подумайте, какой общий признак объединяет четыре слова из пяти.",
+    "explanation": "КУВРАЛЬ — букварь, АВРОСЛЬ — словарь, КЕЧУБИН — учебник, АНИКГ — книга: это школьные вещи. ФЬОРНА — фонарь, к этой группе не относится."
+  },
+  {
+    "id": "example-voc-anagram-02",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Решите анаграммы (найдите осмысленные слова путём перестановки букв) и укажите слово, которое не имеет отношения к спорту."
+    },
+    "options": [
+      {
+        "id": "example-voc-anagram-02-1",
+        "text": "ТАРРАВЬ"
+      },
+      {
+        "id": "example-voc-anagram-02-2",
+        "text": "ТАБУТ"
+      },
+      {
+        "id": "example-voc-anagram-02-3",
+        "text": "НАГШАТ"
+      },
+      {
+        "id": "example-voc-anagram-02-4",
+        "text": "НИРЕКОС"
+      },
+      {
+        "id": "example-voc-anagram-02-5",
+        "text": "РУТИНК"
+      }
+    ],
+    "correctOptionId": "example-voc-anagram-02-4",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждой строки и проверьте каждое собранное слово: относится оно к спорту или нет.",
+    "explanation": "ТАРРАВЬ — вратарь, ТАБУТ — батут, НАГШАТ — штанга, РУТИНК — турник: это спорт. НИРЕКОС — керосин, к спорту отношения не имеет."
+  },
+  {
+    "id": "example-voc-anagram-03",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Решите анаграммы (найдите осмысленные слова путём перестановки букв) и определите, какое слово отличается от четырёх других."
+    },
+    "options": [
+      {
+        "id": "example-voc-anagram-03-1",
+        "text": "ОСТКА"
+      },
+      {
+        "id": "example-voc-anagram-03-2",
+        "text": "ЛЕВЕСЬЕ"
+      },
+      {
+        "id": "example-voc-anagram-03-3",
+        "text": "РУСТЬГ"
+      },
+      {
+        "id": "example-voc-anagram-03-4",
+        "text": "САРСКАЗ"
+      },
+      {
+        "id": "example-voc-anagram-03-5",
+        "text": "ЛЬЕПЧА"
+      }
+    ],
+    "correctOptionId": "example-voc-anagram-03-4",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждой строки и ищите общий признак у четырёх слов из пяти.",
+    "explanation": "ОСТКА — тоска, ЛЕВЕСЬЕ — веселье, РУСТЬГ — грусть, ЛЬЕПЧА — печаль: это чувства. САРСКАЗ — рассказ, чувством не является."
+  },
+  {
+    "id": "example-voc-anagram-04",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Решите анаграммы (найдите осмысленные слова путём перестановки букв) и определите, какое слово отличается от четырёх других."
+    },
+    "options": [
+      {
+        "id": "example-voc-anagram-04-1",
+        "text": "ЯРОМЕТЕГИ"
+      },
+      {
+        "id": "example-voc-anagram-04-2",
+        "text": "ЦИДИНАМЕ"
+      },
+      {
+        "id": "example-voc-anagram-04-3",
+        "text": "ФАКИЗИ"
+      },
+      {
+        "id": "example-voc-anagram-04-4",
+        "text": "АБРЕГЛА"
+      },
+      {
+        "id": "example-voc-anagram-04-5",
+        "text": "ИЛОИГОБЯ"
+      }
+    ],
+    "correctOptionId": "example-voc-anagram-04-2",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждой строки и подумайте, какая общая рубрика объединяет четыре слова из пяти.",
+    "explanation": "ЯРОМЕТЕГИ — геометрия, ФАКИЗИ — физика, АБРЕГЛА — алгебра, ИЛОИГОБЯ — биология: это школьные предметы. ЦИДИНАМЕ — медицина, школьным предметом не является."
+  },
+  {
+    "id": "example-voc-anagram-05",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Исключите слово, не являющееся названием страны (при этом решите анаграммы в ответах путём перестановки букв)."
+    },
+    "options": [
+      {
+        "id": "example-voc-anagram-05-1",
+        "text": "ЯНИРУМЫ"
+      },
+      {
+        "id": "example-voc-anagram-05-2",
+        "text": "ОРВЯНИГЕ"
+      },
+      {
+        "id": "example-voc-anagram-05-3",
+        "text": "ПАИСНИЯ"
+      },
+      {
+        "id": "example-voc-anagram-05-4",
+        "text": "РОЛЬСВЯЛА"
+      },
+      {
+        "id": "example-voc-anagram-05-5",
+        "text": "ГЕНЯРИВ"
+      }
+    ],
+    "correctOptionId": "example-voc-anagram-05-4",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждой строки и проверьте каждое собранное слово: это название страны или нет.",
+    "explanation": "ЯНИРУМЫ — Румыния, ОРВЯНИГЕ — Норвегия, ПАИСНИЯ — Испания, ГЕНЯРИВ — Венгрия: это страны. РОЛЬСВЯЛА — Ярославль, город, а не страна."
+  },
+  {
+    "id": "example-voc-anagram-06",
+    "scale": "vocabulary",
+    "type": "voc-anagram",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Решите анаграммы (найдите осмысленные слова путём перестановки букв) и определите, какое слово отличается от четырёх других."
+    },
+    "options": [
+      {
+        "id": "example-voc-anagram-06-1",
+        "text": "КОЛАШ"
+      },
+      {
+        "id": "example-voc-anagram-06-2",
+        "text": "ТУТСИТИН"
+      },
+      {
+        "id": "example-voc-anagram-06-3",
+        "text": "ТЕХКУМНИ"
+      },
+      {
+        "id": "example-voc-anagram-06-4",
+        "text": "ДАНИЕЗ"
+      },
+      {
+        "id": "example-voc-anagram-06-5",
+        "text": "ЖЛЕЛКОД"
+      }
+    ],
+    "correctOptionId": "example-voc-anagram-06-4",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждой строки и подумайте, какое общее название подходит четырём словам из пяти.",
+    "explanation": "КОЛАШ — школа, ТЕХКУМНИ — техникум, ТУТСИТИН — институт, ЖЛЕЛКОД — колледж: это учебные заведения. ДАНИЕЗ — здание, общее понятие, а не название учебного заведения."
+  },
+  {
+    "id": "example-voc-spelling-01",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Укажите неправильный вариант написания слова."
+    },
+    "options": [
+      {
+        "id": "example-voc-spelling-01-1",
+        "text": "инсинуация"
+      },
+      {
+        "id": "example-voc-spelling-01-2",
+        "text": "девольвация"
+      },
+      {
+        "id": "example-voc-spelling-01-3",
+        "text": "аггравация"
+      },
+      {
+        "id": "example-voc-spelling-01-4",
+        "text": "стробирование"
+      },
+      {
+        "id": "example-voc-spelling-01-5",
+        "text": "стафилококк"
+      }
+    ],
+    "correctOptionId": "example-voc-spelling-01-2",
+    "shuffle": true,
+    "hint": "Проверьте написание каждого слова по слогам и найдите то, где заменена одна гласная.",
+    "explanation": "Инсинуация, аггравация, стробирование и стафилококк написаны верно. Девольвация — неправильный вариант: правильно писать «девальвация»."
+  },
+  {
+    "id": "example-voc-spelling-02",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Укажите неправильный вариант написания слова."
+    },
+    "options": [
+      {
+        "id": "example-voc-spelling-02-1",
+        "text": "преуспеть"
+      },
+      {
+        "id": "example-voc-spelling-02-2",
+        "text": "препарировать"
+      },
+      {
+        "id": "example-voc-spelling-02-3",
+        "text": "преувеличить"
+      },
+      {
+        "id": "example-voc-spelling-02-4",
+        "text": "пригрешение"
+      },
+      {
+        "id": "example-voc-spelling-02-5",
+        "text": "приумножение"
+      }
+    ],
+    "correctOptionId": "example-voc-spelling-02-4",
+    "shuffle": true,
+    "hint": "В четырёх словах приставка выбрана верно — смотрите на смысл слова, а не на привычное написание.",
+    "explanation": "Преуспеть, препарировать, преувеличить и приумножение написаны верно. Пригрешение — неправильный вариант: от слова «грех» через «согрешение» образуется «прегрешение», с приставкой пре-."
+  },
+  {
+    "id": "example-voc-spelling-03",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Какой из вариантов написания слова является правильным?"
+    },
+    "options": [
+      {
+        "id": "example-voc-spelling-03-1",
+        "text": "перифирия"
+      },
+      {
+        "id": "example-voc-spelling-03-2",
+        "text": "переферия"
+      },
+      {
+        "id": "example-voc-spelling-03-3",
+        "text": "перефирия"
+      },
+      {
+        "id": "example-voc-spelling-03-4",
+        "text": "периферия"
+      },
+      {
+        "id": "example-voc-spelling-03-5",
+        "text": "пириферия"
+      }
+    ],
+    "correctOptionId": "example-voc-spelling-03-4",
+    "shuffle": true,
+    "hint": "Правильное слово начинается на «пери-» и пишется через «е» в ударном слоге после «ф».",
+    "explanation": "Правильное написание — периферия: «пери-» и «-ферия». Остальные варианты искажают гласные: перифирия, переферия, перефирия, пириферия."
+  },
+  {
+    "id": "example-voc-spelling-04",
+    "scale": "vocabulary",
+    "type": "voc-spelling",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Какой из вариантов написания слова является правильным?"
+    },
+    "options": [
+      {
+        "id": "example-voc-spelling-04-1",
+        "text": "интеллигенция"
+      },
+      {
+        "id": "example-voc-spelling-04-2",
+        "text": "интилигенция"
+      },
+      {
+        "id": "example-voc-spelling-04-3",
+        "text": "интиллегенция"
+      },
+      {
+        "id": "example-voc-spelling-04-4",
+        "text": "интеллегенция"
+      },
+      {
+        "id": "example-voc-spelling-04-5",
+        "text": "интелигенция"
+      }
+    ],
+    "correctOptionId": "example-voc-spelling-04-1",
+    "shuffle": true,
+    "hint": "В верном написании две одинаковые согласные стоят подряд, а дальше идёт «г».",
+    "explanation": "Правильное написание — интеллигенция: две «л» после «инте-» и «генция» через «г». Остальные варианты искажают написание: интилигенция, интиллегенция, интеллегенция, интелигенция."
+  },
+  {
+    "id": "example-voc-punct-01",
+    "scale": "vocabulary",
+    "type": "voc-punct",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Сколько запятых должно быть в предложении?\n\"Я оглянулся посмотреть не оглянулась ли она чтоб посмотреть не оглянулся ли я\"."
+    },
+    "options": [
+      {
+        "id": "example-voc-punct-01-1",
+        "text": "3"
+      },
+      {
+        "id": "example-voc-punct-01-2",
+        "text": "4"
+      },
+      {
+        "id": "example-voc-punct-01-3",
+        "text": "5"
+      },
+      {
+        "id": "example-voc-punct-01-4",
+        "text": "2"
+      },
+      {
+        "id": "example-voc-punct-01-5",
+        "text": "1"
+      }
+    ],
+    "correctOptionId": "example-voc-punct-01-1",
+    "shuffle": true,
+    "hint": "Обособите сначала обороты с инфинитивом («посмотреть»), затем разберите вложенные придаточные.",
+    "explanation": "«Я оглянулся посмотреть, не оглянулась ли она, чтоб посмотреть, не оглянулся ли я»: запятые после первого «посмотреть», после «она» и после второго «посмотреть». Итого 3."
+  },
+  {
+    "id": "example-voc-punct-02",
+    "scale": "vocabulary",
+    "type": "voc-punct",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Сколько запятых должно быть в предложении?\n\"Конечно банкиры не могут уверенно назначать процентные ставки по депозитам не зная какие остатки могут быть на счетах у клиентов и какую прибыль они принесут банку\"."
+    },
+    "options": [
+      {
+        "id": "example-voc-punct-02-1",
+        "text": "1"
+      },
+      {
+        "id": "example-voc-punct-02-2",
+        "text": "2"
+      },
+      {
+        "id": "example-voc-punct-02-3",
+        "text": "3"
+      },
+      {
+        "id": "example-voc-punct-02-4",
+        "text": "4"
+      },
+      {
+        "id": "example-voc-punct-02-5",
+        "text": "5"
+      }
+    ],
+    "correctOptionId": "example-voc-punct-02-3",
+    "shuffle": true,
+    "hint": "Начните с вводного слова в начале предложения, затем найдите деепричастный оборот.",
+    "explanation": "«Конечно, банкиры не могут уверенно назначать процентные ставки по депозитам, не зная, какие остатки могут быть на счетах у клиентов и какую прибыль они принесут банку»: запятые после «Конечно», после «депозитам» и после «не зная». Итого 3."
+  },
+  {
+    "id": "example-voc-punct-03",
+    "scale": "vocabulary",
+    "type": "voc-punct",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Сколько запятых необходимо поставить в предложении?\n\"Они сочли необходимым заявить что название \"Козлотур\" антинаучно ибо сам факт (а факты вещь упрямая) скрещивания тура с козой а не козла с турицей говорит о гегемонии тура над козой что и должно быть отражено в названии животного если к вопросу подходить с научной точностью\"."
+    },
+    "options": [
+      {
+        "id": "example-voc-punct-03-1",
+        "text": "3"
+      },
+      {
+        "id": "example-voc-punct-03-2",
+        "text": "4"
+      },
+      {
+        "id": "example-voc-punct-03-3",
+        "text": "5"
+      },
+      {
+        "id": "example-voc-punct-03-4",
+        "text": "6"
+      },
+      {
+        "id": "example-voc-punct-03-5",
+        "text": "7"
+      }
+    ],
+    "correctOptionId": "example-voc-punct-03-4",
+    "shuffle": true,
+    "hint": "Отступите вставку в скобках и расставьте запятые по границам придаточных и союзов.",
+    "explanation": "«Они сочли необходимым заявить, что название \"Козлотур\" антинаучно, ибо сам факт (а факты вещь упрямая) скрещивания тура с козой, а не козла с турицей, говорит о гегемонии тура над козой, что и должно быть отражено в названии животного, если к вопросу подходить с научной точностью»: запятые после «заявить», «антинаучно», первой «козой», «турицей», второй «козой», «животного». Итого 6."
+  },
+  {
+    "id": "example-voc-analogy-01",
+    "scale": "vocabulary",
+    "type": "voc-analogy",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Слово \"топор\" относится к слову \"рубить\", как слово \"ланцет\" к слову …"
+    },
+    "options": [
+      {
+        "id": "example-voc-analogy-01-1",
+        "text": "плыть"
+      },
+      {
+        "id": "example-voc-analogy-01-2",
+        "text": "резать"
+      },
+      {
+        "id": "example-voc-analogy-01-3",
+        "text": "блестеть"
+      },
+      {
+        "id": "example-voc-analogy-01-4",
+        "text": "тонуть"
+      },
+      {
+        "id": "example-voc-analogy-01-5",
+        "text": "смотреть"
+      }
+    ],
+    "correctOptionId": "example-voc-analogy-01-2",
+    "shuffle": true,
+    "hint": "Определите, как связаны слова первой пары, и примените ту же связь ко второй.",
+    "explanation": "Топор — это инструмент, для которого действие обозначено словом «рубить». Ланцет — медицинский инструмент для надрезов, поэтому ему соответствует слово «резать»."
+  },
+  {
+    "id": "example-voc-ana-meaning-01",
+    "scale": "vocabulary",
+    "type": "voc-ana-meaning",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Анаграмма (переставленный набор букв) \"ПРЕСАНТНИ\" означает …"
+    },
+    "options": [
+      {
+        "id": "example-voc-ana-meaning-01-1",
+        "text": "новогоднее украшение"
+      },
+      {
+        "id": "example-voc-ana-meaning-01-2",
+        "text": "косметическое средство"
+      },
+      {
+        "id": "example-voc-ana-meaning-01-3",
+        "text": "лекарство"
+      },
+      {
+        "id": "example-voc-ana-meaning-01-4",
+        "text": "инструмент"
+      },
+      {
+        "id": "example-voc-ana-meaning-01-5",
+        "text": "итальянское блюдо"
+      }
+    ],
+    "correctOptionId": "example-voc-ana-meaning-01-1",
+    "shuffle": true,
+    "hint": "Переставьте буквы так, чтобы получилось знакомое слово, и подумайте, что оно обозначает.",
+    "explanation": "ПРЕСАНТНИ — это «серпантин», длинная разноцветная лента, которую используют как новогоднее украшение."
+  },
+  {
+    "id": "example-voc-style-01",
+    "scale": "vocabulary",
+    "type": "voc-style",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Найдите предложение со стилистической ошибкой в употреблении имени прилагательного."
+    },
+    "options": [
+      {
+        "id": "example-voc-style-01-1",
+        "text": "Ученик был способен к математике"
+      },
+      {
+        "id": "example-voc-style-01-2",
+        "text": "Подобный ответ бессмысленен"
+      },
+      {
+        "id": "example-voc-style-01-3",
+        "text": "У мальчика появились и более худшие привычки"
+      },
+      {
+        "id": "example-voc-style-01-4",
+        "text": "Стихи были удачны и по содержанию, и по форме"
+      },
+      {
+        "id": "example-voc-style-01-5",
+        "text": "Сегодня начальник был менее зол"
+      }
+    ],
+    "correctOptionId": "example-voc-style-01-3",
+    "shuffle": true,
+    "hint": "Ищите двойное сравнение: слово «более» рядом с уже сравнительной или превосходной формой.",
+    "explanation": "«Более худший» — ошибка: «худший» уже стоит в превосходной степени и не может сочетаться со словом «более». Остальные предложения построены верно: «способен к математике», «менее зол» — допустимые конструкции."
+  },
+  {
+    "id": "example-voc-relation-01",
+    "scale": "vocabulary",
+    "type": "voc-relation",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Какое значение имеют следующие слова?\n\"тезаурус\" и \"словарь\""
+    },
+    "options": [
+      {
+        "id": "example-voc-relation-01-1",
+        "text": "ни сходное, ни противоположное"
+      },
+      {
+        "id": "example-voc-relation-01-2",
+        "text": "сходное"
+      },
+      {
+        "id": "example-voc-relation-01-3",
+        "text": "противоположное"
+      },
+      {
+        "id": "example-voc-relation-01-4",
+        "text": "нельзя сказать однозначно"
+      },
+      {
+        "id": "example-voc-relation-01-5",
+        "text": "слова \"тезаурус\" не существует"
+      }
+    ],
+    "correctOptionId": "example-voc-relation-01-2",
+    "shuffle": true,
+    "hint": "Вспомните, как называется словарь синонимов.",
+    "explanation": "Тезаурус — это словарь синонимов, то есть по значению слова «тезаурус» и «словарь» сходны."
+  },
+  {
+    "id": "example-voc-ana-join-01",
+    "scale": "vocabulary",
+    "type": "voc-ana-join",
+    "difficulty": "easy",
+    "original": true,
+    "stimulus": {
+      "text": "Расшифруйте слово (путём перестановки букв), которое было бы окончанием первого и началом второго слова.\nТО(…)ОП"
+    },
+    "options": [
+      {
+        "id": "example-voc-ana-join-01-1",
+        "text": "ЙАР"
+      },
+      {
+        "id": "example-voc-ana-join-01-2",
+        "text": "ТОП"
+      },
+      {
+        "id": "example-voc-ana-join-01-3",
+        "text": "ТОР"
+      },
+      {
+        "id": "example-voc-ana-join-01-4",
+        "text": "ЛАС"
+      },
+      {
+        "id": "example-voc-ana-join-01-5",
+        "text": "РАВ"
+      }
+    ],
+    "correctOptionId": "example-voc-ana-join-01-2",
+    "shuffle": true,
+    "hint": "Соберите слово из букв варианта и проверьте, получаются ли два слова: одно на «ТО-», другое на «-ОП».",
+    "explanation": "Из ТОП путём перестановки получается «пот»: ТО + ПОТ = «топот», ПОТ + ОП = «потоп». Остальные варианты не дают двух осмысленных слов."
+  },
+  {
+    "id": "example-voc-relation-02",
+    "scale": "vocabulary",
+    "type": "voc-relation",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Какое значение имеют следующие слова?\n\"ингредиент\" и \"инстанция\""
+    },
+    "options": [
+      {
+        "id": "example-voc-relation-02-1",
+        "text": "схожее значение"
+      },
+      {
+        "id": "example-voc-relation-02-2",
+        "text": "противоположное значение"
+      },
+      {
+        "id": "example-voc-relation-02-3",
+        "text": "ни схожее, ни противоположное значение"
+      },
+      {
+        "id": "example-voc-relation-02-4",
+        "text": "нельзя сказать однозначно"
+      },
+      {
+        "id": "example-voc-relation-02-5",
+        "text": "инстанция - составляющая ингредиента"
+      }
+    ],
+    "correctOptionId": "example-voc-relation-02-3",
+    "shuffle": true,
+    "hint": "Вспомните бытовое значение одного слова и официальное — другого.",
+    "explanation": "Ингредиент — составная часть чего-либо, например блюда. Инстанция — учреждение или стадия рассмотрения дела. Значения не совпадают и не противоположны."
+  },
+  {
+    "id": "example-voc-proverb-01",
+    "scale": "vocabulary",
+    "type": "voc-proverb",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Выберите выражение, близкое по смыслу к пословице\n\"В чужом глазу сучок видим, а в своём и бревно не замечаем\"."
+    },
+    "options": [
+      {
+        "id": "example-voc-proverb-01-1",
+        "text": "Ахал бы дядя, на себя глядя"
+      },
+      {
+        "id": "example-voc-proverb-01-2",
+        "text": "К воронам попал – по-вороньи каркай"
+      },
+      {
+        "id": "example-voc-proverb-01-3",
+        "text": "Всяк кулик своё болото хвалит"
+      },
+      {
+        "id": "example-voc-proverb-01-4",
+        "text": "Парус ветра не учит"
+      },
+      {
+        "id": "example-voc-proverb-01-5",
+        "text": "У семи нянек дитя без глаза"
+      }
+    ],
+    "correctOptionId": "example-voc-proverb-01-1",
+    "shuffle": true,
+    "hint": "Подумайте, о чём пословица: о чужих недостатках или о своих?",
+    "explanation": "Пословица говорит, что чужие недостатки мы видим, а свои — нет. То же самое выражает «Ахал бы дядя, на себя глядя»: прежде чем осуждать других, посмотри на себя."
+  },
+  {
+    "id": "example-voc-grammar-01",
+    "scale": "vocabulary",
+    "type": "voc-grammar",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Укажите слово, которое в русском языке может быть более, чем одной частью речи."
+    },
+    "options": [
+      {
+        "id": "example-voc-grammar-01-1",
+        "text": "сабантуй"
+      },
+      {
+        "id": "example-voc-grammar-01-2",
+        "text": "поцелуй"
+      },
+      {
+        "id": "example-voc-grammar-01-3",
+        "text": "зануда"
+      },
+      {
+        "id": "example-voc-grammar-01-4",
+        "text": "простуда"
+      },
+      {
+        "id": "example-voc-grammar-01-5",
+        "text": "сборище"
+      }
+    ],
+    "correctOptionId": "example-voc-grammar-01-2",
+    "shuffle": true,
+    "hint": "Проверьте каждое слово: может ли оно обозначать и предмет, и действие?",
+    "explanation": "«Поцелуй» — и существительное («подарить поцелуй»), и форма глагола («поцелуй меня»). Остальные слова — только существительные."
+  },
+  {
+    "id": "example-voc-ana-join-02",
+    "scale": "vocabulary",
+    "type": "voc-ana-join",
+    "difficulty": "medium",
+    "original": true,
+    "stimulus": {
+      "text": "Вставьте вместо точек слово, которое было бы окончанием первого и началом второго слова (при этом решите анаграммы в ответах путём перестановки букв).\nОБЫ(…)НИК"
+    },
+    "options": [
+      {
+        "id": "example-voc-ana-join-02-1",
+        "text": "ВАТЕЛЬ"
+      },
+      {
+        "id": "example-voc-ana-join-02-2",
+        "text": "НСО"
+      },
+      {
+        "id": "example-voc-ana-join-02-3",
+        "text": "УГОЛЬ"
+      },
+      {
+        "id": "example-voc-ana-join-02-4",
+        "text": "АЙЧ"
+      },
+      {
+        "id": "example-voc-ana-join-02-5",
+        "text": "МОК"
+      }
+    ],
+    "correctOptionId": "example-voc-ana-join-02-4",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждого варианта и проверьте два сложения: с «ОБЫ-» спереди и с «-НИК» сзади.",
+    "explanation": "АЙЧ переставляется в «чай»: ОБЫ + ЧАЙ = «обычай», ЧАЙ + НИК = «чайник». Остальные варианты не дают двух слов."
+  },
+  {
+    "id": "example-voc-ring-01",
+    "scale": "vocabulary",
+    "type": "voc-ring",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Вставьте на место цифр буквы так, чтобы получилось слово из 8 букв.",
+      "scene": {
+        "kind": "ring",
+        "letters": [
+          "1",
+          "Р",
+          "Г",
+          "А",
+          "2",
+          "И",
+          "З",
+          "М"
+        ]
+      }
+    },
+    "options": [
+      {
+        "id": "example-voc-ring-01-1",
+        "text": "1 – О, 2 – Н"
+      },
+      {
+        "id": "example-voc-ring-01-2",
+        "text": "1 – Н, 2 – О"
+      },
+      {
+        "id": "example-voc-ring-01-3",
+        "text": "1 – А, 2 – Н"
+      },
+      {
+        "id": "example-voc-ring-01-4",
+        "text": "1 – У, 2 – Л"
+      },
+      {
+        "id": "example-voc-ring-01-5",
+        "text": "1 – А, 2 – Ш"
+      }
+    ],
+    "correctOptionId": "example-voc-ring-01-1",
+    "shuffle": true,
+    "hint": "Читайте буквы по часовой стрелке, начиная с верхней точки, и подставляйте буквы из вариантов.",
+    "explanation": "С буквами из первого варианта по кольцу по часовой стрелке читается «организм» — слово из 8 букв."
+  },
+  {
+    "id": "example-voc-ana-meaning-02",
+    "scale": "vocabulary",
+    "type": "voc-ana-meaning",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Анаграмма (переставленный набор букв) \"РАТУТИЛЕРА\" означает …"
+    },
+    "options": [
+      {
+        "id": "example-voc-ana-meaning-02-1",
+        "text": "химический элемент"
+      },
+      {
+        "id": "example-voc-ana-meaning-02-2",
+        "text": "овощ"
+      },
+      {
+        "id": "example-voc-ana-meaning-02-3",
+        "text": "школьный предмет"
+      },
+      {
+        "id": "example-voc-ana-meaning-02-4",
+        "text": "алкогольный напиток"
+      },
+      {
+        "id": "example-voc-ana-meaning-02-5",
+        "text": "тропическое животное"
+      }
+    ],
+    "correctOptionId": "example-voc-ana-meaning-02-3",
+    "shuffle": true,
+    "hint": "Переставьте буквы так, чтобы получилось знакомое слово, и подумайте, что оно обозначает.",
+    "explanation": "РАТУТИЛЕРА — это «литература», то есть школьный предмет."
+  },
+  {
+    "id": "example-voc-ana-join-03",
+    "scale": "vocabulary",
+    "type": "voc-ana-join",
+    "difficulty": "hard",
+    "original": true,
+    "stimulus": {
+      "text": "Вставьте вместо точек слово, которое было бы окончанием первого и началом второго слова (при этом решите анаграммы в ответах путём перестановки букв).\nАМПЕР(…)ОПОЛИЯ"
+    },
+    "options": [
+      {
+        "id": "example-voc-ana-join-03-1",
+        "text": "МЕРТ"
+      },
+      {
+        "id": "example-voc-ana-join-03-2",
+        "text": "ТОН"
+      },
+      {
+        "id": "example-voc-ana-join-03-3",
+        "text": "КТО"
+      },
+      {
+        "id": "example-voc-ana-join-03-4",
+        "text": "НОМ"
+      },
+      {
+        "id": "example-voc-ana-join-03-5",
+        "text": "СНО"
+      }
+    ],
+    "correctOptionId": "example-voc-ana-join-03-1",
+    "shuffle": true,
+    "hint": "Соберите слово из букв каждого варианта и проверьте два сложения: с «АМПЕР-» спереди и с «-ОПОЛИЯ» сзади.",
+    "explanation": "МЕРТ переставляется в «метр»: АМПЕР + МЕТР = «амперметр», МЕТР + ОПОЛИЯ = «метрополия». Остальные варианты не дают двух слов."
+  }
+]

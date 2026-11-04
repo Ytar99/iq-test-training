@@ -200,6 +200,13 @@
   font-weight: 600;
 }
 
+.ring {
+  width: 9rem;
+  height: 9rem;
+  max-width: 100%;
+  overflow: visible;
+}
+
 .compass {
   width: 9rem;
   height: 9rem;

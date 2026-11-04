@@ -54,7 +54,8 @@ export type Scene =
   | { kind: "table"; headers: string[]; rows: string[][] }
   | { kind: "stack"; heights: number[][]; view: "iso" | "top" }
   | { kind: "compass"; arrow: number; label: string; labelAt: number }
-  | { kind: "shelf"; volumes: number[] };
+  | { kind: "shelf"; volumes: number[] }
+  | { kind: "ring"; letters: string[] };
 
 export type Stimulus = {
   text?: string;

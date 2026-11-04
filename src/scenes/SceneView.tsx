@@ -408,6 +408,39 @@ function CompassView({ arrow, label, labelAt }: { arrow: number; label: string; 
   );
 }
 
+function RingView({ letters }: { letters: string[] }) {
+  const count = letters.length;
+  const radius = 38;
+  return (
+    <svg viewBox="0 0 100 100" className={classes.ring} role="img" aria-label={`Кольцо из ${count} букв`}>
+      <circle cx="50" cy="50" r={radius} fill="none" stroke="var(--mantine-color-gray-5)" strokeWidth="6" />
+      {letters.map((letter, index) => {
+        const deg = (360 / count) * index;
+        const rad = (deg * Math.PI) / 180;
+        const x = 50 + radius * Math.sin(rad);
+        const y = 50 - radius * Math.cos(rad);
+        const placeholder = /^[0-9]+$/.test(letter);
+        return (
+          <g key={`${letter}-${index}`}>
+            <circle cx={x} cy={y} r="11" fill={placeholder ? teal : orange} />
+            <text
+              x={x}
+              y={y}
+              textAnchor="middle"
+              dominantBaseline="central"
+              fontSize="13"
+              fontWeight={700}
+              fill={placeholder ? "white" : "var(--mantine-color-gray-9)"}
+            >
+              {letter}
+            </text>
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
 function renderScene(scene: Scene) {
   if (scene.kind === "card") return <CardFrame content={{ elements: scene.elements }} />;
   if (scene.kind === "matrix") {
@@ -499,6 +532,7 @@ function renderScene(scene: Scene) {
   if (scene.kind === "table") return <TableView headers={scene.headers} rows={scene.rows} />;
   if (scene.kind === "compass") return <CompassView arrow={scene.arrow} label={scene.label} labelAt={scene.labelAt} />;
   if (scene.kind === "shelf") return <ShelfView volumes={scene.volumes} />;
+  if (scene.kind === "ring") return <RingView letters={scene.letters} />;
   if (scene.view === "top") {
     const columns = scene.heights[0]?.length ?? 1;
     return (

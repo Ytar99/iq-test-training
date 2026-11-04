@@ -1,4 +1,4 @@
-import { Stack, Text } from "@mantine/core";
+import { Blockquote, Stack, Text } from "@mantine/core";
 import type { Option, Stimulus } from "../domain/types.ts";
 import { SceneView } from "../scenes/SceneView.tsx";
 import { CalcGridView, NumberToken } from "./CalcGrid.tsx";
@@ -8,11 +8,21 @@ import classes from "./content.module.css";
 export function StimulusView({ stimulus, type }: { stimulus: Stimulus; type?: string }) {
   const grid = type === "calc-grid" && stimulus.text;
   const signs = type === "calc-signs" && stimulus.text;
+  const parts = !grid && !signs && stimulus.text ? stimulus.text.split("\n") : null;
+  const quoted = parts && parts.length > 1 && parts.slice(1).some((part) => part.trim() !== "");
   return (
     <Stack gap="sm" w="100%" miw={0}>
       {grid ? <CalcGridView text={stimulus.text ?? ""} /> : null}
       {signs ? <SignExpression text={stimulus.text ?? ""} /> : null}
-      {!grid && !signs && stimulus.text ? <Text style={{ whiteSpace: "pre-wrap" }}>{stimulus.text}</Text> : null}
+      {parts && quoted ? (
+        <>
+          <Text style={{ whiteSpace: "pre-wrap" }}>{parts[0]}</Text>
+          <Blockquote color="teal" radius="md">
+            {parts.slice(1).join("\n")}
+          </Blockquote>
+        </>
+      ) : null}
+      {parts && !quoted ? <Text style={{ whiteSpace: "pre-wrap" }}>{stimulus.text}</Text> : null}
       {stimulus.scene ? <SceneView scene={stimulus.scene} /> : null}
     </Stack>
   );
