@@ -1,4 +1,4 @@
-import { Button, Group, Paper, SegmentedControl, SimpleGrid, Stack, Table, Text, Title } from "@mantine/core";
+import { Button, Flex, Paper, SegmentedControl, SimpleGrid, Stack, Table, Text, Title } from "@mantine/core";
 import { useState } from "react";
 import { SCALES, TYPE_LABEL } from "../domain/catalog.ts";
 import { grade, type AttemptState, type ItemSlot } from "../domain/attempt.ts";
@@ -86,12 +86,32 @@ export function ResultScreen({
   return (
     <Shell>
       <Stack gap="lg">
-        <Stack gap={4}>
-          <Title order={2}>Итог</Title>
-          {state.finishedAt != null ? <Text>{new Date(state.finishedAt).toLocaleString("ru-RU")}</Text> : null}
-          <Text>{scaleNames}</Text>
-          <Text className="print-only">Задания: {filterLabel[filter]}</Text>
-        </Stack>
+        <Flex
+          direction={{ base: "column", md: "row" }}
+          justify="space-between"
+          align={{ base: "stretch", md: "flex-start" }}
+          gap="md"
+        >
+          <Stack gap={4}>
+            <Title order={2}>Итог</Title>
+            {state.finishedAt != null ? <Text>{new Date(state.finishedAt).toLocaleString("ru-RU")}</Text> : null}
+            <Text>{scaleNames}</Text>
+            <Text className="print-only">Задания: {filterLabel[filter]}</Text>
+          </Stack>
+          <Flex
+            className="no-print"
+            direction={{ base: "column", md: "row" }}
+            gap="sm"
+            w={{ base: "100%", md: "auto" }}
+          >
+            <Button color="teal" w={{ base: "100%", md: "auto" }} onClick={onPrint}>
+              Сохранить отчет в PDF
+            </Button>
+            <Button variant="default" w={{ base: "100%", md: "auto" }} onClick={onRestart}>
+              На старт
+            </Button>
+          </Flex>
+        </Flex>
 
         <div className={`${classes.summaryTable} keep-together`}>
           <Table withTableBorder withColumnBorders tabularNums>
@@ -193,15 +213,6 @@ export function ResultScreen({
             );
           })}
         </Stack>
-
-        <Group className="no-print">
-          <Button color="teal" onClick={onPrint}>
-            Сохранить отчет в PDF
-          </Button>
-          <Button variant="default" onClick={onRestart}>
-            На старт
-          </Button>
-        </Group>
       </Stack>
     </Shell>
   );

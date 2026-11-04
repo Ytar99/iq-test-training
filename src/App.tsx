@@ -12,6 +12,7 @@ export default function App() {
   const [selected, setSelected] = useState<ScaleId[]>([...SCALE_ORDER]);
   const [hints, setHints] = useState(false);
   const [explanations, setExplanations] = useState(false);
+  const [preferReal, setPreferReal] = useState(false);
   const [assembleError, setAssembleError] = useState<string | null>(null);
   const [attempt, setAttempt] = useState<AttemptState | null>(null);
   const [confirm, setConfirm] = useState<"menu" | "result" | null>(null);
@@ -38,6 +39,7 @@ export default function App() {
         selected={selected}
         hints={hints}
         explanations={explanations}
+        preferReal={preferReal}
         assembleError={assembleError}
         onToggleScale={(scaleId) =>
           setSelected((current) =>
@@ -46,11 +48,12 @@ export default function App() {
         }
         onToggleHints={() => setHints((value) => !value)}
         onToggleExplanations={() => setExplanations((value) => !value)}
+        onTogglePreferReal={() => setPreferReal((value) => !value)}
         onAll={() => setSelected([...SCALE_ORDER])}
         onNone={() => setSelected([])}
         onStart={() => {
           const ordered = SCALE_ORDER.filter((scaleId) => selected.includes(scaleId));
-          const assembled = assembleAttempt(ordered, bankItems);
+          const assembled = assembleAttempt(ordered, bankItems, Math.random, preferReal);
           if (!assembled.ok) {
             setAssembleError(assembled.error);
             return;

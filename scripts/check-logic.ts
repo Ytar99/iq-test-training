@@ -19,12 +19,14 @@ for (const scaleId of SCALE_ORDER) {
   }
 }
 
-function counts(items: { difficulty: string; type: string; topic?: string }[]) {
+function counts(items: { difficulty?: string; type: string; topic?: string }[]) {
   const difficulty = { easy: 0, medium: 0, hard: 0 };
   const types = new Map<string, number>();
   const topics = new Map<string, number>();
   for (const item of items) {
-    difficulty[item.difficulty as "easy" | "medium" | "hard"] += 1;
+    if (item.difficulty === "easy" || item.difficulty === "medium" || item.difficulty === "hard") {
+      difficulty[item.difficulty] += 1;
+    }
     types.set(item.type, (types.get(item.type) ?? 0) + 1);
     if (item.topic) topics.set(item.topic, (topics.get(item.topic) ?? 0) + 1);
   }

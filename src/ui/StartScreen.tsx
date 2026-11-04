@@ -1,48 +1,31 @@
-import { Button, Group, Paper, SimpleGrid, Stack, Text, Title } from "@mantine/core";
+import { Box, Button, Divider, Flex, Group, Paper, SimpleGrid, Stack, Switch, Text, Title } from "@mantine/core";
 import { SCALES } from "../domain/catalog.ts";
 import { bankIssues } from "../domain/bank.ts";
 import { SCALE_ORDER, type ScaleId } from "../domain/types.ts";
 import { Shell } from "./Shell.tsx";
+import classes from "./StartScreen.module.css";
 
 type StartScreenProps = {
   selected: ScaleId[];
   hints: boolean;
   explanations: boolean;
+  preferReal: boolean;
   assembleError: string | null;
   onToggleScale: (scaleId: ScaleId) => void;
   onToggleHints: () => void;
   onToggleExplanations: () => void;
+  onTogglePreferReal: () => void;
   onAll: () => void;
   onNone: () => void;
   onStart: () => void;
 };
 
-function Tile({
-  pressed,
-  color,
-  children,
-  onClick,
-}: {
-  pressed: boolean;
-  color: "teal" | "orange";
-  children: string;
-  onClick: () => void;
-}) {
+function ColumnTitle({ children }: { children: string }) {
   return (
-    <Button
-      fullWidth
-      size="md"
-      variant={pressed ? "filled" : "outline"}
-      color={color}
-      aria-pressed={pressed}
-      onClick={onClick}
-      styles={{
-        root: { height: "auto", paddingBlock: "0.55rem" },
-        label: { whiteSpace: "normal", textAlign: "center", lineHeight: 1.25 },
-      }}
-    >
-      {children}
-    </Button>
+    <Group gap="xs" wrap="nowrap">
+      <Box className={classes.mark} />
+      <Text fw={700}>{children}</Text>
+    </Group>
   );
 }
 
@@ -50,10 +33,12 @@ export function StartScreen({
   selected,
   hints,
   explanations,
+  preferReal,
   assembleError,
   onToggleScale,
   onToggleHints,
   onToggleExplanations,
+  onTogglePreferReal,
   onAll,
   onNone,
   onStart,
@@ -61,58 +46,66 @@ export function StartScreen({
   const blocked = selected.length === 0 || bankIssues.length > 0;
   return (
     <Shell>
-      <Stack gap="xl" maw={720} mx="auto" w="100%">
+      <Stack gap="lg" maw={720} mx="auto" w="100%">
         <Stack gap="xs">
           <Title order={2}>Тренажер</Title>
           <Text>Это тренировка по формату ТИПС, результат не является оценкой HT Lab.</Text>
         </Stack>
-        <Stack gap="sm">
-          <Group justify="space-between" align="baseline" wrap="nowrap">
-            <Text fw={700}>Шкалы</Text>
-            <Text size="sm" c="dimmed">
-              Выбрано {selected.length} из 7
-            </Text>
-          </Group>
-          <SimpleGrid cols={2} spacing="sm">
-            {SCALE_ORDER.map((scaleId) => (
-              <Tile
-                key={scaleId}
-                pressed={selected.includes(scaleId)}
+        <Paper withBorder radius="md" p="md">
+          <Flex direction={{ base: "column", md: "row" }} gap="lg" align="stretch">
+            <Stack gap="sm" flex={1}>
+              <Group justify="space-between" align="center" wrap="nowrap">
+                <ColumnTitle>Шкалы</ColumnTitle>
+                <Text size="sm" c="dimmed">
+                  Выбрано {selected.length} из 7
+                </Text>
+              </Group>
+              <Stack gap={0}>
+                {SCALE_ORDER.map((scaleId) => (
+                  <Switch
+                    key={scaleId}
+                    checked={selected.includes(scaleId)}
+                    onChange={() => onToggleScale(scaleId)}
+                    color="teal"
+                    size="md"
+                    labelPosition="left"
+                    label={SCALES[scaleId].name}
+                    classNames={{ root: classes.scaleSwitch, body: classes.scaleBody }}
+                  />
+                ))}
+              </Stack>
+              <SimpleGrid cols={{ base: 1, md: 2 }} spacing="sm">
+                <Button fullWidth variant="light" color="teal" onClick={onAll}>
+                  Выбрать все
+                </Button>
+                <Button fullWidth variant="default" onClick={onNone}>
+                  Снять все
+                </Button>
+              </SimpleGrid>
+            </Stack>
+            <Divider orientation="vertical" visibleFrom="md" />
+            <Divider hiddenFrom="md" />
+            <Stack gap="md" flex={1}>
+              <ColumnTitle>Настройки тренировки</ColumnTitle>
+              <Switch
+                checked={preferReal}
+                onChange={onTogglePreferReal}
                 color="teal"
-                onClick={() => onToggleScale(scaleId)}
-              >
-                {SCALES[scaleId].name}
-              </Tile>
-            ))}
-          </SimpleGrid>
-          <SimpleGrid cols={{ base: 1, md: 2 }} spacing="sm">
-            <Button fullWidth variant="light" color="teal" onClick={onAll}>
-              Полный тест
-            </Button>
-            <Button fullWidth variant="default" onClick={onNone}>
-              Снять все
-            </Button>
-          </SimpleGrid>
-        </Stack>
-        <SimpleGrid cols={2} spacing="sm">
-          <Stack gap={6}>
-            <Tile pressed={hints} color="orange" onClick={onToggleHints}>
-              Подсказки
-            </Tile>
-            <Text size="sm" c="dimmed">
-              На задании появится кнопка "Подсказка". Таймеры идут, балл не меняется.
-            </Text>
-          </Stack>
-          <Stack gap={6}>
-            <Tile pressed={explanations} color="orange" onClick={onToggleExplanations}>
-              Пояснения к ответу
-            </Tile>
-            <Text size="sm" c="dimmed">
-              На итоге под верным ответом будет короткое пояснение.
-            </Text>
-          </Stack>
-        </SimpleGrid>
-        <Button fullWidth size="md" color="teal" disabled={blocked} onClick={onStart}>
+                size="md"
+                label="Предпочтительно реальные"
+              />
+              <Switch checked={hints} onChange={onToggleHints} color="teal" size="md" label="Подсказки" />
+              <Switch
+                checked={explanations}
+                onChange={onToggleExplanations}
+                color="teal"
+                size="md"
+                label="Пояснения к ответу"
+              />
+            </Stack>
+          </Flex>
+        </Paper>
+        <Button fullWidth size="lg" color="teal" disabled={blocked} onClick={onStart}>
           Начать
         </Button>
         {bankIssues.length > 0 ? (

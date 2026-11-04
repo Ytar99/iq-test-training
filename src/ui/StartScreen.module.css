@@ -1,0 +1,17 @@
+.mark {
+  width: 4px;
+  align-self: stretch;
+  border-radius: 2px;
+  background: var(--mantine-color-teal-filled);
+}
+
+.scaleSwitch {
+  width: 100%;
+  padding-block: 0.45rem;
+  border-bottom: 1px solid var(--mantine-color-default-border);
+}
+
+.scaleBody {
+  width: 100%;
+  justify-content: space-between;
+}
