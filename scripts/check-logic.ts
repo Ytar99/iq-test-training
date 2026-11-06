@@ -132,8 +132,11 @@ itemOnly = {
   ],
 };
 itemOnly = reduceAttempt(itemOnly, { type: "tick" });
-if (itemOnly.phase.kind !== "task" || itemOnly.phase.itemIndex !== 1)
-  throw new Error("item expiry should open the next task");
+if (itemOnly.phase.kind !== "task" || itemOnly.phase.itemIndex !== 0)
+  throw new Error("expired item should stay on screen");
 if (itemOnly.blocks[0]!.slots[0]!.outcome.kind !== "skip") throw new Error("empty expiry should skip");
+itemOnly = reduceAttempt(itemOnly, { type: "next" });
+if (itemOnly.phase.kind !== "task" || itemOnly.phase.itemIndex !== 1)
+  throw new Error("next after item expiry should open the next task");
 
 console.log("checks ok", bankItems.length);

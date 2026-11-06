@@ -1,3 +1,4 @@
+import { spawnSync } from "node:child_process";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -3434,6 +3435,11 @@ mkdirSync(dataDir, { recursive: true });
 for (const [scale, items] of Object.entries(bank)) {
   writeFileSync(join(dataDir, `${scale}.json`), `${JSON.stringify(items, null, 2)}\n`, "utf8");
 }
+const fmt = spawnSync(process.execPath, [join(root, "node_modules", "oxfmt", "bin", "oxfmt"), "data"], {
+  cwd: root,
+  stdio: "inherit",
+});
+if (fmt.status !== 0) process.exit(fmt.status ?? 1);
 console.log(
   Object.entries(bank)
     .map(([scale, items]) => `${scale}:${items.length}`)

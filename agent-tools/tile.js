@@ -1,15 +1,33 @@
 const M = [[0, 0]];
-const Z1 = [[0, 0], [0, 1], [1, 1], [1, 2]];
-const Z2 = [[1, 0], [0, 1], [1, 1], [0, 2]];
-const L = [[0, 0], [1, 0], [1, 1], [1, 2]];
-const J = [[0, 0], [1, 0], [0, 1], [0, 2]];
+const Z1 = [
+  [0, 0],
+  [0, 1],
+  [1, 1],
+  [1, 2],
+];
+const Z2 = [
+  [1, 0],
+  [0, 1],
+  [1, 1],
+  [0, 2],
+];
+const L = [
+  [0, 0],
+  [1, 0],
+  [1, 1],
+  [1, 2],
+];
+const J = [
+  [0, 0],
+  [1, 0],
+  [0, 1],
+  [0, 2],
+];
 
 function normalize(cells) {
   const minX = Math.min(...cells.map((c) => c[0]));
   const minY = Math.min(...cells.map((c) => c[1]));
-  return cells
-    .map(([x, y]) => [x - minX, y - minY])
-    .sort((a, b) => a[1] - b[1] || a[0] - b[0]);
+  return cells.map(([x, y]) => [x - minX, y - minY]).sort((a, b) => a[1] - b[1] || a[0] - b[0]);
 }
 
 function rotations(cells) {

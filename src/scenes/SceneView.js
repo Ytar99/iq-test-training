@@ -459,18 +459,16 @@ function renderScene(scene) {
     return _jsx("div", {
       className: classes.net,
       style: { gridTemplateColumns: `repeat(${columns}, 2.6rem)` },
-      children: scene.layout
-        .flat()
-        .map((face, index) =>
-          _jsx(
-            "div",
-            {
-              className: face == null ? classes.faceHole : classes.face,
-              children: face ? _jsx(FaceGlyph, { mark: face }) : null,
-            },
-            index,
-          ),
+      children: scene.layout.flat().map((face, index) =>
+        _jsx(
+          "div",
+          {
+            className: face == null ? classes.faceHole : classes.face,
+            children: face ? _jsx(FaceGlyph, { mark: face }) : null,
+          },
+          index,
         ),
+      ),
     });
   }
   if (scene.kind === "cube") return _jsx(CubeView, { front: scene.front, top: scene.top, right: scene.right });
